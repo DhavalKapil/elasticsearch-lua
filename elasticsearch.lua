@@ -56,6 +56,20 @@ function Client:index(document)
   return curl_request(method, url.build(parsed_url), json.encode(document.body))
 end
 
+function Client:search(document)
+  parsed_url = self.parsed_url
+  url_path = '/'
+  if document.index ~= nil then
+    url_path = '/' .. document.index
+    if document.type ~= nil then
+      url_path = url_path .. '/' .. document.type
+    end
+  end
+  url_path = url_path .. '/_search'
+  parsed_url.path = url_path
+  return curl_request("POST", url.build(parsed_url), json.encode(document.body))
+end
+
 function Client:delete(document)
   parsed_url = self.parsed_url
   url_path = '/' .. document.index
