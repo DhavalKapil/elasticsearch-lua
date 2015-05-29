@@ -4,9 +4,9 @@ source = {
   url = "https://github.com/DhavalKapil/elasticsearch-lua"
 }
 description = {
-  summary = "Lua client for elasticsearch",
+  summary = "Elasticsearch client for the Lua language",
   detailed = [[
-    This is an elasticsearch client written in lua. Under development.
+    This is an elasticsearch client written in Lua. Under development.
   ]],
   homepage = "https://github.com/DhavalKapil/elasticsearch-lua",
   license = "MIT"
@@ -17,5 +17,8 @@ dependencies = {
   "lua-cjson"
 }
 build = {
-  type = "builtin"
+  type = "builtin",
+  modules = {
+    ["elaticsearch"] = "elasticsearch/elasticsearch.lua"
+  }
 }
