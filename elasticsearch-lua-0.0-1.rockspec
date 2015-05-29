@@ -6,7 +6,7 @@ source = {
 description = {
   summary = "Lua client for elasticsearch",
   detailed = [[
-    This is an elasticsearch client written in lua. It currently is more of a prototype consisting of basic features.
+    This is an elasticsearch client written in lua. Under development.
   ]],
   homepage = "https://github.com/DhavalKapil/elasticsearch-lua",
   license = "MIT"
