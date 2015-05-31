@@ -7,10 +7,10 @@ local Selector = {}
 -- Returns an instance of Selector class
 -------------------------------------------------------------------------------
 function Selector:new(o)
-	o = o or {}
-	setmetatable(o, self)
-	self.__index = self
-	return o
+  o = o or {}
+  setmetatable(o, self)
+  self.__index = self
+  return o
 end
 
 return Selector

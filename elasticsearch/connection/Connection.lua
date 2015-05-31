@@ -1,6 +1,6 @@
------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -- Declaring module
------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 local Connection = {}
 
 -------------------------------------------------------------------------------
@@ -20,48 +20,49 @@ Connection.alive = false
 -------------------------------------------------------------------------------
 -- Makes a request to target server
 --
--- @param 	params 	The parameters to be passed
--- @return 	table		The reponse returned
+-- @param   params  The parameters to be passed
+-- @return  table   The reponse returned
 -------------------------------------------------------------------------------
 function Connection:request(params)
-	-- Function body
+  -- Function body
 end
 
 -------------------------------------------------------------------------------
 -- Pings the target server and sets alive variable appropriately
 -------------------------------------------------------------------------------
 function Connection:ping()
-	-- Function body
+  -- Function body
 end
 
 -------------------------------------------------------------------------------
 -- Sniffs the network to collect information about other nodes in the cluster
 --
--- @return 	table		The details about other nodes
+-- @return  table   The details about other nodes
 -------------------------------------------------------------------------------
 function Connection:sniff()
-	-- Function body
+  -- Function body
 end
 
+-------------------------------------------------------------------------------
 -- Returns an instance of Connection class
 -------------------------------------------------------------------------------
 function Connection:new(o)
-	o = o or {}
-	setmetatable(o, self)
-	self.__index = self
+  o = o or {}
+  setmetatable(o, self)
+  self.__index = self
 
-	-- Checking options
-	if type(o.protocol) ~= "string" then
-		error("protocol should be of string type")
-	elseif type(o.host) ~= "string" then
-		error("host should be of string type")
-	elseif type(o.port) ~= "number" then
-		error("port should be of number type")
-	elseif type(o.alive) ~= "boolean" then
-		error("alive should be of boolean type")
-	end
+  -- Checking options
+  if type(o.protocol) ~= "string" then
+    error("protocol should be of string type")
+  elseif type(o.host) ~= "string" then
+    error("host should be of string type")
+  elseif type(o.port) ~= "number" then
+    error("port should be of number type")
+  elseif type(o.alive) ~= "boolean" then
+    error("alive should be of boolean type")
+  end
 
-	return o
+  return o
 end
 
 return Connection
