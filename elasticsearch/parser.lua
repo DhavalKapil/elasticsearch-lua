@@ -1,25 +1,26 @@
 -------------------------------------------------------------------------------
 -- Declaring module
--------------------------------------------------------------------------------
-local ConnectionPool = {}
+
+local parser = {}
 
 -------------------------------------------------------------------------------
--- Declaring instance variables
+-- Encodes a table to a json string
+--
+-- @param   data    The data to encode
+-- @return  string  The JSON as a string
 -------------------------------------------------------------------------------
-
--- The list of all connections
-ConnectionPool.connections = {}
--- The selector instance
-ConnectionPool.selector = nil
-
--------------------------------------------------------------------------------
--- Returns an instance of ConnectionPool class
--------------------------------------------------------------------------------
-function ConnectionPool:new(o)
-  o = o or {}
-  setmetatable(o, self)
-  self.__index = self
-  return o
+function parser.jsonEncode(data)
+  -- Function of body
 end
 
-return ConnectionPool
+-------------------------------------------------------------------------------
+-- Decodes a json string to a table
+--
+-- @param   json    The json string to be decoded
+-- @return  table   The decoded table
+-------------------------------------------------------------------------------
+function parser.jsonDecode(json)
+  -- Function of body
+end
+
+return parser
