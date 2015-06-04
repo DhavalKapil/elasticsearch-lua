@@ -34,9 +34,9 @@ function Transport:request(params)
 end
 
 -------------------------------------------------------------------------------
--- Returns an instance of ConnectionPool class
+-- Returns an instance of Transport class
 -------------------------------------------------------------------------------
-function ConnectionPool:new(o)
+function Transport:new(o)
   o = o or {}
   setmetatable(o, self)
   self.__index = self
