@@ -1,4 +1,9 @@
 -------------------------------------------------------------------------------
+-- Importing module
+-------------------------------------------------------------------------------
+local url = require "socket.url"
+
+-------------------------------------------------------------------------------
 -- Declaring module
 -------------------------------------------------------------------------------
 local Connection = {}
@@ -20,11 +25,16 @@ Connection.alive = false
 -------------------------------------------------------------------------------
 -- Makes a request to target server
 --
--- @param   params  The parameters to be passed
+-- @param   method  The HTTP method to be used
+-- @param   uri     The HTTP URI for the request
+-- @param   params  The optional URI parameters to be passed
+-- @param   body    The body to passed if any
+--
 -- @return  table   The reponse returned
 -------------------------------------------------------------------------------
-function Connection:request(params)
-  -- Function body
+function Connection:request(method, uri, params, body)
+  -- Building URI
+  uri = self:buildURI(uri, params)
 end
 
 -------------------------------------------------------------------------------
@@ -41,6 +51,41 @@ end
 -------------------------------------------------------------------------------
 function Connection:sniff()
   -- Function body
+end
+
+-------------------------------------------------------------------------------
+-- Builds the query string from the query table
+--
+-- @param   params  The query as a table
+--
+-- @return  string  The query as a string
+-------------------------------------------------------------------------------
+function Connection:buildQuery(params)
+  query = ''
+  for k, v in pairs(params) do
+    query = query .. k .. '=' .. v .. '&'
+  end
+  return query:sub(1, query:len()-1)
+end
+
+-------------------------------------------------------------------------------
+-- Builds the URL according to protocol, host, port, uri and params
+--
+-- @param   uri     The HTTP URI for the request
+-- @param   params  The optional URI parameters to be passed
+--
+-- @return  string  The final built URI
+-------------------------------------------------------------------------------
+function Connection:buildURI(uri, params)
+  query = self:buildQuery(params)
+  urlComponents = {
+    scheme = self.protocol,
+    host = self.host,
+    port = self.port,
+    path = uri,
+    query = query
+  }
+  return url.build(urlComponents)
 end
 
 -------------------------------------------------------------------------------
