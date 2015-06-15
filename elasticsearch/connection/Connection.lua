@@ -34,7 +34,7 @@ Connection.alive = false
 -------------------------------------------------------------------------------
 function Connection:request(method, uri, params, body)
   -- Building URI
-  uri = self:buildURI(uri, params)
+  local uri = self:buildURI(uri, params)
 end
 
 -------------------------------------------------------------------------------
@@ -61,7 +61,7 @@ end
 -- @return  string  The query as a string
 -------------------------------------------------------------------------------
 function Connection:buildQuery(params)
-  query = ''
+  local query = ''
   for k, v in pairs(params) do
     query = query .. k .. '=' .. v .. '&'
   end
@@ -77,14 +77,15 @@ end
 -- @return  string  The final built URI
 -------------------------------------------------------------------------------
 function Connection:buildURI(uri, params)
-  query = self:buildQuery(params)
-  urlComponents = {
+  local urlComponents = {
     scheme = self.protocol,
     host = self.host,
     port = self.port,
-    path = uri,
-    query = query
+    path = uri
   }
+  if params ~= nil then
+    urlComponents.query = self:buildQuery(params)
+  end
   return url.build(urlComponents)
 end
 
