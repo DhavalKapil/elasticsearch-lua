@@ -1,7 +1,10 @@
 -------------------------------------------------------------------------------
 -- Importing module
 -------------------------------------------------------------------------------
+local http = require "socket.http"
 local url = require "socket.url"
+local table = require "table"
+local ltn12 = require "ltn12"
 
 -------------------------------------------------------------------------------
 -- Declaring module
@@ -30,11 +33,30 @@ Connection.alive = false
 -- @param   params  The optional URI parameters to be passed
 -- @param   body    The body to passed if any
 --
--- @return  table   The reponse returned
+-- @return  table   The response returned
 -------------------------------------------------------------------------------
 function Connection:request(method, uri, params, body)
   -- Building URI
   local uri = self:buildURI(uri, params)
+  -- The response table
+  local response = {}
+  -- The request table
+  local request = {
+    method = method,
+    url = uri,
+    sink = ltn12.sink.table(response)
+  }
+  if method == "POST" then
+    -- Adding body to request
+    request.headers = {
+      ["Content-Length"] = body:len()
+    }
+    request.source = ltn12.source.string(body)
+  end
+  -- Making the actual request
+  http.request(request)
+
+  return table.concat(response)
 end
 
 -------------------------------------------------------------------------------
