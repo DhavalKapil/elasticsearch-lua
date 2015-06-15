@@ -20,7 +20,7 @@ Connection.protocol = "http"
 -- The host where the connection should be made
 Connection.host = "localhost"
 -- The port at which the connection should be made
-Connection.port = 9300
+Connection.port = 9200
 -- Whether the client is alive or not
 Connection.alive = false
 
@@ -56,7 +56,7 @@ function Connection:request(method, uri, params, body)
   -- Making the actual request
   http.request(request)
 
-  return table.concat(response)
+  return response
 end
 
 -------------------------------------------------------------------------------
