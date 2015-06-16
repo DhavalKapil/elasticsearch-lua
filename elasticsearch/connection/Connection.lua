@@ -5,6 +5,7 @@ local http = require "socket.http"
 local url = require "socket.url"
 local table = require "table"
 local ltn12 = require "ltn12"
+local parser = require "parser"
 
 -------------------------------------------------------------------------------
 -- Declaring module
@@ -32,19 +33,22 @@ Connection.alive = false
 -- @param   uri     The HTTP URI for the request
 -- @param   params  The optional URI parameters to be passed
 -- @param   body    The body to passed if any
+-- @param   timeout The timeout(if any) in seconds
 --
 -- @return  table   The response returned
 -------------------------------------------------------------------------------
-function Connection:request(method, uri, params, body)
+function Connection:request(method, uri, params, body, timeout)
   -- Building URI
   local uri = self:buildURI(uri, params)
+  -- The responseBody table
+  local responseBody = {}
   -- The response table
   local response = {}
   -- The request table
   local request = {
     method = method,
     url = uri,
-    sink = ltn12.sink.table(response)
+    sink = ltn12.sink.table(responseBody)
   }
   if method == "POST" then
     -- Adding body to request
@@ -53,17 +57,37 @@ function Connection:request(method, uri, params, body)
     }
     request.source = ltn12.source.string(body)
   end
+  if timeout ~= nil then
+    -- Setting timeout for request
+    http.TIMEOUT = timeout
+  end
+
   -- Making the actual request
-  http.request(request)
+  response.code, response.statusCode, response.headers, response.statusLine
+    = http.request(request)
+  http.TIMEOUT = nil
+  if responseBody ~= nil then
+    response.body = parser.jsonDecode(responseBody[1])
+  end
 
   return response
 end
 
 -------------------------------------------------------------------------------
 -- Pings the target server and sets alive variable appropriately
+--
+-- @return  boolean   The status whether the Node is alive or not
 -------------------------------------------------------------------------------
 function Connection:ping()
-  -- Function body
+  local response = self:request('HEAD', '', nil, nil, 1)
+  if response.code ~= nil and response.statusCode == 200 then
+    -- TODO check for status code also
+    self.alive = true
+    return true
+  else
+    self.alive = false
+    return false
+  end
 end
 
 -------------------------------------------------------------------------------
@@ -72,7 +96,7 @@ end
 -- @return  table   The details about other nodes
 -------------------------------------------------------------------------------
 function Connection:sniff()
-  -- Function body
+  return self:request('GET', '/_nodes/_all/clear', nil, nil, 1)
 end
 
 -------------------------------------------------------------------------------
