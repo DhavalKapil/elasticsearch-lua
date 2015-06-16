@@ -66,7 +66,7 @@ function Connection:request(method, uri, params, body, timeout)
   response.code, response.statusCode, response.headers, response.statusLine
     = http.request(request)
   http.TIMEOUT = nil
-  if responseBody ~= nil then
+  if responseBody[1] ~= nil then
     response.body = parser.jsonDecode(responseBody[1])
   end
 

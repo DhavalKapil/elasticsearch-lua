@@ -1,0 +1,98 @@
+-- Importing modules
+local connection = require "connection.Connection"
+local getmetatable = getmetatable
+
+-- Declaring test module
+module('tests.connection.ConnectionTest', lunit.testcase)
+
+-- Declaring local variables
+local con
+-- Testing the constructor
+function constructorTest()
+  assert_function(connection.new)
+  local o = connection:new()
+  assert_not_nil(o)
+  local mt = getmetatable(o)
+  assert_table(mt)
+  assert_function(mt.request)
+  assert_function(mt.ping)
+  assert_function(mt.sniff)
+  assert_function(mt.buildQuery)
+  assert_function(mt.buildURI)
+  assert_equal(mt, mt.__index)
+end
+
+-- The setup function to be called before every test
+function setup()
+  con = connection:new()
+end
+
+-- Testing the query builder
+function queryBuilderTest()
+  local q = {a="a_s", b="b_s"}
+  assert_equal("a=a_s&b=b_s", con:buildQuery(q))
+  q = {a="a_s"}
+  assert_equal("a=a_s", con:buildQuery(q))
+end
+
+-- Testing the URI builder
+function buildURITest()
+  local url = con:buildURI("/path", {a="a_s", b="b_s"})
+  assert_equal("http://localhost:9200/path?a=a_s&b=b_s", url)
+  url = con:buildURI("/path", {a="a_s"})
+  assert_not_equal("http://localhost:9200/path?a=a_s&b=b_s", url)
+end
+
+-- Testing the request function
+function requestTest()
+  -- Valid request
+  local response = con:request("GET", "/")
+  assert_equal(1, response.code)
+  assert_equal(200, response.statusCode)
+  assert_table(response.headers)
+  assert_equal("HTTP/1.1 200 OK", response.statusLine)
+  -- Invalid request: 404
+  response = con:request("GET", "/dkr0wifkvsdlwoejkfsd")
+  assert_equal(1, response.code)
+  assert_equal(404, response.statusCode)
+  assert_table(response.headers)
+  assert_equal("HTTP/1.1 404 Not Found", response.statusLine)
+  -- Invalid request: Wrong port
+  con.port = 9199
+  response = con:request("GET", "/")
+  assert_nil(response.code)
+  -- Invalid request: Incorrect host
+  con.host = "1.2.3.4"
+  response = con:request("GET", "/", nil, nil, 1)
+  assert_nil(response.code)
+end
+
+-- Testing the ping function
+function pingTest()
+  -- Valid
+  assert_true(con:ping())
+  -- Invalid port
+  con.port = 9199
+  assert_false(con:ping())
+  -- Invalid host
+  con.host = "1.2.3.4"
+  assert_false(con:ping())
+end
+
+-- Testing sniff function
+function sniffTest()
+  -- Valid request
+  local response = con:sniff()
+  assert_equal(1, response.code)
+  assert_equal(200, response.statusCode)
+  assert_table(response.headers)
+  assert_equal("HTTP/1.1 200 OK", response.statusLine)
+  -- Invalid request: Wrong port
+  con.port = 9199
+  response = con:sniff()
+  assert_nil(response.code)
+  -- Invalid request: Incorrect host
+  con.host = "1.2.3.4"
+  response = con:sniff()
+  assert_nil(response.code)
+end
