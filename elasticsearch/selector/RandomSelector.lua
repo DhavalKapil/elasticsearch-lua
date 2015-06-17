@@ -15,7 +15,7 @@ local RandomSelector = Selector:new()
 -- @return  Connection    The connection selected
 -------------------------------------------------------------------------------
 function RandomSelector:selectNext(connections)
-  -- Function body
+  return connections[math.random(1, #connections)]
 end
 
 -------------------------------------------------------------------------------
@@ -23,6 +23,7 @@ end
 -------------------------------------------------------------------------------
 function RandomSelector:new(o)
   o = o or {}
+  math.randomseed(os.time())
   setmetatable(o, self)
   self.__index = self
   return o

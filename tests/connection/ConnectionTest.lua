@@ -7,6 +7,7 @@ module('tests.connection.ConnectionTest', lunit.testcase)
 
 -- Declaring local variables
 local con
+
 -- Testing the constructor
 function constructorTest()
   assert_function(connection.new)
