@@ -1,0 +1,48 @@
+-- Importing modules
+local roundRobinSelector = require "selector.RoundRobinSelector"
+local connection = require "connection.Connection"
+local getmetatable = getmetatable
+
+-- Declaring test module
+module('tests.selector.RoundRobinSelectorTest', lunit.testcase)
+
+-- Declaring local variables
+local rRS
+local connections
+
+-- Testing the constructor
+function constructorTest()
+  assert_function(roundRobinSelector.new)
+  local o = roundRobinSelector:new()
+  assert_not_nil(o)
+  local mt = getmetatable(o)
+  assert_table(mt)
+  assert_function(mt.selectNext)
+  assert_equal(mt, mt.__index)
+end
+
+-- The setup function
+function setup()
+  connections = {}
+  for i = 1, 5 do
+    connections[i] = connection:new()
+    -- For checking later on
+    connections[i].id = i
+  end
+  rRS = roundRobinSelector:new()
+end
+
+-- Testing select function
+function selectNextTest()
+  for i = 1, 10 do
+    local con = rRS:selectNext(connections)
+    local j = i
+    if j > 5 then
+      j = j - 5
+    end
+    if con.id ~= j then
+      assert_false(true, "RoundRobinSelector test fail")
+    end
+  end
+  assert_true(true)
+end
