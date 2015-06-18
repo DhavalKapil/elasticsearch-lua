@@ -24,6 +24,8 @@ Connection.host = "localhost"
 Connection.port = 9200
 -- Whether the client is alive or not
 Connection.alive = false
+-- The timeout for a ping/sniff request
+Connection.pingTimeout = 1
 -- The last timestamp where it was marked alive
 Connection.lastPing = 0
 -- The number of times it was marked dead continuously
@@ -83,7 +85,7 @@ end
 -- @return  boolean   The status whether the Node is alive or not
 -------------------------------------------------------------------------------
 function Connection:ping()
-  local response = self:request('HEAD', '', nil, nil, 1)
+  local response = self:request('HEAD', '', nil, nil, self.pingTimeout)
   if response.code ~= nil and response.statusCode == 200 then
     self:markAlive()
     return true
@@ -99,7 +101,7 @@ end
 -- @return  table   The details about other nodes
 -------------------------------------------------------------------------------
 function Connection:sniff()
-  return self:request('GET', '/_nodes/_all/clear', nil, nil, 1)
+  return self:request('GET', '/_nodes/_all/clear', nil, nil, self.pingTimeout)
 end
 
 -------------------------------------------------------------------------------
