@@ -24,6 +24,10 @@ Connection.host = "localhost"
 Connection.port = 9200
 -- Whether the client is alive or not
 Connection.alive = false
+-- The last timestamp where it was marked alive
+Connection.lastPing = 0
+-- The number of times it was marked dead continuously
+Connection.failedPings = 0
 
 
 -------------------------------------------------------------------------------
@@ -81,11 +85,10 @@ end
 function Connection:ping()
   local response = self:request('HEAD', '', nil, nil, 1)
   if response.code ~= nil and response.statusCode == 200 then
-    -- TODO check for status code also
-    self.alive = true
+    self:markAlive()
     return true
   else
-    self.alive = false
+    self:markDead()
     return false
   end
 end
@@ -133,6 +136,24 @@ function Connection:buildURI(uri, params)
     urlComponents.query = self:buildQuery(params)
   end
   return url.build(urlComponents)
+end
+
+-------------------------------------------------------------------------------
+-- Marks the connection alive
+-------------------------------------------------------------------------------
+function Connection:markAlive()
+  self.alive = true
+  self.failedPings = 0
+  self.lastPing = os.time()
+end
+
+-------------------------------------------------------------------------------
+-- Marks the connection alive
+-------------------------------------------------------------------------------
+function Connection:markDead()
+  self.alive = false
+  self.failedPings = self.failedPings + 1
+  self.lastPing = os.time()
 end
 
 -------------------------------------------------------------------------------

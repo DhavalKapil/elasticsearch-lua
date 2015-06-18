@@ -28,6 +28,7 @@ function setup()
     connections[i] = connection:new()
     -- For checking later on
     connections[i].id = i
+    connections[i]:markAlive()
   end
   sRRS = stickyRoundRobinSelector:new()
 end
@@ -42,7 +43,7 @@ function selectNextTest()
     end
   end
   -- Making the connection dead
-  con.port = 9199
+  con:markDead()
   con = sRRS:selectNext(connections)
   if con.id == 1 then
     assert_false(true, "Connection still returned after it died")

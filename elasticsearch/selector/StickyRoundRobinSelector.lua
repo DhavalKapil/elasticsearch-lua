@@ -14,14 +14,15 @@ local StickyRoundRobinSelector = Selector:new()
 local index = 1
 
 -------------------------------------------------------------------------------
--- StickyRoundRobinly selects a connection from the list provided
+-- Selects next connection in roundrobin fashion only if the connection is
+-- dead. Otherwise returns the last selected connection
 --
 -- @param   connections   A table of connections
 -- @return  Connection    The connection selected
 -------------------------------------------------------------------------------
 function StickyRoundRobinSelector:selectNext(connections)
   -- Checking if connection is alive or not
-  if connections[index]:ping() then
+  if connections[index].alive then
     return connections[index]
   end
   -- Else returning the next connection

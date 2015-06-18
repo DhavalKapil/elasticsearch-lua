@@ -14,7 +14,7 @@ local RoundRobinSelector = Selector:new()
 local index = 0
 
 -------------------------------------------------------------------------------
--- RoundRobinly selects a connection from the list provided
+-- Selects the next connection from the list in round robin fashion
 --
 -- @param   connections   A table of connections
 -- @return  Connection    The connection selected

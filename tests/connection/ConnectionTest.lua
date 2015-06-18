@@ -1,6 +1,7 @@
 -- Importing modules
 local connection = require "connection.Connection"
 local getmetatable = getmetatable
+local os = os
 
 -- Declaring test module
 module('tests.connection.ConnectionTest', lunit.testcase)
@@ -20,6 +21,8 @@ function constructorTest()
   assert_function(mt.sniff)
   assert_function(mt.buildQuery)
   assert_function(mt.buildURI)
+  assert_function(mt.markAlive)
+  assert_function(mt.markDead)
   assert_equal(mt, mt.__index)
 end
 
@@ -72,12 +75,15 @@ end
 function pingTest()
   -- Valid
   assert_true(con:ping())
+  assert_true(con.alive)
   -- Invalid port
   con.port = 9199
   assert_false(con:ping())
+  assert_false(con.alive)
   -- Invalid host
   con.host = "1.2.3.4"
   assert_false(con:ping())
+  assert_false(con.alive)
 end
 
 -- Testing sniff function
@@ -96,4 +102,28 @@ function sniffTest()
   con.host = "1.2.3.4"
   response = con:sniff()
   assert_nil(response.code)
+end
+
+-- Testing function that marks a connection alive
+function markAliveTest()
+  local currentTime = os.time()
+  con.alive = false
+  con.lastPing = 0
+  con.failedPings = 3
+  con:markAlive()
+  assert_true(con.alive)
+  assert_true(currentTime <= con.lastPing)
+  assert_equal(0, con.failedPings)
+end
+
+-- Testing function that marks a connection dead
+function markDeadTest()
+  local currentTime = os.time()
+  con.alive = true
+  con.lastPing = 0
+  con.failedPings = 3
+  con:markDead()
+  assert_false(con.alive)
+  assert_true(currentTime <= con.lastPing)
+  assert_equal(4, con.failedPings)
 end
