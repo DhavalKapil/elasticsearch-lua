@@ -8,6 +8,7 @@ require "selector.RandomSelectorTest"
 require "selector.RoundRobinSelectorTest"
 require "selector.StickyRoundRobinSelectorTest"
 require "connectionpool.StaticConnectionPoolTest"
+require "TransportTest"
 
 lunit.loadrunner("lunit-console")
 lunit.run()
