@@ -17,19 +17,19 @@ local Connection = {}
 -------------------------------------------------------------------------------
 
 -- The protocol of the connection
-Connection.protocol = "http"
+Connection.protocol
 -- The host where the connection should be made
-Connection.host = "localhost"
+Connection.host
 -- The port at which the connection should be made
-Connection.port = 9200
--- Whether the client is alive or not
-Connection.alive = false
+Connection.port
 -- The timeout for a ping/sniff request
-Connection.pingTimeout = 1
+Connection.pingTimeout
 -- The last timestamp where it was marked alive
 Connection.lastPing = 0
 -- The number of times it was marked dead continuously
 Connection.failedPings = 0
+-- Whether the client is alive or not
+Connection.alive = false
 
 
 -------------------------------------------------------------------------------
@@ -165,18 +165,6 @@ function Connection:new(o)
   o = o or {}
   setmetatable(o, self)
   self.__index = self
-
-  -- Checking options
-  if type(o.protocol) ~= "string" then
-    error("protocol should be of string type")
-  elseif type(o.host) ~= "string" then
-    error("host should be of string type")
-  elseif type(o.port) ~= "number" then
-    error("port should be of number type")
-  elseif type(o.alive) ~= "boolean" then
-    error("alive should be of boolean type")
-  end
-
   return o
 end
 

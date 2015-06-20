@@ -1,4 +1,9 @@
 -------------------------------------------------------------------------------
+-- Importing modules
+-------------------------------------------------------------------------------
+local Transport = require "Transport"
+
+-------------------------------------------------------------------------------
 -- Declaring module
 -------------------------------------------------------------------------------
 local Client = {}
@@ -7,8 +12,8 @@ local Client = {}
 -- Declaring instance variables
 -------------------------------------------------------------------------------
 
--- The Transport instance
-Client.transport = nil
+-- The Settings instance
+Client.settings = nil
 
 -------------------------------------------------------------------------------
 -- Returns an instance of Client class
@@ -17,6 +22,10 @@ function Client:new(o)
   o = o or {}
   setmetatable(o, self)
   self.__index = self
+  o.settings = Settings:new({
+    hosts = o.hosts,
+    settings = o.params
+  })
   return o
 end
 

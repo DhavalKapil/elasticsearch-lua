@@ -12,11 +12,11 @@ local Transport = {}
 -------------------------------------------------------------------------------
 
 -- The ConnectionPool instance
-Transport.connectionPool = nil
+Transport.connectionPool
 -- The number of retry attempts
 Transport.retryCount = 0
 -- The allowed no of retries
-Transport.maxRetryCount = 5
+Transport.maxRetryCount
 
 -------------------------------------------------------------------------------
 -- Returns the next connection from the ConnectionPool
