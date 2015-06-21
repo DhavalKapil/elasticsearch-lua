@@ -28,7 +28,12 @@ end
 
 -- The setup function to be called before every test
 function setup()
-  con = connection:new()
+  con = connection:new{
+    protocol = "http",
+    host = "localhost",
+    port = 9200,
+    pingTimeout = 1
+  }
 end
 
 -- Testing the query builder

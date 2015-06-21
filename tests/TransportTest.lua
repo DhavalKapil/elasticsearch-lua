@@ -28,14 +28,24 @@ end
 function setup()
   local connections = {}
   for i = 1, 5 do
-    connections[i] = connection:new()
+    connections[i] = connection:new{
+      protocol = "http",
+      host = "localhost",
+      port = 9200,
+      pingTimeout = 1
+    }
     connections[i].id = i
   end
   connectionPool = staticConnectionPool:new{
     connections = connections,
-    selector = roundRobinSelector:new()
+    selector = roundRobinSelector:new(),
+    pingTimeout = 60,
+    maxPingTimeout = 3600
   }
-  t = transport:new{connectionPool = connectionPool}
+  t = transport:new{
+    connectionPool = connectionPool,
+    maxRetryCount = 5
+  }
 end
 
 -- Returns true if the reponse is valid 200

@@ -27,12 +27,19 @@ end
 -- The setup function
 function setup()
   for i = 1, 5 do
-    connections[i] = connection:new()
+    connections[i] = connection:new{
+      protocol = "http",
+      host = "localhost",
+      port = 9200,
+      pingTimeout = 1
+    }
     connections[i].id = i
   end
   connectionpool = staticConnectionPool:new{
     connections = connections,
-    selector = roundRobinSelector:new()
+    selector = roundRobinSelector:new(),
+    pingTimeout = 60,
+    maxPingTimeout = 3600
   }
 end
 
