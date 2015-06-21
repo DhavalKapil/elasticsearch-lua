@@ -13,9 +13,9 @@ local StaticConnectionPool = ConnectionPool:new()
 -------------------------------------------------------------------------------
 
 -- The timeout in seconds
-StaticConnectionPool.pingTimeout = 60
+StaticConnectionPool.pingTimeout = nil
 -- The max timeout after which to revive the connection
-StaticConnectionPool.maxPingTimeout = 3600
+StaticConnectionPool.maxPingTimeout = nil
 
 -------------------------------------------------------------------------------
 -- Returns the next connection from the connections table

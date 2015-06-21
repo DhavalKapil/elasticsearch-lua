@@ -17,13 +17,13 @@ local Connection = {}
 -------------------------------------------------------------------------------
 
 -- The protocol of the connection
-Connection.protocol
+Connection.protocol = nil
 -- The host where the connection should be made
-Connection.host
+Connection.host = nil
 -- The port at which the connection should be made
-Connection.port
+Connection.port = nil
 -- The timeout for a ping/sniff request
-Connection.pingTimeout
+Connection.pingTimeout = nil
 -- The last timestamp where it was marked alive
 Connection.lastPing = 0
 -- The number of times it was marked dead continuously
