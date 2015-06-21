@@ -2,6 +2,7 @@
 -- Importing modules
 -------------------------------------------------------------------------------
 local Connection = require "connection.Connection"
+local Transport = require "Transport"
 
 -------------------------------------------------------------------------------
 -- Declaring module
@@ -21,6 +22,8 @@ Settings.hosts = {
   }
 }
 
+Settings.params = {}
+
 -- The ping timeout
 Settings.params.pingTimeout = 1
 
@@ -32,7 +35,7 @@ Settings.params.connectionPool = "StaticConnectionPool"
 
 -- The connection pool settings
 Settings.params.connectionPoolSettings = {
-  pingTimeout = 60
+  pingTimeout = 60,
   maxPingTimeout = 3600
 }
 
@@ -47,25 +50,25 @@ Settings.maxRetryCount = 5
 Settings.connections = {}
 
 -- The selector instance
-Settings.selector
+Settings.selector = nil
 
 -- The connection pool instance
-Settings.connectionPool
+Settings.connectionPool = nil
 
 -- The transport instance
-Settings.transport
+Settings.transport = nil
 
 -------------------------------------------------------------------------------
 -- Initializes the connection settings
 -------------------------------------------------------------------------------
 function Settings:setConnectionSettings()
-  for host in hosts:
-    table.insert(self.connections, Connection:new({
+  for key, host in pairs(self.hosts) do
+    table.insert(self.connections, Connection:new{
       protocol = host.protocol,
       host = host.host,
       port = host.port,
       pingTimeout = self.params.pingTimeout
-    }))
+    })
   end
 end
 
@@ -73,7 +76,7 @@ end
 -- Initialize the selector settings
 -------------------------------------------------------------------------------
 function Settings:setSelectorSettings()
-  local Selector = require("selector" .. self.params.selector)
+  local Selector = require("selector." .. self.params.selector)
   self.selector = Selector:new()
 end
 
@@ -81,7 +84,7 @@ end
 -- Initialize the Connection Pool settings
 -------------------------------------------------------------------------------
 function Settings:setConnectionPoolSettings()
-  local ConnectionPool = require("connectionpool" ..
+  local ConnectionPool = require("connectionpool." ..
    self.params.connectionPool)
   o = {
     connections = self.connections,

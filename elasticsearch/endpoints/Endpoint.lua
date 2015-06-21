@@ -15,6 +15,10 @@ Endpoint.type = nil
 Endpoint.id = nil
 -- The request method
 Endpoint.method = nil
+-- The request URI
+Endpoint.uri = nil
+-- The request method
+Endpoint.params = nil
 -- The body of the request
 Endpoint.body = {}
 -- The transport instance
@@ -26,7 +30,9 @@ Endpoint.transport = nil
 -- @return  table   The reponse returned
 -------------------------------------------------------------------------------
 function Endpoint:request()
-  -- Function body
+  local result = self.transport:request(self.method, self.uri, self.params
+    , self.body)
+  return result
 end
 
 -------------------------------------------------------------------------------
