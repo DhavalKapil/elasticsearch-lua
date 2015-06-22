@@ -33,10 +33,45 @@ end
 -------------------------------------------------------------------------------
 -- Function to get information regarding the Elasticsearch server
 --
--- return   table     The details about the elasticsearch server as lua-table
+-- @return   table     The details about the elasticsearch server as lua-table
 -------------------------------------------------------------------------------
 function Client:info()
   local endpoint = self:getEndpoint("Info")
+  return endpoint:request().body
+end
+
+-------------------------------------------------------------------------------
+-- Function to get a particular document
+--
+-- @param    params    The search Parameters
+--
+-- @return   table     The document
+-------------------------------------------------------------------------------
+function Client:get(params)
+  local endpoint = self:getEndpoint("Get")
+  endpoint.id = params.id
+  endpoint.index = params.index
+  endpoint.type = params.type
+  params.id, params.index, params.type = nil, nil, nil
+  endpoint.params = params
+  return endpoint:request().body
+end
+
+-------------------------------------------------------------------------------
+-- Function to index a particular document
+--
+-- @param    params    The index Parameters
+--
+-- @return   table     The document
+-------------------------------------------------------------------------------
+function Client:index(params)
+  local endpoint = self:getEndpoint("Index")
+  endpoint.id = params.id
+  endpoint.index = params.index
+  endpoint.type = params.type
+  endpoint.body = params.body
+  params.id, params.index, params.type, params.body = nil, nil, nil, nil
+  endpoint.params = params
   return endpoint:request().body
 end
 
