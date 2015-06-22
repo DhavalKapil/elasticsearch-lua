@@ -56,7 +56,8 @@ function Connection:request(method, uri, params, body, timeout)
     url = uri,
     sink = ltn12.sink.table(responseBody)
   }
-  if method == "POST" then
+  if method == "POST" or method == "PUT" then
+    body = parser.jsonEncode(body)
     -- Adding body to request
     request.headers = {
       ["Content-Length"] = body:len()

@@ -9,14 +9,22 @@ local Endpoint = require "endpoints.Endpoint"
 local Info = Endpoint:new()
 
 -------------------------------------------------------------------------------
--- Declaring instance variables
+-- Function to calculate the http request method
+--
+-- @return    string    The HTT request method
 -------------------------------------------------------------------------------
+function Info:getMethod()
+  return "GET"
+end
 
--- The request method
-Info.method = 'GET'
-
--- The request URI
-Info.uri = '/'
+-------------------------------------------------------------------------------
+-- Function to calculate the URI
+--
+-- @return    string    The URI
+-------------------------------------------------------------------------------
+function Get:getUri()
+  return '/'
+end
 
 -------------------------------------------------------------------------------
 -- Returns an instance of Info class
