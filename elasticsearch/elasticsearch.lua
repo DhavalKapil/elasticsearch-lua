@@ -1,4 +1,15 @@
-local elasticsearch = {}
-local _M = elasticsearch
+-------------------------------------------------------------------------------
+-- Importing modules
+-------------------------------------------------------------------------------
+local Client = require "Client"
 
-return _M
+-------------------------------------------------------------------------------
+-- Declaring module
+-------------------------------------------------------------------------------
+local elasticsearch = {}
+
+function elasticsearch.client(o)
+  return Client:new(o)
+end
+
+return elasticsearch
