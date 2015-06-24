@@ -82,10 +82,17 @@ function Client:new(o)
   o = o or {}
   setmetatable(o, self)
   self.__index = self
-  o.settings = Settings:new({
-    hosts = o.hosts,
-    settings = o.params
-  })
+  o.hosts = o.hosts or {{}}
+  o.params = o.params or {}
+  if type(o.hosts) == "table" and o.hosts[1] == nil then
+    local temp = o.hosts
+    o.hosts = {}
+    o.hosts[1] = temp
+  end
+  o.settings = Settings:new{
+    user_hosts = o.hosts,
+    user_params = o.params
+  }
   return o
 end
 

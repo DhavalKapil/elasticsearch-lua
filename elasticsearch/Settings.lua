@@ -59,6 +59,51 @@ Settings.connectionPool = nil
 Settings.transport = nil
 
 -------------------------------------------------------------------------------
+-- Function to recursivly check a table `user` with parameters of `default`
+-- And flag an error if any
+--
+-- @param   default   The correct table that is to be used as default
+-- @param   user      The table that is to be checked
+-------------------------------------------------------------------------------
+function Settings:checkTable(default, user)
+  for i, v in pairs(user) do
+    if default[i] == nil then
+      error("No such parameter allowed: " .. i)
+    end
+    if type(default[i]) ~= type(user[i]) then
+      error("TypeError: " .. i .. " should be of type " .. type(default[i]))
+    end
+    if type(default[i]) == "table" then
+      checkTable(default[i], user[i])
+    else
+      -- Load user defined value in default
+      default[i] = user[i]
+    end
+  end
+end
+
+-------------------------------------------------------------------------------
+-- Check parameters validity
+-- If a particular property is not set, set it to default
+-- If some unkown property is set, flag an error
+-------------------------------------------------------------------------------
+function Settings:setParameters()
+  -- Checking hosts
+  if self.user_hosts ~= nil then
+    local default_host = self.hosts[1]
+    for i, v in pairs(self.user_hosts) do
+      self.hosts[i] = default_host
+      self:checkTable(self.hosts[i], v)
+    end
+  end
+  -- Checking other parameters
+  if self.user_hosts == nil then
+    print "NIL!"
+  end
+  self:checkTable(self.params, self.user_params)
+end
+
+-------------------------------------------------------------------------------
 -- Initializes the connection settings
 -------------------------------------------------------------------------------
 function Settings:setConnectionSettings()
@@ -110,6 +155,7 @@ end
 -- Initializes the settings
 -------------------------------------------------------------------------------
 function Settings:initializeSettings()
+  self:setParameters()
   self:setConnectionSettings()
   self:setSelectorSettings()
   self:setConnectionPoolSettings()
@@ -123,7 +169,7 @@ function Settings:new(o)
   o = o or {}
   setmetatable(o, self)
   self.__index = self
-  self:initializeSettings()
+  o:initializeSettings()
   return o
 end
 

@@ -19,9 +19,14 @@ function printTable(tab, ind)
 end
 
 local client = elasticsearch.client{
-  protocol = "http",
-  host = "localhost",
-  port = 9200
+  hosts = {
+    protocol = "http",
+    host = "localhost",
+    port = 9200
+  },
+  params = {
+    pingTimeout = 2
+  }
 }
 
 params = {
