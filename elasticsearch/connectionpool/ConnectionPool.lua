@@ -11,6 +11,8 @@ local ConnectionPool = {}
 ConnectionPool.connections = {}
 -- The selector instance
 ConnectionPool.selector = nil
+-- The logger instance
+ConnectionPool.logger = nil
 
 -------------------------------------------------------------------------------
 -- Returns an instance of ConnectionPool class

@@ -2,6 +2,7 @@
 local staticConnectionPool = require "connectionpool.StaticConnectionPool"
 local roundRobinSelector = require "selector.RoundRobinSelector"
 local connection = require "connection.Connection"
+local Logger = require "Logger"
 local transport = require "Transport"
 local getmetatable = getmetatable
 local print = print
@@ -27,12 +28,14 @@ end
 -- The setup function
 function setup()
   local connections = {}
+  local logger = Logger:new()
   for i = 1, 5 do
     connections[i] = connection:new{
       protocol = "http",
       host = "localhost",
       port = 9200,
-      pingTimeout = 1
+      pingTimeout = 1,
+      logger = logger
     }
     connections[i].id = i
   end
@@ -40,7 +43,8 @@ function setup()
     connections = connections,
     selector = roundRobinSelector:new(),
     pingTimeout = 60,
-    maxPingTimeout = 3600
+    maxPingTimeout = 3600,
+    logger = logger
   }
   t = transport:new{
     connectionPool = connectionPool,

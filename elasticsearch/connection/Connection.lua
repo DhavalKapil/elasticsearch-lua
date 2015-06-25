@@ -30,6 +30,8 @@ Connection.lastPing = 0
 Connection.failedPings = 0
 -- Whether the client is alive or not
 Connection.alive = false
+-- The logger instance
+Connection.logger = nil
 
 
 -------------------------------------------------------------------------------
@@ -72,6 +74,7 @@ function Connection:request(method, uri, params, body, timeout)
   -- Making the actual request
   response.code, response.statusCode, response.headers, response.statusLine
     = http.request(request)
+  self.logger:debug("Got HTTP " .. response.statusCode)
   http.TIMEOUT = nil
   if responseBody[1] ~= nil then
     response.body = parser.jsonDecode(responseBody[1])
@@ -148,6 +151,7 @@ function Connection:markAlive()
   self.alive = true
   self.failedPings = 0
   self.lastPing = os.time()
+  self.logger:debug(self:toString() .. " marked alive")
 end
 
 -------------------------------------------------------------------------------
@@ -157,6 +161,16 @@ function Connection:markDead()
   self.alive = false
   self.failedPings = self.failedPings + 1
   self.lastPing = os.time()
+  self.logger:debug(self:toString() .. " marked dead")
+end
+
+-------------------------------------------------------------------------------
+-- Returns the connection description as a string
+--
+-- @return    string    The details about the connection as a string
+-------------------------------------------------------------------------------
+function Connection:toString()
+  return(self.protocol .. "://" .. self.host .. ":" .. self.port)
 end
 
 -------------------------------------------------------------------------------

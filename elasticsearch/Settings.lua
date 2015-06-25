@@ -97,14 +97,30 @@ end
 function Settings:setParameters()
   -- Checking hosts
   if self.user_hosts ~= nil then
-    local default_host = self.hosts[1]
+    local default_host = {
+      protocol = self.hosts[1].protocol,
+      host = self.hosts[1].host,
+      port = self.hosts[1].port
+    }
     for i, v in pairs(self.user_hosts) do
-      self.hosts[i] = default_host
+      self.hosts[i] = {
+        protocol = default_host.protocol,
+        host = default_host.host,
+        port = default_host.port
+      }
       self:checkTable(self.hosts[i], v)
     end
   end
   -- Checking other parameters
   self:checkTable(self.params, self.user_params)
+end
+
+-------------------------------------------------------------------------------
+-- Initializes the Logger settings
+-------------------------------------------------------------------------------
+function Settings:setLoggerSettings()
+  self.logger = Logger:new()
+  self.logger:setLogLevel(self.params.logLevel)
 end
 
 -------------------------------------------------------------------------------
@@ -116,7 +132,8 @@ function Settings:setConnectionSettings()
       protocol = host.protocol,
       host = host.host,
       port = host.port,
-      pingTimeout = self.params.pingTimeout
+      pingTimeout = self.params.pingTimeout,
+      logger = self.logger
     })
   end
 end
@@ -137,7 +154,8 @@ function Settings:setConnectionPoolSettings()
    self.params.connectionPool)
   o = {
     connections = self.connections,
-    selector = self.selector
+    selector = self.selector,
+    logger = self.logger
   }
   for i, v in pairs(self.params.connectionPoolSettings) do
     o[i] = v
@@ -156,23 +174,15 @@ function Settings:setTransportSettings()
 end
 
 -------------------------------------------------------------------------------
--- Initializes the Logger settings
--------------------------------------------------------------------------------
-function Settings:setLoggerSettings()
-  self.logger = Logger:new()
-  self.logger:setLogLevel(self.params.logLevel)
-end
-
--------------------------------------------------------------------------------
 -- Initializes the settings
 -------------------------------------------------------------------------------
 function Settings:initializeSettings()
   self:setParameters()
+  self:setLoggerSettings()
   self:setConnectionSettings()
   self:setSelectorSettings()
   self:setConnectionPoolSettings()
   self:setTransportSettings()
-  self:setLoggerSettings()
 end
 
 -------------------------------------------------------------------------------

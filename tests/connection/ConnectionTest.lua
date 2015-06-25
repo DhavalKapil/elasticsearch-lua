@@ -1,5 +1,6 @@
 -- Importing modules
 local connection = require "connection.Connection"
+local Logger = require "Logger"
 local getmetatable = getmetatable
 local os = os
 
@@ -23,6 +24,7 @@ function constructorTest()
   assert_function(mt.buildURI)
   assert_function(mt.markAlive)
   assert_function(mt.markDead)
+  assert_function(mt.toString)
   assert_equal(mt, mt.__index)
 end
 
@@ -32,7 +34,8 @@ function setup()
     protocol = "http",
     host = "localhost",
     port = 9200,
-    pingTimeout = 1
+    pingTimeout = 1,
+    logger = Logger:new()
   }
 end
 

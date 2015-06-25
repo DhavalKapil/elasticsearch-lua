@@ -50,7 +50,7 @@ end
 -- @param   message    The message to be logged
 -------------------------------------------------------------------------------
 function Logger:info(message)
-  self.log(LOG_LEVEL.INFO, message)
+  self:log(LOG_LEVEL.INFO, message)
 end
 
 -------------------------------------------------------------------------------
@@ -59,7 +59,7 @@ end
 -- @param   message    The message to be logged
 -------------------------------------------------------------------------------
 function Logger:debug(message)
-  self.log(LOG_LEVEL.DEBUG, message)
+  self:log(LOG_LEVEL.DEBUG, message)
 end
 
 -------------------------------------------------------------------------------
@@ -68,7 +68,7 @@ end
 -- @param   message    The message to be logged
 -------------------------------------------------------------------------------
 function Logger:warning(message)
-  self.log(LOG_LEVEL.WARNING, message)
+  self:log(LOG_LEVEL.WARNING, message)
 end
 
 -------------------------------------------------------------------------------
@@ -77,7 +77,7 @@ end
 -- @param   message    The message to be logged
 -------------------------------------------------------------------------------
 function Logger:error(message)
-  self.log(LOG_LEVEL.ERROR, message)
+  self:log(LOG_LEVEL.ERROR, message)
 end
 
 -------------------------------------------------------------------------------
@@ -86,7 +86,7 @@ end
 -- @param   message    The message to be logged
 -------------------------------------------------------------------------------
 function Logger:critical(message)
-  self.log(LOG_LEVEL.CRITICAL, message)
+  self:log(LOG_LEVEL.CRITICAL, message)
 end
 
 -------------------------------------------------------------------------------

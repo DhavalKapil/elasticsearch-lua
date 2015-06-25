@@ -1,6 +1,7 @@
 -- Importing modules
 local randomSelector = require "selector.RandomSelector"
 local connection = require "connection.Connection"
+local Logger = require "Logger"
 local getmetatable = getmetatable
 
 -- Declaring test module
@@ -24,8 +25,15 @@ end
 -- The setup function
 function setup()
   connections = {}
+  local logger = Logger:new()
   for i = 1, 5 do
-    connections[i] = connection:new()
+    connections[i] = connection:new{
+      protocol = "http",
+      host = "localhost",
+      port = 9200,
+      pingTimeout = 1,
+      logger = logger
+    }
     -- For checking later on
     connections[i].id = i
   end

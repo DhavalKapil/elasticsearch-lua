@@ -20,12 +20,20 @@ end
 
 local client = elasticsearch.client{
   hosts = {
-    protocol = "http",
-    host = "localhost",
-    port = 9200
+    { 
+      protocol = "http",
+      host = "localhost",
+      port = 9200
+    },
+    {
+      protocol = "http",
+      host = "localhost",
+      port = 9201
+    }
   },
   params = {
-    pingTimeout = 2
+    pingTimeout = 2,
+    logLevel = "debug"
   }
 }
 
