@@ -3,6 +3,7 @@
 -------------------------------------------------------------------------------
 local Connection = require "connection.Connection"
 local Transport = require "Transport"
+local Logger = require "Logger"
 
 -------------------------------------------------------------------------------
 -- Declaring module
@@ -40,7 +41,10 @@ Settings.params.connectionPoolSettings = {
 }
 
 -- The number of allowed retries if a connection fails
-Settings.maxRetryCount = 5
+Settings.params.maxRetryCount = 5
+
+-- The logLevel
+Settings.params.logLevel = "warning"
 
 -------------------------------------------------------------------------------
 -- Instance variables
@@ -57,6 +61,9 @@ Settings.connectionPool = nil
 
 -- The transport instance
 Settings.transport = nil
+
+-- The logger instance
+Settings.logger = nil
 
 -------------------------------------------------------------------------------
 -- Function to recursivly check a table `user` with parameters of `default`
@@ -97,9 +104,6 @@ function Settings:setParameters()
     end
   end
   -- Checking other parameters
-  if self.user_hosts == nil then
-    print "NIL!"
-  end
   self:checkTable(self.params, self.user_params)
 end
 
@@ -147,8 +151,16 @@ end
 function Settings:setTransportSettings()
   self.transport = Transport:new({
     connectionPool = self.connectionPool,
-    maxRetryCount = self.maxRetryCount
+    maxRetryCount = self.params.maxRetryCount
   })
+end
+
+-------------------------------------------------------------------------------
+-- Initializes the Logger settings
+-------------------------------------------------------------------------------
+function Settings:setLoggerSettings()
+  self.logger = Logger:new()
+  self.logger:setLogLevel(self.params.logLevel)
 end
 
 -------------------------------------------------------------------------------
@@ -160,6 +172,7 @@ function Settings:initializeSettings()
   self:setSelectorSettings()
   self:setConnectionPoolSettings()
   self:setTransportSettings()
+  self:setLoggerSettings()
 end
 
 -------------------------------------------------------------------------------
