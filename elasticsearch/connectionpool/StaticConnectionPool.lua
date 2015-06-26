@@ -38,14 +38,17 @@ function StaticConnectionPool:nextConnection()
       self.logger:debug("Directly got alive connection: " .. connection:toString())
       return connection
     end
-    if self:connectionReady(connection) and connection:ping() then
+    if self:connectionReady(connection) then
       -- Connection is ready to be revived
-      self.logger:debug("Revived connection: " .. connection:toString())
-      return connection
+      if connection:ping() then
+        self.logger:debug("Revived connection: " .. connection:toString())
+        return connection
+      end
+    else        
+      self.logger:debug("Dead connection detected: " .. connection:toString())
+      -- schedule connection to perform ping
+      table.insert(deadConnections, connection)
     end
-    self.logger:debug("Dead connection detected: " .. connection:toString())
-    -- schedule connection to perform ping
-    table.insert(deadConnections, connection)
   end
   -- Pinging all dead connections
   for i = 1, #deadConnections do
