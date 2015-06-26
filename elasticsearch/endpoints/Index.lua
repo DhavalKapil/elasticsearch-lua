@@ -11,7 +11,7 @@ local Index = Endpoint:new()
 -------------------------------------------------------------------------------
 -- Function to calculate the http request method
 --
--- @return    string    The HTT request method
+-- @return    string    The HTTP request method
 -------------------------------------------------------------------------------
 function Index:getMethod()
   if self.id ~= nil then
@@ -27,6 +27,12 @@ end
 -- @return    string    The URI
 -------------------------------------------------------------------------------
 function Index:getUri()
+  if self.index == nil then
+    error("index not specified for Index")
+  end
+  if self.type == nil then
+    error("type not specified for Index")
+  end
   local uri = "/" .. self.index .. "/" .. self.type .. "/"
   if self.id ~= nil then
     uri = uri .. self.id .. "/"

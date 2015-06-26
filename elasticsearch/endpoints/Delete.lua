@@ -6,15 +6,15 @@ local Endpoint = require "endpoints.Endpoint"
 -------------------------------------------------------------------------------
 -- Declaring module
 -------------------------------------------------------------------------------
-local Get = Endpoint:new()
+local Delete = Endpoint:new()
 
 -------------------------------------------------------------------------------
 -- Function to calculate the http request method
 --
 -- @return    string    The HTTP request method
 -------------------------------------------------------------------------------
-function Get:getMethod()
-  return "GET"
+function Delete:getMethod()
+  return "DELETE"
 end
 
 -------------------------------------------------------------------------------
@@ -22,27 +22,27 @@ end
 --
 -- @return    string    The URI
 -------------------------------------------------------------------------------
-function Get:getUri()
+function Delete:getUri()
   if self.id == nil then
-    error("id not specified for Get")
+    error("id not specified for Delete")
   end
   if self.index == nil then
-    error("index not specified for Get")
+    error("index not specified for Delete")
   end
   if self.type == nil then
-    error("type not specified for Get")
+    error("type not specified for Delete")
   end
   return "/" .. self.index .. "/" .. self.type .. "/" .. self.id .. "/"
 end
 
 -------------------------------------------------------------------------------
--- Returns an instance of Get class
+-- Returns an instance of Delete class
 -------------------------------------------------------------------------------
-function Get:new(o)
+function Delete:new(o)
   o = o or {}
   setmetatable(o, self)
   self.__index = self
   return o
 end
 
-return Get
+return Delete

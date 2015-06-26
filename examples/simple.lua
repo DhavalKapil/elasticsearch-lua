@@ -57,3 +57,21 @@ params = {
 
 data = client:get(params)
 printTable(data)
+
+params = {
+  index = "myindex2",
+  type = "mytype2",
+  id = "mydoc2"
+}
+
+data = client:delete(params)
+printTable(data)
+
+params = {
+  index = "myindex2",
+  type = "mytype2",
+  id = "mydoc2"
+}
+
+data = client:get(params)
+printTable(data)

@@ -11,7 +11,7 @@ local Info = Endpoint:new()
 -------------------------------------------------------------------------------
 -- Function to calculate the http request method
 --
--- @return    string    The HTT request method
+-- @return    string    The HTTP request method
 -------------------------------------------------------------------------------
 function Info:getMethod()
   return "GET"

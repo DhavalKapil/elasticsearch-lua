@@ -76,6 +76,23 @@ function Client:index(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to delete a particular document
+--
+-- @param    params    The delete Parameters
+--
+-- @return   table     The document
+-------------------------------------------------------------------------------
+function Client:delete(params)
+  local endpoint = self:getEndpoint("Delete")
+  endpoint.id = params.id
+  endpoint.index = params.index
+  endpoint.type = params.type
+  params.id, params.index, params.type = nil, nil, nil
+  endpoint.params = params
+  return endpoint:request().body
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Client class
 -------------------------------------------------------------------------------
 function Client:new(o)
