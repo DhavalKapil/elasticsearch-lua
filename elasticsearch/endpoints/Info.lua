@@ -22,7 +22,7 @@ end
 --
 -- @return    string    The URI
 -------------------------------------------------------------------------------
-function Get:getUri()
+function Info:getUri()
   return '/'
 end
 
