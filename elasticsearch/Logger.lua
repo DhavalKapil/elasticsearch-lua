@@ -29,6 +29,7 @@ Logger.logLevel = LOG_LEVEL.WARNING
 -- @param   logLevel   The string describing the log level
 -------------------------------------------------------------------------------
 function Logger:setLogLevel(logLevel)
+  logLevel = string.lower(logLevel)
   if logLevel == "info" then
     self.logLevel = LOG_LEVEL.INFO
   elseif logLevel == "debug" then
