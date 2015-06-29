@@ -26,9 +26,13 @@ Endpoint.transport = nil
 -- @return  table   The reponse returned
 -------------------------------------------------------------------------------
 function Endpoint:request()
-  local result = self.transport:request(self:getMethod(), self:getUri()
+  local uri, err = self:getUri()
+  if uri == nil then
+    return nil, err
+  end
+  local result, err = self.transport:request(self:getMethod(), self:getUri()
     , self.params, self.body)
-  return result
+  return result, err
 end
 
 -------------------------------------------------------------------------------

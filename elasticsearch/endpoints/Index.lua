@@ -28,10 +28,10 @@ end
 -------------------------------------------------------------------------------
 function Index:getUri()
   if self.index == nil then
-    error("index not specified for Index")
+    return nil, "index not specified for Index"
   end
   if self.type == nil then
-    error("type not specified for Index")
+    return nil, "type not specified for Index"
   end
   local uri = "/" .. self.index .. "/" .. self.type .. "/"
   if self.id ~= nil then

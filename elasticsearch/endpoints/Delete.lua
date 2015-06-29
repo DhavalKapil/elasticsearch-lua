@@ -24,13 +24,13 @@ end
 -------------------------------------------------------------------------------
 function Delete:getUri()
   if self.id == nil then
-    error("id not specified for Delete")
+    return nil, "id not specified for Delete"
   end
   if self.index == nil then
-    error("index not specified for Delete")
+    return nil, "index not specified for Delete"
   end
   if self.type == nil then
-    error("type not specified for Delete")
+    return nil, "type not specified for Delete"
   end
   return "/" .. self.index .. "/" .. self.type .. "/" .. self.id .. "/"
 end

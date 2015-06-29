@@ -24,13 +24,13 @@ end
 -------------------------------------------------------------------------------
 function Get:getUri()
   if self.id == nil then
-    error("id not specified for Get")
+    return nil, "id not specified for Get"
   end
   if self.index == nil then
-    error("index not specified for Get")
+    return nil, "index not specified for Get"
   end
   if self.type == nil then
-    error("type not specified for Get")
+    return nil, "type not specified for Get"
   end
   return "/" .. self.index .. "/" .. self.type .. "/" .. self.id .. "/"
 end

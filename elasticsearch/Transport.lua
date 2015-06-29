@@ -42,7 +42,7 @@ function Transport:request(method, uri, params, body)
   -- Selecting a connection
   local connection = self:getConnection()
   if connection == nil then
-    error("No alive node found")
+    return nil, "No alive node found"
   end
   -- Making request
   local response = connection:request(method, uri, params, body)
@@ -52,9 +52,9 @@ function Transport:request(method, uri, params, body)
     connection:markAlive()
     -- Check for statusCode
     if response.statusCode >= 400 and response.statusCode < 500 then
-      error("ClientError: Invalid response code: " .. response.statusCode)
+      return nil, "ClientError: Invalid response code: " .. response.statusCode
     elseif response.statusCode >= 500 and response.statusCode < 600 then
-      error("ServerError: Invalid response code: " .. response.statusCode)
+      return nil, "ServerError: Invalid response code: " .. response.statusCode
     end
     return response
   end
@@ -64,7 +64,7 @@ function Transport:request(method, uri, params, body)
     self.retryCount = self.retryCount + 1
     return self:request(method, uri, params, body)
   end
-  error("TransporError")
+  return nil, "TransporError"
 end
 
 -------------------------------------------------------------------------------
