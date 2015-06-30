@@ -21,9 +21,19 @@ local client = elasticsearch.client{
   }
 }
 
+-- Details about client
+
+local data, err = client:info()
+
+if data == nil then
+  print(err)
+  os.exit()
+end
+print(data.name)
+
 -- Indexing
 
-local data, err = client:index{
+data, err = client:index{
   index = "myindex2",
   type = "mytype2",
   id = "mydoc2",
