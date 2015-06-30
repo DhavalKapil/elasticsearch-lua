@@ -13,6 +13,7 @@ In accordance with other official low level clients, the client accepts associat
   - Indexing a document
   - Retrieving a document
   - Deleting a document
+  - Searching a document
 2. Proper load balancing across all nodes.
 3. Multiple selection strategies.
 4. Console logging facility.
@@ -97,5 +98,32 @@ data, err = client:delete{
   index = "my_index",
   type = "my_type",
   id = "my_doc"
+}
+```
+### Searching a document
+
+You can search a document using either query string:
+
+```
+data, err = client:search{
+  index = "my_index",
+  type = "my_type",
+  q = "my_key:my_param"
+}
+```
+
+Or either a request body:
+
+```
+data, err = client:search{
+  index = "my_index",
+  type = "my_type",
+  body = {
+    query = {
+      match = {
+        my_key = "my_param"
+      }
+    }
+  }
 }
 ```
