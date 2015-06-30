@@ -58,7 +58,7 @@ function Connection:request(method, uri, params, body, timeout)
     url = uri,
     sink = ltn12.sink.table(responseBody)
   }
-  if method == "POST" or method == "PUT" then
+  if body ~= nil then
     body = parser.jsonEncode(body)
     -- Adding body to request
     request.headers = {
