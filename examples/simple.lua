@@ -17,7 +17,7 @@ local client = elasticsearch.client{
   },
   params = {
     pingTimeout = 2,
-    logLevel = "debug"
+    logLevel = "warning"
   }
 }
 
@@ -34,11 +34,11 @@ print(data.name)
 -- Indexing
 
 data, err = client:index{
-  index = "myindex2",
-  type = "mytype2",
-  id = "mydoc2",
+  index = "my_index",
+  type = "my_type",
+  id = "my_doc",
   body = {
-    my_key = "my_param2"
+    my_key = "my_param"
   }
 }
 
@@ -46,27 +46,66 @@ if data == nil then
   print(err)
   os.exit()
 end
+
+-- Wait for some time to index
+local ntime = os.time() + 1
+repeat until os.time() > ntime
+
 print("Successfully indexed")
 
 -- Getting data
 
 data, err = client:get{
-  index = "myindex2",
-  type = "mytype2",
-  id = "mydoc2"
+  index = "my_index",
+  type = "my_type",
+  id = "my_doc"
 }
 if data == nil then
   print(err)
   os.exit()
 end
-print(data._source.my_key)
+print("Got document with my_key = " .. data._source.my_key)
+
+-- Searching data without a body
+
+data, err = client:search{
+  index = "my_index",
+  type = "my_type",
+  q = "my_key:my_param"
+}
+if data == nil then
+  print(err)
+  os.exit()
+end
+print("Search successfull:")
+print("Document id = " .. data.hits.hits[1]._id)
+
+-- Searching data with a body
+
+data, err = client:search{
+  index = "my_index",
+  type = "my_type",
+  body = {
+    query = {
+      match = {
+        my_key = "my_param"
+      }
+    }
+  }
+}
+if data == nil then
+  print(err)
+  os.exit()
+end
+print("Search successfull:")
+print("Document id = " .. data.hits.hits[1]._id)
 
 -- Deleting
 
 data, err = client:delete{
-  index = "myindex2",
-  type = "mytype2",
-  id = "mydoc2"
+  index = "my_index",
+  type = "my_type",
+  id = "my_doc"
 }
 if data == nil then
   print(err)
@@ -77,9 +116,9 @@ print("Deleted document")
 -- Getting data again
 
 data, err = client:get{
-  index = "myindex2",
-  type = "mytype2",
-  id = "mydoc2"
+  index = "my_index",
+  type = "my_type",
+  id = "my_doc"
 }
 if data == nil then
   print(err)

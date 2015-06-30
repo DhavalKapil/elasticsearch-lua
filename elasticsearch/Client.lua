@@ -109,6 +109,27 @@ function Client:delete(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to search a particular document
+--
+-- @param    params    The search Parameters
+--
+-- @return   table     The document
+-------------------------------------------------------------------------------
+function Client:search(params)
+  local endpoint = self:getEndpoint("Search")
+  endpoint.index = params.index
+  endpoint.type = params.type
+  endpoint.body = params.body
+  params.index, params.type, params.body = nil, nil, nil
+  endpoint.params = params
+  local response, err = endpoint:request()
+  if response == nil then
+    return nil, err
+  end
+  return response.body
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Client class
 -------------------------------------------------------------------------------
 function Client:new(o)
