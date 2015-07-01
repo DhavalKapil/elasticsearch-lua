@@ -4,8 +4,8 @@ local Logger = require "Logger"
 local getmetatable = getmetatable
 local os = os
 
--- Declaring test module
-module('tests.connection.ConnectionTest', lunit.testcase)
+-- Setting up environment
+local _ENV = lunit.TEST_CASE "tests.connection.ConnectionTest"
 
 -- Declaring local variables
 local con
@@ -30,19 +30,22 @@ end
 
 -- The setup function to be called before every test
 function setup()
+  local logger = Logger:new()
+  logger:setLogLevel("off")
   con = connection:new{
     protocol = "http",
     host = "localhost",
     port = 9200,
     pingTimeout = 1,
-    logger = Logger:new()
+    logger = logger
   }
 end
 
 -- Testing the query builder
 function queryBuilderTest()
   local q = {a="a_s", b="b_s"}
-  assert_equal("a=a_s&b=b_s", con:buildQuery(q))
+  local query = con:buildQuery(q)
+  assert_true("a=a_s&b=b_s" == query or "b=b_s&a=a_s" == query)
   q = {a="a_s"}
   assert_equal("a=a_s", con:buildQuery(q))
 end
@@ -50,7 +53,8 @@ end
 -- Testing the URI builder
 function buildURITest()
   local url = con:buildURI("/path", {a="a_s", b="b_s"})
-  assert_equal("http://localhost:9200/path?a=a_s&b=b_s", url)
+  assert_true("http://localhost:9200/path?a=a_s&b=b_s" == url or 
+    "http://localhost:9200/path?b=b_s&a=a_s" == url)
   url = con:buildURI("/path", {a="a_s"})
   assert_not_equal("http://localhost:9200/path?a=a_s&b=b_s", url)
 end

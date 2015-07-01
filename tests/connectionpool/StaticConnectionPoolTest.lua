@@ -6,8 +6,8 @@ local Logger = require "Logger"
 local getmetatable = getmetatable
 local os = os
 
--- Declaring test module
-module('tests.selector.StaticConnectionPoolTest', lunit.testcase)
+-- Setting up environment
+local _ENV = lunit.TEST_CASE "tests.connectionpool.StaticConnectionPoolTest"
 
 -- Declaring local variables
 local connectionpool
@@ -28,6 +28,7 @@ end
 -- The setup function
 function setup()
   local logger = Logger:new()
+  logger:setLogLevel("off")
   for i = 1, 5 do
     connections[i] = connection:new{
       protocol = "http",

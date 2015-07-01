@@ -4,8 +4,8 @@ local connection = require "connection.Connection"
 local Logger = require "Logger"
 local getmetatable = getmetatable
 
--- Declaring test module
-module('tests.selector.StickyRoundRobinSelectorTest', lunit.testcase)
+-- Setting up environment
+local _ENV = lunit.TEST_CASE "tests.selector.StickyRoundRobinSelectorTest"
 
 -- Declaring local variables
 local sRRS
@@ -26,6 +26,7 @@ end
 function setup()
   connections = {}
   local logger = Logger:new()
+  logger:setLogLevel("off")
   for i = 1, 5 do
     connections[i] = connection:new{
       protocol = "http",

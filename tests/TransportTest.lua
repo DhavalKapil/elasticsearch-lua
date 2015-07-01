@@ -7,8 +7,8 @@ local transport = require "Transport"
 local getmetatable = getmetatable
 local print = print
 
--- Declaring test module
-module('tests.TransportTest', lunit.testcase)
+-- Setting up environment
+local _ENV = lunit.TEST_CASE "tests.TransportTest"
 
 -- Declaring local variables
 local t
@@ -29,6 +29,7 @@ end
 function setup()
   local connections = {}
   local logger = Logger:new()
+  logger:setLogLevel("off")
   for i = 1, 5 do
     connections[i] = connection:new{
       protocol = "http",
@@ -70,7 +71,5 @@ function requestTest()
     assert_true(isResponseValid(t:request('HEAD', '')))
   end
   t.connectionPool.connections[5].port = 9199
-  assert_error(function()
-    t:request('HEAD', '')
-  end)
+  assert_nil(t:request('HEAD', ''))
 end
