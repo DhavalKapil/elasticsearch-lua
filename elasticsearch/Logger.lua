@@ -52,6 +52,33 @@ function Logger:setLogLevel(logLevel)
 end
 
 -------------------------------------------------------------------------------
+-- For logging fatal messages
+-- 
+-- @param   message    The message to be logged
+-------------------------------------------------------------------------------
+function Logger:fatal(message)
+  self:log(LOG_LEVEL.FATAL, message)
+end
+
+-------------------------------------------------------------------------------
+-- For logging error messages
+-- 
+-- @param   message    The message to be logged
+-------------------------------------------------------------------------------
+function Logger:error(message)
+  self:log(LOG_LEVEL.ERROR, message)
+end
+
+-------------------------------------------------------------------------------
+-- For logging warning messages
+-- 
+-- @param   message    The message to be logged
+-------------------------------------------------------------------------------
+function Logger:warning(message)
+  self:log(LOG_LEVEL.WARN, message)
+end
+
+-------------------------------------------------------------------------------
 -- For logging informative messages
 -- 
 -- @param   message    The message to be logged
@@ -70,30 +97,12 @@ function Logger:debug(message)
 end
 
 -------------------------------------------------------------------------------
--- For logging warning messages
+-- For logging trace messages
 -- 
 -- @param   message    The message to be logged
 -------------------------------------------------------------------------------
-function Logger:warning(message)
-  self:log(LOG_LEVEL.WARNING, message)
-end
-
--------------------------------------------------------------------------------
--- For logging error messages
--- 
--- @param   message    The message to be logged
--------------------------------------------------------------------------------
-function Logger:error(message)
-  self:log(LOG_LEVEL.ERROR, message)
-end
-
--------------------------------------------------------------------------------
--- For logging critical messages
--- 
--- @param   message    The message to be logged
--------------------------------------------------------------------------------
-function Logger:critical(message)
-  self:log(LOG_LEVEL.CRITICAL, message)
+function Logger:trace(message)
+  self:log(LOG_LEVEL.TRACE, message)
 end
 
 -------------------------------------------------------------------------------
