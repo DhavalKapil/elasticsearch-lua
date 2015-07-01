@@ -17,7 +17,7 @@ local client = elasticsearch.client{
   },
   params = {
     pingTimeout = 2,
-    logLevel = "warning"
+    logLevel = "warn"
   }
 }
 

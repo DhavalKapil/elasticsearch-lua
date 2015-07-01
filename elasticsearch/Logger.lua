@@ -9,11 +9,13 @@ local Logger = {}
 
 -- The different log levels
 local LOG_LEVEL = {
-  INFO = 0,
-  DEBUG = 1,
-  WARNING = 2,
-  ERROR = 3,
-  CRITICAL = 4
+  OFF = 0,
+  FATAL = 100,
+  ERROR = 200,
+  WARN = 300,
+  INFO = 400,
+  DEBUG = 500,
+  TRACE = 600,
 }
 
 -------------------------------------------------------------------------------
@@ -30,16 +32,20 @@ Logger.logLevel = LOG_LEVEL.WARNING
 -------------------------------------------------------------------------------
 function Logger:setLogLevel(logLevel)
   logLevel = string.lower(logLevel)
-  if logLevel == "info" then
+  if logLevel == "off" then
+    self.logLevel = LOG_LEVEL.OFF
+  elseif logLevel == "fatal" then
+    self.logLevel = LOG_LEVEL.FATAL
+  elseif logLevel == "error" then
+    self.logLevel = LOG_LEVEL.ERROR
+  elseif logLevel == "warn" then
+    self.logLevel = LOG_LEVEL.WARN
+  elseif logLevel == "info" then
     self.logLevel = LOG_LEVEL.INFO
   elseif logLevel == "debug" then
     self.logLevel = LOG_LEVEL.DEBUG
-  elseif logLevel == "warning" then
-    self.logLevel = LOG_LEVEL.WARNING
-  elseif logLevel == "error" then
-    self.logLevel = LOG_LEVEL.ERROR
-  elseif logLevel == "critical" then
-    self.logLevel = LOG_LEVEL.CRITICAL
+  elseif logLevel == "trace" then
+    self.logLevel = LOG_LEVEL.TRACE
   else
     error("Invalid log level specified")
   end
@@ -97,7 +103,7 @@ end
 -- @param   message    The message to be logged
 -------------------------------------------------------------------------------
 function Logger:log(logLevel, message)
-  if self.logLevel <= logLevel then
+  if self.logLevel >= logLevel then
     -- Log message
     print(message)
   end
