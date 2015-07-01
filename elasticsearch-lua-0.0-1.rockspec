@@ -15,7 +15,7 @@ dependencies = {
   "lua >= 5.3",
   "luasocket",
   "lua-cjson",
-  "lunit"
+  "lunitx"
 }
 build = {
   type = "builtin",
