@@ -11,7 +11,7 @@ local StickyRoundRobinSelector = Selector:new()
 -------------------------------------------------------------------------------
 -- Declaring instance variables
 -------------------------------------------------------------------------------
-local index = 1
+StickyRoundRobinSelector.index = 1
 
 -------------------------------------------------------------------------------
 -- Selects next connection in roundrobin fashion only if the connection is
@@ -22,16 +22,16 @@ local index = 1
 -------------------------------------------------------------------------------
 function StickyRoundRobinSelector:selectNext(connections)
   -- Checking if connection is alive or not
-  if connections[index].alive then
-    return connections[index]
+  if connections[self.index].alive then
+    return connections[self.index]
   end
   -- Else returning the next connection
-  index = index + 1
-  index = index % #connections
-  if index == 0 then
-    index = #connections
+  self.index = self.index + 1
+  self.index = self.index % #connections
+  if self.index == 0 then
+    self.index = #connections
   end
-  return connections[index]
+  return connections[self.index]
 end
 
 -------------------------------------------------------------------------------
