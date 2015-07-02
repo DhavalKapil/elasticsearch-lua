@@ -53,11 +53,7 @@ end
 -------------------------------------------------------------------------------
 function Client:get(params)
   local endpoint = self:getEndpoint("Get")
-  endpoint.id = params.id
-  endpoint.index = params.index
-  endpoint.type = params.type
-  params.id, params.index, params.type = nil, nil, nil
-  endpoint.params = params
+  endpoint:setParams(params)
   local response, err = endpoint:request()
   if response == nil then
     return nil, err
@@ -74,12 +70,7 @@ end
 -------------------------------------------------------------------------------
 function Client:index(params)
   local endpoint = self:getEndpoint("Index")
-  endpoint.id = params.id
-  endpoint.index = params.index
-  endpoint.type = params.type
-  endpoint.body = params.body
-  params.id, params.index, params.type, params.body = nil, nil, nil, nil
-  endpoint.params = params
+  endpoint:setParams(params)
   local response, err = endpoint:request()
   if response == nil then
     return nil, err
@@ -96,11 +87,7 @@ end
 -------------------------------------------------------------------------------
 function Client:delete(params)
   local endpoint = self:getEndpoint("Delete")
-  endpoint.id = params.id
-  endpoint.index = params.index
-  endpoint.type = params.type
-  params.id, params.index, params.type = nil, nil, nil
-  endpoint.params = params
+  endpoint:setParams(params)
   local response, err = endpoint:request()
   if response == nil then
     return nil, err
@@ -117,11 +104,7 @@ end
 -------------------------------------------------------------------------------
 function Client:search(params)
   local endpoint = self:getEndpoint("Search")
-  endpoint.index = params.index
-  endpoint.type = params.type
-  endpoint.body = params.body
-  params.index, params.type, params.body = nil, nil, nil
-  endpoint.params = params
+  endpoint:setParams(params)
   local response, err = endpoint:request()
   if response == nil then
     return nil, err

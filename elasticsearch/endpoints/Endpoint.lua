@@ -13,12 +13,33 @@ Endpoint.index = nil
 Endpoint.type = nil
 -- The id
 Endpoint.id = nil
--- The request params
-Endpoint.params = nil
+-- The request params to be sent as GET parameters
+Endpoint.params = {}
 -- The body of the request
 Endpoint.body = {}
 -- The transport instance
 Endpoint.transport = nil
+
+-------------------------------------------------------------------------------
+-- Function used to set the params to be sent as GET parameters
+--
+-- @param   params  The params provided by the user
+-------------------------------------------------------------------------------
+function Endpoint:setParams(params)
+  for i, v in pairs(params) do
+    if i == "index" then
+      self.index = v
+    elseif i == "type" then
+      self.type = v
+    elseif i == "id" then
+      self.id = v
+    elseif i == "body" then
+      self.body = v
+    else
+      self.params[i] = v
+    end
+  end
+end
 
 -------------------------------------------------------------------------------
 -- Makes a request using the instance of transport class
