@@ -9,6 +9,45 @@ local Endpoint = require "endpoints.Endpoint"
 local Search = Endpoint:new()
 
 -------------------------------------------------------------------------------
+-- Declaring Instance variables
+-------------------------------------------------------------------------------
+
+-- The parameters that are allowed to be used in params
+Search.allowedParams = {
+  "analyzer",
+  "analyze_wildcard",
+  "default_operator",
+  "df",
+  "explain",
+  "fields",
+  "from",
+  "ignore_unavailable",
+  "allow_no_indices",
+  "expand_wildcards",
+  "indices_boost",
+  "lenient",
+  "lowercase_expanded_terms",
+  "preference",
+  "q",
+  "routing",
+  "scroll",
+  "search_type",
+  "size",
+  "sort",
+  "source",
+  "_source",
+  "_source_exclude",
+  "_source_include",
+  "stats",
+  "suggest_field",
+  "suggest_mode",
+  "suggest_size",
+  "suggest_text",
+  "timeout",
+  "version",
+}
+
+-------------------------------------------------------------------------------
 -- Function to calculate the http request method
 --
 -- @return    string    The HTTP request method

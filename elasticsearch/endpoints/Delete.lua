@@ -9,6 +9,22 @@ local Endpoint = require "endpoints.Endpoint"
 local Delete = Endpoint:new()
 
 -------------------------------------------------------------------------------
+-- Declaring Instance variables
+-------------------------------------------------------------------------------
+
+-- The parameters that are allowed to be used in params
+Delete.allowedParams = {
+  "consistency",
+  "parent",
+  "refresh",
+  "replication",
+  "routing",
+  "timeout",
+  "version",
+  "version_type",
+}
+
+-------------------------------------------------------------------------------
 -- Function to calculate the http request method
 --
 -- @return    string    The HTTP request method

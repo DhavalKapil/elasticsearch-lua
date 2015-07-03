@@ -9,6 +9,25 @@ local Endpoint = require "endpoints.Endpoint"
 local Get = Endpoint:new()
 
 -------------------------------------------------------------------------------
+-- Declaring Instance variables
+-------------------------------------------------------------------------------
+
+-- The parameters that are allowed to be used in params
+Get.allowedParams = {
+  "fields",
+  "parent",
+  "preference",
+  "realtime",
+  "refresh",
+  "routing",
+  "_source",
+  "_source_exclude",
+  "_source_include",
+  "version",
+  "version_type"
+}
+
+-------------------------------------------------------------------------------
 -- Function to calculate the http request method
 --
 -- @return    string    The HTTP request method

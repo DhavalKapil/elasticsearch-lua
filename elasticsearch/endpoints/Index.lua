@@ -9,6 +9,26 @@ local Endpoint = require "endpoints.Endpoint"
 local Index = Endpoint:new()
 
 -------------------------------------------------------------------------------
+-- Declaring Instance variables
+-------------------------------------------------------------------------------
+
+-- The parameters that are allowed to be used in params
+Index.allowedParams = {
+  "consistency",
+  "op_type",
+  "parent",
+  "percolate",
+  "refresh",
+  "replication",
+  "routing",
+  "timeout",
+  "timestamp",
+  "ttl",
+  "version",
+  "version_type"
+}
+
+-------------------------------------------------------------------------------
 -- Function to calculate the http request method
 --
 -- @return    string    The HTTP request method

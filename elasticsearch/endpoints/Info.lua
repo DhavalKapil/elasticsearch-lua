@@ -9,6 +9,14 @@ local Endpoint = require "endpoints.Endpoint"
 local Info = Endpoint:new()
 
 -------------------------------------------------------------------------------
+-- Declaring Instance variables
+-------------------------------------------------------------------------------
+
+-- The parameters that are allowed to be used in params
+Info.allowedParams = {
+}
+
+-------------------------------------------------------------------------------
 -- Function to calculate the http request method
 --
 -- @return    string    The HTTP request method
