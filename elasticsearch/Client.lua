@@ -16,32 +16,43 @@ local Client = {}
 Client.settings = nil
 
 -------------------------------------------------------------------------------
--- Function to get an endpoint instance for a particular type of request
+-- Function to request an endpoint instance for a particular type of request
 --
 -- @param   endpoint  The string denoting the endpoint
+-- @param   params    The parameters to be passed
 --
--- @return  Endpoint  The endpoint object
+-- @return  table     Error or the data recevied from the elasticsearch server
 -------------------------------------------------------------------------------
-function Client:getEndpoint(endpoint)
+function Client:requestEndpoint(endpoint, params)
   local Endpoint = require("endpoints." .. endpoint)
   local endpoint = Endpoint:new{
     transport = self.settings.transport
   }
-  return endpoint
+  if params ~= nil then
+    -- Parameters need to be set
+    local err = endpoint:setParams(params);
+    if err ~= nil then
+      -- Some error in setting parameters, return to user
+      return nil, err
+    end
+  end
+  -- Making request
+  local response, err = endpoint:request()
+  if response == nil then
+    -- Some error in response, return to user
+    return nil, err
+  end
+  -- Request successful, return body
+  return response.body
 end
 
 -------------------------------------------------------------------------------
 -- Function to get information regarding the Elasticsearch server
 --
--- @return   table     The details about the elasticsearch server as lua-table
+-- @return   table     Error or the data recevied from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:info()
-  local endpoint = self:getEndpoint("Info")
-  local response, err = endpoint:request()
-  if response == nil then
-    return nil, err
-  end
-  return response.body
+  return self:requestEndpoint("Info")
 end
 
 -------------------------------------------------------------------------------
@@ -49,16 +60,10 @@ end
 --
 -- @param    params    The search Parameters
 --
--- @return   table     The document
+-- @return   table     Error or the data recevied from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:get(params)
-  local endpoint = self:getEndpoint("Get")
-  endpoint:setParams(params)
-  local response, err = endpoint:request()
-  if response == nil then
-    return nil, err
-  end
-  return response.body
+  return self:requestEndpoint("Get", params)
 end
 
 -------------------------------------------------------------------------------
@@ -66,16 +71,10 @@ end
 --
 -- @param    params    The index Parameters
 --
--- @return   table     The document
+-- @return   table     Error or the data recevied from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:index(params)
-  local endpoint = self:getEndpoint("Index")
-  endpoint:setParams(params)
-  local response, err = endpoint:request()
-  if response == nil then
-    return nil, err
-  end
-  return response.body
+  return self:requestEndpoint("Index", params)
 end
 
 -------------------------------------------------------------------------------
@@ -83,16 +82,10 @@ end
 --
 -- @param    params    The delete Parameters
 --
--- @return   table     The document
+-- @return   table     Error or the data recevied from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:delete(params)
-  local endpoint = self:getEndpoint("Delete")
-  endpoint:setParams(params)
-  local response, err = endpoint:request()
-  if response == nil then
-    return nil, err
-  end
-  return response.body
+  return self:requestEndpoint("Delete", params)
 end
 
 -------------------------------------------------------------------------------
@@ -100,16 +93,10 @@ end
 --
 -- @param    params    The search Parameters
 --
--- @return   table     The document
+-- @return   table     Error or the data recevied from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:search(params)
-  local endpoint = self:getEndpoint("Search")
-  endpoint:setParams(params)
-  local response, err = endpoint:request()
-  if response == nil then
-    return nil, err
-  end
-  return response.body
+  return self:requestEndpoint("Search", params)
 end
 
 -------------------------------------------------------------------------------

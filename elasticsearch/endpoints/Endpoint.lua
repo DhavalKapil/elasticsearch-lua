@@ -24,6 +24,8 @@ Endpoint.transport = nil
 -- Function used to set the params to be sent as GET parameters
 --
 -- @param   params  The params provided by the user
+--
+-- @return  string  A string if an error is found otherwise nil
 -------------------------------------------------------------------------------
 function Endpoint:setParams(params)
   for i, v in pairs(params) do
@@ -36,6 +38,18 @@ function Endpoint:setParams(params)
     elseif i == "body" then
       self.body = v
     else
+      -- Checking whether i is in allowed parameters or not
+      -- Current algorithm is n*m, but n and m are very small
+      local flag = 0;
+      for _, allowedParam in pairs(self.allowedParams) do
+        if allowedParam == i then
+          flag = 1;
+          break;
+        end
+      end
+      if flag == 0 then
+        return i .. " is not an allowed parameter"
+      end
       self.params[i] = v
     end
   end
