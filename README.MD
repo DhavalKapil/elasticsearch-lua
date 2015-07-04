@@ -14,6 +14,7 @@ In accordance with other official low level clients, the client accepts associat
   - Retrieving a document
   - Deleting a document
   - Searching a document
+  - Update a document
 2. Proper load balancing across all nodes.
 3. Multiple selection strategies.
 4. Console logging facility.
@@ -31,6 +32,13 @@ In accordance with other official low level clients, the client accepts associat
 ```
 4. Add the source directory to your lua program's `package.path`.
 
+OR
+
+It can also be installed using luarocks
+```
+  [sudo] luarocks install elasticsearch
+```
+
 ### Create elasticsearch client instance:
 
 ```
@@ -45,15 +53,21 @@ In accordance with other official low level clients, the client accepts associat
         port = 9200
       }
     },
+    -- Optional parameters
     params = {
       pingTimeout = 2
     }
   }
 ```
 
+```
+  -- Will connect to default host/port
+  local client = elasticsearch.client()
+```
+
 Full list of `params`:
 
-1. `pingTimeout` : The default timeout of a connection for ping and sniff request.
+1. `pingTimeout` : The timeout of a connection for ping and sniff request. Default is 1.
 2. `selector` : The type of selection strategy to be used. Default is `RoundRobinSelector`.
 3. `connectionPool` : The type of connection pool to be used. Default is `StaticConnectionPool`.
 4. `connectionPoolSettings` : The connection pool settings,
