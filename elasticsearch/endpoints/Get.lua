@@ -51,7 +51,7 @@ function Get:getUri()
   if self.type == nil then
     return nil, "type not specified for Get"
   end
-  return "/" .. self.index .. "/" .. self.type .. "/" .. self.id .. "/"
+  return "/" .. self.index .. "/" .. self.type .. "/" .. self.id
 end
 
 -------------------------------------------------------------------------------

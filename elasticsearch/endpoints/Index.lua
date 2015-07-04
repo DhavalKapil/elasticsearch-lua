@@ -53,9 +53,9 @@ function Index:getUri()
   if self.type == nil then
     return nil, "type not specified for Index"
   end
-  local uri = "/" .. self.index .. "/" .. self.type .. "/"
+  local uri = "/" .. self.index .. "/" .. self.type
   if self.id ~= nil then
-    uri = uri .. self.id .. "/"
+    uri = uri .. "/" .. self.id
   end
   return uri
 end
