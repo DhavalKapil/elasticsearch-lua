@@ -8,17 +8,13 @@ local client = elasticsearch.client{
       protocol = "http",
       host = "localhost",
       port = 9200
-    },
-    {
-      protocol = "http",
-      host = "localhost",
-      port = 9201
     }
   },
   params = {
     pingTimeout = 2,
-    logLevel = "warn"
-  }
+    logLevel = "warn",
+    connectionPool = "SniffConnectionPool"
+  },
 }
 
 -- Details about client
