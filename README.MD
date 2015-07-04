@@ -41,7 +41,7 @@ It can also be installed using luarocks
 
 ### Create elasticsearch client instance:
 
-```
+```lua
   local elasticsearch = require "elasticsearch"
 
   local client = elasticsearch.client{
@@ -60,7 +60,7 @@ It can also be installed using luarocks
   }
 ```
 
-```
+```lua
   -- Will connect to default host/port
   local client = elasticsearch.client()
 ```
@@ -76,7 +76,7 @@ Full list of `params`:
 
 ### Getting info of elasticsearch server
 
-```
+```lua
 local data, err = client:info()
 ```
 
@@ -84,7 +84,7 @@ local data, err = client:info()
 
 Everything is represented as a lua table.
 
-```
+```lua
 local data, err = client:index{
   index = "my_index",
   type = "my_type",
@@ -97,7 +97,7 @@ local data, err = client:index{
 
 ### Get a document
 
-```
+```lua
 data, err = client:get{
   index = "my_index",
   type = "my_type",
@@ -107,7 +107,7 @@ data, err = client:get{
 
 ### Delete a document
 
-```
+```lua
 data, err = client:delete{
   index = "my_index",
   type = "my_type",
@@ -118,7 +118,7 @@ data, err = client:delete{
 
 You can search a document using either query string:
 
-```
+```lua
 data, err = client:search{
   index = "my_index",
   type = "my_type",
@@ -128,7 +128,7 @@ data, err = client:search{
 
 Or either a request body:
 
-```
+```lua
 data, err = client:search{
   index = "my_index",
   type = "my_type",
@@ -144,7 +144,7 @@ data, err = client:search{
 
 ### Update a document
 
-```
+```lua
 data, err = client:update{
   index = "my_index",
   type = "my_type",
