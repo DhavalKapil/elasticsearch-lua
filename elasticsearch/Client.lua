@@ -100,6 +100,17 @@ function Client:search(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to update a particular document
+--
+-- @param    params    The update Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:update(params)
+  return self:requestEndpoint("Update", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Client class
 -------------------------------------------------------------------------------
 function Client:new(o)

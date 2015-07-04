@@ -96,6 +96,36 @@ end
 print("Search successfull:")
 print("Document id = " .. data.hits.hits[1]._id)
 
+-- Updating document
+data, err = client:update{
+  index = "my_index",
+  type = "my_type",
+  id = "my_doc",
+  body = {
+    doc = {
+      my_key = "new_param"
+    }
+  }
+}
+if data == nil then
+  print(err)
+  os.exit()
+end
+print("Update successfull")
+
+-- Getting data
+
+data, err = client:get{
+  index = "my_index",
+  type = "my_type",
+  id = "my_doc"
+}
+if data == nil then
+  print(err)
+  os.exit()
+end
+print("Got document with my_key = " .. data._source.my_key)
+
 -- Deleting
 
 data, err = client:delete{

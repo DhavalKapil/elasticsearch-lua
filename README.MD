@@ -127,3 +127,18 @@ data, err = client:search{
   }
 }
 ```
+
+### Update a document
+
+```
+data, err = client:update{
+  index = "my_index",
+  type = "my_type",
+  id = "my_doc",
+  body = {
+    doc = {
+      my_key = "new_param"
+    }
+  }
+}
+```
