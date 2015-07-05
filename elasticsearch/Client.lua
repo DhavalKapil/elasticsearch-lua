@@ -56,6 +56,18 @@ function Client:info()
 end
 
 -------------------------------------------------------------------------------
+-- Function to ping to check whether there exists any alive connection to
+-- elasticsearch server or not
+--
+--
+-- @return  boolean   Whether we have any alive connection or not
+-------------------------------------------------------------------------------
+function Client:ping()
+  local temp, err = self:requestEndpoint("Ping")
+  return err == nil
+end
+
+-------------------------------------------------------------------------------
 -- Function to get a particular document
 --
 -- @param    params    The search Parameters
