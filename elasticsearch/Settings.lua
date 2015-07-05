@@ -44,7 +44,7 @@ Settings.params.connectionPoolSettings = {
 Settings.params.maxRetryCount = 5
 
 -- The logLevel
-Settings.params.logLevel = "warning"
+Settings.params.logLevel = "warn"
 
 -------------------------------------------------------------------------------
 -- Instance variables
