@@ -27,13 +27,23 @@ Get.allowedParams = {
   "version_type"
 }
 
+-- Whether only existence needs to be checked
+Get.endpointParams.checkOnlyExistance = false
+
+-- Whether to return only source
+Get.endpointParams.sourceOnly = false
+
 -------------------------------------------------------------------------------
 -- Function to calculate the http request method
 --
 -- @return    string    The HTTP request method
 -------------------------------------------------------------------------------
 function Get:getMethod()
-  return "GET"
+  if self.endpointParams.checkOnlyExistance == true then
+    return "HEAD"
+  else
+    return "GET"
+  end
 end
 
 -------------------------------------------------------------------------------
@@ -55,7 +65,7 @@ function Get:getUri()
   if self.endpointParams.sourceOnly == true then
     uri = uri .. "/_source"
   end
-  return  uri
+  return uri
 end
 
 -------------------------------------------------------------------------------

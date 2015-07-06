@@ -80,6 +80,29 @@ function Client:get(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to check whether a document exists or not
+--
+-- @param    params    The exists Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:exists(params)
+  local temp, err = self:requestEndpoint("Get", params, {
+    checkOnlyExistance = true
+  })
+  if err == nil then
+    -- Successfull request
+    return true
+  elseif err:match("Invalid response code") then
+    -- Wrong response code
+    return false
+  else
+    -- Some other error, notify user
+    return nil, err
+  end
+end
+
+-------------------------------------------------------------------------------
 -- Function to get only the _source of a particular document
 --
 -- @param    params    The get Parameters

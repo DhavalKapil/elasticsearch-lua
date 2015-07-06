@@ -20,7 +20,7 @@ Endpoint.body = nil
 -- The transport instance
 Endpoint.transport = nil
 -- The endpoint specific parameters
-Endpoint.endpointParams = nil
+Endpoint.endpointParams = {}
 
 -------------------------------------------------------------------------------
 -- Function used to set the params to be sent as GET parameters
