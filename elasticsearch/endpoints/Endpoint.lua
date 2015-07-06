@@ -16,7 +16,7 @@ Endpoint.id = nil
 -- The request params to be sent as GET parameters
 Endpoint.params = {}
 -- The body of the request
-Endpoint.body = {}
+Endpoint.body = nil
 -- The transport instance
 Endpoint.transport = nil
 -- The endpoint specific parameters
