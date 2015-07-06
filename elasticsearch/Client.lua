@@ -18,15 +18,17 @@ Client.settings = nil
 -------------------------------------------------------------------------------
 -- Function to request an endpoint instance for a particular type of request
 --
--- @param   endpoint  The string denoting the endpoint
--- @param   params    The parameters to be passed
+-- @param   endpoint        The string denoting the endpoint
+-- @param   params          The parameters to be passed
+-- @params  endpointParams  The endpoint params passed while object creation
 --
 -- @return  table     Error or the data recevied from the elasticsearch server
 -------------------------------------------------------------------------------
-function Client:requestEndpoint(endpoint, params)
+function Client:requestEndpoint(endpoint, params, endpointParams)
   local Endpoint = require("endpoints." .. endpoint)
   local endpoint = Endpoint:new{
-    transport = self.settings.transport
+    transport = self.settings.transport,
+    endpointParams = endpointParams or {}
   }
   if params ~= nil then
     -- Parameters need to be set
@@ -59,7 +61,6 @@ end
 -- Function to ping to check whether there exists any alive connection to
 -- elasticsearch server or not
 --
---
 -- @return  boolean   Whether we have any alive connection or not
 -------------------------------------------------------------------------------
 function Client:ping()
@@ -70,12 +71,25 @@ end
 -------------------------------------------------------------------------------
 -- Function to get a particular document
 --
--- @param    params    The search Parameters
+-- @param    params    The get Parameters
 --
 -- @return   table     Error or the data recevied from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:get(params)
   return self:requestEndpoint("Get", params)
+end
+
+-------------------------------------------------------------------------------
+-- Function to get only the _source of a particular document
+--
+-- @param    params    The get Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:getSource(params)
+  return self:requestEndpoint("Get", params, {
+    sourceOnly = true
+  })
 end
 
 -------------------------------------------------------------------------------
