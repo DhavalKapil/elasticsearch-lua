@@ -115,6 +115,17 @@ function Client:delete(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to get the count
+--
+-- @param    params    The count Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:count(params)
+  return self:requestEndpoint("Count", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to search a particular document
 --
 -- @param    params    The search Parameters
