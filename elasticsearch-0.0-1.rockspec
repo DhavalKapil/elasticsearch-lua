@@ -48,6 +48,7 @@ build = {
     ["endpoints.Count"] = "elasticsearch/endpoints/Count.lua",
     ["endpoints.Update"] = "elasticsearch/endpoints/Update.lua",
     ["endpoints.Get"] = "elasticsearch/endpoints/Get.lua",
+    ["endpoints.Mget"] = "elasticsearch/endpoints/Mget.lua",
     ["endpoints.Endpoint"] = "elasticsearch/endpoints/Endpoint.lua"
   },
   copy_directories = {"tests"}
