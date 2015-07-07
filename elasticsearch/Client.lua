@@ -116,6 +116,18 @@ function Client:getSource(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to get multiple document
+--
+-- @param    params    The mget Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:mget(params)
+  return self:requestEndpoint("Mget", params)
+end
+
+
+-------------------------------------------------------------------------------
 -- Function to index a particular document
 --
 -- @param    params    The index Parameters
