@@ -59,7 +59,6 @@ function Connection:request(method, uri, params, body, timeout)
     sink = ltn12.sink.table(responseBody)
   }
   if body ~= nil then
-    body = parser.jsonEncode(body)
     -- Adding body to request
     request.headers = {
       ["Content-Length"] = body:len()
@@ -76,10 +75,8 @@ function Connection:request(method, uri, params, body, timeout)
     = http.request(request)
   self.logger:debug("Got HTTP " .. response.statusCode)
   http.TIMEOUT = nil
-  if responseBody[1] ~= nil then
-    response.body = parser.jsonDecode(responseBody[1])
-  end
-
+  response.body = responseBody[1]
+  
   return response
 end
 

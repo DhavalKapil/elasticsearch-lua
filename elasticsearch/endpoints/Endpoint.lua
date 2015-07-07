@@ -1,4 +1,9 @@
 -------------------------------------------------------------------------------
+-- Importing modules
+-------------------------------------------------------------------------------
+local parser = require "parser"
+
+-------------------------------------------------------------------------------
 -- Declaring module
 -------------------------------------------------------------------------------
 local Endpoint = {}
@@ -17,10 +22,29 @@ Endpoint.id = nil
 Endpoint.params = {}
 -- The body of the request
 Endpoint.body = nil
+-- Whether there is a bulk body or not
+Endpoint.bulkBody = false
 -- The transport instance
 Endpoint.transport = nil
 -- The endpoint specific parameters
 Endpoint.endpointParams = {}
+
+-------------------------------------------------------------------------------
+-- Function to set the body parameter
+--
+-- @param   body    The body to be set
+-------------------------------------------------------------------------------
+function Endpoint:setBody(body)
+  if self.bulkBody == false then
+    self.body = parser.jsonEncode(body)
+    return
+  end
+  -- Bulk body is present
+  self.body = ""
+  for _id, item in pairs(body) do
+    self.body = self.body .. parser.jsonEncode(item) .. "\n"
+  end
+end
 
 -------------------------------------------------------------------------------
 -- Function used to set the params to be sent as GET parameters
@@ -38,7 +62,7 @@ function Endpoint:setParams(params)
     elseif i == "id" then
       self.id = v
     elseif i == "body" then
-      self.body = v
+      self:setBody(v)
     else
       -- Checking whether i is in allowed parameters or not
       -- Current algorithm is n*m, but n and m are very small
@@ -67,9 +91,15 @@ function Endpoint:request()
   if uri == nil then
     return nil, err
   end
-  local result, err = self.transport:request(self:getMethod(), self:getUri()
+  local response, err = self.transport:request(self:getMethod(), self:getUri()
     , self.params, self.body)
-  return result, err
+
+  -- parsing body
+  if response ~= nil and response.body ~= nil then
+    response.body = parser.jsonDecode(response.body)
+  end
+
+  return response, err
 end
 
 -------------------------------------------------------------------------------

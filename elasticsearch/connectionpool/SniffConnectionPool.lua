@@ -3,6 +3,7 @@
 -------------------------------------------------------------------------------
 local Connection = require "connection.Connection"
 local ConnectionPool = require "connectionpool.ConnectionPool"
+local parser = require "parser"
 
 -------------------------------------------------------------------------------
 -- Declaring module
@@ -65,6 +66,7 @@ function SniffConnectionPool:sniffConnection(connection)
   if response.statusCode ~= 200 then
     return
   end
+  response.body = parser.jsonDecode(response.body)
   local schemaAddress = connection.protocol .. "_address"
   -- Iterating over every node
   for _, node in pairs(response.body.nodes) do
