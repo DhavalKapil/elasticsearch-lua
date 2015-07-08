@@ -172,6 +172,17 @@ function Client:search(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to search multiple document
+--
+-- @param    params    The msearch Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:msearch(params)
+  return self:requestEndpoint("Msearch", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to update a particular document
 --
 -- @param    params    The update Parameters
