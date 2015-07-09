@@ -195,6 +195,16 @@ function Client:create(params)
   })
 end
 
+-------------------------------------------------------------------------------
+-- Function to suggest similar looking terms
+--
+-- @param    params    The suggest Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:suggest(params)
+  return self:requestEndpoint("Suggest", params)
+end
 
 -------------------------------------------------------------------------------
 -- Function to update a particular document

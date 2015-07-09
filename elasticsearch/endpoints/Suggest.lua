@@ -6,42 +6,29 @@ local Endpoint = require "endpoints.Endpoint"
 -------------------------------------------------------------------------------
 -- Declaring module
 -------------------------------------------------------------------------------
-local Index = Endpoint:new()
+local Suggest = Endpoint:new()
 
 -------------------------------------------------------------------------------
 -- Declaring Instance variables
 -------------------------------------------------------------------------------
 
 -- The parameters that are allowed to be used in params
-Index.allowedParams = {
-  "consistency",
-  "op_type",
-  "parent",
-  "percolate",
-  "refresh",
-  "replication",
+Suggest.allowedParams = {
+  "ignore_unavailable",
+  "allow_no_indices",
+  "expand_wildcards",
+  "preference",
   "routing",
-  "timeout",
-  "timestamp",
-  "ttl",
-  "version",
-  "version_type"
+  "source"
 }
-
--- Whether to create an index if it's absent
-Index.endpointParams.createIfAbsent = false
 
 -------------------------------------------------------------------------------
 -- Function to calculate the http request method
 --
 -- @return    string    The HTTP request method
 -------------------------------------------------------------------------------
-function Index:getMethod()
-  if self.id ~= nil then
-    return "PUT"
-  else
-    return "POST"
-  end
+function Suggest:getMethod()
+  return "GET"
 end
 
 -------------------------------------------------------------------------------
@@ -49,33 +36,23 @@ end
 --
 -- @return    string    The URI
 -------------------------------------------------------------------------------
-function Index:getUri()
-  if self.index == nil then
-    return nil, "index not specified for Index"
+function Suggest:getUri()
+  local uri = ""
+  if self.index ~= nil then
+    uri = uri .. "/" .. self.index
   end
-  if self.type == nil then
-    return nil, "type not specified for Index"
-  end
-  local uri = "/" .. self.index .. "/" .. self.type
-  if self.id ~= nil then
-    uri = uri .. "/" .. self.id
-    if self.endpointParams.createIfAbsent == true then
-      uri = uri .. "/_create";
-    end
-  elseif self.endpointParams.createIfAbsent == true then
-    self.params["op_type"] = "create"
-  end
+  uri = uri .. "/_suggest"
   return uri
 end
 
 -------------------------------------------------------------------------------
--- Returns an instance of Index class
+-- Returns an instance of Suggest class
 -------------------------------------------------------------------------------
-function Index:new(o)
+function Suggest:new(o)
   o = o or {}
   setmetatable(o, self)
   self.__index = self
   return o
 end
 
-return Index
+return Suggest
