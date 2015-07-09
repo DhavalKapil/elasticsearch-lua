@@ -183,6 +183,17 @@ function Client:searchExists(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to search the shards
+--
+-- @param    params    The searchShards Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:searchShards(params)
+  return self:requestEndpoint("SearchShards", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to search multiple document
 --
 -- @param    params    The msearch Parameters

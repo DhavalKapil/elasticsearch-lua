@@ -42,6 +42,7 @@ build = {
 
     ["endpoints.Search"] = "elasticsearch/endpoints/Search.lua",
     ["endpoints.SearchExists"] = "elasticsearch/endpoints/SearchExists.lua",
+    ["endpoints.SearchShards"] = "elasticsearch/endpoints/SearchShards.lua",
     ["endpoints.Msearch"] = "elasticsearch/endpoints/Msearch.lua",
     ["endpoints.Index"] = "elasticsearch/endpoints/Index.lua",
     ["endpoints.Info"] = "elasticsearch/endpoints/Info.lua",
