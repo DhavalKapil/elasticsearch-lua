@@ -183,6 +183,20 @@ function Client:msearch(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to create an index
+--
+-- @param    params    The create Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:create(params)
+  return self:requestEndpoint("Index", params, {
+    createIfAbsent = true
+  })
+end
+
+
+-------------------------------------------------------------------------------
 -- Function to update a particular document
 --
 -- @param    params    The update Parameters

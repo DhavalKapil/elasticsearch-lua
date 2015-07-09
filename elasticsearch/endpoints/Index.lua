@@ -56,6 +56,11 @@ function Index:getUri()
   local uri = "/" .. self.index .. "/" .. self.type
   if self.id ~= nil then
     uri = uri .. "/" .. self.id
+    if self.endpointParams.createIfAbsent == true then
+      uri = uri .. "/_create";
+    end
+  elseif self.endpointParams.createIfAbsent == true then
+    self.params["op_type"] = "create"
   end
   return uri
 end
