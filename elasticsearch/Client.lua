@@ -207,6 +207,17 @@ function Client:suggest(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to compute a score explanation for a query and a specific document
+--
+-- @param    params    The explain Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:explain(params)
+  return self:requestEndpoint("Explain", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to update a particular document
 --
 -- @param    params    The update Parameters
