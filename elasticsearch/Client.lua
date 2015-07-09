@@ -194,6 +194,17 @@ function Client:searchShards(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to search the shards
+--
+-- @param    params    The searchTemplate Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:searchTemplate(params)
+  return self:requestEndpoint("SearchTemplate", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to search multiple document
 --
 -- @param    params    The msearch Parameters
