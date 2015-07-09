@@ -172,6 +172,17 @@ function Client:search(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to implement the search exists functionality
+--
+-- @param    params    The searchExists Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:searchExists(params)
+  return self:requestEndpoint("SearchExists", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to search multiple document
 --
 -- @param    params    The msearch Parameters
