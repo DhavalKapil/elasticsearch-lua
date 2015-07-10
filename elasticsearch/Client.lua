@@ -205,6 +205,29 @@ function Client:searchTemplate(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function for scrolled searching
+--
+-- @param    params    The scroll Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:scroll(params)
+  return self:requestEndpoint("Scroll", params)
+end
+
+-------------------------------------------------------------------------------
+-- Function to clear a scroll
+--
+-- @param    params    The clearScroll Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:clearScroll(params)
+  return self:requestEndpoint("Scroll", params, {
+    clear = true;
+  })
+end
+
 -- Function to search multiple document
 --
 -- @param    params    The msearch Parameters
