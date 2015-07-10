@@ -54,6 +54,7 @@ build = {
     ["endpoints.Suggest"] = "elasticsearch/endpoints/Suggest.lua",
     ["endpoints.Suggest"] = "elasticsearch/endpoints/Explain.lua",
     ["endpoints.Update"] = "elasticsearch/endpoints/Update.lua",
+    ["endpoints.FieldStats"] = "elasticsearch/endpoints/FieldStats.lua"
     ["endpoints.Get"] = "elasticsearch/endpoints/Get.lua",
     ["endpoints.Mget"] = "elasticsearch/endpoints/Mget.lua",
     ["endpoints.Endpoint"] = "elasticsearch/endpoints/Endpoint.lua"

@@ -285,6 +285,17 @@ function Client:update(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to get the field stats
+--
+-- @param    params    The fieldStats Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:fieldStats(params)
+  return self:requestEndpoint("FieldStats", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Client class
 -------------------------------------------------------------------------------
 function Client:new(o)
