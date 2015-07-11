@@ -4,6 +4,7 @@
 local Connection = require "connection.Connection"
 local Transport = require "Transport"
 local Logger = require "Logger"
+local Cluster = require "Cluster"
 
 -------------------------------------------------------------------------------
 -- Declaring module
@@ -64,6 +65,9 @@ Settings.transport = nil
 
 -- The logger instance
 Settings.logger = nil
+
+-- The cluster instance
+Settings.cluster = nil
 
 -------------------------------------------------------------------------------
 -- Function to recursivly check a table `user` with parameters of `default`
@@ -174,6 +178,16 @@ function Settings:setTransportSettings()
 end
 
 -------------------------------------------------------------------------------
+-- Initializes the Cluster settings
+-------------------------------------------------------------------------------
+function Settings:setClusterSettings()
+  self.cluster = Cluster:new{
+    transport = self.transport
+  }
+end
+
+
+-------------------------------------------------------------------------------
 -- Initializes the settings
 -------------------------------------------------------------------------------
 function Settings:initializeSettings()
@@ -183,6 +197,7 @@ function Settings:initializeSettings()
   self:setSelectorSettings()
   self:setConnectionPoolSettings()
   self:setTransportSettings()
+  self:setClusterSettings()
 end
 
 -------------------------------------------------------------------------------

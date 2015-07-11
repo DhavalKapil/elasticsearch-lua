@@ -2,6 +2,7 @@
 -- Importing modules
 -------------------------------------------------------------------------------
 local Settings = require "Settings"
+local Cluster = require "Cluster"
 
 -------------------------------------------------------------------------------
 -- Declaring module
@@ -14,6 +15,9 @@ local Client = {}
 
 -- The Settings instance
 Client.settings = nil
+
+-- The cluster instance
+Client.cluster = nil;
 
 -------------------------------------------------------------------------------
 -- Function to request an endpoint instance for a particular type of request
@@ -296,6 +300,13 @@ function Client:fieldStats(params)
 end
 
 -------------------------------------------------------------------------------
+-- Initializes the Client parameters
+-------------------------------------------------------------------------------
+function Client:setClientParameters()
+  self.cluster = self.settings.cluster;
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Client class
 -------------------------------------------------------------------------------
 function Client:new(o)
@@ -313,6 +324,7 @@ function Client:new(o)
     user_hosts = o.hosts,
     user_params = o.params
   }
+  o:setClientParameters()
   return o
 end
 
