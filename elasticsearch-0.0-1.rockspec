@@ -26,6 +26,7 @@ build = {
     ["Logger"] = "elasticsearch/Logger.lua",
     ["parser"] = "elasticsearch/parser.lua",
     ["Client"] = "elasticsearch/Client.lua",
+    ["Cluster"] = "elasticsearch/Cluster.lua",
     ["Transport"] = "elasticsearch/Transport.lua",
 
     ["connection.Connection"] = "elasticsearch/connection/Connection.lua",
@@ -58,6 +59,8 @@ build = {
     ["endpoints.Get"] = "elasticsearch/endpoints/Get.lua",
     ["endpoints.Mget"] = "elasticsearch/endpoints/Mget.lua",
     ["endpoints.Endpoint"] = "elasticsearch/endpoints/Endpoint.lua"
+
+    ["endpoints.Cluster.Health"] = "elasticsearch/endpoints/Cluster/Health.lua"
   },
   copy_directories = {"tests"}
 }
