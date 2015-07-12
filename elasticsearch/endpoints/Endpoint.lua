@@ -91,7 +91,7 @@ function Endpoint:request()
   if uri == nil then
     return nil, err
   end
-  local response, err = self.transport:request(self:getMethod(), self:getUri()
+  local response, err = self.transport:request(self:getMethod(), uri
     , self.params, self.body)
 
   -- parsing body
