@@ -52,6 +52,14 @@ function Cluster:health()
   return self:requestEndpoint("Health")
 end
 
+-------------------------------------------------------------------------------
+-- Function to get the list of pending tasks
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Cluster:pendingTasks()
+  return self:requestEndpoint("PendingTasks")
+end
 
 -------------------------------------------------------------------------------
 -- Returns an instance of Cluster class
