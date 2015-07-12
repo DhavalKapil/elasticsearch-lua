@@ -53,12 +53,21 @@ function Cluster:health()
 end
 
 -------------------------------------------------------------------------------
+-- Function to get a comprehensive state information of the whole cluster
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Cluster:state(params)
+  return self:requestEndpoint("State", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to get the list of pending tasks
 --
 -- @return   table     Error or the data recevied from the elasticsearch server
 -------------------------------------------------------------------------------
-function Cluster:pendingTasks()
-  return self:requestEndpoint("PendingTasks")
+function Cluster:pendingTasks(params)
+  return self:requestEndpoint("PendingTasks", params)
 end
 
 -------------------------------------------------------------------------------
