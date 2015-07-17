@@ -6,22 +6,17 @@ local Endpoint = require "endpoints.Endpoint"
 -------------------------------------------------------------------------------
 -- Declaring module
 -------------------------------------------------------------------------------
-local Health = Endpoint:new()
+local GetSettings = Endpoint:new()
 
 -------------------------------------------------------------------------------
 -- Declaring Instance variables
 -------------------------------------------------------------------------------
 
 -- The parameters that are allowed to be used in params
-Health.allowedParams = {
-  "level",
-  "local",
+GetSettings.allowedParams = {
+  "flat_settings",
   "master_timeout",
-  "timeout",
-  "wait_for_active_shards",
-  "wait_for_nodes",
-  "wait_for_relocating_shards",
-  "wait_for_status"
+  "timeout"
 }
 
 -------------------------------------------------------------------------------
@@ -29,7 +24,7 @@ Health.allowedParams = {
 --
 -- @return    string    The HTTP request method
 -------------------------------------------------------------------------------
-function Health:getMethod()
+function GetSettings:getMethod()
   return "GET"
 end
 
@@ -38,22 +33,18 @@ end
 --
 -- @return    string    The URI
 -------------------------------------------------------------------------------
-function Health:getUri()
-  local uri = "/_cluster/health"
-  if self.index ~= nil then
-    uri = uri .. "/" .. self.index
-  end
-  return uri
+function GetSettings:getUri()
+  return "/_cluster/settings"
 end
 
 -------------------------------------------------------------------------------
--- Returns an instance of Health class
+-- Returns an instance of GetSettings class
 -------------------------------------------------------------------------------
-function Health:new(o)
+function GetSettings:new(o)
   o = o or {}
   setmetatable(o, self)
   self.__index = self
   return o
 end
 
-return Health
+return GetSettings

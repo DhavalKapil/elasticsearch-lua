@@ -71,6 +71,15 @@ function Cluster:stats(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to retrieve the settings of a cluster
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Cluster:getSettings(params)
+  return self:requestEndpoint("GetSettings", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to get the list of pending tasks
 --
 -- @return   table     Error or the data recevied from the elasticsearch server

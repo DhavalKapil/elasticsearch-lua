@@ -64,6 +64,7 @@ build = {
     ["endpoints.Cluster.PendingTasks"] = "elasticsearch/endpoints/Cluster/PendingTasks.lua"
     ["endpoints.Cluster.State"] = "elasticsearch/endpoints/Cluster/State.lua"
     ["endpoints.Cluster.Stats"] = "elasticsearch/endpoints/Cluster/Stats.lua"
+    ["endpoints.Cluster.Stats"] = "elasticsearch/endpoints/Cluster/GetSettings.lua"
   },
   copy_directories = {"tests"}
 }
