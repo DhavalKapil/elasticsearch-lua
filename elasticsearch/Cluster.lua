@@ -80,6 +80,15 @@ function Cluster:getSettings(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to put the settings of a cluster
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Cluster:putSettings(params)
+  return self:requestEndpoint("PutSettings", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to get the list of pending tasks
 --
 -- @return   table     Error or the data recevied from the elasticsearch server
