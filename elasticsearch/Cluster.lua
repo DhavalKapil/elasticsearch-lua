@@ -89,6 +89,15 @@ function Cluster:putSettings(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to execute cluster reroute allocation commands
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Cluster:reroute(params)
+  return self:requestEndpoint("Reroute", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to get the list of pending tasks
 --
 -- @return   table     Error or the data recevied from the elasticsearch server
