@@ -46,14 +46,18 @@ end
 -------------------------------------------------------------------------------
 -- Function to get information health of the cluster
 --
+-- @param    params    The health Parameters
+--
 -- @return   table     Error or the data recevied from the elasticsearch server
 -------------------------------------------------------------------------------
-function Cluster:health()
-  return self:requestEndpoint("Health")
+function Cluster:health(params)
+  return self:requestEndpoint("Health", params)
 end
 
 -------------------------------------------------------------------------------
 -- Function to get a comprehensive state information of the whole cluster
+--
+-- @param    params    The state Parameters
 --
 -- @return   table     Error or the data recevied from the elasticsearch server
 -------------------------------------------------------------------------------
@@ -64,6 +68,8 @@ end
 -------------------------------------------------------------------------------
 -- Function to retrieve statistics from a cluster wide perspective
 --
+-- @param    params    The stats Parameters
+--
 -- @return   table     Error or the data recevied from the elasticsearch server
 -------------------------------------------------------------------------------
 function Cluster:stats(params)
@@ -72,6 +78,8 @@ end
 
 -------------------------------------------------------------------------------
 -- Function to retrieve the settings of a cluster
+--
+-- @param    params    The getSettings Parameters
 --
 -- @return   table     Error or the data recevied from the elasticsearch server
 -------------------------------------------------------------------------------
@@ -82,6 +90,8 @@ end
 -------------------------------------------------------------------------------
 -- Function to put the settings of a cluster
 --
+-- @param    params    The putSettings Parameters
+--
 -- @return   table     Error or the data recevied from the elasticsearch server
 -------------------------------------------------------------------------------
 function Cluster:putSettings(params)
@@ -91,6 +101,8 @@ end
 -------------------------------------------------------------------------------
 -- Function to execute cluster reroute allocation commands
 --
+-- @param    params    The reroute Parameters
+--
 -- @return   table     Error or the data recevied from the elasticsearch server
 -------------------------------------------------------------------------------
 function Cluster:reroute(params)
@@ -99,6 +111,8 @@ end
 
 -------------------------------------------------------------------------------
 -- Function to get the list of pending tasks
+--
+-- @param    params    The pendingTasks Parameters
 --
 -- @return   table     Error or the data recevied from the elasticsearch server
 -------------------------------------------------------------------------------
