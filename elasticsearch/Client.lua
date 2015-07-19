@@ -17,7 +17,10 @@ local Client = {}
 Client.settings = nil
 
 -- The cluster instance
-Client.cluster = nil;
+Client.cluster = nil
+
+-- The nodes instance
+Client.nodes = nil
 
 -------------------------------------------------------------------------------
 -- Function to request an endpoint instance for a particular type of request
@@ -36,7 +39,7 @@ function Client:requestEndpoint(endpoint, params, endpointParams)
   }
   if params ~= nil then
     -- Parameters need to be set
-    local err = endpoint:setParams(params);
+    local err = endpoint:setParams(params)
     if err ~= nil then
       -- Some error in setting parameters, return to user
       return nil, err
@@ -303,7 +306,8 @@ end
 -- Initializes the Client parameters
 -------------------------------------------------------------------------------
 function Client:setClientParameters()
-  self.cluster = self.settings.cluster;
+  self.cluster = self.settings.cluster
+  self.nodes = self.settings.nodes
 end
 
 -------------------------------------------------------------------------------

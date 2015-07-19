@@ -27,6 +27,7 @@ build = {
     ["parser"] = "elasticsearch/parser.lua",
     ["Client"] = "elasticsearch/Client.lua",
     ["Cluster"] = "elasticsearch/Cluster.lua",
+    ["Nodes"] = "elasticsearch/Nodes.lua",
     ["Transport"] = "elasticsearch/Transport.lua",
 
     ["connection.Connection"] = "elasticsearch/connection/Connection.lua",
@@ -59,6 +60,8 @@ build = {
     ["endpoints.Get"] = "elasticsearch/endpoints/Get.lua",
     ["endpoints.Mget"] = "elasticsearch/endpoints/Mget.lua",
     ["endpoints.Endpoint"] = "elasticsearch/endpoints/Endpoint.lua"
+
+    ["endpoints.Nodes.NodesEndpoint"] = "elasticsearch/endpoints/Nodes/NodesEndpoint.lua"
 
     ["endpoints.Cluster.Health"] = "elasticsearch/endpoints/Cluster/Health.lua"
     ["endpoints.Cluster.PendingTasks"] = "elasticsearch/endpoints/Cluster/PendingTasks.lua"

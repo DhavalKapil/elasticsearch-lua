@@ -5,6 +5,7 @@ local Connection = require "connection.Connection"
 local Transport = require "Transport"
 local Logger = require "Logger"
 local Cluster = require "Cluster"
+local Nodes = require "Nodes"
 
 -------------------------------------------------------------------------------
 -- Declaring module
@@ -186,6 +187,14 @@ function Settings:setClusterSettings()
   }
 end
 
+-------------------------------------------------------------------------------
+-- Initializes Nodes settings
+-------------------------------------------------------------------------------
+function Settings:setNodesSettings()
+  self.nodes = Nodes:new{
+    transport = self.transport
+  }
+end
 
 -------------------------------------------------------------------------------
 -- Initializes the settings
@@ -198,6 +207,7 @@ function Settings:initializeSettings()
   self:setConnectionPoolSettings()
   self:setTransportSettings()
   self:setClusterSettings()
+  self:setNodesSettings()
 end
 
 -------------------------------------------------------------------------------
