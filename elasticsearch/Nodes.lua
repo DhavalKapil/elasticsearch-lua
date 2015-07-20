@@ -44,6 +44,17 @@ function Nodes:requestEndpoint(endpoint, params, endpointParams)
 end
 
 -------------------------------------------------------------------------------
+-- Function to retrieve statistics of a node
+--
+-- @param    params    The stats Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Nodes:stats(params)
+  return self:requestEndpoint("Stats", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Nodes class
 -------------------------------------------------------------------------------
 function Nodes:new(o)
