@@ -66,6 +66,17 @@ function Nodes:stats(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to retrieve current hot threads
+--
+-- @param    params    The stats Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Nodes:hotThreads(params)
+  return self:requestEndpoint("HotThreads", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Nodes class
 -------------------------------------------------------------------------------
 function Nodes:new(o)

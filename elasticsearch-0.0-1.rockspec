@@ -64,6 +64,7 @@ build = {
     ["endpoints.Nodes.NodesEndpoint"] = "elasticsearch/endpoints/Nodes/NodesEndpoint.lua"
     ["endpoints.Nodes.Info"] = "elasticsearch/endpoints/Nodes/Info.lua"
     ["endpoints.Nodes.Stats"] = "elasticsearch/endpoints/Nodes/Stats.lua"
+    ["endpoints.Nodes.HotThreads"] = "elasticsearch/endpoints/Nodes/HotThreads.lua"
 
     ["endpoints.Cluster.Health"] = "elasticsearch/endpoints/Cluster/Health.lua"
     ["endpoints.Cluster.PendingTasks"] = "elasticsearch/endpoints/Cluster/PendingTasks.lua"
