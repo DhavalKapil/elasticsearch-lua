@@ -77,6 +77,17 @@ function Nodes:hotThreads(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to shutdown nodes
+--
+-- @param    params    The stats Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Nodes:shutdown(params)
+  return self:requestEndpoint("Shutdown", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Nodes class
 -------------------------------------------------------------------------------
 function Nodes:new(o)
