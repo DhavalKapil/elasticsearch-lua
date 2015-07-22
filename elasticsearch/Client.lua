@@ -27,7 +27,7 @@ Client.nodes = nil
 --
 -- @param   endpoint        The string denoting the endpoint
 -- @param   params          The parameters to be passed
--- @params  endpointParams  The endpoint params passed while object creation
+-- @param   endpointParams  The endpoint params passed while object creation
 --
 -- @return  table     Error or the data recevied from the elasticsearch server
 -------------------------------------------------------------------------------
