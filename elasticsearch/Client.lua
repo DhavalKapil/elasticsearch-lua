@@ -22,6 +22,9 @@ Client.cluster = nil
 -- The nodes instance
 Client.nodes = nil
 
+-- The indices instance
+Client.indices = nil
+
 -------------------------------------------------------------------------------
 -- Function to request an endpoint instance for a particular type of request
 --
@@ -308,6 +311,7 @@ end
 function Client:setClientParameters()
   self.cluster = self.settings.cluster
   self.nodes = self.settings.nodes
+  self.indices = self.settings.indices
 end
 
 -------------------------------------------------------------------------------

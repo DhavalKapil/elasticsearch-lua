@@ -6,6 +6,7 @@ local Transport = require "Transport"
 local Logger = require "Logger"
 local Cluster = require "Cluster"
 local Nodes = require "Nodes"
+local Indices = require "Indices"
 
 -------------------------------------------------------------------------------
 -- Declaring module
@@ -69,6 +70,12 @@ Settings.logger = nil
 
 -- The cluster instance
 Settings.cluster = nil
+
+-- The nodes instance
+Settings.nodes = nil
+
+-- The indices instance
+Settings.indices = nil
 
 -------------------------------------------------------------------------------
 -- Function to recursivly check a table `user` with parameters of `default`
@@ -197,6 +204,15 @@ function Settings:setNodesSettings()
 end
 
 -------------------------------------------------------------------------------
+-- Initializes Indices settings
+-------------------------------------------------------------------------------
+function Settings:setIndicesSettings()
+  self.indices = Indices:new{
+    transport = self.transport
+  }
+end
+
+-------------------------------------------------------------------------------
 -- Initializes the settings
 -------------------------------------------------------------------------------
 function Settings:initializeSettings()
@@ -208,6 +224,7 @@ function Settings:initializeSettings()
   self:setTransportSettings()
   self:setClusterSettings()
   self:setNodesSettings()
+  self:setIndicesSettings()
 end
 
 -------------------------------------------------------------------------------

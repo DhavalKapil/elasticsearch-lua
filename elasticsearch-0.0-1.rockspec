@@ -28,6 +28,7 @@ build = {
     ["Client"] = "elasticsearch/Client.lua",
     ["Cluster"] = "elasticsearch/Cluster.lua",
     ["Nodes"] = "elasticsearch/Nodes.lua",
+    ["Indices"] = "elasticsearch/Indices.lua",
     ["Transport"] = "elasticsearch/Transport.lua",
 
     ["connection.Connection"] = "elasticsearch/connection/Connection.lua",
@@ -73,7 +74,9 @@ build = {
     ["endpoints.Cluster.Stats"] = "elasticsearch/endpoints/Cluster/Stats.lua",
     ["endpoints.Cluster.GetSettings"] = "elasticsearch/endpoints/Cluster/GetSettings.lua",
     ["endpoints.Cluster.PutSettings"] = "elasticsearch/endpoints/Cluster/PutSettings.lua",
-    ["endpoints.Cluster.Reroute"] = "elasticsearch/endpoints/Cluster/Reroute.lua"
+    ["endpoints.Cluster.Reroute"] = "elasticsearch/endpoints/Cluster/Reroute.lua",
+
+    ["endpoints.Indices.Exists"] = "elasticsearch/endpoints/Indices/Exists.lua"
   },
   copy_directories = {"tests"}
 }
