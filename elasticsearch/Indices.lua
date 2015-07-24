@@ -76,6 +76,17 @@ function Indices:get(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to delete indices
+--
+-- @param    params    The delete Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:delete(params)
+  return self:requestEndpoint("Delete", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Indices class
 -------------------------------------------------------------------------------
 function Indices:new(o)

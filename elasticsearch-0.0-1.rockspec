@@ -77,7 +77,8 @@ build = {
     ["endpoints.Cluster.Reroute"] = "elasticsearch/endpoints/Cluster/Reroute.lua",
 
     ["endpoints.Indices.Exists"] = "elasticsearch/endpoints/Indices/Exists.lua",
-    ["endpoints.Indices.Get"] = "elasticsearch/endpoints/Indices/Get.lua"
+    ["endpoints.Indices.Get"] = "elasticsearch/endpoints/Indices/Get.lua",
+    ["endpoints.Indices.Delete"] = "elasticsearch/endpoints/Indices/Delete.lua"
   },
   copy_directories = {"tests"}
 }
