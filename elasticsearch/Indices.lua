@@ -65,6 +65,17 @@ function Indices:exists(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to get an index
+--
+-- @param    params    The get Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:get(params)
+  return self:requestEndpoint("Get", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Indices class
 -------------------------------------------------------------------------------
 function Indices:new(o)
