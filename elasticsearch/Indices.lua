@@ -87,6 +87,17 @@ function Indices:delete(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to create an index
+--
+-- @param    params    The create Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:create(params)
+  return self:requestEndpoint("Create", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Indices class
 -------------------------------------------------------------------------------
 function Indices:new(o)
