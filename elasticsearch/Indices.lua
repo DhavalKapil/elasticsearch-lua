@@ -98,7 +98,7 @@ function Indices:create(params)
 end
 
 -------------------------------------------------------------------------------
--- Function to optimze an index
+-- Function to optimize an index
 --
 -- @param    params    The optimize Parameters
 --
@@ -106,6 +106,17 @@ end
 -------------------------------------------------------------------------------
 function Indices:optimize(params)
   return self:requestEndpoint("Optimize", params)
+end
+
+-------------------------------------------------------------------------------
+-- Function to open an index
+--
+-- @param    params    The open Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:open(params)
+  return self:requestEndpoint("Open", params)
 end
 
 -------------------------------------------------------------------------------
