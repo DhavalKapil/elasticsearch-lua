@@ -98,6 +98,17 @@ function Indices:create(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to optimze an index
+--
+-- @param    params    The optimize Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:optimize(params)
+  return self:requestEndpoint("Optimize", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Indices class
 -------------------------------------------------------------------------------
 function Indices:new(o)
