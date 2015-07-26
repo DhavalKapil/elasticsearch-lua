@@ -40,6 +40,7 @@ function Close:getUri()
     return nil, "index not specified for Close"
   else
     return "/" .. self.index .. "/_close"
+  end
 end
 
 -------------------------------------------------------------------------------

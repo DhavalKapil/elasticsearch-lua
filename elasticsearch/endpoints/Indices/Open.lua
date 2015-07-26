@@ -40,6 +40,7 @@ function Open:getUri()
     return nil, "index not specified for Open"
   else
     return "/" .. self.index .. "/_open"
+  end
 end
 
 -------------------------------------------------------------------------------
