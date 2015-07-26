@@ -120,6 +120,17 @@ function Indices:open(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to close an index
+--
+-- @param    params    The open Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:close(params)
+  return self:requestEndpoint("Close", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Indices class
 -------------------------------------------------------------------------------
 function Indices:new(o)
