@@ -142,6 +142,17 @@ function Indices:analyze(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to get the status of an index
+--
+-- @param    params    The status Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:status(params)
+  return self:requestEndpoint("Status", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Indices class
 -------------------------------------------------------------------------------
 function Indices:new(o)
