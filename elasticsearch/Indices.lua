@@ -131,6 +131,17 @@ function Indices:close(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to perform analysis process on a text
+--
+-- @param    params    The analyze Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:analyze(params)
+  return self:requestEndpoint("Analyze", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Indices class
 -------------------------------------------------------------------------------
 function Indices:new(o)

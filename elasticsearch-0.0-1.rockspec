@@ -82,7 +82,8 @@ build = {
     ["endpoints.Indices.Create"] = "elasticsearch/endpoints/Indices/Create.lua",
     ["endpoints.Indices.Optimize"] = "elasticsearch/endpoints/Indices/Optimize.lua",
     ["endpoints.Indices.Open"] = "elasticsearch/endpoints/Indices/Open.lua",
-    ["endpoints.Indices.Close"] = "elasticsearch/endpoints/Indices/Close.lua"
+    ["endpoints.Indices.Close"] = "elasticsearch/endpoints/Indices/Close.lua",
+    ["endpoints.Indices.Analyze"] = "elasticsearch/endpoints/Indices/Analyze.lua"
   },
   copy_directories = {"tests"}
 }
