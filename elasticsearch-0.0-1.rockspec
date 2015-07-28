@@ -84,7 +84,8 @@ build = {
     ["endpoints.Indices.Open"] = "elasticsearch/endpoints/Indices/Open.lua",
     ["endpoints.Indices.Close"] = "elasticsearch/endpoints/Indices/Close.lua",
     ["endpoints.Indices.Analyze"] = "elasticsearch/endpoints/Indices/Analyze.lua",
-    ["endpoints.Indices.Status"] = "elasticsearch/endpoints/Indices/Status.lua"
+    ["endpoints.Indices.Status"] = "elasticsearch/endpoints/Indices/Status.lua",
+    ["endpoints.Indices.Seal"] = "elasticsearch/endpoints/Indices/Seal.lua"
   },
   copy_directories = {"tests"}
 }

@@ -153,6 +153,17 @@ function Indices:status(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to seal an index
+--
+-- @param    params    The seal Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:seal(params)
+  return self:requestEndpoint("Seal", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Indices class
 -------------------------------------------------------------------------------
 function Indices:new(o)
