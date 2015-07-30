@@ -46,6 +46,16 @@ end
 -------------------------------------------------------------------------------
 -- Function to get information health of the cluster
 --
+-- params["index"]                      = (string) Limit the information returned to a specific index
+--       ["level"]                      = (enum) Specify the level of detail for returned information
+--       ["local"]                      = (boolean) Return local information, do not retrieve the state from master node (default: false)
+--       ["master_timeout"]             = (time) Explicit operation timeout for connection to master node
+--       ["timeout"]                    = (time) Explicit operation timeout
+--       ["wait_for_active_shards"]     = (number) Wait until the specified number of shards is active
+--       ["wait_for_nodes"]             = (number) Wait until the specified number of nodes is available
+--       ["wait_for_relocating_shards"] = (number) Wait until the specified number of relocating shards is finished
+--       ["wait_for_status"]            = (enum) Wait until cluster is in a specific state
+--
 -- @param    params    The health Parameters
 --
 -- @return   table     Error or the data recevied from the elasticsearch server
@@ -57,6 +67,15 @@ end
 -------------------------------------------------------------------------------
 -- Function to get a comprehensive state information of the whole cluster
 --
+-- params["filter_blocks"]          = (boolean) Do not return information about blocks
+--       ["filter_index_templates"] = (boolean) Do not return information about index templates
+--       ["filter_indices"]         = (list) Limit returned metadata information to specific indices
+--       ["filter_metadata"]        = (boolean) Do not return information about indices metadata
+--       ["filter_nodes"]           = (boolean) Do not return information about nodes
+--       ["filter_routing_table"]   = (boolean) Do not return information about shard allocation ('routing_table' and 'routing_nodes')
+--       ["local"]                  = (boolean) Return local information, do not retrieve the state from master node (default: false)
+--       ["master_timeout"]         = (time) Specify timeout for connection to master
+--
 -- @param    params    The state Parameters
 --
 -- @return   table     Error or the data recevied from the elasticsearch server
@@ -67,6 +86,9 @@ end
 
 -------------------------------------------------------------------------------
 -- Function to retrieve statistics from a cluster wide perspective
+--
+-- params["flat_settings"]          = (boolean) Return settings in flat format (default: false)
+--       ["human"] = (boolean) Whether to return time and byte values in human-readable format.
 --
 -- @param    params    The stats Parameters
 --
@@ -101,6 +123,11 @@ end
 -------------------------------------------------------------------------------
 -- Function to execute cluster reroute allocation commands
 --
+-- params["dry_run"]         = (boolean) Simulate the operation only and return the resulting state
+--       ["filter_metadata"] = (boolean) Don"t return cluster state metadata (default: false)
+--       ["body"]            = (boolean) Don"t return cluster state metadata (default: false)
+--       ["explain"]         = (boolean) Return an explanation of why the commands can or cannot be executed
+--
 -- @param    params    The reroute Parameters
 --
 -- @return   table     Error or the data recevied from the elasticsearch server
@@ -111,6 +138,9 @@ end
 
 -------------------------------------------------------------------------------
 -- Function to get the list of pending tasks
+--
+-- params["local"]   = (bool) Return local information, do not retrieve the state from master node (default: false)
+--       ["master_timeout"]  = (time) Specify timeout for connection to master
 --
 -- @param    params    The pendingTasks Parameters
 --

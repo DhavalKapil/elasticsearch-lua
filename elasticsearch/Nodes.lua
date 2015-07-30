@@ -46,6 +46,11 @@ end
 -------------------------------------------------------------------------------
 -- Function to retrieve info of a node
 --
+-- params["node_id"]       = (list) A comma-separated list of node IDs or names to limit the returned information; use '_local' to return information from the node you"re connecting to, leave empty to get information from all nodes
+--       ["metric"]        = (list) A comma-separated list of metrics you wish returned. Leave empty to return all.
+--       ["flat_settings"] = (boolean) Return settings in flat format (default: false)
+--       ["human"]         = (boolean) Whether to return time and byte values in human-readable format.
+--
 -- @param    params    The stats Parameters
 --
 -- @return   table     Error or the data recevied from the elasticsearch server
@@ -56,6 +61,22 @@ end
 
 -------------------------------------------------------------------------------
 -- Function to retrieve statistics of a node
+--
+-- params["fields"]        = (list) A comma-separated list of fields for 'fielddata' metric (supports wildcards)
+--       ["metric_family"] = (enum) Limit the information returned to a certain metric family
+--       ["metric"]        = (enum) Limit the information returned for 'indices' family to a specific metric
+--       ["node_id"]       = (list) A comma-separated list of node IDs or names to limit the returned information; use '_local' to return information from the node you"re connecting to, leave empty to get information from all nodes
+--       ["all"]           = (boolean) Return all available information
+--       ["clear"]         = (boolean) Reset the default level of detail
+--       ["fs"]            = (boolean) Return information about the filesystem
+--       ["http"]          = (boolean) Return information about HTTP
+--       ["indices"]       = (boolean) Return information about indices
+--       ["jvm"]           = (boolean) Return information about the JVM
+--       ["network"]       = (boolean) Return information about network
+--       ["os"]            = (boolean) Return information about the operating system
+--       ["process"]       = (boolean) Return information about the Elasticsearch process
+--       ["thread_pool"]   = (boolean) Return information about the thread pool
+--       ["transport"]     = (boolean) Return information about transport
 --
 -- @param    params    The stats Parameters
 --
@@ -68,6 +89,12 @@ end
 -------------------------------------------------------------------------------
 -- Function to retrieve current hot threads
 --
+-- params["node_id"]   = (list) A comma-separated list of node IDs or names to limit the returned information; use '_local' to return information from the node you"re connecting to, leave empty to get information from all nodes
+--       ["interval"]  = (time) The interval for the second sampling of threads
+--       ["snapshots"] = (number) Number of samples of thread stacktrace (default: 10)
+--       ["threads"]   = (number) Specify the number of threads to provide information for (default: 3)
+--       ["type"]      = (enum) The type to sample (default: cpu)
+--
 -- @param    params    The stats Parameters
 --
 -- @return   table     Error or the data recevied from the elasticsearch server
@@ -78,6 +105,10 @@ end
 
 -------------------------------------------------------------------------------
 -- Function to shutdown nodes
+--
+-- params["node_id"] = (list) A comma-separated list of node IDs or names to perform the operation on; use '_local' to perform the operation on the node you"re connected to, leave empty to perform the operation on all nodes
+--       ["delay"]   = (time) Set the delay for the operation (default: 1s)
+--       ["exit"]    = (boolean) Exit the JVM as well (default: true)
 --
 -- @param    params    The stats Parameters
 --
