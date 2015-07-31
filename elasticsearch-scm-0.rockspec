@@ -1,8 +1,7 @@
 package = "elasticsearch"
-version = "0.0-1"
+version = "scm-0"
 source = {
   url = "git://github.com/DhavalKapil/elasticsearch-lua",
-  tag = "v0.1"
 }
 description = {
   summary = "Elasticsearch client for the Lua language",
