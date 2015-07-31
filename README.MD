@@ -36,7 +36,7 @@ OR
 
 It can also be installed using luarocks
 ```
-  [sudo] luarocks install elasticsearch
+  [sudo] luarocks install --server=http://luarocks.org/manifests/dhavalkapil elasticsearch
 ```
 
 ### Create elasticsearch client instance:
