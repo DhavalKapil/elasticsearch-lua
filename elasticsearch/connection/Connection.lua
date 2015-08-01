@@ -75,7 +75,7 @@ function Connection:request(method, uri, params, body, timeout)
     = http.request(request)
   self.logger:debug("Got HTTP " .. response.statusCode)
   http.TIMEOUT = nil
-  response.body = responseBody[1]
+  response.body = table.concat(responseBody)
   
   return response
 end
