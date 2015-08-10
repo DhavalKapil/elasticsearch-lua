@@ -49,6 +49,7 @@ build = {
     ["endpoints.Scroll"] = "elasticsearch/endpoints/Scroll.lua",
     ["endpoints.Msearch"] = "elasticsearch/endpoints/Msearch.lua",
     ["endpoints.Index"] = "elasticsearch/endpoints/Index.lua",
+    ["endpoints.Bulk"] = "elasticsearch/endpoints/Bulk.lua",
     ["endpoints.Info"] = "elasticsearch/endpoints/Info.lua",
     ["endpoints.Ping"] = "elasticsearch/endpoints/Ping.lua",
     ["endpoints.Delete"] = "elasticsearch/endpoints/Delete.lua",

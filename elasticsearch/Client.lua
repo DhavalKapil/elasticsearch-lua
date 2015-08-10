@@ -454,6 +454,24 @@ function Client:create(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to make bulk requests
+--
+-- params["index"]       = (string) Default index for items which don"t provide one
+--       ["type"]        = (string) Default document type for items which don"t provide one
+--       ["consistency"] = (enum) Explicit write consistency setting for the operation
+--       ["refresh"]     = (boolean) Refresh the index after performing the operation
+--       ["replication"] = (enum) Explicitly set the replication type
+--       ["body"]        = (array) Array of requests
+--
+-- @param    params    The bulk Parameters
+--
+-- @return   table     Error or the data recevied from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:bulk(params)
+  return self:requestEndpoint("Bulk", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to suggest similar looking terms
 --
 -- params["index"]          = (list) A comma-separated list of index names to restrict the operation; use '_all' or empty string to perform the operation on all indices
