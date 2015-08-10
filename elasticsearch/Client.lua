@@ -425,7 +425,7 @@ function Client:msearch(params)
 end
 
 -------------------------------------------------------------------------------
--- Function to create an index
+-- Function to create a new document
 --
 -- params["index"]        = (string) The name of the index (Required)
 --       ["type"]         = (string) The type of the document (Required)
