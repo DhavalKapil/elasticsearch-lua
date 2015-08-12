@@ -114,6 +114,7 @@ function Settings:setParameters()
       host = self.hosts[1].host,
       port = self.hosts[1].port
     }
+    self.hosts = {}
     for i, v in pairs(self.user_hosts) do
       self.hosts[i] = {
         protocol = default_host.protocol,
@@ -139,6 +140,7 @@ end
 -- Initializes the connection settings
 -------------------------------------------------------------------------------
 function Settings:setConnectionSettings()
+  self.connections = {}
   for key, host in pairs(self.hosts) do
     table.insert(self.connections, Connection:new{
       protocol = host.protocol,
