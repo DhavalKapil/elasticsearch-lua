@@ -24,6 +24,7 @@ build = {
     ["Settings"] = "elasticsearch/Settings.lua",
     ["Logger"] = "elasticsearch/Logger.lua",
     ["parser"] = "elasticsearch/parser.lua",
+    ["helpers"] = "elasticsearch/helpers.lua",
     ["Client"] = "elasticsearch/Client.lua",
     ["Cluster"] = "elasticsearch/Cluster.lua",
     ["Nodes"] = "elasticsearch/Nodes.lua",
