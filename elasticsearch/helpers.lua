@@ -3,6 +3,17 @@
 -------------------------------------------------------------------------------
 local helpers = {}
 
+-------------------------------------------------------------------------------
+-- Function to reindex
+--
+-- @param    sourceClient    The source client
+-- @param    sourceIndex     The source index
+-- @param    targetIndex     The target index
+-- @param    query           Search query to filter data to be reindexed
+-- @param    targetClient    The target client
+-- @param    scroll          Specify how long a consistent view of the index
+--                           should be maintained for scrolled search
+-------------------------------------------------------------------------------
 function helpers.reindex(sourceClient, sourceIndex, targetIndex, query,
   targetClient, scroll)
 
