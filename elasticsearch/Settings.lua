@@ -89,9 +89,6 @@ function Settings:checkTable(default, user)
     if default[i] == nil then
       error("No such parameter allowed: " .. i)
     end
-    if type(default[i]) ~= type(user[i]) then
-      error("TypeError: " .. i .. " should be of type " .. type(default[i]))
-    end
     if type(default[i]) == "table" then
       checkTable(default[i], user[i])
     else
@@ -156,16 +153,25 @@ end
 -- Initialize the selector settings
 -------------------------------------------------------------------------------
 function Settings:setSelectorSettings()
-  local Selector = require("selector." .. self.params.selector)
-  self.selector = Selector:new()
+  if type(self.params.selector) == "string" then 
+    local Selector = require("selector." .. self.params.selector)
+    self.selector = Selector:new()
+  else
+    self.selector = self.params.selector:new()
+  end
 end
 
 -------------------------------------------------------------------------------
 -- Initialize the Connection Pool settings
 -------------------------------------------------------------------------------
 function Settings:setConnectionPoolSettings()
-  local ConnectionPool = require("connectionpool." ..
-   self.params.connectionPool)
+  local ConnectionPool = {}
+  if type(self.params.connectionPool) == "string" then
+    ConnectionPool = require("connectionpool." ..
+      self.params.connectionPool)
+  else
+    ConnectionPool = self.params.connectionPool
+  end
   o = {
     connections = self.connections,
     selector = self.selector,
