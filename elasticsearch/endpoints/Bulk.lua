@@ -20,7 +20,8 @@ Bulk.allowedParams = {
   "consistency",
   "refresh",
   "replication",
-  "type"
+  "type",
+  "fields"
 }
 
 -------------------------------------------------------------------------------

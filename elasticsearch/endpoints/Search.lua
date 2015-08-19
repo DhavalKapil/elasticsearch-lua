@@ -45,6 +45,7 @@ Search.allowedParams = {
   "suggest_text",
   "timeout",
   "version",
+  "request_cache"
 }
 
 -------------------------------------------------------------------------------
