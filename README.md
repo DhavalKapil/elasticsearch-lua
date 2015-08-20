@@ -4,31 +4,21 @@
 
 In accordance with other official low level clients, the client accepts associative arrays in the form of lua table as parameters.
 
-**Under development**
-
 ## Current Features:
 
-1. The following Rest API functions provided:
-  - Getting info regarding elasticsearch server
-  - Indexing a document
-  - Retrieving a document
-  - Deleting a document
-  - Searching a document
-  - Update a document
+1. One-to-one mapping with REST API and other language clients
 2. Proper load balancing across all nodes.
-3. Multiple selection strategies.
+3. Pluggable and multiple selection strategies and connection pool.
 4. Console logging facility.
 5. Almost every parameter is configurable.
 
-## Documentation
-
-(Do keep in mind that this repository is currently under development)
+## Setup
 
 1. Clone this repository and `cd` to it.
 2. Download and install ``luarocks``. Follow [these](https://github.com/keplerproject/luarocks/wiki/Installation-instructions-for-Unix) steps. Make sure to change lua's version to 5.3 while installation(default is 5.1).
 3. Install dependencies:
 ```
-  [sudo] luarocks install elasticsearch-lua-0.0-1.rockspec
+  [sudo] luarocks install elasticsearch-scm-0.rockspec
 ```
 4. Add the source directory to your lua program's `package.path`.
 
@@ -38,6 +28,8 @@ It can also be installed using luarocks
 ```
   [sudo] luarocks install --server=http://luarocks.org/manifests/dhavalkapil elasticsearch
 ```
+
+## Documentation
 
 ### Create elasticsearch client instance:
 
