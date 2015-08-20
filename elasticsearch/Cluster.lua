@@ -46,6 +46,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to get information health of the cluster
 --
+-- @usage
 -- params["index"]                      = (string) Limit the information returned to a specific index
 --       ["level"]                      = (enum) Specify the level of detail for returned information
 --       ["local"]                      = (boolean) Return local information, do not retrieve the state from master node (default: false)
@@ -67,6 +68,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to get a comprehensive state information of the whole cluster
 --
+-- @usage
 -- params["filter_blocks"]          = (boolean) Do not return information about blocks
 --       ["filter_index_templates"] = (boolean) Do not return information about index templates
 --       ["filter_indices"]         = (list) Limit returned metadata information to specific indices
@@ -87,6 +89,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to retrieve statistics from a cluster wide perspective
 --
+-- @usage
 -- params["flat_settings"]          = (boolean) Return settings in flat format (default: false)
 --       ["human"] = (boolean) Whether to return time and byte values in human-readable format.
 --
@@ -123,6 +126,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to execute cluster reroute allocation commands
 --
+-- @usage
 -- params["dry_run"]         = (boolean) Simulate the operation only and return the resulting state
 --       ["filter_metadata"] = (boolean) Don"t return cluster state metadata (default: false)
 --       ["body"]            = (boolean) Don"t return cluster state metadata (default: false)
@@ -139,6 +143,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to get the list of pending tasks
 --
+-- @usage
 -- params["local"]   = (bool) Return local information, do not retrieve the state from master node (default: false)
 --       ["master_timeout"]  = (time) Specify timeout for connection to master
 --

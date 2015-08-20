@@ -81,6 +81,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to get a particular document
 --
+-- @usage
 -- params["id"]              = (string) The document ID (Required)
 --       ["index"]           = (string) The name of the index (Required)
 --       ["type"]            = (string) The type of the document (use '_all' to fetch the first document matching the ID across all types) (Required)
@@ -106,6 +107,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to check whether a document exists or not
 --
+-- @usage
 -- params["id"]         = (string) The document ID (Required)
 --       ["index"]      = (string) The name of the index (Required)
 --       ["type"]       = (string) The type of the document (use '_all' to fetch the first document matching the ID across all types) (Required)
@@ -138,6 +140,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to get only the _source of a particular document
 --
+-- @usage
 -- params["id"]             = (string) The document ID (Required)
 --       ["index"]          = (string) The name of the index (Required)
 --       ["type"]           = (string) The type of the document (use '_all' to fetch the first document matching the ID across all types) (Required)
@@ -161,6 +164,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to get multiple document
 --
+-- @usage
 -- params["index"]           = (string) The name of the index
 --       ["type"]            = (string) The type of the document
 --       ["fields"]          = (list) A comma-separated list of fields to return in the response
@@ -186,6 +190,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to index a particular document
 --
+-- @usage
 -- params["index"]        = (string) The name of the index (Required)
 --       ["type"]         = (string) The type of the document (Required)
 --       ["id"]           = (string) Specific document ID (when the POST method is used)
@@ -214,6 +219,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to delete a particular document
 --
+-- @usage
 -- params["id"]           = (string) The document ID (Required)
 --       ["index"]        = (string) The name of the index (Required)
 --       ["type"]         = (string) The type of the document (Required)
@@ -236,6 +242,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to get the count
 --
+-- @usage
 -- params["index"]              = (list) A comma-separated list of indices to restrict the results
 --       ["type"]               = (list) A comma-separated list of types to restrict the results
 --       ["min_score"]          = (number) Include only documents with a specific '_score' value in the result
@@ -258,6 +265,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to search a particular document
 --
+-- @usage
 -- params["index"]                    = (list) A comma-separated list of index names to search; use '_all' or empty string to perform the operation on all indices
 --       ["type"]                     = (list) A comma-separated list of document types to search; leave empty to perform the operation on all types
 --       ["analyzer"]                 = (string) The analyzer to use for the query string
@@ -302,6 +310,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to implement the search exists functionality
 --
+-- @usage
 -- params["index"]                    = (list) A comma-separated list of index names to search; use '_all' or empty string to perform the operation on all indices
 --       ["type"]                     = (list) A comma-separated list of document types to search; leave empty to perform the operation on all types
 --       ["analyzer"]                 = (string) The analyzer to use for the query string
@@ -346,6 +355,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to search the shards
 --
+-- @usage
 -- params["index"]              = (list) A comma-separated list of index names to search; use '_all' or empty string to perform the operation on all indices
 --       ["type"]               = (list) A comma-separated list of document types to search; leave empty to perform the operation on all types
 --       ["preference"]         = (string) Specify the node or shard the operation should be performed on (default: random)
@@ -366,6 +376,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to search the template
 --
+-- @usage
 -- params["index"]                    = (list) A comma-separated list of index names to search; use '_all' or empty string to perform the operation on all indices
 --       ["type"]                     = (list) A comma-separated list of document types to search; leave empty to perform the operation on all types
 --
@@ -380,6 +391,7 @@ end
 -------------------------------------------------------------------------------
 -- Function for scrolled searching
 --
+-- @usage
 -- params["scroll_id"] = (string) The scroll ID for scrolled search
 --       ["scroll"]    = (duration) Specify how long a consistent view of the index should be maintained for scrolled search
 --       ["body"]      = (string) The scroll ID for scrolled search
@@ -395,6 +407,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to clear a scroll
 --
+-- @usage
 -- params["scroll_id"] = (string) The scroll ID for scrolled search
 --       ["scroll"]    = (duration) Specify how long a consistent view of the index should be maintained for scrolled search
 --       ["body"]      = (string) The scroll ID for scrolled search
@@ -411,6 +424,7 @@ end
 
 -- Function to search multiple document
 --
+-- @usage
 -- params["index"]       = (list) A comma-separated list of index names to use as default
 --       ["type"]        = (list) A comma-separated list of document types to use as default
 --       ["search_type"] = (enum) Search operation type
@@ -427,6 +441,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to create a new document
 --
+-- @usage
 -- params["index"]        = (string) The name of the index (Required)
 --       ["type"]         = (string) The type of the document (Required)
 --       ["id"]           = (string) Specific document ID (when the POST method is used)
@@ -456,6 +471,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to make bulk requests
 --
+-- @usage
 -- params["index"]       = (string) Default index for items which don"t provide one
 --       ["type"]        = (string) Default document type for items which don"t provide one
 --       ["consistency"] = (enum) Explicit write consistency setting for the operation
@@ -474,6 +490,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to suggest similar looking terms
 --
+-- @usage
 -- params["index"]          = (list) A comma-separated list of index names to restrict the operation; use '_all' or empty string to perform the operation on all indices
 --       ["ignore_indices"] = (enum) When performed on multiple indices, allows to ignore 'missing' ones
 --       ["preference"]     = (string) Specify the node or shard the operation should be performed on (default: random)
@@ -492,6 +509,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to compute a score explanation for a query and a specific document
 --
+-- @usage
 -- params["id"]                       = (string) The document ID (Required)
 --       ["index"]                    = (string) The name of the index (Required)
 --       ["type"]                     = (string) The type of the document (Required)
@@ -523,6 +541,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to update a particular document
 --
+-- @usage
 -- params["id"]                = (string) Document ID (Required)
 --       ["index"]             = (string) The name of the index (Required)
 --       ["type"]              = (string) The type of the document (Required)
@@ -553,6 +572,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to get the field stats
 --
+-- @usage
 -- params["index"]              = (list) A comma-separated list of indices to restrict the results
 --       ["fields"]             = (list) A comma-separated list of fields for to get field statistics for (min value, max value, and more)
 --       ["level"]              = (enum) Defines if field stats should be returned on a per index level or on a cluster wide level

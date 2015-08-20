@@ -46,6 +46,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to retrieve info of a node
 --
+-- @usage
 -- params["node_id"]       = (list) A comma-separated list of node IDs or names to limit the returned information; use '_local' to return information from the node you"re connecting to, leave empty to get information from all nodes
 --       ["metric"]        = (list) A comma-separated list of metrics you wish returned. Leave empty to return all.
 --       ["flat_settings"] = (boolean) Return settings in flat format (default: false)
@@ -62,6 +63,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to retrieve statistics of a node
 --
+-- @usage
 -- params["fields"]        = (list) A comma-separated list of fields for 'fielddata' metric (supports wildcards)
 --       ["metric_family"] = (enum) Limit the information returned to a certain metric family
 --       ["metric"]        = (enum) Limit the information returned for 'indices' family to a specific metric
@@ -89,6 +91,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to retrieve current hot threads
 --
+-- @usage
 -- params["node_id"]   = (list) A comma-separated list of node IDs or names to limit the returned information; use '_local' to return information from the node you"re connecting to, leave empty to get information from all nodes
 --       ["interval"]  = (time) The interval for the second sampling of threads
 --       ["snapshots"] = (number) Number of samples of thread stacktrace (default: 10)
@@ -106,6 +109,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to shutdown nodes
 --
+-- @usage
 -- params["node_id"] = (list) A comma-separated list of node IDs or names to perform the operation on; use '_local' to perform the operation on the node you"re connected to, leave empty to perform the operation on all nodes
 --       ["delay"]   = (time) Set the delay for the operation (default: 1s)
 --       ["exit"]    = (boolean) Exit the JVM as well (default: true)

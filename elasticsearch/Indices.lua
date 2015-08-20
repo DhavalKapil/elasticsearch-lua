@@ -46,6 +46,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to check whether an index exists or not
 --
+-- @usage
 -- params["index"] = (list) A comma-separated list of indices to check (Required)
 --
 -- @param    params    The exists Parameters
@@ -69,6 +70,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to get an index
 --
+-- @usage
 -- params["index"] = (list) A comma-separated list of indices to check (Required)
 --       ["feature"] = (list) A comma-separated list of features to return
 --       ["ignore_unavailable"] = (bool) Whether specified concrete indices should be ignored when unavailable (missing or closed)
@@ -87,6 +89,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to delete indices
 --
+-- @usage
 -- params["index"]   = (list) A comma-separated list of indices to delete; use '_all' or empty string to delete all indices
 --       ["timeout"] = (time) Explicit operation timeout
 --
@@ -101,6 +104,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to create an index
 --
+-- @usage
 -- params["index"]   = (string) The name of the index (Required)
 --       ["timeout"] = (time) Explicit operation timeout
 --       ["body"]    = (time) Explicit operation timeout
@@ -116,6 +120,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to optimize an index
 --
+-- @usage
 -- params["index"]                = (list) A comma-separated list of index names; use '_all' or empty string to perform the operation on all indices
 --       ["flush"]                = (boolean) Specify whether the index should be flushed after performing the operation (default: true)
 --       ["max_num_segments"]     = (number) The number of segments the index should be merged into (default: dynamic)
@@ -138,6 +143,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to open an index
 --
+-- @usage
 -- params["index"]   = (string) The name of the index (Required)
 --       ["timeout"] = (time) Explicit operation timeout
 --
@@ -152,6 +158,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to close an index
 --
+-- @usage
 -- params["index"]   = (string) The name of the index (Required)
 --       ["timeout"] = (time) Explicit operation timeout
 --
@@ -166,6 +173,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to perform analysis process on a text
 --
+-- @usage
 -- params["index"]        = (string) The name of the index to scope the operation
 --       ["analyzer"]     = (string) The name of the analyzer to use
 --       ["field"]        = (string) Use the analyzer configured for this field (instead of passing the analyzer name)
@@ -187,6 +195,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to get the status of an index
 --
+-- @usage
 -- params["index"]               = (list) A comma-separated list of index names; use '_all' or empty string to perform the operation on all indices
 --       ["ignore_indices"]      = (enum) When performed on multiple indices, allows to ignore 'missing' ones
 --       ["operation_threading"] = () TODO: ?
@@ -204,6 +213,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to seal an index
 --
+-- @usage
 -- params["index"]   = (string) The name of the index
 --
 -- @param    params    The seal Parameters
