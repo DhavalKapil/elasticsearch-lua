@@ -1,8 +1,11 @@
+--- The Client class
+-- @classmod Client
+-- @author Dhaval Kapil
+
 -------------------------------------------------------------------------------
 -- Importing modules
 -------------------------------------------------------------------------------
 local Settings = require "Settings"
-local Cluster = require "Cluster"
 
 -------------------------------------------------------------------------------
 -- Declaring module
