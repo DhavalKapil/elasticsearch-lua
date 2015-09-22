@@ -1,0 +1,38 @@
+language: c
+
+sudo: false
+
+env:
+  global:
+    - LUAROCKS=2.2.2
+  matrix:
+    # - LUA=lua5.1
+    # - LUA=lua5.2
+    - LUA=lua5.3
+    # - LUA=luajit     # latest stable version (2.0.4)
+    # - LUA=luajit2.0  # current head of 2.0 branch
+    # - LUA=luajit2.1  # current head of 2.1 branch
+
+services:
+  - elasticsearch
+
+before_install:
+  - source .travis/setenv_lua.sh
+  - luarocks install lunitx
+
+install:
+  - luarocks make elasticsearch-scm-0.rockspec
+
+before_script:
+  - echo 'elasticsearch version ' && curl http://localhost:9200/
+
+script:
+  - cd tests
+  - lua run-tests.lua
+
+after_success:
+
+notifications:
+  email:
+    on_success: change
+    on_failure: always
