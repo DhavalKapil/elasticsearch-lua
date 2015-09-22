@@ -1,4 +1,4 @@
-# elasticsearch-lua
+# elasticsearch-lua [![Build Status](https://travis-ci.org/DhavalKapil/elasticsearch-lua.svg?branch=master)](https://travis-ci.org/DhavalKapil/elasticsearch-lua)
 
 > A simple low level client for elasticsearch written in lua.
 
