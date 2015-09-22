@@ -73,7 +73,7 @@ end
 -- @return  boolean     Whether the connection is ready to be revived or not
 -------------------------------------------------------------------------------
 function StaticConnectionPool:connectionReady(connection)
-  local timeout = self.pingTimeout * math.pow(2, connection.failedPings)
+  local timeout = self.pingTimeout * (2 ^ connection.failedPings)
   if timeout > self.maxPingTimeout then
     timeout = self.maxPingTimeout
   end
