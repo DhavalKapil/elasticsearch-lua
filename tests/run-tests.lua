@@ -1,4 +1,4 @@
-lunit = require "lunitx"
+lunit = require "lunit"
 
 package.path = package.path .. ";../elasticsearch/?.lua"
 
@@ -9,3 +9,5 @@ require "selector.RoundRobinSelectorTest"
 require "selector.StickyRoundRobinSelectorTest"
 require "connectionpool.StaticConnectionPoolTest"
 require "TransportTest"
+
+lunit.main(arg)

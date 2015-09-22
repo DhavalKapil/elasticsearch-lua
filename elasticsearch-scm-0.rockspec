@@ -12,7 +12,7 @@ description = {
   license = "Apache 2"
 }
 dependencies = {
-  "lua >= 5.3",
+  "lua >= 5.1, < 5.4",
   "luasocket",
   "lua-cjson",
   "lunitx"
