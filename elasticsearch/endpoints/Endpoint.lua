@@ -95,7 +95,7 @@ function Endpoint:request()
     , self.params, self.body)
 
   -- parsing body
-  if response ~= nil and response.body ~= nil then
+  if response ~= nil and response.body ~= nil and response.body ~= "" then
     response.body = parser.jsonDecode(response.body)
   end
 
