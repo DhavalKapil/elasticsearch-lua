@@ -1,7 +1,8 @@
-package.path = package.path .. ";../elasticsearch/?.lua"
+-- Ignore this line
+package.path = package.path .. ";../src/?.lua"
 
 -- Import Selector
-local Selector = require "selector.Selector"
+local Selector = require "elasticsearch.selector.Selector"
 
 -- Create a custom instace
 local MySelector = Selector:new()

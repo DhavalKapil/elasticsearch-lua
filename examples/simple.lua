@@ -1,4 +1,5 @@
-package.path = package.path .. ";../elasticsearch/?.lua"
+-- Ignore this line
+package.path = package.path .. ";../src/?.lua"
 
 local elasticsearch = require "elasticsearch"
 
