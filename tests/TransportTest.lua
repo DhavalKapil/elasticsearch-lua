@@ -1,9 +1,9 @@
 -- Importing modules
-local staticConnectionPool = require "connectionpool.StaticConnectionPool"
-local roundRobinSelector = require "selector.RoundRobinSelector"
-local connection = require "connection.Connection"
-local Logger = require "Logger"
-local transport = require "Transport"
+local staticConnectionPool = require "elasticsearch.connectionpool.StaticConnectionPool"
+local roundRobinSelector = require "elasticsearch.selector.RoundRobinSelector"
+local connection = require "elasticsearch.connection.Connection"
+local Logger = require "elasticsearch.Logger"
+local transport = require "elasticsearch.Transport"
 local getmetatable = getmetatable
 local print = print
 

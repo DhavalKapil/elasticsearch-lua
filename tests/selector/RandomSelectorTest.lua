@@ -1,7 +1,7 @@
 -- Importing modules
-local randomSelector = require "selector.RandomSelector"
-local connection = require "connection.Connection"
-local Logger = require "Logger"
+local randomSelector = require "elasticsearch.selector.RandomSelector"
+local connection = require "elasticsearch.connection.Connection"
+local Logger = require "elasticsearch.Logger"
 local getmetatable = getmetatable
 
 -- Setting up environment

@@ -1,6 +1,6 @@
 lunit = require "lunit"
 
-package.path = package.path .. ";../elasticsearch/?.lua"
+package.path = package.path .. ";../src/?.lua"
 
 -- Requiring all test files
 require "connection.ConnectionTest"

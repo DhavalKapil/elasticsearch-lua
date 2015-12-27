@@ -1,7 +1,7 @@
 -- Importing modules
-local stickyRoundRobinSelector = require "selector.StickyRoundRobinSelector"
-local connection = require "connection.Connection"
-local Logger = require "Logger"
+local stickyRoundRobinSelector = require "elasticsearch.selector.StickyRoundRobinSelector"
+local connection = require "elasticsearch.connection.Connection"
+local Logger = require "elasticsearch.Logger"
 local getmetatable = getmetatable
 
 -- Setting up environment

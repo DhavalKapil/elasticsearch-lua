@@ -1,6 +1,6 @@
 -- Importing modules
-local connection = require "connection.Connection"
-local Logger = require "Logger"
+local connection = require "elasticsearch.connection.Connection"
+local Logger = require "elasticsearch.Logger"
 local getmetatable = getmetatable
 local os = os
 
