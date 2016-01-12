@@ -50,6 +50,8 @@ function SniffConnectionPool:sniff()
   for i = 1, #self.connections do
     self:sniffConnection(self.connections[i])
   end
+  -- Updating sniff time
+  self.nextSniff = os.time() + self.sniffingInterval
 end
 
 -------------------------------------------------------------------------------
