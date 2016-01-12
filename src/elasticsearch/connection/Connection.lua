@@ -5,7 +5,6 @@ local http = require "socket.http"
 local url = require "socket.url"
 local table = require "table"
 local ltn12 = require "ltn12"
-local parser = require "elasticsearch.parser"
 
 -------------------------------------------------------------------------------
 -- Declaring module
