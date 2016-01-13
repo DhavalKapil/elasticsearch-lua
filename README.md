@@ -66,6 +66,16 @@ Full list of `params`:
 5. `maxRetryCount` : The maximum times to retry if a particular connection fails.
 6. `logLevel` : The level of logging to be done. Default is `warning`.
 
+### Standard call
+
+```lua
+local param1, param2 = client:<func>()
+```
+
+`param1`: Stores the data returned or `nil` on error
+
+`param2`: Stores the HTTP status code on success or the error message on failure
+
 ### Getting info of elasticsearch server
 
 ```lua

@@ -44,7 +44,8 @@ Settings.params.connectionPool = "StaticConnectionPool"
 -- The connection pool settings
 Settings.params.connectionPoolSettings = {
   pingTimeout = 60,
-  maxPingTimeout = 3600
+  maxPingTimeout = 3600,
+  sniffingInterval = 1
 }
 
 -- The number of allowed retries if a connection fails
@@ -94,7 +95,7 @@ function Settings:checkTable(default, user)
       error("No such parameter allowed: " .. i)
     end
     if type(default[i]) == "table" then
-      checkTable(default[i], user[i])
+      self:checkTable(default[i], user[i])
     else
       -- Load user defined value in default
       default[i] = user[i]

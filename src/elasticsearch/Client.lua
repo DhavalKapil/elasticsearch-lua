@@ -58,7 +58,7 @@ function Client:requestEndpoint(endpoint, params, endpointParams)
     return nil, err
   end
   -- Request successful, return body
-  return response.body
+  return response.body, response.statusCode
 end
 
 -------------------------------------------------------------------------------
@@ -77,7 +77,7 @@ end
 -- @return  boolean   Whether we have any alive connection or not
 -------------------------------------------------------------------------------
 function Client:ping()
-  local temp, err = self:requestEndpoint("Ping")
+  local data, err, statusCode = self:requestEndpoint("Ping")
   return err == nil
 end
 

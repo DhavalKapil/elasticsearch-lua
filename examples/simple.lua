@@ -13,9 +13,13 @@ local client = elasticsearch.client{
   },
   params = {
     pingTimeout = 2,
-    logLevel = "warn",
-    connectionPool = "SniffConnectionPool"
-  },
+    logLevel = "debug",
+    connectionPool = "StaticConnectionPool"
+    -- connectionPool = "SniffConnectionPool",
+    -- connectionPoolSettings = {
+    --   sniffingInterval = 10
+    -- }
+  }
 }
 
 -- Details about client

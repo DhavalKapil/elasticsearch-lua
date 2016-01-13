@@ -44,7 +44,7 @@ function Nodes:requestEndpoint(endpoint, params, endpointParams)
     return nil, err
   end
   -- Request successful, return body
-  return response.body
+  return response.body, response.statusCode
 end
 
 -------------------------------------------------------------------------------
