@@ -1,10 +1,9 @@
 -------------------------------------------------------------------------------
 -- Importing module
 -------------------------------------------------------------------------------
-local http = require "socket.http"
+local http = require "resty.http"
 local url = require "socket.url"
 local table = require "table"
-local ltn12 = require "ltn12"
 
 -------------------------------------------------------------------------------
 -- Declaring module
@@ -47,35 +46,24 @@ Connection.logger = nil
 function Connection:request(method, uri, params, body, timeout)
   -- Building URI
   local uri = self:buildURI(uri, params)
-  -- The responseBody table
-  local responseBody = {}
-  -- The response table
-  local response = {}
-  -- The request table
-  local request = {
+  local httpc = http.new()
+  local res, err = httpc:request_uri(uri, {
     method = method,
-    url = uri,
-    sink = ltn12.sink.table(responseBody)
-  }
-  if body ~= nil then
-    -- Adding body to request
-    request.headers = {
-      ["Content-Length"] = body:len()
+    body = body,
+    headers = {
+      ["Content-Type"] = "application/json",
     }
-    request.source = ltn12.source.string(body)
-  end
-  if timeout ~= nil then
-    -- Setting timeout for request
-    http.TIMEOUT = timeout
+  })
+
+  if not res then
+    ngx.say("failed to request: ", err)
+    return
   end
 
-  -- Making the actual request
-  response.code, response.statusCode, response.headers, response.statusLine
-    = http.request(request)
-  self.logger:debug("Got HTTP " .. response.statusCode)
-  http.TIMEOUT = nil
-  response.body = table.concat(responseBody)
-  
+  local response = {}
+  response.code = res.status
+  response.statusCode = res.status
+  response.body = res.body
   return response
 end
 
