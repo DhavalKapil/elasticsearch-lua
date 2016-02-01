@@ -1,9 +1,10 @@
 -------------------------------------------------------------------------------
 -- Importing module
 -------------------------------------------------------------------------------
-local http = require "resty.http"
+local http = require "socket.http"
 local url = require "socket.url"
 local table = require "table"
+local ltn12 = require "ltn12"
 
 -------------------------------------------------------------------------------
 -- Declaring module
@@ -44,27 +45,44 @@ Connection.logger = nil
 -- @return  table   The response returned
 -------------------------------------------------------------------------------
 function Connection:request(method, uri, params, body, timeout)
-  -- Building URI
-  local uri = self:buildURI(uri, params)
-  local httpc = http.new()
-  local res, err = httpc:request_uri(uri, {
-    method = method,
-    body = body,
-    headers = {
-      ["Content-Type"] = "application/json",
-    }
-  })
+  local response, err = self:engine(method, uri, params, body, timeout)
+  return response
+end
 
-  if not res then
-    ngx.say("failed to request: ", err)
-    return
+function Connection:engine(method, uri, params, body, timeout)
+  local uri = self:buildURI(uri, params)
+  if self.prefered_engine == "default" then
+--    The responseBody table
+    local responseBody = {}
+    -- The response table
+    local response = {}
+    -- The request table
+    local request = {
+      method = method,
+      url = uri,
+      sink = ltn12.sink.table(responseBody)
+    }
+    if body ~= nil then
+      -- Adding body to request
+      request.headers = {
+        ["Content-Length"] = body:len()
+      }
+      request.source = ltn12.source.string(body)
+    end
+    if timeout ~= nil then
+      -- Setting timeout for request
+      http.TIMEOUT = timeout
+    end
+    -- Making the actual request
+    response.code, response.statusCode, response.headers, response.statusLine
+      = http.request(request)
+    self.logger:debug("Got HTTP " .. response.statusCode)
+    http.TIMEOUT = nil
+    response.body = table.concat(responseBody)
+    return response
   end
 
-  local response = {}
-  response.code = res.status
-  response.statusCode = res.status
-  response.body = res.body
-  return response
+  return self.prefered_engine(method, uri, params, body, timeout)
 end
 
 -------------------------------------------------------------------------------
