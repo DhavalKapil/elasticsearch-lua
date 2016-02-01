@@ -51,7 +51,7 @@ end
 
 function Connection:engine(method, uri, params, body, timeout)
   local uri = self:buildURI(uri, params)
-  if self.prefered_engine == "default" then
+  if self.preferred_engine == "default" then
 --    The responseBody table
     local responseBody = {}
     -- The response table
@@ -82,7 +82,7 @@ function Connection:engine(method, uri, params, body, timeout)
     return response
   end
 
-  return self.prefered_engine(method, uri, params, body, timeout)
+  return self.preferred_engine(method, uri, params, body, timeout)
 end
 
 -------------------------------------------------------------------------------

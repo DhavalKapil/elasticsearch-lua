@@ -33,7 +33,7 @@ Settings.hosts = {
 Settings.params = {}
 
 -- The standard requester
-Settings.params.prefered_engine = 'default'
+Settings.params.preferred_engine = 'default'
 
 -- The ping timeout
 Settings.params.pingTimeout = 1
@@ -153,7 +153,7 @@ function Settings:setConnectionSettings()
       port = host.port,
       pingTimeout = self.params.pingTimeout,
       logger = self.logger,
-      prefered_engine = self.params.prefered_engine
+      preferred_engine = self.params.preferred_engine
     })
   end
 end
