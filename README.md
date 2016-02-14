@@ -4,13 +4,17 @@
 
 In accordance with other official low level clients, the client accepts associative arrays in the form of lua table as parameters.
 
-## Current Features:
+## Features:
 
 1. One-to-one mapping with REST API and other language clients
 2. Proper load balancing across all nodes.
 3. Pluggable and multiple selection strategies and connection pool.
 4. Console logging facility.
 5. Almost every parameter is configurable.
+
+## Requirements
+
+`elasticsearch-lua` works for lua >= 5.1 version
 
 ## Setup
 
