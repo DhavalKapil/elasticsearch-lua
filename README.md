@@ -14,7 +14,9 @@ In accordance with other official low level clients, the client accepts associat
 
 ## Requirements
 
-`elasticsearch-lua` works for lua >= 5.1 version
+`elasticsearch-lua` works for lua >= 5.1 version.
+
+It has been successfully tested for elasticsearch version 1.6.
 
 ## Setup
 
