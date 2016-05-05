@@ -19,6 +19,8 @@ services:
 before_install:
   - source .travis/setenv_lua.sh
   - luarocks install lunitx
+  - luarocks install luacov
+  - luarocks install luacov-coveralls
 
 install:
   - luarocks make elasticsearch-scm-0.rockspec
@@ -28,9 +30,12 @@ before_script:
 
 script:
   - cd tests
-  - lua run-tests.lua
+  - lua -lluacov run-tests.lua
 
-after_success:
+after_success:  
+  - mv luacov.stats.out ../
+  - cd ../
+  - luacov-coveralls -c tests/.luacov
 
 notifications:
   email:
