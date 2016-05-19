@@ -54,6 +54,7 @@ end
 -- @return  string  A string if an error is found otherwise nil
 -------------------------------------------------------------------------------
 function Endpoint:setParams(params)
+  self.params = {}
   for i, v in pairs(params) do
     if i == "index" then
       self.index = v
