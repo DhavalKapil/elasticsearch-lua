@@ -6,6 +6,7 @@ package.path = package.path .. ";../src/?.lua"
 require "connection"
 require "selector"
 require "connectionpool"
+require "endpoints"
 require "TransportTest"
 
 local _, emsg = xpcall(function()
