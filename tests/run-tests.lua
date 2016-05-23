@@ -3,13 +3,10 @@ lunit = require "lunit"
 package.path = package.path .. ";../src/?.lua"
 
 -- Requiring all test files
-require "connection.ConnectionTest"
-require "selector.RandomSelectorTest"
-require "selector.RoundRobinSelectorTest"
-require "selector.StickyRoundRobinSelectorTest"
-require "connectionpool.StaticConnectionPoolTest"
+require "connection"
+require "selector"
+require "connectionpool"
 require "TransportTest"
-
 
 local _, emsg = xpcall(function()
 	lunit.main(arg)
