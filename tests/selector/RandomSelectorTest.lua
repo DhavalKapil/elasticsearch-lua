@@ -1,6 +1,6 @@
 -- Importing modules
-local randomSelector = require "elasticsearch.selector.RandomSelector"
-local connection = require "elasticsearch.connection.Connection"
+local RandomSelector = require "elasticsearch.selector.RandomSelector"
+local Connection = require "elasticsearch.connection.Connection"
 local Logger = require "elasticsearch.Logger"
 local getmetatable = getmetatable
 
@@ -13,8 +13,8 @@ local connections
 
 -- Testing the constructor
 function constructorTest()
-  assert_function(randomSelector.new)
-  local o = randomSelector:new()
+  assert_function(RandomSelector.new)
+  local o = RandomSelector:new()
   assert_not_nil(o)
   local mt = getmetatable(o)
   assert_table(mt)
@@ -28,7 +28,7 @@ function setup()
   local logger = Logger:new()
   logger:setLogLevel("off")
   for i = 1, 5 do
-    connections[i] = connection:new{
+    connections[i] = Connection:new{
       protocol = "http",
       host = "localhost",
       port = 9200,
@@ -38,7 +38,7 @@ function setup()
     -- For checking later on
     connections[i].id = i
   end
-  rS = randomSelector:new()
+  rS = RandomSelector:new()
 end
 
 -- Testing select function

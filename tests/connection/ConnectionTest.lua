@@ -1,5 +1,5 @@
 -- Importing modules
-local connection = require "elasticsearch.connection.Connection"
+local Connection = require "elasticsearch.connection.Connection"
 local Logger = require "elasticsearch.Logger"
 local getmetatable = getmetatable
 local os = os
@@ -12,8 +12,8 @@ local con
 
 -- Testing the constructor
 function constructorTest()
-  assert_function(connection.new)
-  local o = connection:new()
+  assert_function(Connection.new)
+  local o = Connection:new()
   assert_not_nil(o)
   local mt = getmetatable(o)
   assert_table(mt)
@@ -32,7 +32,7 @@ end
 function setup()
   local logger = Logger:new()
   logger:setLogLevel("off")
-  con = connection:new{
+  con = Connection:new{
     protocol = "http",
     host = "localhost",
     port = 9200,

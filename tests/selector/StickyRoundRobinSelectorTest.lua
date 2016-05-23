@@ -1,5 +1,5 @@
 -- Importing modules
-local stickyRoundRobinSelector = require "elasticsearch.selector.StickyRoundRobinSelector"
+local StickyRoundRobinSelector = require "elasticsearch.selector.StickyRoundRobinSelector"
 local connection = require "elasticsearch.connection.Connection"
 local Logger = require "elasticsearch.Logger"
 local getmetatable = getmetatable
@@ -13,8 +13,8 @@ local connections
 
 -- Testing the constructor
 function constructorTest()
-  assert_function(stickyRoundRobinSelector.new)
-  local o = stickyRoundRobinSelector:new()
+  assert_function(StickyRoundRobinSelector.new)
+  local o = StickyRoundRobinSelector:new()
   assert_not_nil(o)
   local mt = getmetatable(o)
   assert_table(mt)
@@ -39,7 +39,7 @@ function setup()
     connections[i].id = i
     connections[i]:markAlive()
   end
-  sRRS = stickyRoundRobinSelector:new()
+  sRRS = StickyRoundRobinSelector:new()
 end
 
 -- Testing select function
