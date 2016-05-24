@@ -1,2 +1,2 @@
-# Requiring all connection pool related test modules
+-- Requiring all connection pool related test modules
 require "connectionpool.StaticConnectionPoolTest"
