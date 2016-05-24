@@ -36,11 +36,11 @@ function setNonBulkBodyTest()
     a = "b",
     c = "d"
   }
-  local actualOutput = parser.jsonEncode(testBody)
+  local expectedOutput = parser.jsonEncode(testBody)
 
   e.bulkBody = false
   e:setBody(testBody)
-  assert_equal(actualOutput, e.body)
+  assert_equal(expectedOutput, e.body)
 end
 
 -- Testing setBody with bulk body
@@ -55,12 +55,12 @@ function setBulkBodyTest()
       g = "h"
     }
   }
-  local actualOutput = parser.jsonEncode(testBody[1]) .. "\n"
+  local expectedOutput = parser.jsonEncode(testBody[1]) .. "\n"
                       .. parser.jsonEncode(testBody[2]) .. "\n"
   
   e.bulkBody = true
   e:setBody(testBody)
-  assert_equal(actualOutput, e.body)
+  assert_equal(expectedOutput, e.body)
 end
 
 -- Testing setParams with standard params
