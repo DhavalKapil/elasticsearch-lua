@@ -8,7 +8,7 @@ local getmetatable = getmetatable
 local _ENV = lunit.TEST_CASE "tests.endpoints.BulkTest"
 
 -- Declaring local variables
-local b
+local endpoint
 local mockTransport = MockTransport:new()
 
 -- Testing the constructor
@@ -23,7 +23,7 @@ end
 
 -- The setup function
 function setup()
-  p = Bulk:new{
+  endpoint = Bulk:new{
     transport = mockTransport
   }
 end
@@ -52,9 +52,9 @@ function requestTest()
     mockTransport.body = mockTransport.body .. parser.jsonEncode(item) .. "\n"
   end
 
-  p:setParams{
+  endpoint:setParams{
     index = "my_index",
     body = bulkBody
   }
-  p:request()
+  endpoint:request()
 end

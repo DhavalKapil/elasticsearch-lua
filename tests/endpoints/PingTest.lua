@@ -7,7 +7,7 @@ local getmetatable = getmetatable
 local _ENV = lunit.TEST_CASE "tests.endpoints.PingTest"
 
 -- Declaring local variables
-local p
+local endpoint
 local mockTransport = MockTransport:new()
 
 -- Testing the constructor
@@ -22,7 +22,7 @@ end
 
 -- The setup function
 function setup()
-  p = Ping:new{
+  endpoint = Ping:new{
     transport = mockTransport
   }
 end
@@ -32,6 +32,7 @@ function requestTest()
   mockTransport.method = "HEAD"
   mockTransport.uri = "/"
   mockTransport.params = {}
+  mockTransport.body = nil
 
-  p:request()
+  endpoint:request()
 end
