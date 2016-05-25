@@ -2,4 +2,5 @@
 require "endpoints.EndpointTest"
 require "endpoints.BulkTest"
 require "endpoints.CountTest"
+require "endpoints.DeleteTest"
 require "endpoints.PingTest"
