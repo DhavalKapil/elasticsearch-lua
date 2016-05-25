@@ -56,5 +56,6 @@ function requestTest()
     index = "my_index",
     body = bulkBody
   }
-  endpoint:request()
+  local _, err = endpoint:request()
+  assert_nil(err)
 end

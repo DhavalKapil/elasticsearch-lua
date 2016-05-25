@@ -27,12 +27,19 @@ function setup()
   }
 end
 
--- Testing ping
+-- Testing request
 function requestTest()
   mockTransport.method = "DELETE"
   mockTransport.uri = "/twitter/tweet/1"
   mockTransport.params = {}
   mockTransport.body = nil
 
-  endpoint:request()
+  endpoint:setParams{
+    index = "twitter",
+    type = "tweet",
+    id = "1"
+  }
+
+  local _, err = endpoint:request()
+  assert_nil(err)
 end

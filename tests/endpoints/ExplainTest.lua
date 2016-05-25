@@ -1,11 +1,11 @@
 -- Importing modules
-local Count = require "elasticsearch.endpoints.Count"
+local Explain = require "elasticsearch.endpoints.Explain"
 local parser = require "elasticsearch.parser"
 local MockTransport = require "lib.MockTransport"
 local getmetatable = getmetatable
 
 -- Setting up environment
-local _ENV = lunit.TEST_CASE "tests.endpoints.CountTest"
+local _ENV = lunit.TEST_CASE "tests.endpoints.ExplainTest"
 
 -- Declaring local variables
 local endpoint
@@ -13,8 +13,8 @@ local mockTransport = MockTransport:new()
 
 -- Testing the constructor
 function constructorTest()
-  assert_function(Count.new)
-  local o = Count:new()
+  assert_function(Explain.new)
+  local o = Explain:new()
   assert_not_nil(o)
   local mt = getmetatable(o)
   assert_table(mt)
@@ -23,7 +23,7 @@ end
 
 -- The setup function
 function setup()
-  endpoint = Count:new{
+  endpoint = Explain:new{
     transport = mockTransport
   }
 end
@@ -31,45 +31,49 @@ end
 -- Testing request
 function request1Test()
   mockTransport.method = "GET"
-  mockTransport.uri = "/twitter/tweet/_count"
+  mockTransport.uri = "/twitter/tweet/1/_explain"
+  mockTransport.params = {}
+  mockTransport.body = parser.jsonEncode{
+    query = {
+      term = {
+        message = "search"
+      }
+    }
+  }
+
+  endpoint:setParams{
+    index = "twitter",
+    type = "tweet",
+    id = "1",
+    body = {
+      query = {
+        term = {
+          message = "search"
+        }
+      }
+    }
+  }
+
+  local _, err = endpoint:request()
+  assert_nil(err)
+end
+
+-- Testing request
+function request2test()
+  mockTransport.method = "GET"
+  mockTransport.uri = "/twitter/tweet/1/_explain"
   mockTransport.params = {
-    q = "user:kimchy"
+    q = "message:search"
   }
   mockTransport.body = nil
 
   endpoint:setParams{
     index = "twitter",
     type = "tweet",
-    q = "user:kimchy"
-  }
-  local _, err = endpoint:request()
-  assert_nil(err)
-end
-
--- Testing request
-function request2Test()
-  mockTransport.method = "GET"
-  mockTransport.uri = "/twitter/tweet/_count"
-  mockTransport.params = {}
-  mockTransport.body = parser.jsonEncode{
-    query = {
-      term = {
-        user = "kimchy"
-      }
-    }
+    id = "1",
+    q = "message:search"
   }
 
-  endpoint:setParams{
-    index = "twitter",
-    type = "tweet",
-    body = {
-      query = {
-        term = {
-          user = "kimchy"
-        }
-      }
-    }
-  }
   local _, err = endpoint:request()
   assert_nil(err)
 end

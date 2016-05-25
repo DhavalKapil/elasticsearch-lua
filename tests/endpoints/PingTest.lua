@@ -34,5 +34,6 @@ function requestTest()
   mockTransport.params = {}
   mockTransport.body = nil
 
-  endpoint:request()
+  local _, err = endpoint:request()
+  assert_nil(err)
 end
