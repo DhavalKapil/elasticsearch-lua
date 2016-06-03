@@ -32,7 +32,7 @@ Stats.allowedParams = {
 function Stats:setParams(params)
   for i, v in pairs(params) do
     if i == "node_id" then
-      self.nodeId = node_id
+      self.nodeId = v
     elseif i == "body" then
       self:setBody(v)
     else
