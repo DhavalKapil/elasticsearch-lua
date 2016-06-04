@@ -2,6 +2,7 @@
 -- Importing modules
 -------------------------------------------------------------------------------
 local Endpoint = require "elasticsearch.endpoints.Endpoint"
+local parser = require "elasticsearch.parser"
 
 -------------------------------------------------------------------------------
 -- Declaring module
@@ -18,13 +19,37 @@ Create.allowedParams = {
   "master_timeout"
 }
 
+-- Whether mappings is present in body or not
+Create.mappings = false
+
+-------------------------------------------------------------------------------
+-- Function to set the body parameter
+--
+-- @param   body    The body to be set
+-------------------------------------------------------------------------------
+function Create:setBody(body)
+  if type(body) == "table" and body["mappings"] ~= nil then
+    self.mappings = true;
+  end
+
+  if self.bulkBody == false then
+    self.body = parser.jsonEncode(body)
+    return
+  end
+  -- Bulk body is present
+  self.body = ""
+  for _id, item in pairs(body) do
+    self.body = self.body .. parser.jsonEncode(item) .. "\n"
+  end
+end
+
 -------------------------------------------------------------------------------
 -- Function to calculate the http request method
 --
 -- @return    string    The HTTP request method
 -------------------------------------------------------------------------------
 function Create:getMethod()
-  if type(self.body) == "table" and self.body["mappings"] ~= nil then
+  if self.mappings then
     return "POST"
   else
     return "PUT"

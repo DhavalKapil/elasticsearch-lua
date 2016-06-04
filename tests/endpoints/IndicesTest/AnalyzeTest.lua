@@ -41,7 +41,7 @@ function requestTest()
 end
 
 -- Testing Index request
-function requestTest()
+function requestIndexTest()
   mockTransport.method = "GET"
   mockTransport.uri = "/test/_analyze"
   mockTransport.params = {}

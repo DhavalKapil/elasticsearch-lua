@@ -27,21 +27,8 @@ function setup()
   }
 end
 
--- Testing request
-function requestTest()
-  mockTransport.method = "POST"
-  mockTransport.uri = "/_close"
-  mockTransport.params = {}
-  mockTransport.body = nil
-
-  endpoint:setParams{}
-
-  local _, err = endpoint:request()
-  assert_nil(err)
-end
-
 -- Testing Index request
-function requestTest()
+function requestIndexTest()
   mockTransport.method = "POST"
   mockTransport.uri = "/my_index/_close"
   mockTransport.params = {}
