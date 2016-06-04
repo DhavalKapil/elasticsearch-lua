@@ -21,3 +21,4 @@ require "endpoints.SuggestTest"
 require "endpoints.UpdateTest"
 
 require "endpoints.ClusterTest.init"
+require "endpoints.IndicesTest.init"
