@@ -2,3 +2,4 @@
 require "endpoints.NodesTest.HotThreadsTest"
 require "endpoints.NodesTest.InfoTest"
 require "endpoints.NodesTest.ShutdownTest"
+require "endpoints.NodesTest.StatsTest"
