@@ -22,3 +22,4 @@ require "endpoints.UpdateTest"
 
 require "endpoints.ClusterTest.init"
 require "endpoints.IndicesTest.init"
+require "endpoints.NodesTest.init"
