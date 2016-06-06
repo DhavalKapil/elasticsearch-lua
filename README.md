@@ -1,4 +1,6 @@
-# elasticsearch-lua [![Build Status](https://travis-ci.org/DhavalKapil/elasticsearch-lua.svg?branch=master)](https://travis-ci.org/DhavalKapil/elasticsearch-lua)
+# elasticsearch-lua 
+
+[![Build Status](https://travis-ci.org/DhavalKapil/elasticsearch-lua.svg?branch=master)](https://travis-ci.org/DhavalKapil/elasticsearch-lua) [![Coverage Status](https://coveralls.io/repos/github/DhavalKapil/elasticsearch-lua/badge.svg?branch=master)](https://coveralls.io/github/DhavalKapil/elasticsearch-lua?branch=master)
 
 > A simple low level client for elasticsearch written in lua.
 
