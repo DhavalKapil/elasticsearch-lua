@@ -1,6 +1,6 @@
 language: c
 
-sudo: false
+sudo: required
 
 env:
   global:
@@ -17,6 +17,7 @@ services:
   - elasticsearch
 
 before_install:
+  - sudo apt-get update && sudo apt-get install wget -y
   - source .travis/setenv_lua.sh
   - luarocks install lunitx
   - luarocks install luacov
