@@ -1,6 +1,6 @@
 -- Importing modules
 local elasticsearch = require "elasticsearch"
-local dataset = require "integration.dataset"
+local dataset = require "integration.dataset.dataset"
 local util = require "lib.util"
 
 -- Setting up environment

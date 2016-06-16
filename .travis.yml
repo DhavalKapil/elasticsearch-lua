@@ -31,6 +31,8 @@ before_script:
 script:
   - cd tests
   - lua -lluacov run-tests.lua
+  - ./integration/dataset/download-dataset.sh
+  - lua -lluacov run-integration-tests.lua
 
 after_success:  
   - mv luacov.stats.out ../
