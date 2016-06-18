@@ -45,4 +45,18 @@ function util.check(expectedVar, actualVar)
   assert_equal(expectedVar, actualVar)
 end
 
+-------------------------------------------------------------------------------
+-- Function to slice a lua array
+--
+-- @param   array         The array to be sliced
+-- @param   actualVar     The actual variable
+-------------------------------------------------------------------------------
+function util.slice(array, first, last, step)
+  local sliced = {}
+  for i = first or 1, last or #array, step or 1 do
+    sliced[#sliced+1] = array[i]
+  end
+  return sliced
+end
+
 return util
