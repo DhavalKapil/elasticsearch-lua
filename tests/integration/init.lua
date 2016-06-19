@@ -5,3 +5,4 @@ operations = require "integration.operations"
 -- Integration tests
 require "integration.BasicTest"
 require "integration.BulkTest"
+require "integration.SearchTest"
