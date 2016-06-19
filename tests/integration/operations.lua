@@ -94,9 +94,6 @@ function operations.bulkIndex(data)
   local res, status = client:bulk{
     body = bulkBody
   }
-  -- Wait for some time to index
-  local ntime = os.time() + 2
-  repeat until os.time() > ntime
   assert_not_nil(res)
   assert_equal(200, status)
 end
@@ -119,14 +116,14 @@ function operations.bulkDelete(data)
   local res, status = client:bulk{
     body = bulkBody
   }
-  -- Wait for some time to index
-  local ntime = os.time() + 2
-  repeat until os.time() > ntime
   assert_not_nil(res)
   assert_equal(200, status)
 end
 
 function operations.searchQuery(query)
+  -- Wait for some time for the index operation to take place
+  local ntime = os.time() + 5
+  repeat until os.time() > ntime
   local res, status = client:search{
     index = TEST_INDEX,
     type = TEST_TYPE,
@@ -138,6 +135,9 @@ function operations.searchQuery(query)
 end
 
 function operations.searchBody(body)
+  -- Wait for some time for the index operation to take place
+  local ntime = os.time() + 5
+  repeat until os.time() > ntime
   local res, status = client:search{
     index = TEST_INDEX,
     type = TEST_TYPE,
