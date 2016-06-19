@@ -95,7 +95,7 @@ function operations.bulkIndex(data)
     body = bulkBody
   }
   -- Wait for some time to index
-  local ntime = os.time() + 1
+  local ntime = os.time() + 2
   repeat until os.time() > ntime
   assert_not_nil(res)
   assert_equal(200, status)
@@ -120,7 +120,7 @@ function operations.bulkDelete(data)
     body = bulkBody
   }
   -- Wait for some time to index
-  local ntime = os.time() + 1
+  local ntime = os.time() + 2
   repeat until os.time() > ntime
   assert_not_nil(res)
   assert_equal(200, status)
