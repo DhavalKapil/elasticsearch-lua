@@ -27,6 +27,11 @@ NodesEndpoint.indexMetric = nil
 -- @return  string  A string if an error is found otherwise nil
 -------------------------------------------------------------------------------
 function NodesEndpoint:setParams(params)
+  -- Clearing parameters
+  self.nodeId = nil
+  self.metric = nil
+  self.indexMetric = nil
+  self.params = {}
   for i, v in pairs(params) do
     if i == "node_id" then
       self.nodeId = v
