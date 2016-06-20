@@ -33,6 +33,8 @@ Scroll.allowedParams = {
 -- @return  string  A string if an error is found otherwise nil
 -------------------------------------------------------------------------------
 function Scroll:setParams(params)
+  self.scroll_id = nil  self.params = {}
+  self.body = nil
   for i, v in pairs(params) do
     if i == "scroll_id" then
       self.scrollId = v
