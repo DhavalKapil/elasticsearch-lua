@@ -1,5 +1,6 @@
 -- Importing modules
 local Stats = require "elasticsearch.endpoints.Cluster.Stats"
+local parser = require "elasticsearch.parser"
 local MockTransport = require "lib.MockTransport"
 local getmetatable = getmetatable
 
@@ -38,6 +39,27 @@ function requestTest()
 
   local _, err = endpoint:request()
   assert_nil(err)
+end
+
+-- Testing setParams function
+function setParamsTest()
+  local err = endpoint:setParams{
+    node_id = "n",
+    human = "y",
+    body = {
+      p = "value"
+    }
+  }
+
+  assert_nil(err)  
+  assert_equal("n", endpoint.nodeId)
+  assert_equal("y", endpoint.params.human)
+  assert_equal(parser.jsonEncode{p="value"}, endpoint.body)
+
+  err = endpoint:setParams{
+    random = "r",
+  }
+  assert_equal("random is not an allowed parameter", err)
 end
 
 -- Testing node request
