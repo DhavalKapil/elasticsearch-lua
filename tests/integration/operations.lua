@@ -148,4 +148,30 @@ function operations.searchBody(body)
   return res
 end
 
+function operations.searchScan(body)
+  -- Wait for some time for the index operation to take place
+  local ntime = os.time() + 5
+  repeat until os.time() > ntime
+  local res, status = client:search{
+    index = TEST_INDEX,
+    type = TEST_TYPE,
+    search_type = "scan",
+    scroll = "1m",
+    body = body
+  }
+  assert_not_nil(res)
+  assert_equal(200, status)
+  return res
+end
+
+function operations.scroll(scroll_id)
+  local res, status = client:scroll{
+    scroll = "2m",
+    scroll_id = scroll_id
+  }
+  assert_not_nil(res)
+  assert_equal(200, status)
+  return res
+end
+
 return operations;
