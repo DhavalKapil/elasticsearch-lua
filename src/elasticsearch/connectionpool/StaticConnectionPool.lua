@@ -51,11 +51,11 @@ function StaticConnectionPool:nextConnection()
     end
   end
   -- Pinging all dead connections
-  for i = 1, #deadConnections do
-    if deadConnections[i]:ping() then
+  for _, v in ipairs(deadConnections) do
+    if v:ping() then
       -- Ping successfull
-      self.logger:debug("Dead connection now alive: " .. deadConnections[i]:toString())
-      return deadConnections[i]
+      self.logger:debug("Dead connection now alive: " .. v:toString())
+      return v
     end
   end
   -- All pings have failed

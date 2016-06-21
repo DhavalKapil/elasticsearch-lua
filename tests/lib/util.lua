@@ -46,17 +46,19 @@ function util.check(expectedVar, actualVar)
 end
 
 -------------------------------------------------------------------------------
--- Function to slice a lua array
+-- Function to extract a part of a lua array
 --
--- @param   array         The array to be sliced
+-- @param   array         The original array
 -- @param   actualVar     The actual variable
+--
+-- @return  array         The sub array
 -------------------------------------------------------------------------------
-function util.slice(array, first, last, step)
-  local sliced = {}
+function util.subarr(array, first, last, step)
+  local subarr = {}
   for i = first or 1, last or #array, step or 1 do
-    sliced[#sliced+1] = array[i]
+    table.insert(subarr, array[i])
   end
-  return sliced
+  return subarr
 end
 
 return util

@@ -47,8 +47,8 @@ end
 -- Sniffs every connections to discover new nodes in the cluster
 -------------------------------------------------------------------------------
 function SniffConnectionPool:sniff()
-  for i = 1, #self.connections do
-    self:sniffConnection(self.connections[i])
+  for _, v in ipairs(self.connections)
+    self:sniffConnection(v)
   end
   -- Updating sniff time
   self.nextSniff = os.time() + self.sniffingInterval

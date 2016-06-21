@@ -24,12 +24,12 @@ end
 
 function operations.index(data)
   -- Indexing all data in elasticsearch
-  for i = 1, #data do
+  for _, v in ipairs(data) do
     local res, status = client:index{
       index = TEST_INDEX,
       type = TEST_TYPE,
-      id = data[i]["id"],
-      body = data[i]
+      id = v["id"],
+      body = v
     }
     assert_not_nil(res)
     assert_true(status == 200 or status == 201)
@@ -37,25 +37,25 @@ function operations.index(data)
 end
 
 function operations.getExistingDocuments(data)
-  for i = 1, #data do
+  for _, v in ipairs(data) do
     local res, status = client:get{
       index = TEST_INDEX,
       type = TEST_TYPE,
-      id = data[i]["id"]
+      id = v["id"]
     }
     assert_not_nil(res)
     assert_equal(200, status)
-    util.check(data[i], res._source)
+    util.check(v, res._source)
   end
 end
 
 function operations.delete(data)
   -- Deleting documents
-  for i = 1, #data do
+  for _, v in ipairs(data) do
     local res, status = client:delete{
       index = TEST_INDEX,
       type = TEST_TYPE,
-      id = data[i]["id"],
+      id = v["id"],
     }
     assert_not_nil(res)
     assert_equal(200, status)
@@ -63,11 +63,11 @@ function operations.delete(data)
 end
 
 function operations.getNonExistingDocuments(data)
-  for i = 1, #data do
+  for _, v in ipairs(data) do
     local res, err = client:get{
       index = TEST_INDEX,
       type = TEST_TYPE,
-      id = data[i]["id"]
+      id = v["id"]
     }
     assert_nil(res)
     assert_equal("ClientError: Invalid response code: 404", err)
@@ -77,17 +77,17 @@ end
 function operations.bulkIndex(data)
   -- Creating bulk body
   local bulkBody = {}
-  for i = 1, #data do
+  for _, v in ipairs(data) do
     -- Specifing that it is an index operation
     bulkBody[#bulkBody + 1] = {
       index = {
         ["_index"] = TEST_INDEX,
         ["_type"] = TEST_TYPE,
-        ["_id"] = data[i]["id"]
+        ["_id"] = v["id"]
       }
     }
     -- Actual body
-    bulkBody[#bulkBody + 1] = data[i]
+    bulkBody[#bulkBody + 1] = v
   end
 
   -- Indexing all data in a single bulk operation
@@ -101,13 +101,13 @@ end
 function operations.bulkDelete(data)
   -- Creating bulk body
   local bulkBody = {}
-  for i = 1, #data do
+  for _, v in ipairs(data) do
     -- Specifying that it is a delete operation
     bulkBody[#bulkBody + 1] = {
       delete = {
         ["_index"] = TEST_INDEX,
         ["_type"] = TEST_TYPE,
-        ["_id"] = data[i]["id"]
+        ["_id"] = v["id"]
       }
     }
   end
