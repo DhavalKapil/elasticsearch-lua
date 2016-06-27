@@ -150,6 +150,9 @@ function operations.searchBody(body, index)
     type = TEST_TYPE,
     body = body
   }
+  if res == nil then
+    print(status)
+  end
   assert_not_nil(res)
   assert_equal(200, status)
   return res
