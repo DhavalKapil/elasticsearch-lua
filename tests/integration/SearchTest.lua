@@ -34,5 +34,20 @@ function test()
   }
   assert_equal(10364741.0, res.aggregations.maxActorId.value)
 
+  -- Search template
+  local res = operations.searchTemplate{
+    inline = {
+      query = {
+        match = {
+          type = "{{query_string}}"
+        }
+      }
+    },
+    params = {
+      query_string = "PushEvent"
+    }
+  }
+  assert_equal(103, res.hits.total)
+
   operations.bulkDelete(dataset)
 end

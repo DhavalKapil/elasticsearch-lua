@@ -155,6 +155,20 @@ function operations.searchBody(body, index)
   return res
 end
 
+function operations.searchTemplate(body)
+  -- Wait for some time for the index operation to take place
+  local ntime = os.time() + 5
+  repeat until os.time() > ntime
+  local res, status = client:searchTemplate{
+    index = TEST_INDEX,
+    type = TEST_TYPE,
+    body = body
+  }
+  assert_not_nil(res)
+  assert_equal(200, status)
+  return res
+end
+
 function operations.searchScan(body)
   -- Wait for some time for the index operation to take place
   local ntime = os.time() + 5
