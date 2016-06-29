@@ -4,9 +4,6 @@ curl -L -o elasticsearch-latest-SNAPSHOT.zip https://download.elastic.co/elastic
 
 unzip "elasticsearch-latest-SNAPSHOT.zip"
 
-./elasticsearch-*/bin/elasticsearch \
-        -E es.discovery.zen.ping_timeout=1s \
-        -E es.discovery.zen.minimum_master_nodes=1 \
-        -d
+./elasticsearch-*/bin/elasticsearch -d
 
 sleep 3
