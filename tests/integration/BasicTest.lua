@@ -1,5 +1,6 @@
 --  Tests:
 --    info()
+--    exists()
 --    index()
 --    get()
 --    delete()
@@ -18,6 +19,7 @@ function test()
   operations.info()
 
   operations.index(dataset_1)
+  operations.createExistingDocuments(dataset_1)
 
   operations.existsNonExistingDocuments(dataset_2)
   operations.getNonExistingDocuments(dataset_2)
@@ -29,6 +31,7 @@ function test()
   operations.mgetExistingDocuments(dataset_1)
 
   operations.index(dataset_2)
+  operations.createExistingDocuments(dataset_2)
   operations.deleteExistingDocuments(dataset_1)
 
   operations.existsNonExistingDocuments(dataset_1)
@@ -37,6 +40,12 @@ function test()
   operations.deleteNonExistingDocuments(dataset_1)
 
   operations.existsExistingDocuments(dataset_2)
+  operations.getExistingDocuments(dataset_2)
+  operations.mgetExistingDocuments(dataset_2)
+
+  operations.deleteExistingDocuments(dataset_2)
+
+  operations.createNonExistingDocuments(dataset_2)
   operations.getExistingDocuments(dataset_2)
   operations.mgetExistingDocuments(dataset_2)
 

@@ -32,7 +32,37 @@ function operations.index(data)
       body = v
     }
     assert_not_nil(res)
+    assert_true(res.created)
     assert_true(status == 200 or status == 201)
+  end
+end
+
+function operations.createExistingDocuments(data)
+  -- Trying to create documents
+  for _, v in ipairs(data) do
+    local res, err = client:create{
+      index = TEST_INDEX,
+      type = TEST_TYPE,
+      id = v["id"],
+      body = v
+    }
+    assert_nil(res)
+    assert_equal("ClientError: Invalid response code: 409", err)
+  end
+end
+
+function operations.createNonExistingDocuments(data)
+  -- Creating new documents
+  for _, v in ipairs(data) do
+    local res, status = client:create{
+      index = TEST_INDEX,
+      type = TEST_TYPE,
+      id = v["id"],
+      body = v
+    }
+    assert_not_nil(res)
+    assert_true(res.created)
+    assert_equal(201, status)
   end
 end
 
