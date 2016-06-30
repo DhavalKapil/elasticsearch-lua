@@ -22,25 +22,28 @@ function test()
   operations.existsNonExistingDocuments(dataset_2)
   operations.getNonExistingDocuments(dataset_2)
   operations.mgetNonExistingDocuments(dataset_2)
+  operations.deleteNonExistingDocuments(dataset_2)
 
   operations.existsExistingDocuments(dataset_1)
   operations.getExistingDocuments(dataset_1)
   operations.mgetExistingDocuments(dataset_1)
 
   operations.index(dataset_2)
-  operations.delete(dataset_1)
+  operations.deleteExistingDocuments(dataset_1)
 
   operations.existsNonExistingDocuments(dataset_1)
   operations.getNonExistingDocuments(dataset_1)
   operations.mgetNonExistingDocuments(dataset_1)
+  operations.deleteNonExistingDocuments(dataset_1)
 
   operations.existsExistingDocuments(dataset_2)
   operations.getExistingDocuments(dataset_2)
   operations.mgetExistingDocuments(dataset_2)
 
-  operations.delete(dataset_2)
+  operations.deleteExistingDocuments(dataset_2)
 
   operations.existsNonExistingDocuments(dataset_2)
   operations.getNonExistingDocuments(dataset_2)
   operations.mgetNonExistingDocuments(dataset_2)
+  operations.deleteNonExistingDocuments(dataset_2)
 end

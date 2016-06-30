@@ -36,17 +36,29 @@ function operations.index(data)
   end
 end
 
-function operations.delete(data, index)
+function operations.deleteExistingDocuments(data, index)
   index = index or TEST_INDEX
   -- Deleting documents
   for _, v in ipairs(data) do
     local res, status = client:delete{
       index = index,
       type = TEST_TYPE,
-      id = v["id"],
+      id = v["id"]
     }
     assert_not_nil(res)
     assert_equal(200, status)
+  end
+end
+
+function operations.deleteNonExistingDocuments(data)
+  for _, v in ipairs(data) do
+    local res, err = client:delete{
+      index = TEST_INDEX,
+      type = TEST_TYPE,
+      id = v["id"]
+    }
+    assert_nil(res)
+    assert_equal("ClientError: Invalid response code: 404", err)
   end
 end
 
