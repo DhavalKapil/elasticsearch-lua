@@ -77,6 +77,50 @@ function operations.getNonExistingDocuments(data, index)
   end
 end
 
+function operations.mgetExistingDocuments(data)
+  local docs = {}
+  for _, v in ipairs(data) do
+    table.insert(docs, {
+      ["_index"] = TEST_INDEX,
+      ["_type"] = TEST_TYPE,
+      ["_id"] = v["id"]
+    })
+  end
+  local res, status = client:mget{
+    body = {
+      docs = docs
+    }
+  }
+  assert_not_nil(res)
+  assert_equal(200, status)
+  local result_data = {}
+  for _, v in ipairs(res.docs) do
+    table.insert(result_data, v._source)
+  end
+  util.check(data, result_data)
+end
+
+function operations.mgetNonExistingDocuments(data)
+  local docs = {}
+  for _, v in ipairs(data) do
+    table.insert(docs, {
+      ["_index"] = TEST_INDEX,
+      ["_type"] = TEST_TYPE,
+      ["_id"] = v["id"]
+    })
+  end
+  local res, status = client:mget{
+    body = {
+      docs = docs
+    }
+  }
+
+  for _, v in ipairs(res.docs) do
+    assert_false(v.found)
+  end
+  assert_equal(200, status)
+end
+
 function operations.bulkIndex(data, index)
   index = index or TEST_INDEX
   -- Creating bulk body
