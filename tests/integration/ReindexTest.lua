@@ -19,8 +19,8 @@ function test()
     }
   }
   
-  operations.bulkDelete(dataset, index1)
-  operations.bulkDelete(dataset, index2)
+  operations.bulkDeleteExistingDocuments(dataset, index1)
+  operations.bulkDeleteExistingDocuments(dataset, index2)
   operations.bulkIndex(dataset_1, index1)
   operations.getNonExistingDocuments(dataset_1, index2)
   operations.reindex(index1, index2)
@@ -32,6 +32,6 @@ function test()
   assert_equal(103, res.hits.total)
   operations.reindex(index1, index2)
   operations.getExistingDocuments(dataset, index2)
-  operations.bulkDelete(dataset, index1)
-  operations.bulkDelete(dataset, index2)
+  operations.bulkDeleteExistingDocuments(dataset, index1)
+  operations.bulkDeleteExistingDocuments(dataset, index2)
 end

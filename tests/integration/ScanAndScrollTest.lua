@@ -28,5 +28,5 @@ function test()
     assert_not_nil(scroll_id)
   end
   assert_equal(103, total_hits)
-  operations.bulkDelete(dataset)
+  operations.bulkDeleteExistingDocuments(dataset)
 end

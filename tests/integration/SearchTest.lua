@@ -61,5 +61,5 @@ function test()
   }
   assert_equal(103, res.hits.total)
 
-  operations.bulkDelete(dataset)
+  operations.bulkDeleteExistingDocuments(dataset)
 end

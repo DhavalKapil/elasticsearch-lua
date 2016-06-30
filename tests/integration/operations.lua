@@ -182,7 +182,7 @@ function operations.bulkIndex(data, index)
   assert_equal(200, status)
 end
 
-function operations.bulkDelete(data, index)
+function operations.bulkDeleteExistingDocuments(data, index)
   index = index or TEST_INDEX
   -- Creating bulk body
   local bulkBody = {}
@@ -203,6 +203,28 @@ function operations.bulkDelete(data, index)
   }
   assert_not_nil(res)
   assert_equal(200, status)
+end
+
+function operations.bulkDeleteNonExistingDocuments(data)
+  -- Creating bulk body
+  local bulkBody = {}
+  for _, v in ipairs(data) do
+    -- Specifying that it is a delete operation
+    bulkBody[#bulkBody + 1] = {
+      delete = {
+        ["_index"] = index,
+        ["_type"] = TEST_TYPE,
+        ["_id"] = v["id"]
+      }
+    }
+  end
+
+  -- Trying to delete all data in a single bulk operation
+  local res, err = client:bulk{
+    body = bulkBody
+  }
+  assert_nil(res)
+  assert_equal("ClientError: Invalid response code: 400", err)
 end
 
 function operations.searchQuery(query, index)
