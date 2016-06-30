@@ -36,20 +36,6 @@ function operations.index(data)
   end
 end
 
-function operations.getExistingDocuments(data, index)
-  index = index or TEST_INDEX
-  for _, v in ipairs(data) do
-    local res, status = client:get{
-      index = index,
-      type = TEST_TYPE,
-      id = v["id"]
-    }
-    assert_not_nil(res)
-    assert_equal(200, status)
-    util.check(v, res._source)
-  end
-end
-
 function operations.delete(data, index)
   index = index or TEST_INDEX
   -- Deleting documents
@@ -61,6 +47,44 @@ function operations.delete(data, index)
     }
     assert_not_nil(res)
     assert_equal(200, status)
+  end
+end
+
+function operations.existsExistingDocuments(data)
+  for _, v in ipairs(data) do
+    local res, status = client:exists{
+      index = TEST_INDEX,
+      type = TEST_TYPE,
+      id = v["id"]
+    }
+    assert_true(res)
+    assert_equal(200, status)
+  end
+end
+
+function operations.existsNonExistingDocuments(data)
+  for _, v in ipairs(data) do
+    local res, err = client:exists{
+      index = TEST_INDEX,
+      type = TEST_TYPE,
+      id = v["id"]
+    }
+    assert_false(res)
+    assert_nil(err)
+  end
+end
+
+function operations.getExistingDocuments(data, index)
+  index = index or TEST_INDEX
+  for _, v in ipairs(data) do
+    local res, status = client:get{
+      index = index,
+      type = TEST_TYPE,
+      id = v["id"]
+    }
+    assert_not_nil(res)
+    assert_equal(200, status)
+    util.check(v, res._source)
   end
 end
 

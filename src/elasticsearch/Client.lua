@@ -125,18 +125,18 @@ end
 -- @return   table     Error or the data recevied from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:exists(params)
-  local temp, err = self:requestEndpoint("Get", params, {
+  local temp, status = self:requestEndpoint("Get", params, {
     checkOnlyExistance = true
   })
-  if err == nil then
+  if temp ~= nil then
     -- Successfull request
-    return true
-  elseif err:match("Invalid response code") then
+    return true, status
+  elseif status:match("Invalid response code") then
     -- Wrong response code
     return false
   else
     -- Some other error, notify user
-    return nil, err
+    return nil, status
   end
 end
 
