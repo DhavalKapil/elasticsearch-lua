@@ -15,6 +15,14 @@ local client  = elasticsearch.client()
 local TEST_INDEX = "elasticsearch-lua-test-index"
 local TEST_TYPE = "elasticsearch-lua-test-type"
 
+-- Function to refresh the index
+local function refresh(index)
+  index = index or TEST_INDEX
+  local res, status = client.indices:refresh()
+  assert_table(res)
+  assert_equal(200, status)
+end
+
 function operations.info()
   -- Testing info
   local res, status = client:info()
@@ -259,9 +267,7 @@ end
 
 function operations.searchQuery(query, index)
   index = index or TEST_INDEX
-  -- Wait for some time for the index operation to take place
-  local ntime = os.time() + 5
-  repeat until os.time() > ntime
+  refresh()
   local res, status = client:search{
     index = index,
     type = TEST_TYPE,
@@ -274,9 +280,7 @@ end
 
 function operations.searchBody(body, index)
   index = index or TEST_INDEX
-  -- Wait for some time for the index operation to take place
-  local ntime = os.time() + 5
-  repeat until os.time() > ntime
+  refresh()
   local res, status = client:search{
     index = index,
     type = TEST_TYPE,
@@ -291,9 +295,7 @@ function operations.searchBody(body, index)
 end
 
 function operations.searchTemplate(body)
-  -- Wait for some time for the index operation to take place
-  local ntime = os.time() + 5
-  repeat until os.time() > ntime
+  refresh()
   local res, status = client:searchTemplate{
     index = TEST_INDEX,
     type = TEST_TYPE,
@@ -305,9 +307,7 @@ function operations.searchTemplate(body)
 end
 
 function operations.searchScan(body)
-  -- Wait for some time for the index operation to take place
-  local ntime = os.time() + 5
-  repeat until os.time() > ntime
+  refresh()
   local res, status = client:search{
     index = TEST_INDEX,
     type = TEST_TYPE,
@@ -331,9 +331,7 @@ function operations.scroll(scroll_id)
 end
 
 function operations.reindex(source_index, target_index, query)
-  -- Wait for some time for the index operation to take place
-  local ntime = os.time() + 5
-  repeat until os.time() > ntime
+  refresh()
   local res, err = elasticsearch.helpers.reindex(client,
                                                  source_index,
                                                  target_index,
