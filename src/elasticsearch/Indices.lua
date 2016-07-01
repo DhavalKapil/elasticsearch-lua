@@ -21,7 +21,7 @@ Indices.transport = nil
 -- @param   params          The parameters to be passed
 -- @param   endpointParams  The endpoint params passed while object creation
 --
--- @return  table     Error or the data recevied from the elasticsearch server
+-- @return  table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Indices:requestEndpoint(endpoint, params, endpointParams)
   local Endpoint = require("elasticsearch.endpoints.Indices." .. endpoint)
@@ -55,7 +55,7 @@ end
 --
 -- @param    params    The exists Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Indices:exists(params)
   local temp, err = self:requestEndpoint("Exists", params)
@@ -84,7 +84,7 @@ end
 --
 -- @param    params    The get Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Indices:get(params)
   return self:requestEndpoint("Get", params)
@@ -99,7 +99,7 @@ end
 --
 -- @param    params    The delete Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Indices:delete(params)
   return self:requestEndpoint("Delete", params)
@@ -115,7 +115,7 @@ end
 --
 -- @param    params    The create Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Indices:create(params)
   return self:requestEndpoint("Create", params)
@@ -138,7 +138,7 @@ end
 --
 -- @param    params    The optimize Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Indices:optimize(params)
   return self:requestEndpoint("Optimize", params)
@@ -153,7 +153,7 @@ end
 --
 -- @param    params    The open Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Indices:open(params)
   return self:requestEndpoint("Open", params)
@@ -168,7 +168,7 @@ end
 --
 -- @param    params    The open Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Indices:close(params)
   return self:requestEndpoint("Close", params)
@@ -190,10 +190,29 @@ end
 --
 -- @param    params    The analyze Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Indices:analyze(params)
   return self:requestEndpoint("Analyze", params)
+end
+
+-------------------------------------------------------------------------------
+-- Function to refresh an index
+--
+-- @usage
+--
+-- params["index"]               = (list) A comma-separated list of index names; use '_all' or empty string to perform the operation on all indices
+--       ["operation_threading"] = () TODO: ?
+--       ["ignore_unavailable"]  = (bool) Whether specified concrete indices should be ignored when unavailable (missing or closed)
+--       ["allow_no_indices"]    = (bool) Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["expand_wildcards"]    = (enum) Whether to expand wildcard expression to concrete indices that are open, closed or both.
+--
+-- @param    params    The refresh Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:refresh(params)
+  return self:requestEndpoint("Refresh", params)
 end
 
 -------------------------------------------------------------------------------
@@ -208,7 +227,7 @@ end
 --
 -- @param    params    The status Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Indices:status(params)
   return self:requestEndpoint("Status", params)
@@ -222,7 +241,7 @@ end
 --
 -- @param    params    The seal Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Indices:seal(params)
   return self:requestEndpoint("Seal", params)

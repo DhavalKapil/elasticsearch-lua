@@ -21,7 +21,7 @@ Cluster.transport = nil
 -- @param   params          The parameters to be passed
 -- @param   endpointParams  The endpoint params passed while object creation
 --
--- @return  table     Error or the data recevied from the elasticsearch server
+-- @return  table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Cluster:requestEndpoint(endpoint, params, endpointParams)
   local Endpoint = require("elasticsearch.endpoints.Cluster." .. endpoint)
@@ -63,7 +63,7 @@ end
 --
 -- @param    params    The health Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Cluster:health(params)
   return self:requestEndpoint("Health", params)
@@ -84,7 +84,7 @@ end
 --
 -- @param    params    The state Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Cluster:state(params)
   return self:requestEndpoint("State", params)
@@ -99,7 +99,7 @@ end
 --
 -- @param    params    The stats Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Cluster:stats(params)
   return self:requestEndpoint("Stats", params)
@@ -110,7 +110,7 @@ end
 --
 -- @param    params    The getSettings Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Cluster:getSettings(params)
   return self:requestEndpoint("GetSettings", params)
@@ -121,7 +121,7 @@ end
 --
 -- @param    params    The putSettings Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Cluster:putSettings(params)
   return self:requestEndpoint("PutSettings", params)
@@ -138,7 +138,7 @@ end
 --
 -- @param    params    The reroute Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Cluster:reroute(params)
   return self:requestEndpoint("Reroute", params)
@@ -153,7 +153,7 @@ end
 --
 -- @param    params    The pendingTasks Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Cluster:pendingTasks(params)
   return self:requestEndpoint("PendingTasks", params)

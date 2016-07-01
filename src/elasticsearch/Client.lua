@@ -35,7 +35,7 @@ Client.indices = nil
 -- @param   params          The parameters to be passed
 -- @param   endpointParams  The endpoint params passed while object creation
 --
--- @return  table     Error or the data recevied from the elasticsearch server
+-- @return  table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:requestEndpoint(endpoint, params, endpointParams)
   local Endpoint = require("elasticsearch.endpoints." .. endpoint)
@@ -64,7 +64,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to get information regarding the Elasticsearch server
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:info()
   return self:requestEndpoint("Info")
@@ -101,7 +101,7 @@ end
 --
 -- @param    params    The get Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:get(params)
   return self:requestEndpoint("Get", params)
@@ -122,7 +122,7 @@ end
 --
 -- @param    params    The exists Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:exists(params)
   local temp, status = self:requestEndpoint("Get", params, {
@@ -156,7 +156,7 @@ end
 --
 -- @param    params    The getSource Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:getSource(params)
   return self:requestEndpoint("Get", params, {
@@ -183,7 +183,7 @@ end
 --
 -- @param    params    The mget Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:mget(params)
   return self:requestEndpoint("Mget", params)
@@ -213,7 +213,7 @@ end
 --
 -- @param    params    The index Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:index(params)
   return self:requestEndpoint("Index", params)
@@ -236,7 +236,7 @@ end
 --
 -- @param    params    The delete Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:delete(params)
   return self:requestEndpoint("Delete", params)
@@ -259,7 +259,7 @@ end
 --
 -- @param    params    The count Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:count(params)
   return self:requestEndpoint("Count", params)
@@ -304,7 +304,7 @@ end
 --
 -- @param    params    The search Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:search(params)
   return self:requestEndpoint("Search", params)
@@ -349,7 +349,7 @@ end
 --
 -- @param    params    The searchExists Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:searchExists(params)
   return self:requestEndpoint("SearchExists", params)
@@ -370,7 +370,7 @@ end
 --
 -- @param    params    The searchShards Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:searchShards(params)
   return self:requestEndpoint("SearchShards", params)
@@ -385,7 +385,7 @@ end
 --
 -- @param    params    The searchTemplate Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:searchTemplate(params)
   return self:requestEndpoint("SearchTemplate", params)
@@ -401,7 +401,7 @@ end
 --
 -- @param    params    The scroll Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:scroll(params)
   return self:requestEndpoint("Scroll", params)
@@ -417,7 +417,7 @@ end
 --
 -- @param    params    The clearScroll Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:clearScroll(params)
   return self:requestEndpoint("Scroll", params, {
@@ -435,7 +435,7 @@ end
 --
 -- @param    params    The msearch Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:msearch(params)
   return self:requestEndpoint("Msearch", params)
@@ -463,7 +463,7 @@ end
 --
 -- @param    params    The create Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:create(params)
   return self:requestEndpoint("Index", params, {
@@ -484,7 +484,7 @@ end
 --
 -- @param    params    The bulk Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:bulk(params)
   return self:requestEndpoint("Bulk", params)
@@ -503,7 +503,7 @@ end
 --
 -- @param    params    The suggest Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:suggest(params)
   return self:requestEndpoint("Suggest", params)
@@ -535,7 +535,7 @@ end
 --
 -- @param    params    The explain Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:explain(params)
   return self:requestEndpoint("Explain", params)
@@ -566,7 +566,7 @@ end
 --
 -- @param    params    The update Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:update(params)
   return self:requestEndpoint("Update", params)
@@ -585,7 +585,7 @@ end
 --
 -- @param    params    The fieldStats Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:fieldStats(params)
   return self:requestEndpoint("FieldStats", params)
