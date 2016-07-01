@@ -38,7 +38,6 @@ build = {
     ["elasticsearch.selector.StickyRoundRobinSelector"] = "src/elasticsearch/selector/StickyRoundRobinSelector.lua",
     ["elasticsearch.selector.RandomSelector"] = "src/elasticsearch/selector/RandomSelector.lua",
 
-
     ["elasticsearch.connectionpool.ConnectionPool"] = "src/elasticsearch/connectionpool/ConnectionPool.lua",
     ["elasticsearch.connectionpool.StaticConnectionPool"] = "src/elasticsearch/connectionpool/StaticConnectionPool.lua",
     ["elasticsearch.connectionpool.SniffConnectionPool"] = "src/elasticsearch/connectionpool/SniffConnectionPool.lua",
@@ -85,6 +84,7 @@ build = {
     ["elasticsearch.endpoints.Indices.Open"] = "src/elasticsearch/endpoints/Indices/Open.lua",
     ["elasticsearch.endpoints.Indices.Close"] = "src/elasticsearch/endpoints/Indices/Close.lua",
     ["elasticsearch.endpoints.Indices.Analyze"] = "src/elasticsearch/endpoints/Indices/Analyze.lua",
+    ["elasticsearch.endpoints.Indices.Refresh"] = "src/elasticsearch/endpoints/Indices/Refresh.lua",
     ["elasticsearch.endpoints.Indices.Status"] = "src/elasticsearch/endpoints/Indices/Status.lua",
     ["elasticsearch.endpoints.Indices.Seal"] = "src/elasticsearch/endpoints/Indices/Seal.lua"
   },
