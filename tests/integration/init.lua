@@ -1,5 +1,5 @@
 util = require "lib.util"
-dataset = require "integration.dataset.dataset"
+dataset = require "dataset.dataset"
 operations = require "integration.operations"
 
 -- Integration tests

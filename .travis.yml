@@ -29,7 +29,7 @@ before_script:
 
 script:
   - cd tests
-  - ./integration/dataset/download-dataset.sh
+  - ./dataset/download-dataset.sh
   - lua -lluacov run-tests.lua
 
 after_success:  
