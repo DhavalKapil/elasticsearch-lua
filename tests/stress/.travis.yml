@@ -18,8 +18,6 @@ before_install:
   - .travis/install_es.sh
   - source .travis/setenv_lua.sh
   - luarocks install lunitx
-  - luarocks install luacov
-  - luarocks install luacov-coveralls
 
 install:
   - luarocks make elasticsearch-scm-0.rockspec
@@ -30,13 +28,10 @@ before_script:
 script:
   - cd tests
   - ./dataset/download-dataset.sh
-  - lua -lluacov run-tests.lua
+  - lua run-stress-test.lua
 
-after_success:  
-  - mv luacov.stats.out ../
-  - cd ../
-  - luacov-coveralls -c tests/.luacov
-  - tests/run-stress-test.sh
+after_script:
+  - git push https://DhavalKapil:$GITHUB_API_KEY@github.com/DhavalKapil/elasticsearch-lua --delete stress-test
 
 notifications:
   email:
