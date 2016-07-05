@@ -4,9 +4,9 @@ local dataset = require "dataset.dataset"
 local _ENV = lunit.TEST_CASE "tests.stress.test"
 
 -- The number of simultaneous clients
-local CLIENTS_COUNT = 30
+local CLIENTS_COUNT = 10
 -- The number of times to iterate and get
-local N = 5
+local N = 3
 
 local operationsList = {}
 
