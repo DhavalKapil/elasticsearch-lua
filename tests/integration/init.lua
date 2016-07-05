@@ -1,6 +1,6 @@
 util = require "lib.util"
+operations = require "lib.operations"
 dataset = require "dataset.dataset"
-operations = require "integration.operations"
 
 -- Integration tests
 require "integration.BasicTest"
