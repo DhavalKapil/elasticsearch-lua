@@ -1,20 +1,32 @@
-local elasticsearch = require "elasticsearch"
 local dataset = require "dataset.dataset"
-
-local client = elasticsearch.client()
 
 -- Setting up environment
 local _ENV = lunit.TEST_CASE "tests.stress.test"
 
-function test()
-  local res, status = client:index{
-    index = "my_index",
-    type = "my_type",
-    id = "my_id",
-    body = dataset[1]
-  }
+-- The number of simultaneous clients
+local CLIENTS_COUNT = 30
+-- The number of times to iterate and get
+local N = 5
 
-  assert_not_nil(res)
-  assert_true(res.created)
-  assert_true(status == 200 or status == 201)
+local operationsList = {}
+
+function setup()
+  for i = 1, CLIENTS_COUNT do
+    local operations = dofile "lib/operations.lua"
+    table.insert(operationsList, operations)
+  end
+  operationsList[1].bulkDeleteExistingDocuments(dataset)
+end
+
+-- Tests repeated index, get, delete
+function test()
+  for i = 1, N do
+    print("Iteration no: " .. i)
+    for _, operations in ipairs(operationsList) do
+      operations.index(dataset)
+      operations.getExistingDocuments(dataset)
+      operations.deleteExistingDocuments(dataset)
+      operations.getNonExistingDocuments(dataset)
+    end
+  end
 end

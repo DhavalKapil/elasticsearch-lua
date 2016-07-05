@@ -2,6 +2,7 @@
 
 -- Importing modules
 local elasticsearch = require "elasticsearch"
+local util = require "lib.util"
 
 -- Setting up environment
 local _ENV = lunit.TEST_CASE "tests.integration.operations"
