@@ -27,6 +27,7 @@ function test()
       operations.getExistingDocuments(dataset)
       operations.deleteExistingDocuments(dataset)
       operations.getNonExistingDocuments(dataset)
+      os.execute("sleep 1")
     end
   end
 end
