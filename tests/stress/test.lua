@@ -4,9 +4,9 @@ local dataset = require "dataset.dataset"
 local _ENV = lunit.TEST_CASE "tests.stress.test"
 
 -- The number of simultaneous clients
-local CLIENTS_COUNT = 10
+local CLIENTS_COUNT = 5
 -- The number of times to iterate and get
-local N = 3
+local N = 10
 
 local operationsList = {}
 
@@ -23,11 +23,12 @@ function test()
   for i = 1, N do
     print("Iteration no: " .. i)
     for _, operations in ipairs(operationsList) do
-      operations.index(dataset)
+      operations.bulkIndex(dataset)
+      os.execute("sleep 2")
       operations.getExistingDocuments(dataset)
-      operations.deleteExistingDocuments(dataset)
+      operations.bulkDeleteExistingDocuments(dataset)
+      os.execute("sleep 2")
       operations.getNonExistingDocuments(dataset)
-      os.execute("sleep 1")
     end
   end
 end
