@@ -14,8 +14,8 @@ local Delete = Endpoint:new()
 
 -- The parameters that are allowed to be used in params
 Delete.allowedParams = {
-  "timeout",
-  "master_timeout"
+  ["timeout"] = true,
+  ["master_timeout"] = true
 }
 
 -------------------------------------------------------------------------------

@@ -26,7 +26,7 @@ end
 function setup()
   e = Endpoint:new()
   e.allowedParams = {
-    "allowed_param"
+    ["allowed_param"] = true
   }
 end
 

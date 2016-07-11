@@ -14,21 +14,21 @@ local Explain = Endpoint:new()
 
 -- The parameters that are allowed to be used in params
 Explain.allowedParams = {
-  "analyze_wildcard",
-  "analyzer",
-  "default_operator",
-  "df",
-  "fields",
-  "lenient",
-  "lowercase_expanded_terms",
-  "parent",
-  "preference",
-  "q",
-  "routing",
-  "source",
-  "_source",
-  "_source_exclude",
-  "_source_include",
+  ["analyze_wildcard"] = true,
+  ["analyzer"] = true,
+  ["default_operator"] = true,
+  ["df"] = true,
+  ["fields"] = true,
+  ["lenient"] = true,
+  ["lowercase_expanded_terms"] = true,
+  ["parent"] = true,
+  ["preference"] = true,
+  ["q"] = true,
+  ["routing"] = true,
+  ["source"] = true,
+  ["_source"] = true,
+  ["_source_exclude"] = true,
+  ["_source_include"] = true,
 }
 
 -------------------------------------------------------------------------------

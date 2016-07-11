@@ -26,7 +26,7 @@ end
 -- setParamsTest
 function setParamsTest()
   endpoint.allowedParams = {
-    "allowed_param"
+    ["allowed_param"] = true
   }
 
   local err = endpoint:setParams{

@@ -14,13 +14,13 @@ local Stats = NodesEndpoint:new()
 
 -- The parameters that are allowed to be used in params
 Stats.allowedParams = {
-  "completion_fields",
-  "fielddata_fields",
-  "fields",
-  "groups",
-  "human",
-  "level",
-  "types"
+  ["completion_fields"] = true,
+  ["fielddata_fields"] = true,
+  ["fields"] = true,
+  ["groups"] = true,
+  ["human"] = true,
+  ["level"] = true,
+  ["types"] = true
 }
 
 -------------------------------------------------------------------------------

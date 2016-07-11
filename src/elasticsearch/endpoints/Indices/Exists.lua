@@ -14,10 +14,10 @@ local Exists = Endpoint:new()
 
 -- The parameters that are allowed to be used in params
 Exists.allowedParams = {
-  "ignore_unavailable",
-  "allow_no_indices",
-  "expand_wildcards",
-  "local"
+  ["ignore_unavailable"] = true,
+  ["allow_no_indices"] = true,
+  ["expand_wildcards"] = true,
+  ["local"] = true
 }
 
 -------------------------------------------------------------------------------

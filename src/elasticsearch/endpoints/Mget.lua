@@ -14,13 +14,13 @@ local MGet = Endpoint:new()
 
 -- The parameters that are allowed to be used in params
 MGet.allowedParams = {
-  "fields",
-  "preference",
-  "realtime",
-  "refresh",
-  "_source",
-  "_source_exclude",
-  "_source_include",
+  ["fields"] = true,
+  ["preference"] = true,
+  ["realtime"] = true,
+  ["refresh"] = true,
+  ["_source"] = true,
+  ["_source_exclude"] = true,
+  ["_source_include"] = true,
 }
 
 -------------------------------------------------------------------------------

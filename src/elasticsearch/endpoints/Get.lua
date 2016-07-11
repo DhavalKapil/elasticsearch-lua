@@ -14,17 +14,17 @@ local Get = Endpoint:new()
 
 -- The parameters that are allowed to be used in params
 Get.allowedParams = {
-  "fields",
-  "parent",
-  "preference",
-  "realtime",
-  "refresh",
-  "routing",
-  "_source",
-  "_source_exclude",
-  "_source_include",
-  "version",
-  "version_type"
+  ["fields"] = true,
+  ["parent"] = true,
+  ["preference"] = true,
+  ["realtime"] = true,
+  ["refresh"] = true,
+  ["routing"] = true,
+  ["_source"] = true,
+  ["_source_exclude"] = true,
+  ["_source_include"] = true,
+  ["version"] = true,
+  ["version_type"] = true
 }
 
 -- Whether only existence needs to be checked

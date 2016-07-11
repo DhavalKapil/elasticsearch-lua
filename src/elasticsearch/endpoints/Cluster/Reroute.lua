@@ -14,12 +14,12 @@ local Reroute = Endpoint:new()
 
 -- The parameters that are allowed to be used in params
 Reroute.allowedParams = {
-  "dry_run",
-  "filter_metadata",
-  "master_timeout",
-  "timeout",
-  "explain",
-  "metric"
+  ["dry_run"] = true,
+  ["filter_metadata"] = true,
+  ["master_timeout"] = true,
+  ["timeout"] = true,
+  ["explain"] = true,
+  ["metric"] = true
 }
 
 -------------------------------------------------------------------------------

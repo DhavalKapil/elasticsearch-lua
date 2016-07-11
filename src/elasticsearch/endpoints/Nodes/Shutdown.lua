@@ -14,8 +14,8 @@ local Shutdown = NodesEndpoint:new()
 
 -- The parameters that are allowed to be used in params
 Shutdown.allowedParams = {
-  "delay",
-  "exit"
+  ["delay"] = true,
+  ["exit"] = true
 }
 
 -------------------------------------------------------------------------------

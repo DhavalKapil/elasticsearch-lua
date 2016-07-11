@@ -14,10 +14,10 @@ local HotThreads = NodesEndpoint:new()
 
 -- The parameters that are allowed to be used in params
 HotThreads.allowedParams = {
-  "interval",
-  "snapshots",
-  "threads",
-  "type"
+  ["interval"] = true,
+  ["snapshots"] = true,
+  ["threads"] = true,
+  ["type"] = true
 }
 
 -------------------------------------------------------------------------------

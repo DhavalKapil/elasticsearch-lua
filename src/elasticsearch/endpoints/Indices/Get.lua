@@ -14,11 +14,11 @@ local Get = Endpoint:new()
 
 -- The parameters that are allowed to be used in params
 Get.allowedParams = {
-  "local",
-  "ignore_unavailable",
-  "allow_no_indices",
-  "expand_wildcards",
-  "human"
+  ["local"] = true,
+  ["ignore_unavailable"] = true,
+  ["allow_no_indices"] = true,
+  ["expand_wildcards"] = true,
+  ["human"] = true
 }
 
 -------------------------------------------------------------------------------
@@ -35,19 +35,10 @@ function Get:setParams(params)
     elseif i == "feature" then
       self.feature = v
     else
-      -- Checking whether i is in allowed parameters or not
-      -- Current algorithm is n*m, but n and m are very small
-      local flag = 0;
-      for _, allowedParam in pairs(self.allowedParams) do
-        if allowedParam == i then
-          flag = 1;
-          break;
-        end
+      local err = self:setAllowedParam(i, v)
+      if err ~= nil then
+        return err
       end
-      if flag == 0 then
-        return i .. " is not an allowed parameter"
-      end
-      self.params[i] = v
     end
   end
 end

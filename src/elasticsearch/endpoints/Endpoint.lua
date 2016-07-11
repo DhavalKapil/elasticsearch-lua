@@ -47,6 +47,22 @@ function Endpoint:setBody(body)
 end
 
 -------------------------------------------------------------------------------
+-- Function used to set the allowed param to be sent as GET parameters
+--
+-- @param   param   The param provided by the user
+-- @param   value   The value of the parameter
+--
+-- @return  string  A string if an error is found otherwise nil
+-------------------------------------------------------------------------------
+function Endpoint:setAllowedParam(param, value)
+  -- Checking whether i is in allowed parameters or not
+  if self.allowedParams[param] ~= true then
+    return param .. " is not an allowed parameter"
+  end
+  self.params[param] = value
+end
+
+-------------------------------------------------------------------------------
 -- Function used to set the params to be sent as GET parameters
 --
 -- @param   params  The params provided by the user
@@ -71,19 +87,10 @@ function Endpoint:setParams(params)
     elseif i == "body" then
       self:setBody(v)
     else
-      -- Checking whether i is in allowed parameters or not
-      -- Current algorithm is n*m, but n and m are very small
-      local flag = 0;
-      for _, allowedParam in pairs(self.allowedParams) do
-        if allowedParam == i then
-          flag = 1;
-          break;
-        end
+      local err = self:setAllowedParam(i, v)
+      if err ~= nil then
+        return err
       end
-      if flag == 0 then
-        return i .. " is not an allowed parameter"
-      end
-      self.params[i] = v
     end
   end
 end

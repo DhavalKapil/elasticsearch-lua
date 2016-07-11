@@ -17,8 +17,8 @@ Stats.nodeId = nil
 
 -- The parameters that are allowed to be used in params
 Stats.allowedParams = {
-  "flat_settings",
-  "human"
+  ["flat_settings"] = true,
+  ["human"] = true
 }
 
 -------------------------------------------------------------------------------
@@ -39,19 +39,10 @@ function Stats:setParams(params)
     elseif i == "body" then
       self:setBody(v)
     else
-      -- Checking whether i is in allowed parameters or not
-      -- Current algorithm is n*m, but n and m are very small
-      local flag = 0;
-      for _, allowedParam in pairs(self.allowedParams) do
-        if allowedParam == i then
-          flag = 1;
-          break;
-        end
+      local err = self:setAllowedParam(i, v)
+      if err ~= nil then
+        return err
       end
-      if flag == 0 then
-        return i .. " is not an allowed parameter"
-      end
-      self.params[i] = v
     end
   end
 end

@@ -14,14 +14,14 @@ local Delete = Endpoint:new()
 
 -- The parameters that are allowed to be used in params
 Delete.allowedParams = {
-  "consistency",
-  "parent",
-  "refresh",
-  "replication",
-  "routing",
-  "timeout",
-  "version",
-  "version_type",
+  ["consistency"] = true,
+  ["parent"] = true,
+  ["refresh"] = true,
+  ["replication"] = true,
+  ["routing"] = true,
+  ["timeout"] = true,
+  ["version"] = true,
+  ["version_type"] = true,
 }
 
 -------------------------------------------------------------------------------

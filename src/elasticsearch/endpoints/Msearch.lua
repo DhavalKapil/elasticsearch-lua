@@ -17,7 +17,7 @@ MSearch.bulkBody = true
 
 -- The parameters that are allowed to be used in params
 MSearch.allowedParams = {
-  "search_type"
+  ["search_type"] = true
 }
 
 -------------------------------------------------------------------------------

@@ -15,8 +15,8 @@ local Create = Endpoint:new()
 
 -- The parameters that are allowed to be used in params
 Create.allowedParams = {
-  "timeout",
-  "master_timeout"
+  ["timeout"] = true,
+  ["master_timeout"] = true
 }
 
 -- Whether mappings is present in body or not
