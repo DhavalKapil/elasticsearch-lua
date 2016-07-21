@@ -1,3 +1,5 @@
+.. _connection-pool:
+
 Connection Pool
 ===============
 
