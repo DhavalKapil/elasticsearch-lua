@@ -145,7 +145,7 @@ Searching Documents
 For searching documents, you can either perform a URI based search(by passing
 a **q** parameter) or a request body search(by passing the search DSL in
 **body** parameter). Searches can be restricted to 'index', 'type', or even
-both by optionally passing **index** and **type** parameters. A sample request
+both, by optionally passing **index** and **type** parameters. A sample request
 body search:
 
 .. code-block:: lua
