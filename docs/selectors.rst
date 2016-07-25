@@ -5,7 +5,7 @@ Selectors
 
 The selector is an internal structure used in the client. Given an array of
 connections, it chooses a single connection. Some selectors don't even worry
-much about the internals of the connection. There are some in-built structures
+much about the internals of the connection. There are some in-built selectors
 that you can use or you can even write and use your own custom selector.
 
 .. note:: A selector is called every time a request to the Elasticsearch
@@ -84,7 +84,7 @@ implement the `selectNext` function.
   -- @param   connections   A table of connections
   -- @return  Connection    The connection selected
   -----------------------------------------------------------------------------
-  function CustomSelector.selectNext(connections)
+  function CustomSelector:selectNext(connections)
     local connection = -- Select a connection
     return connection
   end
