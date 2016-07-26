@@ -30,4 +30,4 @@ The client is extensible and developers can attach their own plug-ins.
    namespaces
    selectors
    connection_pool
-   api_documentation
+   API Documentation <https://dhavalkapil.com/elasticsearch-lua/docs>
