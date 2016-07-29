@@ -8,16 +8,16 @@ ways to search.
 URI Search
 ----------
 
-This kinds of search uses a query string, which internally translates to a URI
-Search. Not all search options are exposed while using this mode. However,
-it can be used for quick and handy searches. The optional **index** and
-**type** are passed along with **q**, the search query.
+This kind of search uses a query string, which internally translates to a URI
+Search. Only a limited number of search options are available in this kind of
+search. However, it can be used for quick and handy searches. The optional
+**index** and **type** are passed along with **q**, the search query.
 
 .. code-block:: lua
 
   local res, status = client:search{
-    index = "my_index",
-    type = "my_type",
+    index = "my_index",           -- Optional
+    type = "my_type",             -- Optional
     q = "my_key:my_value"
   }
 
@@ -47,7 +47,7 @@ of searches are possible using mode. Searches can be restricted to 'index',
   }
 
 The client allows all kinds of searches supported by Elasticsearch. Refer to
-the official documentation of Elasticsearch for details.
+the official `documentation <https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-body.html>`_ of Elasticsearch for details.
 
 Response
 --------
@@ -55,7 +55,7 @@ Response
 The JSON response returned from Elasticsearch is parsed to a Lua table and
 returned directly. It consists of some metadata(**took**, **timed_out**, etc.)
 and a **hits** table. **hits.total** contains the total number of matches.
-**hits.hits** is a lua array, each entry represents one matching document.
+**hits.hits** is a lua array and each entry represents one matching document.
 
 .. code-block:: lua
 
@@ -87,7 +87,7 @@ and a **hits** table. **hits.total** contains the total number of matches.
 Scan/Scroll Search
 ------------------
 
-Elasticsearch provides a scan and scroll search functionality for retrieving
+Elasticsearch provides a scan and scroll search functionality for retrieving a
 large number of documents efficiently, without paying the penalty of deep
 pagination. It works by first executing a 'scan' search. This initiates a
 'scan window' which will remain open for the duration of the scan. This
@@ -151,5 +151,8 @@ repeatedly till no more results are found. The client exposes a separate
     scroll_id = res["_scroll_id"]
   end
 
-.. note:: Sometimes, a new **scroll_id** is generated. Always remember to
+.. note:: On every request, a new **scroll_id** is generated. Always remember to
           update it.
+
+.. note:: The behavior has changed a lot in Elasticsearch 2.1, we don't have
+          *search_type* any more.

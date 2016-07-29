@@ -100,5 +100,5 @@ while creating a client:
   }
 
 .. note:: A string is passed in **connectionPool** when setting an in-built
-          Connection Pool. Otherwise an object is passed while setting a custom
-          Connection Pool.
+          Connection Pool. Otherwise, an object is passed while setting a
+          custom Connection Pool.

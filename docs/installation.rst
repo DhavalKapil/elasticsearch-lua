@@ -27,8 +27,8 @@ file::
 Directly from source
 --------------------
 
-`elasticsearch-lua`_ can also be installed directly from source. However this
-is not recommended.
+`elasticsearch-lua`_ can also be installed directly from the source. However
+this is not recommended.
 
 * Clone the repository::
     

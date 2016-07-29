@@ -24,7 +24,7 @@ three of them:
   nearly even load across each node in the cluster.
 
 * **StickyRoundRobinSelector**: This selector will always return('stick') the same
-  connection each time, unless a request fails. In that case it will move on to
+  connection each time, unless a request fails. In that case, it will move on to
   the next connection in a round robin fashion. This case is ideal for
   persistent connections where a considerable time is spent in opening and
   closing connections.
@@ -101,4 +101,4 @@ creating a client:
   }
 
 .. note:: A string is passed in **selector** when setting an in-built selector.
-          Otherwise an object is passed while setting a custom selector.
+          Otherwise, an object is passed while setting a custom selector.

@@ -38,13 +38,12 @@ alongside **index**, **type**.
     }
   }
 
-Refer to the Elasticsearch documentation for a complete list of allowed
-parameters.
+Refer to the Elasticsearch `documentation <https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html>`_ for a complete list of allowed parameters.
 
 Indexing Bulk Documents
 -----------------------
 
-Elasticsearch also supports bulk indexing of documents(indexing more than one
+Elasticsearch also supports bulk indexing of documents (indexing more than one
 document in one HTTP request). It is advised to use the Bulk API if you have
 to index many documents together. The client accepts an array of tables. You
 have to specify a pair of tables for every document. The first represents
@@ -70,6 +69,37 @@ basically the array consists of action, body, action, body, etc. tables.
       {
         index = {
           ["_index"] = "my_index2",
+          ["_type"] = "my_type2"
+        }
+      },
+      -- Second body
+      {
+        my_key2 = "my_value2",
+      }
+    }
+  }
+
+You can also specify a common **index** or a **type** separately that would be
+used as default in every action.
+
+.. code-block:: lua
+
+  local res, status = client:bulk{
+    index = "my_index",
+    body = {
+      -- First action
+      {
+        index = {
+          ["_type"] = "my_type1"
+        }
+      },
+      -- First body
+      {
+        my_key1 = "my_value1",
+      },
+      -- Second action
+      {
+        index = {
           ["_type"] = "my_type2"
         }
       },

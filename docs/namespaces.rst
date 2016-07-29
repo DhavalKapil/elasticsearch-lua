@@ -14,7 +14,7 @@ The client exposes administrative functionalities through 'namespaces'.
 |            | settings, stats, etc.                                |
 +------------+------------------------------------------------------+
 
-These namespaces are accessibly as `client.indices`, `client.nodes` and
+These namespaces are accessible as `client.indices`, `client.nodes` and
 `client.cluster`. Sample code for using the namespaces:
 
 .. code-block:: lua

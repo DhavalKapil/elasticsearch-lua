@@ -1,15 +1,14 @@
 Client Configuration
 ====================
 
-`elasticsearch-lua`_ was designed with the aim to allow users to configure
-almost all of the parameters. The standard way of creating and configuring
-the client is:
+`elasticsearch-lua`_ was designed to allow users to configure almost all of the
+parameters. The standard way of creating and configuring the client is:
 
 .. code-block:: lua
 
   local client = elasticsearch.client{
     hosts = {
-    -- array of client hosts
+    -- array of elasticsearch hosts
       {
         protocol = "http",
         host = "localhost",
@@ -24,8 +23,8 @@ the client is:
   }
 
 Every configuration passed while creating a client is *optional*. Default
-settings are used for configurations that are not provided by the user. Each of
-these is discussed in detail below.
+settings are used for configurations that are not provided by the user, as
+detailed below.
 
 Host Configuration
 ------------------
@@ -35,7 +34,7 @@ be part of a cluster. Hosts are specified by using the key **hosts**. It
 consists of an array of hosts, wherein each host has 3 parameters:
 
 * **protocol** : The underlying protocol to be used while communicating with the
-  host. Defaults to '**http**'.
+  host. Defaults to '**http**'. (Presently, the client only supports **http**)
 
 * **host**: The domain name or the IP address at which the host is running.
   Defaults to '**localhost**'.
@@ -53,7 +52,7 @@ server. Again, these parameters are optional and have default values.
 +----------------+------------------------------------------------------+----------------------+
 |   Parameter    |                       Description                    |       Default        |
 +================+======================================================+======================+
-| pingTimeout    | The timeout(in seconds) for any ping or sniff HTTP   |          1           |
+| pingTimeout    | The timeout (in seconds) for any ping or sniff HTTP  |          1           |
 |                |                                                      |                      |
 |                | request made by the client to the elasticsearch      |                      |
 |                |                                                      |                      |
