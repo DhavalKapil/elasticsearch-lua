@@ -14,14 +14,21 @@ local Count = Endpoint:new()
 
 -- The parameters that are allowed to be used in params
 Count.allowedParams = {
-  ["q"] = true,
   ["ignore_unavailable"] = true,
   ["allow_no_indices"] = true,
   ["expand_wildcards"] = true,
   ["min_score"] = true,
+  ["source"] = true,
   ["preference"] = true,
   ["routing"] = true,
-  ["source"] = true,
+  ["q"] = true,
+  ["df"] = true,
+  ["default_operator"] = true,
+  ["analyzer"] = true,
+  ["lowercase_expanded_terms"] = true,
+  ["analyze_wildcard"] = true,
+  ["lenient"] = true,
+  ["lowercase_expanded_terms"] = true,
 }
 
 -------------------------------------------------------------------------------
