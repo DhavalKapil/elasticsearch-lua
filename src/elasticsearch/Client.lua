@@ -246,22 +246,64 @@ end
 -- Function to get the count
 --
 -- @usage
--- params["index"]              = (list) A comma-separated list of indices to restrict the results
---       ["type"]               = (list) A comma-separated list of types to restrict the results
---       ["min_score"]          = (number) Include only documents with a specific '_score' value in the result
---       ["preference"]         = (string) Specify the node or shard the operation should be performed on (default: random)
---       ["routing"]            = (string) Specific routing value
---       ["source"]             = (string) The URL-encoded query definition (instead of using the request body)
---       ["body"]               = (array) A query to restrict the results (optional)
---       ["ignore_unavailable"] = (bool) Whether specified concrete indices should be ignored when unavailable (missing or closed)
---       ["allow_no_indices"]   = (bool) Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes '_all' string or when no indices have been specified)
---       ["expand_wildcards"]   = (enum) Whether to expand wildcard expression to concrete indices that are open, closed or both.
+-- params["index"]                    = (list) A comma-separated list of indices to restrict the results
+--       ["type"]                     = (list) A comma-separated list of types to restrict the results
+--       ["ignore_unavailable"]       = (boolean) Whether specified concrete indices should be ignored when
+--       unavailable (missing or closed)
+--       ["allow_no_indices"]         = (boolean) Whether to ignore if a wildcard indices expression resolves into
+--       no concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["expand_wildcards"]         = (enum) Whether to expand wildcard expression to concrete indices that are
+--       ["min_score"]                = (number) Include only documents with a specific '_score' value in the
+--       result
+--       ["preference"]               = (string) Specify the node or shard the operation should be performed on
+--       ["routing"]                  = (string) Specific routing value
+--       ["source"]                   = (string) The URL-encoded query definition (instead of using the request body)
+--       ["q"]                        = (string) Query in the Lucene query string syntax
+--       ["analyzer"]                 = (string) The analyzer to use for the query string
+--       ["analyze_wildcard"]         = (boolean) Specify whether wildcard and prefix queries should be analyzed
+--       ["default_operator"]         = (enum) The default operator for query string query (AND or OR) (AND,OR)
+--       ["df"]                       = (string) The field to use as default where no field prefix is given in the
+--       query string
+--       ["lenient"]                  = (boolean) Specify whether format-based query failures (such as providing
+--       text to a numeric field) should be ignored
+--       ["lowercase_expanded_terms"] = (boolean) Specify whether query terms should be lowercased
+--       ["body"]                     = A query to restrict the results specified with the Query DSL (optional)
 --
 -- @param    params    The count Parameters
 --
 -- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:count(params)
+  return self:requestEndpoint("Count", params)
+end
+
+-------------------------------------------------------------------------------
+-- Count Percolator
+--
+-- @usage
+-- params["index"]              = (string) The index of the document being count percolated. (Required)
+--       ["type"]               = (string) The type of the document being count percolated. (Required)
+--       ["id"]                 = (string) Substitute the document in the request body with a document that is
+--       known by the specified id. On top of the id, the index and type parameter will be used to retrieve the document
+--       from within the cluster. (Required)
+--       ["routing"]            = (list) A comma-separated list of specific routing values
+--       ["preference"]         = (string) Specify the node or shard the operation should be performed on
+--       ["ignore_unavailable"] = (boolean) Whether specified concrete indices should be ignored when unavailable
+--       (missing or closed)
+--       ["allow_no_indices"]   = (boolean) Whether to ignore if a wildcard indices expression resolves into no
+--       concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["expand_wildcards"]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+--       ["percolate_index"]    = (string) The index to count percolate the document into. Defaults to index.
+--       ["percolate_type"]     = (string) The type to count percolate document into. Defaults to type.
+--       ["version"]            = (number) Explicit version number for concurrency control
+--       ["version_type"]       = (enum) Specific version type (internal,external,external_gte,force)
+--       ["body"]               = The count percolator request definition using the percolate DSL
+--
+-- @param    params    The countPercolate Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:countPercolate(params)
   return self:requestEndpoint("Count", params)
 end
 

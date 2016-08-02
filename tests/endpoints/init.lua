@@ -3,6 +3,7 @@ require "endpoints.EndpointTest"
 
 require "endpoints.BulkTest"
 require "endpoints.CountTest"
+require "endpoints.CountPercolateTest"
 require "endpoints.DeleteTest"
 require "endpoints.ExplainTest"
 require "endpoints.FieldStatsTest"
