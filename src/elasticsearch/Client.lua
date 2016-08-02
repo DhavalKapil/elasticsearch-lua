@@ -200,9 +200,7 @@ end
 --       ["consistency"]  = (enum) Explicit write consistency setting for the operation
 --       ["op_type"]      = (enum) Explicit operation type
 --       ["parent"]       = (string) ID of the parent document
---       ["percolate"]    = (string) Percolator queries to execute while indexing the document
 --       ["refresh"]      = (boolean) Refresh the index after performing the operation
---       ["replication"]  = (enum) Specific replication type
 --       ["routing"]      = (string) Specific routing value
 --       ["timeout"]      = (time) Explicit operation timeout
 --       ["timestamp"]    = (time) Explicit timestamp for the document
