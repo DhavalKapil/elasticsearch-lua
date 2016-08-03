@@ -18,9 +18,10 @@ MGet.allowedParams = {
   ["preference"] = true,
   ["realtime"] = true,
   ["refresh"] = true,
+  ["routing"] = true,
   ["_source"] = true,
   ["_source_exclude"] = true,
-  ["_source_include"] = true,
+  ["_source_include"] = true
 }
 
 -------------------------------------------------------------------------------
