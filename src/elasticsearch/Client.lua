@@ -327,6 +327,26 @@ function Client:countPercolate(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to implement mpercolate
+--
+-- params["index"]              = (string) The index of the document being count percolated to use as default
+--       ["type"]               = (string) The type of the document being percolated to use as default.
+--       ["ignore_unavailable"] = (boolean) Whether specified concrete indices should be ignored when unavailable
+--       (missing or closed)
+--       ["allow_no_indices"]   = (boolean) Whether to ignore if a wildcard indices expression resolves into no
+--       concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["expand_wildcards"]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+--       ["body"]               = The percolate request definitions (header & body pair), separated by newlines
+--
+-- @param    params    The mpercolate Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:mpercolate(params)
+  return self:requestEndpoint("Mpercolate", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to search a particular document
 --
 -- @usage

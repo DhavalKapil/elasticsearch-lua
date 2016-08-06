@@ -62,6 +62,7 @@ build = {
     ["elasticsearch.endpoints.FieldStats"] = "src/elasticsearch/endpoints/FieldStats.lua",
     ["elasticsearch.endpoints.Get"] = "src/elasticsearch/endpoints/Get.lua",
     ["elasticsearch.endpoints.Mget"] = "src/elasticsearch/endpoints/Mget.lua",
+    ["elasticsearch.endpoints.Mpercolate"] = "src/elasticsearch/endpoints/Mpercolate.lua",
     ["elasticsearch.endpoints.Endpoint"] = "src/elasticsearch/endpoints/Endpoint.lua",
 
     ["elasticsearch.endpoints.Nodes.NodesEndpoint"] = "src/elasticsearch/endpoints/Nodes/NodesEndpoint.lua",
