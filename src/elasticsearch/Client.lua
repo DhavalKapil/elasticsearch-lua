@@ -347,6 +347,41 @@ function Client:mpercolate(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to implement mtermvectors
+--
+-- params["index"]            = (string) The index in which the document resides.
+--       ["type"]             = (string) The type of the document.
+--       ["ids"]              = (list) A comma-separated list of documents ids. You must define ids as parameter
+--       or set "ids" or "docs" in the request body
+--       ["term_statistics"]  = (boolean) Specifies if total term frequency and document frequency should be
+--       false)
+--       ["field_statistics"] = (boolean) Specifies if document count, sum of document frequencies and sum of
+--       total term frequencies should be returned. Applies to all returned documents unless otherwise specified in body
+--       ["fields"]           = (list) A comma-separated list of fields to return. Applies to all returned
+--       documents unless otherwise specified in body "params" or "docs".
+--       ["offsets"]          = (boolean) Specifies if term offsets should be returned. Applies to all returned
+--       ["positions"]        = (boolean) Specifies if term positions should be returned. Applies to all returned
+--       ["payloads"]         = (boolean) Specifies if term payloads should be returned. Applies to all returned
+--       random) .Applies to all returned documents unless otherwise specified in body "params" or "docs".
+--       ["routing"]          = (string) Specific routing value. Applies to all returned documents unless
+--       otherwise specified in body "params" or "docs".
+--       ["parent"]           = (string) Parent id of documents. Applies to all returned documents unless
+--       otherwise specified in body "params" or "docs".
+--       ["realtime"]         = (boolean) Specifies if requests are real-time as opposed to near-real-time
+--       ["version"]          = (number) Explicit version number for concurrency control
+--       ["version_type"]     = (enum) Specific version type (internal,external,external_gte,force)
+--       ["body"]             = Define ids, documents, parameters or a list of parameters per document here. You
+--       must at least provide a list of document ids. See documentation.
+--
+-- @param    params    The mtermvectors Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:mtermvectors(params)
+  return self:requestEndpoint("MTermVectors", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to search a particular document
 --
 -- @usage
