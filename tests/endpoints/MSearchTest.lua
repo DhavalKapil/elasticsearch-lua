@@ -1,11 +1,11 @@
 -- Importing modules
-local Msearch = require "elasticsearch.endpoints.Msearch"
+local MSearch = require "elasticsearch.endpoints.MSearch"
 local parser = require "elasticsearch.parser"
 local MockTransport = require "lib.MockTransport"
 local getmetatable = getmetatable
 
 -- Setting up environment
-local _ENV = lunit.TEST_CASE "tests.endpoints.MsearchTest"
+local _ENV = lunit.TEST_CASE "tests.endpoints.MSearchTest"
 
 -- Declaring local variables
 local endpoint
@@ -13,8 +13,8 @@ local mockTransport = MockTransport:new()
 
 -- Testing the constructor
 function constructorTest()
-  assert_function(Msearch.new)
-  local o = Msearch:new()
+  assert_function(MSearch.new)
+  local o = MSearch:new()
   assert_not_nil(o)
   local mt = getmetatable(o)
   assert_table(mt)
@@ -23,7 +23,7 @@ end
 
 -- The setup function
 function setup()
-  endpoint = Msearch:new{
+  endpoint = MSearch:new{
     transport = mockTransport
   }
 end

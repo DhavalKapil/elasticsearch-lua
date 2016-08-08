@@ -6,17 +6,17 @@ local Endpoint = require "elasticsearch.endpoints.Endpoint"
 -------------------------------------------------------------------------------
 -- Declaring module
 -------------------------------------------------------------------------------
-local Mpercolate = Endpoint:new()
+local MPercolate = Endpoint:new()
 
 -------------------------------------------------------------------------------
 -- Declaring Instance variables
 -------------------------------------------------------------------------------
 
--- bulk body is present for Mpercolate
-Mpercolate.bulkBody = true
+-- bulk body is present for MPercolate
+MPercolate.bulkBody = true
 
 -- The parameters that are allowed to be used in params
-Mpercolate.allowedParams = {
+MPercolate.allowedParams = {
   ["ignore_unavailable"] = true,
   ["allow_no_indices"] = true,
   ["expand_wildcards"] = true
@@ -27,7 +27,7 @@ Mpercolate.allowedParams = {
 --
 -- @return    string    The HTTP request method
 -------------------------------------------------------------------------------
-function Mpercolate:getMethod()
+function MPercolate:getMethod()
   return "POST"
 end
 
@@ -36,7 +36,7 @@ end
 --
 -- @return    string    The URI
 -------------------------------------------------------------------------------
-function Mpercolate:getUri()
+function MPercolate:getUri()
   local uri = "/_mpercolate"
   if self.index ~= nil and self.type ~= nil then
     uri = "/" .. self.index .. "/" .. self.type .. uri
@@ -49,13 +49,13 @@ function Mpercolate:getUri()
 end
 
 -------------------------------------------------------------------------------
--- Returns an instance of Mpercolate class
+-- Returns an instance of MPercolate class
 -------------------------------------------------------------------------------
-function Mpercolate:new(o)
+function MPercolate:new(o)
   o = o or {}
   setmetatable(o, self)
   self.__index = self
   return o
 end
 
-return Mpercolate
+return MPercolate

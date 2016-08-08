@@ -1,11 +1,11 @@
 -- Importing modules
-local Mpercolate = require "elasticsearch.endpoints.Mpercolate"
+local MPercolate = require "elasticsearch.endpoints.MPercolate"
 local parser = require "elasticsearch.parser"
 local MockTransport = require "lib.MockTransport"
 local getmetatable = getmetatable
 
 -- Setting up environment
-local _ENV = lunit.TEST_CASE "tests.endpoints.MpercolateTest"
+local _ENV = lunit.TEST_CASE "tests.endpoints.MPercolateTest"
 
 -- Declaring local variables
 local endpoint
@@ -13,8 +13,8 @@ local mockTransport = MockTransport:new()
 
 -- Testing the constructor
 function constructorTest()
-  assert_function(Mpercolate.new)
-  local o = Mpercolate:new()
+  assert_function(MPercolate.new)
+  local o = MPercolate:new()
   assert_not_nil(o)
   local mt = getmetatable(o)
   assert_table(mt)
@@ -23,7 +23,7 @@ end
 
 -- The setup function
 function setup()
-  endpoint = Mpercolate:new{
+  endpoint = MPercolate:new{
     transport = mockTransport
   }
 end
@@ -34,7 +34,7 @@ function requestTest()
   mockTransport.uri = "/twitter/tweet/_mpercolate"
   mockTransport.params = {}
 
-  local MpercolateBody = {
+  local MPercolateBody = {
     {
       percolate = {
         index = "twitter",
@@ -49,14 +49,14 @@ function requestTest()
   }
 
   mockTransport.body = ""
-  for _id, item in pairs(MpercolateBody) do
+  for _id, item in pairs(MPercolateBody) do
     mockTransport.body = mockTransport.body .. parser.jsonEncode(item) .. "\n"
   end
 
   endpoint:setParams{
     index = "twitter",
     type = "tweet",
-    body = MpercolateBody
+    body = MPercolateBody
   }
   local _, err = endpoint:request()
   assert_nil(err)

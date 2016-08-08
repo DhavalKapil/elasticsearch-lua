@@ -186,7 +186,7 @@ end
 -- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:mget(params)
-  return self:requestEndpoint("Mget", params)
+  return self:requestEndpoint("MGet", params)
 end
 
 
@@ -343,7 +343,7 @@ end
 -- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:mpercolate(params)
-  return self:requestEndpoint("Mpercolate", params)
+  return self:requestEndpoint("MPercolate", params)
 end
 
 -------------------------------------------------------------------------------
@@ -519,7 +519,7 @@ end
 -- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:msearch(params)
-  return self:requestEndpoint("Msearch", params)
+  return self:requestEndpoint("MSearch", params)
 end
 
 -------------------------------------------------------------------------------
