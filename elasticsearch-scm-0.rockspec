@@ -65,6 +65,7 @@ build = {
     ["elasticsearch.endpoints.MPercolate"] = "src/elasticsearch/endpoints/MPercolate.lua",
     ["elasticsearch.endpoints.MTermVectors"] = "src/elasticsearch/endpoints/MTermVectors.lua",
     ["elasticsearch.endpoints.Mlt"] = "src/elasticsearch/endpoints/Mlt.lua",
+    ["elasticsearch.endpoints.Percolate"] = "src/elasticsearch/endpoints/Percolate.lua",
     ["elasticsearch.endpoints.Endpoint"] = "src/elasticsearch/endpoints/Endpoint.lua",
 
     ["elasticsearch.endpoints.Nodes.NodesEndpoint"] = "src/elasticsearch/endpoints/Nodes/NodesEndpoint.lua",

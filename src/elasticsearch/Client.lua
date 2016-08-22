@@ -329,6 +329,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to implement mpercolate
 --
+-- @usage
 -- params["index"]              = (string) The index of the document being count percolated to use as default
 --       ["type"]               = (string) The type of the document being percolated to use as default.
 --       ["ignore_unavailable"] = (boolean) Whether specified concrete indices should be ignored when unavailable
@@ -349,6 +350,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to implement mtermvectors
 --
+-- @usage
 -- params["index"]            = (string) The index in which the document resides.
 --       ["type"]             = (string) The type of the document.
 --       ["ids"]              = (list) A comma-separated list of documents ids. You must define ids as parameter
@@ -384,6 +386,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to implement more like this query
 --
+-- @usage
 -- params["id"]                     = (string) The document ID (Required)
 --       ["index"]                  = (string) The name of the index (Required)
 --       ["type"]                   = (string) The type of the document (use '_all' to fetch the first document matching the ID across all types) (Required)
@@ -407,9 +410,46 @@ end
 --       ["search_types"]           = (list) A comma-separated list of types to perform the query against (default: the same type as the document)
 --       ["stop_words"]             = (list) A list of stop words to be ignored
 --       ["body"]                   = (array) A specific search request definition
+--
+-- @param    params    The mlt Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:mlt(params)
   return self:requestEndpoint("Mlt", params)
+end
+
+-------------------------------------------------------------------------------
+-- Function to implement percolate
+--
+-- @usage
+-- params["index"]                = (string) The index of the document being percolated. (Required)
+--       ["type"]                 = (string) The type of the document being percolated. (Required)
+--       ["id"]                   = (string) Substitute the document in the request body with a document that is
+--       known by the specified id. On top of the id, the index and type parameter will be used to retrieve the document
+--       from within the cluster. (Required)
+--       ["routing"]              = (list) A comma-separated list of specific routing values
+--       ["preference"]           = (string) Specify the node or shard the operation should be performed on
+--       ["ignore_unavailable"]   = (boolean) Whether specified concrete indices should be ignored when
+--       unavailable (missing or closed)
+--       ["allow_no_indices"]     = (boolean) Whether to ignore if a wildcard indices expression resolves into no
+--       concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["expand_wildcards"]     = (enum) Whether to expand wildcard expression to concrete indices that are
+--       ["percolate_index"]      = (string) The index to percolate the document into. Defaults to index.
+--       ["percolate_type"]       = (string) The type to percolate document into. Defaults to type.
+--       ["percolate_routing"]    = (string) The routing value to use when percolating the existing document.
+--       ["percolate_preference"] = (string) Which shard to prefer when executing the percolate request.
+--       ["percolate_format"]     = (enum) Return an array of matching query IDs instead of objects (ids)
+--       ["version"]              = (number) Explicit version number for concurrency control
+--       ["version_type"]         = (enum) Specific version type (internal,external,external_gte,force)
+--       ["body"]                 = The percolator request definition using the percolate DSL
+--
+-- @param    params    The percolate Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client.percolate(params)
+  self:requestEndpoint("Percolate", params)
 end
 
 -------------------------------------------------------------------------------
