@@ -779,6 +779,24 @@ function Client:fieldStats(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to reindex one index to another
+--
+-- params["refresh"]             = (boolean) Should the effected indexes be refreshed?
+--       ["timeout"]             = (time) Time each individual bulk request should wait for shards that are
+--       ["consistency"]         = (enum) Explicit write consistency setting for the operation (one,quorum,all)
+--       ["wait_for_completion"] = (boolean) Should the request should block until the reindex is complete.
+--       ["body"]                = The search definition using the Query DSL and the prototype for the index
+--       request.
+--
+-- @param    params    The reIndex Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:reIndex(params)
+  return self:requestEndpoint("ReIndex", params)
+end
+
+-------------------------------------------------------------------------------
 -- Initializes the Client parameters
 -------------------------------------------------------------------------------
 function Client:setClientParameters()
