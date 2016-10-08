@@ -797,6 +797,20 @@ function Client:reIndex(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to render a template
+--
+-- params["id"]   = (string) The id of the stored search template
+--       ["body"] = The search definition template and its params
+--
+-- @param    params    The renderSearchTemplate Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:renderSearchTemplate(params)
+  return self:requestEndpoint("RenderSearchTemplate", params)
+end
+
+-------------------------------------------------------------------------------
 -- Initializes the Client parameters
 -------------------------------------------------------------------------------
 function Client:setClientParameters()
