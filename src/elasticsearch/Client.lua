@@ -811,6 +811,34 @@ function Client:renderSearchTemplate(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to return information and statistics on terms in the fields
+--
+-- params["index"]            = (string) The index in which the document resides. (Required)
+--       ["type"]             = (string) The type of the document. (Required)
+--       ["id"]               = (string) The id of the document, when not specified a doc param should be
+--       supplied.
+--       ["term_statistics"]  = (boolean) Specifies if total term frequency and document frequency should be
+--       ["field_statistics"] = (boolean) Specifies if document count, sum of document frequencies and sum of
+--       ["dfs"]              = (boolean) Specifies if distributed frequencies should be returned instead shard
+--       ["fields"]           = (list) A comma-separated list of fields to return.
+--       random).
+--       ["routing"]          = (string) Specific routing value.
+--       ["parent"]           = (string) Parent id of documents.
+--       true).
+--       ["version"]          = (number) Explicit version number for concurrency control
+--       ["version_type"]     = (enum) Specific version type (internal,external,external_gte,force)
+--       ["body"]             = Define parameters and or supply a document to get termvectors for. See
+--       documentation.
+--
+-- @param    params    The termvectors Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:termvectors(params)
+  return self:requestEndpoint("termvectors", params)
+end
+
+-------------------------------------------------------------------------------
 -- Initializes the Client parameters
 -------------------------------------------------------------------------------
 function Client:setClientParameters()

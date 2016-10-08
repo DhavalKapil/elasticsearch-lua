@@ -26,6 +26,7 @@ require "endpoints.SearchExistsTest"
 require "endpoints.SearchShardsTest"
 require "endpoints.SearchTemplateTest"
 require "endpoints.SuggestTest"
+require "endpoints.TermVectorsTest"
 require "endpoints.UpdateTest"
 
 require "endpoints.ClusterTest.init"
