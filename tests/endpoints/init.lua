@@ -28,6 +28,7 @@ require "endpoints.SearchTemplateTest"
 require "endpoints.SuggestTest"
 require "endpoints.TermVectorsTest"
 require "endpoints.UpdateTest"
+require "endpoints.UpdateByQueryTest"
 
 require "endpoints.ClusterTest.init"
 require "endpoints.IndicesTest.init"

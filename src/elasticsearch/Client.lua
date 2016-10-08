@@ -839,6 +839,73 @@ function Client:termvectors(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to update documents in an index by specifying search query
+--
+-- params["index"]                    = (list) A comma-separated list of index names to search; use '_all' or
+--       empty string to perform the operation on all indices (Required)
+--       ["type"]                     = (list) A comma-separated list of document types to search; leave empty to
+--       perform the operation on all types
+--       ["analyzer"]                 = (string) The analyzer to use for the query string
+--       ["analyze_wildcard"]         = (boolean) Specify whether wildcard and prefix queries should be analyzed
+--       ["default_operator"]         = (enum) The default operator for query string query (AND or OR) (AND,OR)
+--       ["df"]                       = (string) The field to use as default where no field prefix is given in the
+--       query string
+--       ["explain"]                  = (boolean) Specify whether to return detailed information about score
+--       computation as part of a hit
+--       ["fields"]                   = (list) A comma-separated list of fields to return as part of a hit
+--       ["fielddata_fields"]         = (list) A comma-separated list of fields to return as the field data
+--       representation of a field for each hit
+--       ["ignore_unavailable"]       = (boolean) Whether specified concrete indices should be ignored when
+--       unavailable (missing or closed)
+--       ["allow_no_indices"]         = (boolean) Whether to ignore if a wildcard indices expression resolves into
+--       no concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["conflicts"]                = (enum) What to do when the reindex hits version conflicts? (abort,proceed)
+--       ["expand_wildcards"]         = (enum) Whether to expand wildcard expression to concrete indices that are
+--       ["lenient"]                  = (boolean) Specify whether format-based query failures (such as providing
+--       text to a numeric field) should be ignored
+--       ["lowercase_expanded_terms"] = (boolean) Specify whether query terms should be lowercased
+--       ["preference"]               = (string) Specify the node or shard the operation should be performed on
+--       ["q"]                        = (string) Query in the Lucene query string syntax
+--       ["routing"]                  = (list) A comma-separated list of specific routing values
+--       ["scroll"]                   = (duration) Specify how long a consistent view of the index should be
+--       maintained for scrolled search
+--       ["search_type"]              = (enum) Search operation type (query_then_fetch,dfs_query_then_fetch)
+--       ["search_timeout"]           = (time) Explicit timeout for each search request. Defaults to no timeout.
+--       ["sort"]                     = (list) A comma-separated list of <field>:<direction> pairs
+--       ["_source"]                  = (list) True or false to return the _source field or not, or a list of
+--       fields to return
+--       ["_source_exclude"]          = (list) A list of fields to exclude from the returned _source field
+--       ["_source_include"]          = (list) A list of fields to extract and return from the _source field
+--       ["terminate_after"]          = (number) The maximum number of documents to collect for each shard, upon
+--       reaching which the query execution will terminate early.
+--       ["stats"]                    = (list) Specific "tag" of the request for logging and statistical purposes
+--       ["suggest_field"]            = (string) Specify which field to use for suggestions
+--       ["suggest_size"]             = (number) How many suggestions to return in response
+--       ["suggest_text"]             = (text) The source text for which the suggestions should be returned
+--       ["timeout"]                  = (time) Time each individual bulk request should wait for shards that are
+--       ["track_scores"]             = (boolean) Whether to calculate and return scores even if they are not used
+--       for sorting
+--       ["version"]                  = (boolean) Specify whether to return document version as part of a hit
+--       ["version_type"]             = (boolean) Should the document increment the version number (internal) on
+--       hit or not (reindex)
+--       ["request_cache"]            = (boolean) Specify if request cache should be used for this request or not,
+--       defaults to index level setting
+--       ["refresh"]                  = (boolean) Should the effected indexes be refreshed?
+--       ["consistency"]              = (enum) Explicit write consistency setting for the operation
+--       (one,quorum,all)
+--       ["scroll_size"]              = (integer) Size on the scroll request powering the update_by_query
+--       ["wait_for_completion"]      = (boolean) Should the request should block until the reindex is complete.
+--       ["body"]                     = The search definition using the Query DSL
+--
+-- @param    params    The termvectors Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:updateByQuery(params)
+  return self:requestEndpoint("UpdateByQuery", params)
+end
+
+-------------------------------------------------------------------------------
 -- Initializes the Client parameters
 -------------------------------------------------------------------------------
 function Client:setClientParameters()
