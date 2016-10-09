@@ -30,6 +30,7 @@ require "endpoints.TermVectorsTest"
 require "endpoints.UpdateTest"
 require "endpoints.UpdateByQueryTest"
 
+require "endpoints.CatTest.init"
 require "endpoints.ClusterTest.init"
 require "endpoints.IndicesTest.init"
 require "endpoints.NodesTest.init"
