@@ -356,6 +356,27 @@ function Cat:shards(params)
 end
 
 -------------------------------------------------------------------------------
+-- Snapshots function
+--
+-- @usage
+-- params["repository"]         = (list) Name of repository from which to fetch the snapshot information (Required)
+--       ["local"]              = (bool) Return local information, do not retrieve the state from master node
+--       (default: false)
+--       ["ignore_unavailable"] = (boolean) Set to true to ignore unavailable snapshots (default: false)
+--       ["master_timeout"]     = (time) Explicit operation timeout for connection to master node
+--       ["h"]                  = (list) Comma-separated list of column names to display
+--       ["help"]               = (boolean) Return help information (default: false)
+--       ["v"]                  = (boolean) Verbose mode. Display column headers (default: false)
+--
+-- @param    params    The snapshots Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Cat:snapshots(params)
+  return self:requestEndpoint("Snapshots", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Cat class
 -------------------------------------------------------------------------------
 function Cat:new(o)
