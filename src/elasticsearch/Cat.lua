@@ -108,6 +108,23 @@ function Cat:count(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to get usage of heap memory
+--
+-- @usage
+-- params["fields"]         = (list) A comma-separated list of fields to return in the output
+--       ["bytes"]          = (enum) The unit in which to display byte values (b,k,m,g)
+--       ["local"]          = (boolean) Return local information, do not retrieve the state from master node
+--       (default: false)
+--       ["master_timeout"] = (time) Explicit operation timeout for connection to master node
+--       ["h"]              = (list) Comma-separated list of column names to display
+--       ["help"]           = (boolean) Return help information (default: false)
+--       ["v"]              = (boolean) Verbose mode. Display column headers (default: false)
+-------------------------------------------------------------------------------
+function Cat:fielddata(params)
+  return self:requestEndpoint("FieldData", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Cat class
 -------------------------------------------------------------------------------
 function Cat:new(o)
