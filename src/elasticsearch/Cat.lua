@@ -260,6 +260,24 @@ function Cat:pendingTasks(params)
   return self:requestEndpoint("PendingTasks", params)
 end
 
+-------------------------------------------------------------------------------
+-- Plugins function
+--
+-- @usage
+-- params["local"]          = (boolean) Return local information, do not retrieve the state from master node
+--       (default: false)
+--       ["master_timeout"] = (time) Explicit operation timeout for connection to master node
+--       ["h"]              = (list) Comma-separated list of column names to display
+--       ["help"]           = (boolean) Return help information (default: false)
+--       ["v"]              = (boolean) Verbose mode. Display column headers (default: false)
+--
+-- @param    params    The plugins Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Cat:plugins(params)
+  return self:requestEndpoint("Plugins", params)
+end
 
 -------------------------------------------------------------------------------
 -- Returns an instance of Cat class
