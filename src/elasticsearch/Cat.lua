@@ -214,12 +214,31 @@ end
 --       ["help"]           = (boolean) Return help information (default: false)
 --       ["v"]              = (boolean) Verbose mode. Display column headers (default: false)
 --
--- @param    params    The ndoeAttrs Parameters
+-- @param    params    The nodeAttrs Parameters
 --
 -- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Cat:nodeAttrs(params)
   return self:requestEndpoint("NodeAttrs", params)
+end
+
+-------------------------------------------------------------------------------
+-- Nodes function
+--
+-- @usage
+-- params["local"]          = (boolean) Return local information, do not retrieve the state from master node
+--       (default: false)
+--       ["master_timeout"] = (time) Explicit operation timeout for connection to master node
+--       ["h"]              = (list) Comma-separated list of column names to display
+--       ["help"]           = (boolean) Return help information (default: false)
+--       ["v"]              = (boolean) Verbose mode. Display column headers (default: false)
+--
+-- @param    params    The nodes Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Cat:nodes(params)
+  return self:requestEndpoint("Nodes", params)
 end
 
 -------------------------------------------------------------------------------
