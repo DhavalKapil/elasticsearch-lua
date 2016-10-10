@@ -280,6 +280,25 @@ function Cat:plugins(params)
 end
 
 -------------------------------------------------------------------------------
+-- Recovery function
+--
+-- @usage
+-- params["index"]          = (list) A comma-separated list of index names to limit the returned information
+--       ["bytes"]          = (enum) The unit in which to display byte values (b,k,m,g)
+--       ["master_timeout"] = (time) Explicit operation timeout for connection to master node
+--       ["h"]              = (list) Comma-separated list of column names to display
+--       ["help"]           = (boolean) Return help information (default: false)
+--       ["v"]              = (boolean) Verbose mode. Display column headers (default: false)
+--
+-- @param    params    The recovery Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Cat:recovery(params)
+  return self:requestEndpoint("Recovery", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Cat class
 -------------------------------------------------------------------------------
 function Cat:new(o)
