@@ -53,15 +53,38 @@ end
 -- @usage
 -- params["name"]           = (list) A comma-separated list of alias names to return
 --       ["local"]          = (boolean) Return local information, do not retrieve the state from master node
+--       (default: false)
 --       ["master_timeout"] = (time) Explicit operation timeout for connection to master node
 --       ["h"]              = (list) Comma-separated list of column names to display
+--       ["help"]           = (boolean) Return help information (default: false)
+--       ["v"]              = (boolean) Verbose mode. Display column headers (default: false)
 --
--- @param    params    The stats Parameters
+-- @param    params    The aliases Parameters
 --
 -- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Cat:aliases(params)
   return self:requestEndpoint("Aliases", params)
+end
+
+-------------------------------------------------------------------------------
+-- Function to provide a snapshot about number of shards
+--
+-- @usage
+-- params["node_id"]        = (list) A comma-separated list of node IDs or names to limit the returned information
+--       ["bytes"]          = (enum) The unit in which to display byte values (b,k,m,g)
+--       ["local"]          = (boolean) Return local information, do not retrieve the state from master node
+--       ["master_timeout"] = (time) Explicit operation timeout for connection to master node
+--       ["h"]              = (list) Comma-separated list of column names to display
+--       ["help"]           = (boolean) Return help information
+--       ["v"]              = (boolean) Verbose mode. Display column headers
+--
+-- @param    params    The allocation Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Cat:allocation(params)
+  return self:requestEndpoint("Allocation", params)
 end
 
 -------------------------------------------------------------------------------
