@@ -377,6 +377,26 @@ function Cat:snapshots(params)
 end
 
 -------------------------------------------------------------------------------
+-- Thread pool function
+--
+-- @usage
+-- params["local"]          = (boolean) Return local information, do not retrieve the state from master node
+--       (default: false)
+--       ["master_timeout"] = (time) Explicit operation timeout for connection to master node
+--       ["h"]              = (list) Comma-separated list of column names to display
+--       ["help"]           = (boolean) Return help information (default: false)
+--       ["v"]              = (boolean) Verbose mode. Display column headers (default: false)
+--       ["full_id"]        = (boolean) Enables displaying the complete node ids (default: false)
+--
+-- @param    params    The threadPool Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Cat:threadPool(params)
+  return self:requestEndpoint("ThreadPool", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Cat class
 -------------------------------------------------------------------------------
 function Cat:new(o)
