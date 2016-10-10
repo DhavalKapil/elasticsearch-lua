@@ -5,6 +5,7 @@ return {
       ['elasticsearch.connection.*'] = "src",
       ['elasticsearch.connectionpool.*'] = "src",
       ['elasticsearch.endpoints.*'] = "src",
+      ['elasticsearch.endpoints.Cat.*'] = "src",
       ['elasticsearch.endpoints.Cluster.*'] = "src",
       ['elasticsearch.endpoints.Indices.*'] = "src",
       ['elasticsearch.endpoints.Nodes.*'] = "src",
