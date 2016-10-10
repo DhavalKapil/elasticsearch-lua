@@ -88,6 +88,26 @@ function Cat:allocation(params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to provide quick access to document count of entire cluster, or individual indices
+--
+-- @usage
+-- params["index"]          = (list) A comma-separated list of index names to limit the returned information
+--       ["local"]          = (boolean) Return local information, do not retrieve the state from master node
+--       (default: false)
+--       ["master_timeout"] = (time) Explicit operation timeout for connection to master node
+--       ["h"]              = (list) Comma-separated list of column names to display
+--       ["help"]           = (boolean) Return help information (default: false)
+--       ["v"]              = (boolean) Verbose mode. Display column headers (default: false) 
+--
+-- @param    params    The allocation Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Cat:count(params)
+  return self:requestEndpoint("Count", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Cat class
 -------------------------------------------------------------------------------
 function Cat:new(o)
