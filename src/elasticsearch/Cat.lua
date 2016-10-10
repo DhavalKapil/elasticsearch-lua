@@ -318,6 +318,23 @@ function Cat:repositories(params)
 end
 
 -------------------------------------------------------------------------------
+-- Segments function
+--
+-- @usage
+-- params["index"] = (list) A comma-separated list of index names to limit the returned information
+--       ["h"]     = (list) Comma-separated list of column names to display
+--       ["help"]  = (boolean) Return help information (default: false)
+--       ["v"]     = (boolean) Verbose mode. Display column headers (default: false)
+--
+-- @param    params    The segments Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Cat:segments(params)
+  return self:requestEndpoint("Segments", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Cat class
 -------------------------------------------------------------------------------
 function Cat:new(o)
