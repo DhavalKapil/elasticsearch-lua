@@ -119,9 +119,33 @@ end
 --       ["h"]              = (list) Comma-separated list of column names to display
 --       ["help"]           = (boolean) Return help information (default: false)
 --       ["v"]              = (boolean) Verbose mode. Display column headers (default: false)
+--
+-- @param    params    The fielddata Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Cat:fielddata(params)
   return self:requestEndpoint("FieldData", params)
+end
+
+-------------------------------------------------------------------------------
+-- Function to get health
+--
+-- @usage
+-- params["local"]          = (boolean) Return local information, do not retrieve the state from master node
+--       (default: false)
+--       ["master_timeout"] = (time) Explicit operation timeout for connection to master node
+--       ["h"]              = (list) Comma-separated list of column names to display
+--       ["help"]           = (boolean) Return help information (default: false)
+--       ["ts"]             = (boolean) Set to false to disable timestamping (default: true)
+--       ["v"]              = (boolean) Verbose mode. Display column headers (default: false)
+--
+-- @param    params    The health Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Cat:health(params)
+  return self:requestEndpoint("Health", params)
 end
 
 -------------------------------------------------------------------------------
