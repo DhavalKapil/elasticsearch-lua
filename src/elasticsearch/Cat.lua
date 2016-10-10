@@ -149,6 +149,20 @@ function Cat:health(params)
 end
 
 -------------------------------------------------------------------------------
+-- Help function
+--
+-- @usage
+-- params["help"] = (boolean) Return help information(default: false)
+--
+-- @param    params    The help Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Cat:help(params)
+  return self:requestEndpoint("Help", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Cat class
 -------------------------------------------------------------------------------
 function Cat:new(o)
