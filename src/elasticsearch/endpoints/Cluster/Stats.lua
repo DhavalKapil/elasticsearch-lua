@@ -18,7 +18,8 @@ Stats.nodeId = nil
 -- The parameters that are allowed to be used in params
 Stats.allowedParams = {
   ["flat_settings"] = true,
-  ["human"] = true
+  ["human"] = true,
+  ["timeouts"] = true
 }
 
 -------------------------------------------------------------------------------
