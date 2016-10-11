@@ -48,6 +48,25 @@ function Indices:requestEndpoint(endpoint, params, endpointParams)
 end
 
 -------------------------------------------------------------------------------
+-- Delete Alias function
+--
+-- @usage
+-- params["index"]          = (list) A comma-separated list of index names (supports wildcards); use '_all' for
+--       all indices (Required)
+--       ["name"]           = (list) A comma-separated list of aliases to delete (supports wildcards); use '_all'
+--       to delete all aliases for the specified indices. (Required)
+--       ["timeout"]        = (time) Explicit timestamp for the document
+--       ["master_timeout"] = (time) Specify timeout for connection to master
+--
+-- @param    params    The delete alias Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:deleteAlias(params)
+  return self:requestEndpoint("DeleteAlias", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to check whether an index exists or not
 --
 -- @usage
