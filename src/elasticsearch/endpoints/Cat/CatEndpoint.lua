@@ -17,6 +17,7 @@ CatEndpoint.nodeId = nil
 CatEndpoint.index = nil
 CatEndpoint.repository = nil
 CatEndpoint.fields = nil
+CatEndpoint.body = nil
 
 -------------------------------------------------------------------------------
 -- Function used to set the params to be sent as GET parameters
@@ -33,6 +34,7 @@ function CatEndpoint:setParams(params)
   self.repository = nil
   self.fields = nil
   self.params = {}
+  self.body = nil
   for i, v in pairs(params) do
     if i == "name" then
       self.name = v
@@ -44,6 +46,8 @@ function CatEndpoint:setParams(params)
       self.repository = v
     elseif i == "fields" then
       self.fields = v
+    elseif i == "body" then
+      self:setBody(v)
     else
       local err = self:setAllowedParam(i, v)
       if err ~= nil then
