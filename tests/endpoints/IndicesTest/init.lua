@@ -1,6 +1,8 @@
 -- Requiring all endpoint related test modules
 require "endpoints.IndicesTest.DeleteAliasTest"
 require "endpoints.IndicesTest.ExistsAliasTest"
+require "endpoints.IndicesTest.GetAliasTest"
+require "endpoints.IndicesTest.PutAliasTest"
 require "endpoints.IndicesTest.AnalyzeTest"
 require "endpoints.IndicesTest.CloseTest"
 require "endpoints.IndicesTest.CreateTest"

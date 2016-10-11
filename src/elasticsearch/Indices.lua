@@ -100,6 +100,48 @@ function Indices:existsAlias(params)
 end
 
 -------------------------------------------------------------------------------
+-- Get Alias function
+--
+-- @usage
+-- params["index"]              = (list) A comma-separated list of index names to filter aliases
+--       ["name"]               = (list) A comma-separated list of alias names to return
+--       ["ignore_unavailable"] = (boolean) Whether specified concrete indices should be ignored when unavailable
+--       (missing or closed)
+--       ["allow_no_indices"]   = (boolean) Whether to ignore if a wildcard indices expression resolves into no
+--       concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["expand_wildcards"]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+--       [open,closed])
+--       ["local"]              = (boolean) Return local information, do not retrieve the state from master node
+--       (default: false)
+--
+-- @param    params    The get alias Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:getAlias(params)
+  return self:requestEndpoint("GetAlias", params)
+end
+
+-------------------------------------------------------------------------------
+-- Put Alias function
+--
+-- @usage
+-- params["index"]          = (list) A comma-separated list of index names the alias should point to (supports
+--       wildcards); use '_all' to perform the operation on all indices. (Required)
+--       ["name"]           = (string) The name of the alias to be created or updated (Required)
+--       ["timeout"]        = (time) Explicit timestamp for the document
+--       ["master_timeout"] = (time) Specify timeout for connection to master
+--       ["body"]           = The settings for the alias, such as 'routing' or 'filter'
+--
+-- @param    params    The put alias Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:putAlias(params)
+  return self:requestEndpoint("PutAlias", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to check whether an index exists or not
 --
 -- @usage
