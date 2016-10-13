@@ -295,6 +295,33 @@ function Indices:putMapping(params)
 end
 
 -------------------------------------------------------------------------------
+-- Get Settings function
+--
+-- @usage
+-- params["index"]              = (list) A comma-separated list of index names; use '_all' or empty string to
+--       perform the operation on all indices
+--       ["name"]               = (list) The name of the settings that should be included
+--       ["ignore_unavailable"] = (boolean) Whether specified concrete indices should be ignored when unavailable
+--       (missing or closed)
+--       ["allow_no_indices"]   = (boolean) Whether to ignore if a wildcard indices expression resolves into no
+--       concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["expand_wildcards"]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+--       [open,closed])
+--       ["flat_settings"]      = (boolean) Return settings in flat format (default: false)
+--       ["local"]              = (boolean) Return local information, do not retrieve the state from master node
+--       (default: false)
+--       ["human"]              = (boolean) Whether to return version and creation date values in human-readable
+--       format. (default: false)
+--
+-- @param    params    The get settings Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:getSettings(params)
+  return self:requestEndpoint("GetSettings", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to check whether an index exists or not
 --
 -- @usage
