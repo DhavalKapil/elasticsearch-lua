@@ -322,6 +322,30 @@ function Indices:getSettings(params)
 end
 
 -------------------------------------------------------------------------------
+-- Put Settings function
+--
+-- @usage
+-- params["index"]              = (list) A comma-separated list of index names; use '_all' or empty string to
+--       perform the operation on all indices
+--       ["master_timeout"]     = (time) Specify timeout for connection to master
+--       ["ignore_unavailable"] = (boolean) Whether specified concrete indices should be ignored when unavailable
+--       (missing or closed)
+--       ["allow_no_indices"]   = (boolean) Whether to ignore if a wildcard indices expression resolves into no
+--       concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["expand_wildcards"]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+--       closed or both. (open,closed,none,all) (default: open)
+--       ["flat_settings"]      = (boolean) Return settings in flat format (default: false)
+--       ["body"]               = The index settings to be updated
+--
+-- @param    params    The put settings Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:putSettings(params)
+  return self:requestEndpoint("PutSettings", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to check whether an index exists or not
 --
 -- @usage
