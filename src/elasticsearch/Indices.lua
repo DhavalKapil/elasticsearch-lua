@@ -142,6 +142,24 @@ function Indices:putAlias(params)
 end
 
 -------------------------------------------------------------------------------
+-- Put Aliases function
+--
+-- @usage
+-- params["index"]   = (list) A comma-separated list of index names to filter aliases
+--       ["name"]    = (list) A comma-separated list of alias names to filter
+--       ["timeout"] = (time) Explicit operation timeout
+--       ["local"]   = (boolean) Return local information, do not retrieve the state from master node (default:
+--       false)
+--
+-- @param    params    The get aliases Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:getAliases(params)
+  return self:requestEndpoint("GetAliases", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to check whether an index exists or not
 --
 -- @usage
