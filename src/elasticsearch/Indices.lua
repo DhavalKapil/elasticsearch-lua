@@ -142,7 +142,7 @@ function Indices:putAlias(params)
 end
 
 -------------------------------------------------------------------------------
--- Put Aliases function
+-- Get Aliases function
 --
 -- @usage
 -- params["index"]   = (list) A comma-separated list of index names to filter aliases
@@ -157,6 +157,22 @@ end
 -------------------------------------------------------------------------------
 function Indices:getAliases(params)
   return self:requestEndpoint("GetAliases", params)
+end
+
+-------------------------------------------------------------------------------
+-- Update Aliases function
+--
+-- @usage
+-- params["timeout"]        = (time) Request timeout
+--       ["master_timeout"] = (time) Specify timeout for connection to master
+--       ["body"]           = The definition of 'actions' to perform
+--
+-- @param    params    The update aliases Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:updateAliases(params)
+  return self:requestEndpoint("updateAliases", params)
 end
 
 -------------------------------------------------------------------------------
