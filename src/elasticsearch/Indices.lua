@@ -172,7 +172,34 @@ end
 -- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Indices:updateAliases(params)
-  return self:requestEndpoint("updateAliases", params)
+  return self:requestEndpoint("UpdateAliases", params)
+end
+
+-------------------------------------------------------------------------------
+-- Clear Cache function
+--
+-- @usage
+-- params["index"]              = (list) A comma-separated list of index name to limit the operation
+--       ["field_data"]         = (boolean) Clear field data
+--       ["fielddata"]          = (boolean) Clear field data
+--       ["fields"]             = (list) A comma-separated list of fields to clear when using the 'field_data'
+--       parameter (default: all)
+--       ["query"]              = (boolean) Clear query caches
+--       ["ignore_unavailable"] = (boolean) Whether specified concrete indices should be ignored when unavailable
+--       (missing or closed)
+--       ["allow_no_indices"]   = (boolean) Whether to ignore if a wildcard indices expression resolves into no
+--       concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["expand_wildcards"]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+--       closed or both. (open,closed,none,all) (default: open)
+--       ["recycler"]           = (boolean) Clear the recycler cache
+--       ["request"]            = (boolean) Clear request cache
+--
+-- @param    params    The clear cache Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:clearCache(params)
+  return self:requestEndpoint("ClearCache", params)
 end
 
 -------------------------------------------------------------------------------
