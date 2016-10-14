@@ -389,6 +389,24 @@ function Indices:existsTemplate(params)
 end
 
 -------------------------------------------------------------------------------
+-- Get Template function
+--
+-- @usage
+-- params["name"]           = (list) The comma separated names of the index templates (Required)
+--       ["flat_settings"]  = (boolean) Return settings in flat format (default: false)
+--       ["master_timeout"] = (time) Explicit operation timeout for connection to master node
+--       ["local"]          = (boolean) Return local information, do not retrieve the state from master node
+--       (default: false)
+--
+-- @param    params    The get template Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:getTemplate(params)
+  return self:requestEndpoint("GetTemplate", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to check whether an index exists or not
 --
 -- @usage
