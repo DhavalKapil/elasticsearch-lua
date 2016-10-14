@@ -14,6 +14,7 @@ local IndicesEndpoint = Endpoint:new()
 
 IndicesEndpoint.name = nil
 IndicesEndpoint.index = nil
+IndicesEndpoint.type = nil
 IndicesEndpoint.body = nil
 
 -------------------------------------------------------------------------------
@@ -27,6 +28,7 @@ function IndicesEndpoint:setParams(params)
   -- Clearing parameters
   self.name = nil
   self.index = nil
+  self.type = nil
   self.params = {}
   self.body = nil
   for i, v in pairs(params) do
@@ -34,6 +36,8 @@ function IndicesEndpoint:setParams(params)
       self.name = v
     elseif i == "index" then
       self.index = v
+    elseif i == "type" then
+      self.type = v
     elseif i == "body" then
       self:setBody(v)
     else

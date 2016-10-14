@@ -218,6 +218,29 @@ function Indices:deleteMapping(params)
 end
 
 -------------------------------------------------------------------------------
+-- Get Mapping function
+--
+-- @usage
+-- params["index"]              = (list) A comma-separated list of index names
+--       ["type"]               = (list) A comma-separated list of document types
+--       ["ignore_unavailable"] = (boolean) Whether specified concrete indices should be ignored when unavailable
+--       (missing or closed)
+--       ["allow_no_indices"]   = (boolean) Whether to ignore if a wildcard indices expression resolves into no
+--       concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["expand_wildcards"]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+--       closed or both. (open,closed,none,all) (default: open)
+--       ["local"]              = (boolean) Return local information, do not retrieve the state from master node
+--       (default: false)
+--
+-- @param    params    The get mapping Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:getMapping(params)
+  return self:requestEndpoint("GetMapping", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to check whether an index exists or not
 --
 -- @usage
