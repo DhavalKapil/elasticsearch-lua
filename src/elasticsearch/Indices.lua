@@ -346,6 +346,22 @@ function Indices:putSettings(params)
 end
 
 -------------------------------------------------------------------------------
+-- Delete Template function
+--
+-- @usage
+-- params["name"]           = (string) The name of the template (Required)
+--       ["timeout"]        = (time) Explicit operation timeout
+--       ["master_timeout"] = (time) Specify timeout for connection to master
+--
+-- @param    params    The delete template Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:deleteTemplate(params)
+  return self:requestEndpoint("DeleteTemplate", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to check whether an index exists or not
 --
 -- @usage
