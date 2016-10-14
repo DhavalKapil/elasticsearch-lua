@@ -407,6 +407,28 @@ function Indices:getTemplate(params)
 end
 
 -------------------------------------------------------------------------------
+-- Put Template function
+--
+-- @usage
+-- params["name"]           = (string) The name of the template (Required)
+--       ["order"]          = (number) The order for this template when merging multiple matching ones (higher
+--       numbers are merged later, overriding the lower numbers)
+--       ["create"]         = (boolean) Whether the index template should only be added if new or can also replace
+--       an existing one (default: false)
+--       ["timeout"]        = (time) Explicit operation timeout
+--       ["master_timeout"] = (time) Specify timeout for connection to master
+--       ["flat_settings"]  = (boolean) Return settings in flat format (default: false)
+--       ["body"]           = The template definition
+--
+-- @param    params    The put template Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:putTemplate(params)
+  return self:requestEndpoint("PutTemplate", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to check whether an index exists or not
 --
 -- @usage
