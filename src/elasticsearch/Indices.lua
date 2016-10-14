@@ -490,6 +490,31 @@ function Indices:getUpgrade(params)
 end
 
 -------------------------------------------------------------------------------
+-- Upgrade function
+--
+-- @usage
+-- params["index"]                 = (list) A comma-separated list of index names; use '_all' or empty string to
+--       perform the operation on all indices
+--       ["allow_no_indices"]      = (boolean) Whether to ignore if a wildcard indices expression resolves into no
+--       concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["expand_wildcards"]      = (enum) Whether to expand wildcard expression to concrete indices that are
+--       open, closed or both. (open,closed,none,all) (default: open)
+--       ["ignore_unavailable"]    = (boolean) Whether specified concrete indices should be ignored when
+--       unavailable (missing or closed)
+--       ["wait_for_completion"]   = (boolean) Specify whether the request should block until the all segments are
+--       upgraded (default: false)
+--       ["only_ancient_segments"] = (boolean) If true, only ancient (an older Lucene major release) segments will
+--       be upgraded
+--
+-- @param    params    The upgrade Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:upgrade(params)
+  return self:requestEndpoint("PostUpgrade", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to check whether an index exists or not
 --
 -- @usage
