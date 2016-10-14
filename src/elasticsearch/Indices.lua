@@ -203,6 +203,21 @@ function Indices:clearCache(params)
 end
 
 -------------------------------------------------------------------------------
+-- Delete Mapping function
+--
+-- @usage
+-- params["index"] = (list) A comma-separated list of index names; use '_all' for all indices (Required)
+--       ["type"]  = (string) The name of the document type to delete (Required)
+--
+-- @param    params    The delete mapping Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:deleteMapping(params)
+  return self:requestEndpoint("DeleteMapping", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to check whether an index exists or not
 --
 -- @usage
