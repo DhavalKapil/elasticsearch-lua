@@ -362,6 +362,33 @@ function Indices:deleteTemplate(params)
 end
 
 -------------------------------------------------------------------------------
+-- Exists Template function
+--
+-- @usage
+-- params["name"]           = (string) The name of the template (Required)
+--       ["master_timeout"] = (time) Explicit operation timeout for connection to master node
+--       ["local"]          = (boolean) Return local information, do not retrieve the state from master node
+--       (default: false)
+--
+-- @param    params    The exists template Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:existsTemplate(params)
+  local temp, err = self:requestEndpoint("ExistsTemplate", params)
+  if err == 200 then
+    -- Successfull request
+    return true
+  elseif err:match("Invalid response code") then
+    -- Wrong response code
+    return false
+  else
+    -- Some other error, notify user
+    return nil, err
+  end
+end
+
+-------------------------------------------------------------------------------
 -- Function to check whether an index exists or not
 --
 -- @usage
