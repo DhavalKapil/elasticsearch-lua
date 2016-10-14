@@ -266,6 +266,35 @@ function Indices:getFieldMapping(params)
 end
 
 -------------------------------------------------------------------------------
+-- Put Mapping function
+--
+-- @usage
+-- params["index"]              = (list) A comma-separated list of index names the mapping should be added to
+--       (supports wildcards); use '_all' or omit to add the mapping on all indices.
+--       ["type"]               = (string) The name of the document type (Required)
+--       ["timeout"]            = (time) Explicit operation timeout
+--       ["master_timeout"]     = (time) Specify timeout for connection to master
+--       ["ignore_unavailable"] = (boolean) Whether specified concrete indices should be ignored when unavailable
+--       (missing or closed)
+--       ["ignore_conflicts"]   = (boolean) Specify whether to ignore conflicts while updating the mapping
+--       (default: false)
+--       ["allow_no_indices"]   = (boolean) Whether to ignore if a wildcard indices expression resolves into no
+--       concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["expand_wildcards"]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+--       closed or both. (open,closed,none,all) (default: open)
+--       ["update_all_types"]   = (boolean) Whether to update the mapping for all fields with the same name across
+--       all types or not
+--       ["body"]               = The mapping definition
+--
+-- @param    params    The put mapping Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:putMapping(params)
+  self:requestEndpoint("PutMapping", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to check whether an index exists or not
 --
 -- @usage
