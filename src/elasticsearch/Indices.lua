@@ -851,12 +851,41 @@ end
 --       ["expand_wildcards"]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
 --       closed or both. (open,closed,none,all) (default: open)
 --
--- @param    params    The seal Parameters
+-- @param    params    The flush Parameters
 --
 -- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Indices:flush(params)
   return self:requestEndpoint("Flush", params)
+end
+
+-------------------------------------------------------------------------------
+-- Force Merge function
+--
+-- @usage
+-- params["index"]                = (list) A comma-separated list of index names; use '_all' or empty string to
+--       perform the operation on all indices
+--       ["flush"]                = (boolean) Specify whether the index should be flushed after performing the
+--       operation (default: true)
+--       ["ignore_unavailable"]   = (boolean) Whether specified concrete indices should be ignored when
+--       unavailable (missing or closed)
+--       ["allow_no_indices"]     = (boolean) Whether to ignore if a wildcard indices expression resolves into no
+--       concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["expand_wildcards"]     = (enum) Whether to expand wildcard expression to concrete indices that are
+--       open, closed or both. (open,closed,none,all) (default: open)
+--       ["max_num_segments"]     = (number) The number of segments the index should be merged into (default:
+--       dynamic)
+--       ["only_expunge_deletes"] = (boolean) Specify whether the operation should only expunge deleted documents
+--       ["operation_threading"]  = TODO: ?
+--       ["wait_for_merge"]       = (boolean) Specify whether the request should block until the merge process is
+--       finished (default: true)
+--
+-- @param    params    The force merge Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:forceMerge(params)
+  return self:requestEndpoint("ForceMerge", params)
 end
 
 -------------------------------------------------------------------------------
