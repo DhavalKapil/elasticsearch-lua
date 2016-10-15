@@ -552,7 +552,26 @@ end
 -- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Indices:validateQuery(params)
-  self:requestEndpoint("ValidateQuery", params)
+  return self:requestEndpoint("ValidateQuery", params)
+end
+
+-------------------------------------------------------------------------------
+-- Delete Warmer function
+--
+-- @usage
+-- params["index"]          = (list) A comma-separated list of index names to delete warmers from (supports
+--       wildcards); use '_all' to perform the operation on all indices. (Required)
+--       ["name"]           = (list) A comma-separated list of warmer names to delete (supports wildcards); use
+--       '_all' to delete all warmers in the specified indices. You must specify a name either in the uri or in the
+--       parameters.
+--       ["master_timeout"] = (time) Specify timeout for connection to master
+--
+-- @param    params    The delete warmer Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:deleteWarmer(params)
+  return self:requestEndpoint("DeleteWarmer", params)
 end
 
 -------------------------------------------------------------------------------
