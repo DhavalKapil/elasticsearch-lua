@@ -602,6 +602,36 @@ function Indices:getWarmer(params)
 end
 
 -------------------------------------------------------------------------------
+-- Put Warmer function
+--
+-- @usage
+-- params["index"]              = (list) A comma-separated list of index names to register the warmer for; use
+--       '_all' or omit to perform the operation on all indices
+--       ["name"]               = (string) The name of the warmer (Required)
+--       ["type"]               = (list) A comma-separated list of document types to register the warmer for;
+--       leave empty to perform the operation on all types
+--       ["master_timeout"]     = (time) Specify timeout for connection to master
+--       ["ignore_unavailable"] = (boolean) Whether specified concrete indices should be ignored when unavailable
+--       (missing or closed) in the search request to warm
+--       ["allow_no_indices"]   = (boolean) Whether to ignore if a wildcard indices expression resolves into no
+--       concrete indices in the search request to warm. (This includes '_all' string or when no indices have been
+--       specified)
+--       ["expand_wildcards"]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+--       closed or both, in the search request to warm. (open,closed,none,all) (default: open)
+--       ["request_cache"]      = (boolean) Specify whether the request to be warmed should use the request cache,
+--       defaults to index level setting
+--       ["body"]               = The search request definition for the warmer (query, filters, facets, sorting,
+--       etc)
+--
+-- @param    params    The put warmer Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:putWarmer(params)
+  return self:requestEndpoint("PutWarmer", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to check whether an index exists or not
 --
 -- @usage
