@@ -6,21 +6,20 @@ local IndicesEndpoint = require "elasticsearch.endpoints.Indices.IndicesEndpoint
 -------------------------------------------------------------------------------
 -- Declaring module
 -------------------------------------------------------------------------------
-local Status = IndicesEndpoint:new()
+local Segments = IndicesEndpoint:new()
 
 -------------------------------------------------------------------------------
 -- Declaring Instance variables
 -------------------------------------------------------------------------------
 
 -- The parameters that are allowed to be used in params
-Status.allowedParams = {
+Segments.allowedParams = {
   ["ignore_unavailable"] = true,
   ["allow_no_indices"] = true,
   ["expand_wildcards"] = true,
   ["human"] = true,
   ["operation_threading"] = true,
-  ["recovery"] = true,
-  ["snapshot"] = true
+  ["verbose"] = true
 }
 
 -------------------------------------------------------------------------------
@@ -28,7 +27,7 @@ Status.allowedParams = {
 --
 -- @return    string    The HTTP request method
 -------------------------------------------------------------------------------
-function Status:getMethod()
+function Segments:getMethod()
   return "GET"
 end
 
@@ -37,8 +36,8 @@ end
 --
 -- @return    string    The URI
 -------------------------------------------------------------------------------
-function Status:getUri()
-  local uri = "/_status"
+function Segments:getUri()
+  local uri = "/_segments"
   if self.index ~= nil then
     uri = "/" .. self.index .. uri
   end
@@ -46,13 +45,13 @@ function Status:getUri()
 end
 
 -------------------------------------------------------------------------------
--- Returns an instance of Status class
+-- Returns an instance of Segments class
 -------------------------------------------------------------------------------
-function Status:new(o)
+function Segments:new(o)
   o = o or {}
   setmetatable(o, self)
   self.__index = self
   return o
 end
 
-return Status
+return Segments

@@ -908,6 +908,31 @@ function Indices:recovery(params)
 end
 
 -------------------------------------------------------------------------------
+-- Segments function
+--
+-- @usage
+-- params["index"]               = (list) A comma-separated list of index names; use '_all' or empty string to
+--       perform the operation on all indices
+--       ["ignore_unavailable"]  = (boolean) Whether specified concrete indices should be ignored when unavailable
+--       (missing or closed)
+--       ["allow_no_indices"]    = (boolean) Whether to ignore if a wildcard indices expression resolves into no
+--       concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["expand_wildcards"]    = (enum) Whether to expand wildcard expression to concrete indices that are open,
+--       closed or both. (open,closed,none,all) (default: open)
+--       ["human"]               = (boolean) Whether to return time and byte values in human-readable format.
+--       (default: false)
+--       ["operation_threading"] = TODO: ?
+--       ["verbose"]             = (boolean) Includes detailed memory usage by Lucene. (default: false)
+--
+-- @param    params    The segments Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:segments(params)
+  return self:requestEndpoint("Segments", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Indices class
 -------------------------------------------------------------------------------
 function Indices:new(o)
