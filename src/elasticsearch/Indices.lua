@@ -889,6 +889,25 @@ function Indices:forceMerge(params)
 end
 
 -------------------------------------------------------------------------------
+-- Recovery function
+--
+-- @usage
+-- params["index"]       = (list) A comma-separated list of index names; use '_all' or empty string to perform the
+--       operation on all indices
+--       ["detailed"]    = (boolean) Whether to display detailed information about shard recovery (default: false)
+--       ["active_only"] = (boolean) Display only those recoveries that are currently on-going (default: false)
+--       ["human"]       = (boolean) Whether to return time and byte values in human-readable format. (default:
+--       false)
+--
+-- @param    params    The recovery Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:recovery(params)
+  return self:requestEndpoint("Recovery", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Indices class
 -------------------------------------------------------------------------------
 function Indices:new(o)

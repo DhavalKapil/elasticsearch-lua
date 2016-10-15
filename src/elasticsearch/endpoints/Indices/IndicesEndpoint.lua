@@ -17,6 +17,7 @@ IndicesEndpoint.index = nil
 IndicesEndpoint.type = nil
 IndicesEndpoint.fields = nil
 IndicesEndpoint.isSynced = nil
+IndicesEndpoint.feature = nil
 IndicesEndpoint.body = nil
 
 -------------------------------------------------------------------------------
@@ -33,6 +34,7 @@ function IndicesEndpoint:setParams(params)
   self.type = nil
   self.fields = nil
   self.isSynced = nil
+  self.feature = nil
   self.params = {}
   self.body = nil
   for i, v in pairs(params) do
@@ -46,6 +48,8 @@ function IndicesEndpoint:setParams(params)
       self.fields = v
     elseif i == "sync" then
       self.isSynced = v
+    elseif i == "feature" then
+      self.feature = v
     elseif i == "body" then
       self:setBody(v)
     else

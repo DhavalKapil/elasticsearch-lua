@@ -6,18 +6,16 @@ local IndicesEndpoint = require "elasticsearch.endpoints.Indices.IndicesEndpoint
 -------------------------------------------------------------------------------
 -- Declaring module
 -------------------------------------------------------------------------------
-local Get = IndicesEndpoint:new()
+local Recovery = IndicesEndpoint:new()
 
 -------------------------------------------------------------------------------
 -- Declaring Instance variables
 -------------------------------------------------------------------------------
 
 -- The parameters that are allowed to be used in params
-Get.allowedParams = {
-  ["local"] = true,
-  ["ignore_unavailable"] = true,
-  ["allow_no_indices"] = true,
-  ["expand_wildcards"] = true,
+Recovery.allowedParams = {
+  ["detailed"] = true,
+  ["active_only"] = true,
   ["human"] = true
 }
 
@@ -26,7 +24,7 @@ Get.allowedParams = {
 --
 -- @return    string    The HTTP request method
 -------------------------------------------------------------------------------
-function Get:getMethod()
+function Recovery:getMethod()
   return "GET"
 end
 
@@ -35,27 +33,22 @@ end
 --
 -- @return    string    The URI
 -------------------------------------------------------------------------------
-function Get:getUri()
-  local uri = ""
-  if self.index == nil then
-    return nil, "index not specified for Get"
-  else
-    uri = uri .. "/" .. self.index
-  end
-  if self.feature ~= nil then
-    uri = uri .. "/" .. self.feature
+function Recovery:getUri()
+  local uri = "/_recovery"
+  if self.index ~= nil then
+    uri = "/" .. self.index .. uri
   end
   return uri
 end
 
 -------------------------------------------------------------------------------
--- Returns an instance of Get class
+-- Returns an instance of Recovery class
 -------------------------------------------------------------------------------
-function Get:new(o)
+function Recovery:new(o)
   o = o or {}
   setmetatable(o, self)
   self.__index = self
   return o
 end
 
-return Get
+return Recovery
