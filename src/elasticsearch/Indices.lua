@@ -515,6 +515,47 @@ function Indices:upgrade(params)
 end
 
 -------------------------------------------------------------------------------
+-- Validate Query function
+--
+-- @usage
+-- params["index"]                    = (list) A comma-separated list of index names to restrict the operation;
+--       use '_all' or empty string to perform the operation on all indices
+--       ["type"]                     = (list) A comma-separated list of document types to restrict the operation;
+--       leave empty to perform the operation on all types
+--       ["explain"]                  = (boolean) Return detailed information about the error
+--       ["ignore_indices"]           = (enum) When performed on multiple indices, allows to ignore 'missing' ones
+--       ["ignore_unavailable"]       = (boolean) Whether specified concrete indices should be ignored when
+--       unavailable (missing or closed)
+--       ["allow_no_indices"]         = (boolean) Whether to ignore if a wildcard indices expression resolves into
+--       no concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["expand_wildcards"]         = (enum) Whether to expand wildcard expression to concrete indices that are
+--       open, closed or both. (open,closed,none,all) (default: open)
+--       ["operation_threading"]      = TODO: ?
+--       ["q"]                        = (string) Query in the Lucene query string syntax
+--       ["analyzer"]                 = (string) The analyzer to use for the query string
+--       ["analyze_wildcard"]         = (boolean) Specify whether wildcard and prefix queries should be analyzed
+--       (default: false)
+--       ["default_operator"]         = (enum) The default operator for query string query (AND or OR) (AND,OR)
+--       (default: OR)
+--       ["df"]                       = (string) The field to use as default where no field prefix is given in the
+--       query string
+--       ["lenient"]                  = (boolean) Specify whether format-based query failures (such as providing
+--       text to a numeric field) should be ignored
+--       ["lowercase_expanded_terms"] = (boolean) Specify whether query terms should be lowercased
+--       ["rewrite"]                  = (boolean) Provide a more detailed explanation showing the actual Lucene
+--       query that will be executed.
+--       ["source"]              = (string) The URL-encoded query definition (instead of using the request body)
+--       ["body"]                     = The query definition specified with the Query DSL
+--
+-- @param    params    The validate query Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:validateQuery(params)
+  self:requestEndpoint("ValidateQuery", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to check whether an index exists or not
 --
 -- @usage
