@@ -832,6 +832,34 @@ function Indices:seal(params)
 end
 
 -------------------------------------------------------------------------------
+-- Flush function
+--
+-- @usage
+-- params["index"]              = (list) A comma-separated list of index names; use '_all' or empty string for all
+--       indices
+--       ["force"]              = (boolean) Whether a flush should be forced even if it is not necessarily needed
+--       ie. if no changes will be committed to the index. This is useful if transaction log IDs should be incremented
+--       even if no uncommitted changes are present. (This setting can be considered as internal)
+--       ["full"]               = (boolean) TODO: ?
+--       ["wait_if_ongoing"]    = (boolean) If set to true the flush operation will block until the flush can be
+--       executed if another flush operation is already executing. The default is false and will cause an exception to be
+--       thrown on the shard level if another flush operation is already running.
+--       ["ignore_unavailable"] = (boolean) Whether specified concrete indices should be ignored when unavailable
+--       (missing or closed)
+--       ["allow_no_indices"]   = (boolean) Whether to ignore if a wildcard indices expression resolves into no
+--       concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["expand_wildcards"]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+--       closed or both. (open,closed,none,all) (default: open)
+--
+-- @param    params    The seal Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:flush(params)
+  return self:requestEndpoint("Flush", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Indices class
 -------------------------------------------------------------------------------
 function Indices:new(o)

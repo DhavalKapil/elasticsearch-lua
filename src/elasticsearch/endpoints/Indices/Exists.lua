@@ -1,12 +1,12 @@
 -------------------------------------------------------------------------------
 -- Importing modules
 -------------------------------------------------------------------------------
-local Endpoint = require "elasticsearch.endpoints.Endpoint"
+local IndicesEndpoint = require "elasticsearch.endpoints.Indices.IndicesEndpoint"
 
 -------------------------------------------------------------------------------
 -- Declaring module
 -------------------------------------------------------------------------------
-local Exists = Endpoint:new()
+local Exists = IndicesEndpoint:new()
 
 -------------------------------------------------------------------------------
 -- Declaring Instance variables
