@@ -957,6 +957,34 @@ function Indices:shardStores(params)
 end
 
 -------------------------------------------------------------------------------
+-- Stats function
+--
+-- @usage
+-- params["index"]             = (list) A comma-separated list of index names; use '_all' or empty string to
+--       perform the operation on all indices
+--       ["metric"]            = (list) Limit the information returned the specific metrics.
+--       ["completion_fields"] = (list) A comma-separated list of fields for 'fielddata' and 'suggest' index
+--       metric (supports wildcards)
+--       ["fielddata_fields"]  = (list) A comma-separated list of fields for 'fielddata' index metric (supports
+--       wildcards)
+--       ["fields"]            = (list) A comma-separated list of fields for 'fielddata' and 'completion' index
+--       metric (supports wildcards)
+--       ["groups"]            = (list) A comma-separated list of search groups for 'search' index metric
+--       ["human"]             = (boolean) Whether to return time and byte values in human-readable format.
+--       (default: false)
+--       ["level"]             = (enum) Return stats aggregated at cluster, index or shard level
+--       (cluster,indices,shards) (default: indices)
+--       ["types"]             = (list) A comma-separated list of document types for the 'indexing' index metric
+--
+-- @param    params    The stats Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:stats(params)
+  return self:requestEndpoint("Stats", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Indices class
 -------------------------------------------------------------------------------
 function Indices:new(o)
