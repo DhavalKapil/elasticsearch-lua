@@ -933,6 +933,30 @@ function Indices:segments(params)
 end
 
 -------------------------------------------------------------------------------
+-- Shard Stores function
+--
+-- @usage
+-- params["index"]               = (list) A comma-separated list of index names; use '_all' or empty string to
+--       perform the operation on all indices
+--       ["status"]              = (list) A comma-separated list of statuses used to filter on shards to get store
+--       information for (green,yellow,red,all)
+--       ["ignore_unavailable"]  = (boolean) Whether specified concrete indices should be ignored when unavailable
+--       (missing or closed)
+--       ["allow_no_indices"]    = (boolean) Whether to ignore if a wildcard indices expression resolves into no
+--       concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["expand_wildcards"]    = (enum) Whether to expand wildcard expression to concrete indices that are open,
+--       closed or both. (open,closed,none,all) (default: open)
+--       ["operation_threading"] = TODO: ?
+--
+-- @param    params    The shard stores Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Indices:shardStores(params)
+  return self:requestEndpoint("ShardStores", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Indices class
 -------------------------------------------------------------------------------
 function Indices:new(o)
