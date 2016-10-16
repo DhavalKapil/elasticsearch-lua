@@ -13,6 +13,7 @@ local Cluster = require "elasticsearch.Cluster"
 local Nodes = require "elasticsearch.Nodes"
 local Indices = require "elasticsearch.Indices"
 local Snapshot = require "elasticsearch.Snapshot"
+local Tasks = require "elasticsearch.Tasks"
 
 -------------------------------------------------------------------------------
 -- Declaring module
@@ -89,6 +90,9 @@ Settings.indices = nil
 
 -- The snapshot instance
 Settings.snapshot = nil
+
+-- The tasks instance
+Settings.tasks = nil
 
 -------------------------------------------------------------------------------
 -- Function to recursivly check a table `user` with parameters of `default`
@@ -252,6 +256,15 @@ function Settings:setSnapshotSettings()
 end
 
 -------------------------------------------------------------------------------
+-- Initializes Tasks settings
+-------------------------------------------------------------------------------
+function Settings:setTasksSettings()
+  self.tasks = Tasks:new{
+    transport = self.transport
+  }
+end
+
+-------------------------------------------------------------------------------
 -- Initializes the settings
 -------------------------------------------------------------------------------
 function Settings:initializeSettings()
@@ -266,6 +279,7 @@ function Settings:initializeSettings()
   self:setNodesSettings()
   self:setIndicesSettings()
   self:setSnapshotSettings()
+  self:setTasksSettings()
 end
 
 -------------------------------------------------------------------------------

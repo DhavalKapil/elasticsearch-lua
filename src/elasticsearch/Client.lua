@@ -19,6 +19,9 @@ local Client = {}
 -- The Settings instance
 Client.settings = nil
 
+-- The cat instance
+Client.cat = nil
+
 -- The cluster instance
 Client.cluster = nil
 
@@ -28,8 +31,11 @@ Client.nodes = nil
 -- The indices instance
 Client.indices = nil
 
--- The cat instance
-Client.cat = nil
+-- The snapshot instance
+Client.snapshot = nil
+
+-- The tasks instance
+Client.tasks = nil
 
 -------------------------------------------------------------------------------
 -- Function to request an endpoint instance for a particular type of request
@@ -917,6 +923,7 @@ function Client:setClientParameters()
   self.nodes = self.settings.nodes
   self.indices = self.settings.indices
   self.snapshot = self.settings.snapshot
+  self.tasks = self.settings.tasks
 end
 
 -------------------------------------------------------------------------------
