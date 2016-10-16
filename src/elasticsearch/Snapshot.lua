@@ -82,6 +82,23 @@ function Snapshot:deleteRepository(params)
 end
 
 -------------------------------------------------------------------------------
+-- Get Repository function
+--
+-- @usage
+-- params["repository"]     = (list) A comma-separated list of repository names
+--       ["master_timeout"] = (time) Explicit operation timeout for connection to master node
+--       ["local"]          = (boolean) Return local information, do not retrieve the state from master node
+--       (default: false)
+--
+-- @param    params    The getRepository Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Snapshot:getRepository(params)
+  return self:requestEndpoint("GetRepository", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Snapshot class
 -------------------------------------------------------------------------------
 function Snapshot:new(o)
