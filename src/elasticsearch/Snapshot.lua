@@ -99,7 +99,7 @@ function Snapshot:getRepository(params)
 end
 
 -------------------------------------------------------------------------------
--- Create Repository function
+-- Create function
 --
 -- @usage
 -- params["repository"]          = (string) A repository name (Required)
@@ -118,7 +118,7 @@ function Snapshot:create(params)
 end
 
 -------------------------------------------------------------------------------
--- Delete Repository function
+-- Delete function
 --
 -- @usage
 -- params["repository"]     = (string) A repository name (Required)
@@ -134,7 +134,7 @@ function Snapshot:delete(params)
 end
 
 -------------------------------------------------------------------------------
--- Get Repository function
+-- Get function
 --
 -- @usage
 -- params["repository"]     = (string) A repository name (Required)
@@ -148,6 +148,26 @@ end
 function Snapshot:get(params)
   return self:requestEndpoint("Get", params)
 end
+
+-------------------------------------------------------------------------------
+-- Restore function
+--
+-- @usage
+-- params["repository"]          = (string) A repository name (Required)
+--       ["snapshot"]            = (string) A snapshot name (Required)
+--       ["master_timeout"]      = (time) Explicit operation timeout for connection to master node
+--       ["wait_for_completion"] = (boolean) Should this request wait until the operation has completed before
+--       returning (default: false)
+--       ["body"]                = Details of what to restore
+--
+-- @param    params    The restore Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Snapshot:restore(params)
+  return self:requestEndpoint("Restore", params)
+end
+
 
 -------------------------------------------------------------------------------
 -- Returns an instance of Snapshot class
