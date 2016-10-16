@@ -118,6 +118,22 @@ function Snapshot:create(params)
 end
 
 -------------------------------------------------------------------------------
+-- Delete Repository function
+--
+-- @usage
+-- params["repository"]     = (string) A repository name (Required)
+--       ["snapshot"]       = (string) A snapshot name (Required)
+--       ["master_timeout"] = (time) Explicit operation timeout for connection to master node
+--
+-- @param    params    The delete Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Snapshot:delete(params)
+  return self:requestEndpoint("Delete", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Snapshot class
 -------------------------------------------------------------------------------
 function Snapshot:new(o)
