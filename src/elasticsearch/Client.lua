@@ -605,6 +605,23 @@ function Client:getTemplate(params)
 end
 
 -------------------------------------------------------------------------------
+-- Put Template function
+--
+-- @usage
+-- params["id"]           = (string) Template ID (Required)
+--       ["version"]      = (number) Explicit version number for concurrency control
+--       ["version_type"] = (enum) Specific version type (internal,external,external_gte,force)
+--       ["body"]         = The document
+--
+-- @param    params    The putTemplate Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:putTempalte(params)
+  return self:requestEndpoint("PutTemplate", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to search the template
 --
 -- @usage
