@@ -9,6 +9,8 @@ return {
       ['elasticsearch.endpoints.Cluster.*'] = "src",
       ['elasticsearch.endpoints.Indices.*'] = "src",
       ['elasticsearch.endpoints.Nodes.*'] = "src",
+      ['elasticsearch.endpoints.Snapshot.*'] = "src",
+      ['elasticsearch.endpoints.Tasks.*'] = "src",
       ['elasticsearch.selector.*'] = "src"
    }
 }
