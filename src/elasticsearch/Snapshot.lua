@@ -99,6 +99,25 @@ function Snapshot:getRepository(params)
 end
 
 -------------------------------------------------------------------------------
+-- Create Repository function
+--
+-- @usage
+-- params["repository"]          = (string) A repository name (Required)
+--       ["snapshot"]            = (string) A snapshot name (Required)
+--       ["master_timeout"]      = (time) Explicit operation timeout for connection to master node
+--       ["wait_for_completion"] = (boolean) Should this request wait until the operation has completed before
+--       returning (default: false)
+--       ["body"]                = The snapshot definition
+--
+-- @param    params    The create Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Snapshot:create(params)
+  return self:requestEndpoint("Create", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Snapshot class
 -------------------------------------------------------------------------------
 function Snapshot:new(o)
