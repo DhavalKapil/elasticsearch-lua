@@ -589,6 +589,22 @@ function Client:deleteTemplate(params)
 end
 
 -------------------------------------------------------------------------------
+-- Get Template function
+--
+-- @usage
+-- params["id"]           = (string) Template ID (Required)
+--       ["version"]      = (number) Explicit version number for concurrency control
+--       ["version_type"] = (enum) Specific version type (internal,external,external_gte,force)
+--
+-- @param    params    The getTemplate Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:getTemplate(params)
+  return self:requestEndpoint("GetTemplate", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to search the template
 --
 -- @usage
