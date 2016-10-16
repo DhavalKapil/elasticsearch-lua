@@ -185,6 +185,22 @@ function Snapshot:status(params)
 end
 
 -------------------------------------------------------------------------------
+-- Verify Repository function
+--
+-- @usage
+-- params["repository"]     = (string) A repository name (Required)
+--       ["master_timeout"] = (time) Explicit operation timeout for connection to master node
+--       ["timeout"]        = (time) Explicit operation timeout
+--
+-- @param    params    The verify repository Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Snapshot:verifyRepository(params)
+  return self:requestEndpoint("VerifyRepository", params)
+end
+
+-------------------------------------------------------------------------------
 -- Returns an instance of Snapshot class
 -------------------------------------------------------------------------------
 function Snapshot:new(o)
