@@ -573,6 +573,22 @@ function Client:searchShards(params)
 end
 
 -------------------------------------------------------------------------------
+-- Delete Template function
+--
+-- @usage
+-- params["id"]           = (string) Template ID (Required)
+--       ["version"]      = (number) Explicit version number for concurrency control
+--       ["version_type"] = (enum) Specific version type (internal,external,external_gte,force)
+--
+-- @param    params    The deleteTemplate Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:deleteTemplate(params)
+  return self:requestEndpoint("DeleteTemplate", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to search the template
 --
 -- @usage

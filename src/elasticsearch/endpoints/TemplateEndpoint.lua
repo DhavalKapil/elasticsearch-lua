@@ -6,14 +6,14 @@ local Endpoint = require "elasticsearch.endpoints.Endpoint"
 -------------------------------------------------------------------------------
 -- Declaring module
 -------------------------------------------------------------------------------
-local TasksEndpoint = Endpoint:new()
+local TemplateEndpoint = Endpoint:new()
 
 -------------------------------------------------------------------------------
 -- Declaring instance variables
 -------------------------------------------------------------------------------
 
-TasksEndpoint.taskId = nil
-TasksEndpoint.body = nil
+TemplateEndpoint.id = nil
+TemplateEndpoint.body = nil
 
 -------------------------------------------------------------------------------
 -- Function used to set the params to be sent as GET parameters
@@ -22,14 +22,14 @@ TasksEndpoint.body = nil
 --
 -- @return  string  A string if an error is found otherwise nil
 -------------------------------------------------------------------------------
-function TasksEndpoint:setParams(params)
+function TemplateEndpoint:setParams(params)
   -- Clearing parameters
-  self.taskId = nil
+  self.id = nil
   self.params = {}
   self.body = nil
   for i, v in pairs(params) do
-    if i == "task_id" then
-      self.taskId = v
+    if i == "id" then
+      self.id = v
     elseif i == "body" then
       self:setBody(v)
     else
@@ -42,13 +42,13 @@ function TasksEndpoint:setParams(params)
 end
 
 -------------------------------------------------------------------------------
--- Returns an instance of TasksEndpoint class
+-- Returns an instance of TemplateEndpoint class
 -------------------------------------------------------------------------------
-function TasksEndpoint:new(o)
+function TemplateEndpoint:new(o)
   o = o or {}
   setmetatable(o, self)
   self.__index = self
   return o
 end
 
-return TasksEndpoint
+return TemplateEndpoint
