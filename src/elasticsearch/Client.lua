@@ -28,6 +28,9 @@ Client.nodes = nil
 -- The indices instance
 Client.indices = nil
 
+-- The cat instance
+Client.cat = nil
+
 -------------------------------------------------------------------------------
 -- Function to request an endpoint instance for a particular type of request
 --
@@ -909,9 +912,11 @@ end
 -- Initializes the Client parameters
 -------------------------------------------------------------------------------
 function Client:setClientParameters()
+  self.cat = self.settings.cat
   self.cluster = self.settings.cluster
   self.nodes = self.settings.nodes
   self.indices = self.settings.indices
+  self.snapshot = self.settings.snapshot
 end
 
 -------------------------------------------------------------------------------

@@ -8,9 +8,11 @@
 local Connection = require "elasticsearch.connection.Connection"
 local Transport = require "elasticsearch.Transport"
 local Logger = require "elasticsearch.Logger"
+local Cat = require "elasticsearch.Cat"
 local Cluster = require "elasticsearch.Cluster"
 local Nodes = require "elasticsearch.Nodes"
 local Indices = require "elasticsearch.Indices"
+local Snapshot = require "elasticsearch.Snapshot"
 
 -------------------------------------------------------------------------------
 -- Declaring module
@@ -73,6 +75,9 @@ Settings.transport = nil
 -- The logger instance
 Settings.logger = nil
 
+-- The cat instance
+Settings.cat = nil
+
 -- The cluster instance
 Settings.cluster = nil
 
@@ -81,6 +86,9 @@ Settings.nodes = nil
 
 -- The indices instance
 Settings.indices = nil
+
+-- The snapshot instance
+Settings.snapshot = nil
 
 -------------------------------------------------------------------------------
 -- Function to recursivly check a table `user` with parameters of `default`
@@ -199,6 +207,15 @@ function Settings:setTransportSettings()
 end
 
 -------------------------------------------------------------------------------
+-- Initializes the Cat settings
+-------------------------------------------------------------------------------
+function Settings:setCatSettings()
+  self.cat = Cat:new{
+    transport = self.transport
+  }
+end
+
+-------------------------------------------------------------------------------
 -- Initializes the Cluster settings
 -------------------------------------------------------------------------------
 function Settings:setClusterSettings()
@@ -226,6 +243,15 @@ function Settings:setIndicesSettings()
 end
 
 -------------------------------------------------------------------------------
+-- Initializes Snapshot settings
+-------------------------------------------------------------------------------
+function Settings:setSnapshotSettings()
+  self.snapshot = Snapshot:new{
+    transport = self.transport
+  }
+end
+
+-------------------------------------------------------------------------------
 -- Initializes the settings
 -------------------------------------------------------------------------------
 function Settings:initializeSettings()
@@ -235,9 +261,11 @@ function Settings:initializeSettings()
   self:setSelectorSettings()
   self:setConnectionPoolSettings()
   self:setTransportSettings()
+  self:setCatSettings()
   self:setClusterSettings()
   self:setNodesSettings()
   self:setIndicesSettings()
+  self:setSnapshotSettings()
 end
 
 -------------------------------------------------------------------------------
