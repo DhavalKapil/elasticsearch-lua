@@ -168,6 +168,21 @@ function Snapshot:restore(params)
   return self:requestEndpoint("Restore", params)
 end
 
+-------------------------------------------------------------------------------
+-- Status function
+--
+-- @usage
+-- params["repository"]     = (string) A repository name
+--       ["snapshot"]       = (list) A comma-separated list of snapshot names
+--       ["master_timeout"] = (time) Explicit operation timeout for connection to master node
+--
+-- @param    params    The status Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Snapshot:status(params)
+  return self:requestEndpoint("Status", params)
+end
 
 -------------------------------------------------------------------------------
 -- Returns an instance of Snapshot class
