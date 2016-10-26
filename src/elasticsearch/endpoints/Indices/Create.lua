@@ -41,7 +41,7 @@ function Create:setBody(body)
   for _id, item in pairs(body) do
     table.insert(jsonEncodedBody, parser.jsonEncode(item))
   end
-  self.body = table.concat(jsonEncodedBody, "\n")
+  self.body = table.concat(jsonEncodedBody, "\n") .. "\n"
 end
 
 -------------------------------------------------------------------------------
