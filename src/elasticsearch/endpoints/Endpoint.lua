@@ -111,7 +111,11 @@ function Endpoint:request()
 
   -- parsing body
   if response ~= nil and response.body ~= nil and response.body ~= "" then
-    response.body = parser.jsonDecode(response.body)
+    local json = parser.jsonDecode(response.body)
+    -- If response is not in json, pass it as it is, otherwise update the json
+    if json ~= nil then
+      response.body = json
+    end
   end
 
   return response, err
