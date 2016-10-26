@@ -40,10 +40,11 @@ function Endpoint:setBody(body)
     return
   end
   -- Bulk body is present
-  self.body = ""
+  local jsonEncodedBody = {}
   for _id, item in pairs(body) do
-    self.body = self.body .. parser.jsonEncode(item) .. "\n"
+    table.insert(jsonEncodedBody, parser.jsonEncode(item))
   end
+  self.body = table.concat(jsonEncodedBody, "\n")
 end
 
 -------------------------------------------------------------------------------
