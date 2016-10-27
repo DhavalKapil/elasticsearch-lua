@@ -32,11 +32,11 @@ Settings.hosts = {
 
 Settings.params = {}
 
--- The standard requester
-Settings.params.preferred_engine = 'default'
-
 -- The ping timeout
 Settings.params.pingTimeout = 1
+
+-- The standard requester
+Settings.params.requestEngine = "default"
 
 -- The selector type
 Settings.params.selector = "RoundRobinSelector"
@@ -153,7 +153,7 @@ function Settings:setConnectionSettings()
       port = host.port,
       pingTimeout = self.params.pingTimeout,
       logger = self.logger,
-      preferred_engine = self.params.preferred_engine
+      requestEngine = self.params.requestEngine
     })
   end
 end

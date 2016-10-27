@@ -1,13 +1,12 @@
 package = "elasticsearch"
 version = "scm-0"
 source = {
-  url = "git://github.com/CriztianiX/elasticsearch-lua",
+  url = "git://github.com/DhavalKapil/elasticsearch-lua",
 }
 description = {
   summary = "Elasticsearch client for the Lua language",
   detailed = [[
-    This is an elasticsearch client written in Lua with support for cosocket
-    Under development.
+    This is an elasticsearch client written in Lua. Under development.
   ]],
   homepage = "https://github.com/DhavalKapil/elasticsearch-lua",
   license = "Apache 2"
@@ -16,8 +15,7 @@ dependencies = {
   "lua >= 5.1, < 5.4",
   "luasocket",
   "lua-cjson",
-  "lunitx",
-  "lua-resty-http"
+  "lunitx"
 }
 build = {
   type = "builtin",

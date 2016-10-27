@@ -31,6 +31,8 @@ Connection.failedPings = 0
 Connection.alive = false
 -- The logger instance
 Connection.logger = nil
+-- The standard requester
+Connection.requestEngine = "default"
 
 
 -------------------------------------------------------------------------------
@@ -45,44 +47,44 @@ Connection.logger = nil
 -- @return  table   The response returned
 -------------------------------------------------------------------------------
 function Connection:request(method, uri, params, body, timeout)
-  local response, err = self:engine(method, uri, params, body, timeout)
-  return response
-end
-
-function Connection:engine(method, uri, params, body, timeout)
+  -- Building URI
   local uri = self:buildURI(uri, params)
-  if self.preferred_engine == "default" then
---    The responseBody table
-    local responseBody = {}
-    -- The response table
-    local response = {}
-    -- The request table
-    local request = {
-      method = method,
-      url = uri,
-      sink = ltn12.sink.table(responseBody)
-    }
-    if body ~= nil then
-      -- Adding body to request
-      request.headers = {
-        ["Content-Length"] = body:len()
-      }
-      request.source = ltn12.source.string(body)
-    end
-    if timeout ~= nil then
-      -- Setting timeout for request
-      http.TIMEOUT = timeout
-    end
-    -- Making the actual request
-    response.code, response.statusCode, response.headers, response.statusLine
-      = http.request(request)
-    self.logger:debug("Got HTTP " .. response.statusCode)
-    http.TIMEOUT = nil
-    response.body = table.concat(responseBody)
-    return response
+
+  -- Checking if an overloaded requester is provided
+  if self.requestEngine ~= "default" then
+    return self.requestEngine(method, uri, body, timeout)
   end
 
-  return self.preferred_engine(method, uri, params, body, timeout)
+  -- The responseBody table
+  local responseBody = {}
+  -- The response table
+  local response = {}
+  -- The request table
+  local request = {
+    method = method,
+    url = uri,
+    sink = ltn12.sink.table(responseBody)
+  }
+  if body ~= nil then
+    -- Adding body to request
+    request.headers = {
+      ["Content-Length"] = body:len()
+    }
+    request.source = ltn12.source.string(body)
+  end
+  if timeout ~= nil then
+    -- Setting timeout for request
+    http.TIMEOUT = timeout
+  end
+
+  -- Making the actual request
+  response.code, response.statusCode, response.headers, response.statusLine
+    = http.request(request)
+  self.logger:debug("Got HTTP " .. response.statusCode)
+  http.TIMEOUT = nil
+  response.body = table.concat(responseBody)
+
+  return response
 end
 
 -------------------------------------------------------------------------------
