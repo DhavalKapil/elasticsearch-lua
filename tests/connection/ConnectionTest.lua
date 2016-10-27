@@ -37,7 +37,8 @@ function setup()
     host = "localhost",
     port = 9200,
     pingTimeout = 1,
-    logger = logger
+    logger = logger,
+    requestEngine = "LuaSocket"
   }
 end
 

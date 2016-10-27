@@ -39,7 +39,7 @@ Settings.params = {}
 Settings.params.pingTimeout = 1
 
 -- The standard requester
-Settings.params.requestEngine = "default"
+Settings.params.requestEngine = "LuaSocket"
 
 -- The selector type
 Settings.params.selector = "RoundRobinSelector"

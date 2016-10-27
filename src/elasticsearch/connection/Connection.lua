@@ -32,7 +32,7 @@ Connection.alive = false
 -- The logger instance
 Connection.logger = nil
 -- The standard requester
-Connection.requestEngine = "default"
+Connection.requestEngine = nil
 
 
 -------------------------------------------------------------------------------
@@ -51,7 +51,7 @@ function Connection:request(method, uri, params, body, timeout)
   local uri = self:buildURI(uri, params)
 
   -- Checking if an overloaded requester is provided
-  if self.requestEngine ~= "default" then
+  if self.requestEngine ~= "LuaSocket" then
     return self.requestEngine(method, uri, body, timeout)
   end
 

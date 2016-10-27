@@ -1,7 +1,7 @@
-.. _selectors:
+.. _selector:
 
-Selectors
-=========
+Selector
+========
 
 The selector is an internal structure used in the client. Given an array of
 connections, it chooses a single connection. Some selectors don't even worry

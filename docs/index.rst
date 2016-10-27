@@ -1,5 +1,5 @@
 elasticsearch-lua
-=============================================
+=================
 
 A simple low level client for elasticsearch written in lua. `elasticsearch-lua`_
 is designed to be in accordance with other official clients for elasticsearch.
@@ -28,6 +28,7 @@ The client is extensible and developers can attach their own plug-ins.
    :caption: Additional Documentation
 
    namespaces
-   selectors
+   connection
+   selector
    connection_pool
    API Documentation <https://dhavalkapil.com/elasticsearch-lua/docs>

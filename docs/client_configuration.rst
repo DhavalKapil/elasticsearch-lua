@@ -49,30 +49,34 @@ Additional Parameters
 You can also specify some additional parameters to configure the elasticsearch
 server. Again, these parameters are optional and have default values.
 
-+----------------+------------------------------------------------------+----------------------+
-|   Parameter    |                       Description                    |       Default        |
-+================+======================================================+======================+
-| pingTimeout    | The timeout (in seconds) for any ping or sniff HTTP  |          1           |
-|                |                                                      |                      |
-|                | request made by the client to the elasticsearch      |                      |
-|                |                                                      |                      |
-|                | server                                               |                      |
-+----------------+------------------------------------------------------+----------------------+
-| selector       | The selector to be used. For more details, see       | 'RoundRobinSelector' |
-|                |                                                      |                      |
-|                | :ref:`selectors`.                                    |                      |
-+----------------+------------------------------------------------------+----------------------+
-| connectionPool | The connection pool to be used. For more details,    |'StaticConnectionPool'|
-|                |                                                      |                      |
-|                | see :ref:`connection-pool`.                          |                      |
-+----------------+------------------------------------------------------+----------------------+
-| maxRetryCount  | The number of times to retry an HTTP request         |          5           |
-|                |                                                      |                      |
-|                | before exiting with a *TransportError*               |                      |
-+----------------+------------------------------------------------------+----------------------+
-| logLevel       | The level of the inbuilt console logger. Follows the |        'WARN'        |
-|                |                                                      |                      |
-|                | convention of log4j: ALL, DEBUG, ERROR, FATAL,       |                      |
-|                |                                                      |                      |
-|                | INFO, OFF, TRACE, WARN. (ignores case)               |                      |
-+----------------+------------------------------------------------------+----------------------+
++----------------+-----------------------------------------------------+----------------------+
+|   Parameter    |                       Description                   |       Default        |
++================+=====================================================+======================+
+| pingTimeout    | The timeout (in seconds) for any ping or sniff      |          1           |
+|                |                                                     |                      |
+|                | HTTP request made by the client to the              |                      |
+|                |                                                     |                      |
+|                | elasticsearch server                                |                      |
++----------------+-----------------------------------------------------+----------------------+
+| requestEngine  | The connection request ending to be used. For       |     'LuaSocket'      |
+|                |                                                     |                      |
+|                | more details, see :ref:`connection`.                |                      |
++----------------+-----------------------------------------------------+----------------------+
+| selector       | The selector to be used. For more details, see      | 'RoundRobinSelector' |
+|                |                                                     |                      |
+|                | :ref:`selector`.                                    |                      |
++----------------+-----------------------------------------------------+----------------------+
+| connectionPool | The connection pool to be used. For more details,   |'StaticConnectionPool'|
+|                |                                                     |                      |
+|                | see :ref:`connection-pool`.                         |                      |
++----------------+-----------------------------------------------------+----------------------+
+| maxRetryCount  | The number of times to retry an HTTP request        |          5           |
+|                |                                                     |                      |
+|                | before exiting with a *TransportError*              |                      |
++----------------+-----------------------------------------------------+----------------------+
+| logLevel       | The level of the inbuilt console logger. Follows    |        'WARN'        |
+|                |                                                     |                      |
+|                | the convention of log4j: ALL, DEBUG, ERROR,         |                      |
+|                |                                                     |                      |
+|                | FATAL, INFO, OFF, TRACE, WARN. (ignores case)       |                      |
++----------------+-----------------------------------------------------+----------------------+
