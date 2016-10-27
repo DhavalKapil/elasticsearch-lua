@@ -14,18 +14,16 @@ local Index = Endpoint:new()
 
 -- The parameters that are allowed to be used in params
 Index.allowedParams = {
-  "consistency",
-  "op_type",
-  "parent",
-  "percolate",
-  "refresh",
-  "replication",
-  "routing",
-  "timeout",
-  "timestamp",
-  "ttl",
-  "version",
-  "version_type"
+  ["consistency"] = true,
+  ["op_type"] = true,
+  ["parent"] = true,
+  ["refresh"] = true,
+  ["routing"] = true,
+  ["timeout"] = true,
+  ["timestamp"] = true,
+  ["ttl"] = true,
+  ["version"] = true,
+  ["version_type"] = true
 }
 
 -- Whether to create an index if it's absent

@@ -14,8 +14,8 @@ local PendingTasks = Endpoint:new()
 
 -- The parameters that are allowed to be used in params
 PendingTasks.allowedParams = {
-  "local",
-  "master_timeout"
+  ["local"] = true,
+  ["master_timeout"] = true
 }
 
 -------------------------------------------------------------------------------

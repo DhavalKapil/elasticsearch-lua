@@ -14,14 +14,14 @@ local Health = Endpoint:new()
 
 -- The parameters that are allowed to be used in params
 Health.allowedParams = {
-  "level",
-  "local",
-  "master_timeout",
-  "timeout",
-  "wait_for_active_shards",
-  "wait_for_nodes",
-  "wait_for_relocating_shards",
-  "wait_for_status"
+  ["level"] = true,
+  ["local"] = true,
+  ["master_timeout"] = true,
+  ["timeout"] = true,
+  ["wait_for_active_shards"] = true,
+  ["wait_for_nodes"] = true,
+  ["wait_for_relocating_shards"] = true,
+  ["wait_for_status"] = true
 }
 
 -------------------------------------------------------------------------------

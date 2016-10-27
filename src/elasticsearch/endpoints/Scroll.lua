@@ -20,8 +20,8 @@ Scroll.endpointParams.clear = false
 
 -- The parameters that are allowed to be used in params
 Scroll.allowedParams = {
-  "scroll",
-  "scroll_id"
+  ["scroll"] = true,
+  ["scroll_id"] = true
 }
 
 -------------------------------------------------------------------------------
@@ -33,25 +33,19 @@ Scroll.allowedParams = {
 -- @return  string  A string if an error is found otherwise nil
 -------------------------------------------------------------------------------
 function Scroll:setParams(params)
+  self.scroll_id = nil
+  self.params = {}
+  self.body = nil
   for i, v in pairs(params) do
     if i == "scroll_id" then
       self.scrollId = v
     elseif i == "body" then
       self:setBody(v)
     else
-      -- Checking whether i is in allowed parameters or not
-      -- Current algorithm is n*m, but n and m are very small
-      local flag = 0;
-      for _, allowedParam in pairs(self.allowedParams) do
-        if allowedParam == i then
-          flag = 1;
-          break;
-        end
+      local err = self:setAllowedParam(i, v)
+      if err ~= nil then
+        return err
       end
-      if flag == 0 then
-        return i .. " is not an allowed parameter"
-      end
-      self.params[i] = v
     end
   end
 end

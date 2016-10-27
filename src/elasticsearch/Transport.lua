@@ -63,7 +63,7 @@ function Transport:request(method, uri, params, body)
     self.retryCount = self.retryCount + 1
     return self:request(method, uri, params, body)
   end
-  return nil, "TransporError"
+  return nil, "TransportError"
 end
 
 -------------------------------------------------------------------------------

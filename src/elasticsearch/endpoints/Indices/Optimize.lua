@@ -1,12 +1,12 @@
 -------------------------------------------------------------------------------
 -- Importing modules
 -------------------------------------------------------------------------------
-local Endpoint = require "elasticsearch.endpoints.Endpoint"
+local IndicesEndpoint = require "elasticsearch.endpoints.Indices.IndicesEndpoint"
 
 -------------------------------------------------------------------------------
 -- Declaring module
 -------------------------------------------------------------------------------
-local Optimize = Endpoint:new()
+local Optimize = IndicesEndpoint:new()
 
 -------------------------------------------------------------------------------
 -- Declaring Instance variables
@@ -14,14 +14,14 @@ local Optimize = Endpoint:new()
 
 -- The parameters that are allowed to be used in params
 Optimize.allowedParams = {
-  "flush",
-  "ignore_unavailable",
-  "allow_no_indices",
-  "expand_wildcards",
-  "max_num_segments",
-  "only_expunge_deletes",
-  "operation_threading",
-  "wait_for_merge"
+  ["flush"] = true,
+  ["ignore_unavailable"] = true,
+  ["allow_no_indices"] = true,
+  ["expand_wildcards"] = true,
+  ["max_num_segments"] = true,
+  ["only_expunge_deletes"] = true,
+  ["operation_threading"] = true,
+  ["wait_for_merge"] = true
 }
 
 -------------------------------------------------------------------------------

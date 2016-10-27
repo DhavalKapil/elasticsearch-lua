@@ -1,12 +1,12 @@
 -------------------------------------------------------------------------------
 -- Importing modules
 -------------------------------------------------------------------------------
-local Endpoint = require "elasticsearch.endpoints.Endpoint"
+local IndicesEndpoint = require "elasticsearch.endpoints.Indices.IndicesEndpoint"
 
 -------------------------------------------------------------------------------
 -- Declaring module
 -------------------------------------------------------------------------------
-local Analyze = Endpoint:new()
+local Analyze = IndicesEndpoint:new()
 
 -------------------------------------------------------------------------------
 -- Declaring Instance variables
@@ -14,14 +14,14 @@ local Analyze = Endpoint:new()
 
 -- The parameters that are allowed to be used in params
 Analyze.allowedParams = {
-  "analyzer",
-  "field",
-  "filters",
-  "index",
-  "prefer_local",
-  "text",
-  "tokenizer",
-  "format"
+  ["analyzer"] = true,
+  ["field"] = true,
+  ["filters"] = true,
+  ["index"] = true,
+  ["prefer_local"] = true,
+  ["text"] = true,
+  ["tokenizer"] = true,
+  ["format"] = true
 }
 
 -------------------------------------------------------------------------------

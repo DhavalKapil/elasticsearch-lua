@@ -21,7 +21,7 @@ Nodes.transport = nil
 -- @param   params          The parameters to be passed
 -- @param   endpointParams  The endpoint params passed while object creation
 --
--- @return  table     Error or the data recevied from the elasticsearch server
+-- @return  table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Nodes:requestEndpoint(endpoint, params, endpointParams)
   local Endpoint = require("elasticsearch.endpoints.Nodes." .. endpoint)
@@ -58,7 +58,7 @@ end
 --
 -- @param    params    The stats Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Nodes:info(params)
   return self:requestEndpoint("Info", params)
@@ -86,7 +86,7 @@ end
 --
 -- @param    params    The stats Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Nodes:stats(params)
   return self:requestEndpoint("Stats", params)
@@ -104,7 +104,7 @@ end
 --
 -- @param    params    The stats Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Nodes:hotThreads(params)
   return self:requestEndpoint("HotThreads", params)
@@ -120,7 +120,7 @@ end
 --
 -- @param    params    The stats Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Nodes:shutdown(params)
   return self:requestEndpoint("Shutdown", params)

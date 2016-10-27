@@ -1,9 +1,9 @@
 -- Importing modules
-local staticConnectionPool = require "elasticsearch.connectionpool.StaticConnectionPool"
-local roundRobinSelector = require "elasticsearch.selector.RoundRobinSelector"
-local connection = require "elasticsearch.connection.Connection"
+local StaticConnectionPool = require "elasticsearch.connectionpool.StaticConnectionPool"
+local RoundRobinSelector = require "elasticsearch.selector.RoundRobinSelector"
+local Connection = require "elasticsearch.connection.Connection"
 local Logger = require "elasticsearch.Logger"
-local transport = require "elasticsearch.Transport"
+local Transport = require "elasticsearch.Transport"
 local getmetatable = getmetatable
 local print = print
 
@@ -15,8 +15,8 @@ local t
 
 -- Testing the constructor
 function constructorTest()
-  assert_function(transport.new)
-  local o = transport:new()
+  assert_function(Transport.new)
+  local o = Transport:new()
   assert_not_nil(o)
   local mt = getmetatable(o)
   assert_table(mt)
@@ -31,7 +31,7 @@ function setup()
   local logger = Logger:new()
   logger:setLogLevel("off")
   for i = 1, 5 do
-    connections[i] = connection:new{
+    connections[i] = Connection:new{
       protocol = "http",
       host = "localhost",
       port = 9200,
@@ -40,14 +40,14 @@ function setup()
     }
     connections[i].id = i
   end
-  connectionPool = staticConnectionPool:new{
+  connectionPool = StaticConnectionPool:new{
     connections = connections,
-    selector = roundRobinSelector:new(),
+    selector = RoundRobinSelector:new(),
     pingTimeout = 60,
     maxPingTimeout = 3600,
     logger = logger
   }
-  t = transport:new{
+  t = Transport:new{
     connectionPool = connectionPool,
     maxRetryCount = 5
   }

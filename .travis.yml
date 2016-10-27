@@ -1,6 +1,6 @@
 language: c
 
-sudo: false
+sudo: required
 
 env:
   global:
@@ -13,12 +13,13 @@ env:
     - LUA=luajit2.0  # current head of 2.0 branch
     # - LUA=luajit2.1  # current head of 2.1 branch
 
-services:
-  - elasticsearch
-
 before_install:
+  - sudo apt-get update && sudo apt-get install wget -y
+  - .travis/install_es.sh
   - source .travis/setenv_lua.sh
   - luarocks install lunitx
+  - luarocks install luacov
+  - luarocks install luacov-coveralls
 
 install:
   - luarocks make elasticsearch-scm-0.rockspec
@@ -28,9 +29,14 @@ before_script:
 
 script:
   - cd tests
-  - lua run-tests.lua
+  - ./dataset/download-dataset.sh
+  - lua -lluacov run-tests.lua
 
-after_success:
+after_success:  
+  - mv luacov.stats.out ../
+  - cd ../
+  - luacov-coveralls -c tests/.luacov
+  - tests/run-stress-test.sh
 
 notifications:
   email:

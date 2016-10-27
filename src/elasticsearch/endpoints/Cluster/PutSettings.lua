@@ -14,7 +14,9 @@ local PutSettings = Endpoint:new()
 
 -- The parameters that are allowed to be used in params
 PutSettings.allowedParams = {
-  "flat_settings"
+  ["flat_settings"] = true,
+  ["master_timeout"] = true,
+  ["timeout"] = true
 }
 
 -------------------------------------------------------------------------------

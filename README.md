@@ -1,16 +1,24 @@
-# elasticsearch-lua [![Build Status](https://travis-ci.org/DhavalKapil/elasticsearch-lua.svg?branch=master)](https://travis-ci.org/DhavalKapil/elasticsearch-lua)
+# elasticsearch-lua 
+
+[![Build Status](https://travis-ci.org/DhavalKapil/elasticsearch-lua.svg?branch=master)](https://travis-ci.org/DhavalKapil/elasticsearch-lua) [![Coverage Status](https://coveralls.io/repos/github/DhavalKapil/elasticsearch-lua/badge.svg?branch=master)](https://coveralls.io/github/DhavalKapil/elasticsearch-lua?branch=master)
 
 > A simple low level client for elasticsearch written in lua.
 
 In accordance with other official low level clients, the client accepts associative arrays in the form of lua table as parameters.
 
-## Current Features:
+## Features:
 
 1. One-to-one mapping with REST API and other language clients
 2. Proper load balancing across all nodes.
 3. Pluggable and multiple selection strategies and connection pool.
 4. Console logging facility.
 5. Almost every parameter is configurable.
+
+## Requirements
+
+`elasticsearch-lua` works for lua >= 5.1 version.
+
+It has been successfully tested for elasticsearch version 1.6.
 
 ## Setup
 

@@ -1,0 +1,16 @@
+return {
+   modules = {
+      elasticsearch = "src/elasticsearch.lua",
+      ['elasticsearch.*'] = "src",
+      ['elasticsearch.connection.*'] = "src",
+      ['elasticsearch.connectionpool.*'] = "src",
+      ['elasticsearch.endpoints.*'] = "src",
+      ['elasticsearch.endpoints.Cat.*'] = "src",
+      ['elasticsearch.endpoints.Cluster.*'] = "src",
+      ['elasticsearch.endpoints.Indices.*'] = "src",
+      ['elasticsearch.endpoints.Nodes.*'] = "src",
+      ['elasticsearch.endpoints.Snapshot.*'] = "src",
+      ['elasticsearch.endpoints.Tasks.*'] = "src",
+      ['elasticsearch.selector.*'] = "src"
+   }
+}

@@ -1,12 +1,12 @@
 -------------------------------------------------------------------------------
 -- Importing modules
 -------------------------------------------------------------------------------
-local Endpoint = require "elasticsearch.endpoints.Endpoint"
+local IndicesEndpoint = require "elasticsearch.endpoints.Indices.IndicesEndpoint"
 
 -------------------------------------------------------------------------------
 -- Declaring module
 -------------------------------------------------------------------------------
-local Delete = Endpoint:new()
+local Delete = IndicesEndpoint:new()
 
 -------------------------------------------------------------------------------
 -- Declaring Instance variables
@@ -14,8 +14,8 @@ local Delete = Endpoint:new()
 
 -- The parameters that are allowed to be used in params
 Delete.allowedParams = {
-  "timeout",
-  "master_timeout"
+  ["timeout"] = true,
+  ["master_timeout"] = true
 }
 
 -------------------------------------------------------------------------------

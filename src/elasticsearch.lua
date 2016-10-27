@@ -1,4 +1,8 @@
 --- The elasticsearch module
+--
+-- Requirements:
+--  lua >= 5.1
+--
 -- @module elasticsearch
 -- @author Dhaval Kapil
 
@@ -13,10 +17,20 @@ local helpers = require "elasticsearch.helpers"
 -------------------------------------------------------------------------------
 local elasticsearch = {}
 
+-------------------------------------------------------------------------------
+-- The helper's module
+-------------------------------------------------------------------------------
 elasticsearch.helpers = helpers
 
-function elasticsearch.client(o)
-  return Client:new(o)
+-------------------------------------------------------------------------------
+-- Returns an instance of a client object
+--
+-- @param     params    The params of the client
+--
+-- @return    table     The client instance
+-------------------------------------------------------------------------------
+function elasticsearch.client(params)
+  return Client:new(params)
 end
 
 return elasticsearch

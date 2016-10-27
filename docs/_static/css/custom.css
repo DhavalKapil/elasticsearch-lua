@@ -1,0 +1,5 @@
+.wy-table td p, .rst-content
+table.docutils td p, .rst-content
+table.field-list td p {
+  margin-bottom: 5px;
+}

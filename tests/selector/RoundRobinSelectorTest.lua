@@ -1,6 +1,6 @@
 -- Importing modules
-local roundRobinSelector = require "elasticsearch.selector.RoundRobinSelector"
-local connection = require "elasticsearch.connection.Connection"
+local RoundRobinSelector = require "elasticsearch.selector.RoundRobinSelector"
+local Connection = require "elasticsearch.connection.Connection"
 local Logger = require "elasticsearch.Logger"
 local getmetatable = getmetatable
 
@@ -13,8 +13,8 @@ local connections
 
 -- Testing the constructor
 function constructorTest()
-  assert_function(roundRobinSelector.new)
-  local o = roundRobinSelector:new()
+  assert_function(RoundRobinSelector.new)
+  local o = RoundRobinSelector:new()
   assert_not_nil(o)
   local mt = getmetatable(o)
   assert_table(mt)
@@ -28,7 +28,7 @@ function setup()
   local logger = Logger:new()
   logger:setLogLevel("off")
   for i = 1, 5 do
-    connections[i] = connection:new{
+    connections[i] = Connection:new{
       protocol = "http",
       host = "localhost",
       port = 9200,
@@ -38,7 +38,7 @@ function setup()
     -- For checking later on
     connections[i].id = i
   end
-  rRS = roundRobinSelector:new()
+  rRS = RoundRobinSelector:new()
 end
 
 -- Testing select function

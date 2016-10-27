@@ -1,12 +1,13 @@
 -------------------------------------------------------------------------------
 -- Importing modules
 -------------------------------------------------------------------------------
-local Endpoint = require "elasticsearch.endpoints.Endpoint"
+local IndicesEndpoint = require "elasticsearch.endpoints.Indices.IndicesEndpoint"
+local parser = require "elasticsearch.parser"
 
 -------------------------------------------------------------------------------
 -- Declaring module
 -------------------------------------------------------------------------------
-local Create = Endpoint:new()
+local Create = IndicesEndpoint:new()
 
 -------------------------------------------------------------------------------
 -- Declaring Instance variables
@@ -14,9 +15,34 @@ local Create = Endpoint:new()
 
 -- The parameters that are allowed to be used in params
 Create.allowedParams = {
-  "timeout",
-  "master_timeout"
+  ["timeout"] = true,
+  ["master_timeout"] = true
 }
+
+-- Whether mappings is present in body or not
+Create.mappings = false
+
+-------------------------------------------------------------------------------
+-- Function to set the body parameter
+--
+-- @param   body    The body to be set
+-------------------------------------------------------------------------------
+function Create:setBody(body)
+  if type(body) == "table" and body["mappings"] ~= nil then
+    self.mappings = true;
+  end
+
+  if self.bulkBody == false then
+    self.body = parser.jsonEncode(body)
+    return
+  end
+  -- Bulk body is present
+  local jsonEncodedBody = {}
+  for _id, item in pairs(body) do
+    table.insert(jsonEncodedBody, parser.jsonEncode(item))
+  end
+  self.body = table.concat(jsonEncodedBody, "\n") .. "\n"
+end
 
 -------------------------------------------------------------------------------
 -- Function to calculate the http request method
@@ -24,7 +50,7 @@ Create.allowedParams = {
 -- @return    string    The HTTP request method
 -------------------------------------------------------------------------------
 function Create:getMethod()
-  if type(self.body) == "table" and self.body["mappings"] ~= nil then
+  if self.mappings then
     return "POST"
   else
     return "PUT"

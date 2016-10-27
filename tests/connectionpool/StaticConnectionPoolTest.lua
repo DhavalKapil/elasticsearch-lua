@@ -1,7 +1,7 @@
 -- Importing modules
-local staticConnectionPool = require "elasticsearch.connectionpool.StaticConnectionPool"
-local roundRobinSelector = require "elasticsearch.selector.RoundRobinSelector"
-local connection = require "elasticsearch.connection.Connection"
+local StaticConnectionPool = require "elasticsearch.connectionpool.StaticConnectionPool"
+local RoundRobinSelector = require "elasticsearch.selector.RoundRobinSelector"
+local Connection = require "elasticsearch.connection.Connection"
 local Logger = require "elasticsearch.Logger"
 local getmetatable = getmetatable
 local os = os
@@ -15,8 +15,8 @@ local connections = {}
 
 -- Testing constructor
 function constructorTest()
-  assert_function(staticConnectionPool.new)
-  local o = staticConnectionPool:new()
+  assert_function(StaticConnectionPool.new)
+  local o = StaticConnectionPool:new()
   assert_not_nil(o)
   local mt = getmetatable(o)
   assert_table(mt)
@@ -30,7 +30,7 @@ function setup()
   local logger = Logger:new()
   logger:setLogLevel("off")
   for i = 1, 5 do
-    connections[i] = connection:new{
+    connections[i] = Connection:new{
       protocol = "http",
       host = "localhost",
       port = 9200,
@@ -39,9 +39,9 @@ function setup()
     }
     connections[i].id = i
   end
-  connectionpool = staticConnectionPool:new{
+  connectionpool = StaticConnectionPool:new{
     connections = connections,
-    selector = roundRobinSelector:new(),
+    selector = RoundRobinSelector:new(),
     pingTimeout = 60,
     maxPingTimeout = 3600,
     logger = logger
@@ -50,7 +50,7 @@ end
 
 -- Testing function that determines whether connection is ready or not
 function connectionReadyTest()
-  local con = connection:new()
+  local con = Connection:new()
   con.lastPing = os.time() - 10
   connectionpool.pingTimeout = 1
   connectionpool.maxPingTimeout = 1000

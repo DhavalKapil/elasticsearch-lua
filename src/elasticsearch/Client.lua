@@ -19,6 +19,9 @@ local Client = {}
 -- The Settings instance
 Client.settings = nil
 
+-- The cat instance
+Client.cat = nil
+
 -- The cluster instance
 Client.cluster = nil
 
@@ -28,6 +31,12 @@ Client.nodes = nil
 -- The indices instance
 Client.indices = nil
 
+-- The snapshot instance
+Client.snapshot = nil
+
+-- The tasks instance
+Client.tasks = nil
+
 -------------------------------------------------------------------------------
 -- Function to request an endpoint instance for a particular type of request
 --
@@ -35,7 +44,7 @@ Client.indices = nil
 -- @param   params          The parameters to be passed
 -- @param   endpointParams  The endpoint params passed while object creation
 --
--- @return  table     Error or the data recevied from the elasticsearch server
+-- @return  table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:requestEndpoint(endpoint, params, endpointParams)
   local Endpoint = require("elasticsearch.endpoints." .. endpoint)
@@ -64,7 +73,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to get information regarding the Elasticsearch server
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:info()
   return self:requestEndpoint("Info")
@@ -101,7 +110,7 @@ end
 --
 -- @param    params    The get Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:get(params)
   return self:requestEndpoint("Get", params)
@@ -122,21 +131,21 @@ end
 --
 -- @param    params    The exists Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:exists(params)
-  local temp, err = self:requestEndpoint("Get", params, {
+  local temp, status = self:requestEndpoint("Get", params, {
     checkOnlyExistance = true
   })
-  if err == nil then
+  if temp ~= nil then
     -- Successfull request
-    return true
-  elseif err:match("Invalid response code") then
+    return true, status
+  elseif status:match("Invalid response code") then
     -- Wrong response code
     return false
   else
     -- Some other error, notify user
-    return nil, err
+    return nil, status
   end
 end
 
@@ -156,7 +165,7 @@ end
 --
 -- @param    params    The getSource Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:getSource(params)
   return self:requestEndpoint("Get", params, {
@@ -183,10 +192,10 @@ end
 --
 -- @param    params    The mget Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:mget(params)
-  return self:requestEndpoint("Mget", params)
+  return self:requestEndpoint("MGet", params)
 end
 
 
@@ -200,9 +209,7 @@ end
 --       ["consistency"]  = (enum) Explicit write consistency setting for the operation
 --       ["op_type"]      = (enum) Explicit operation type
 --       ["parent"]       = (string) ID of the parent document
---       ["percolate"]    = (string) Percolator queries to execute while indexing the document
 --       ["refresh"]      = (boolean) Refresh the index after performing the operation
---       ["replication"]  = (enum) Specific replication type
 --       ["routing"]      = (string) Specific routing value
 --       ["timeout"]      = (time) Explicit operation timeout
 --       ["timestamp"]    = (time) Explicit timestamp for the document
@@ -213,7 +220,7 @@ end
 --
 -- @param    params    The index Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:index(params)
   return self:requestEndpoint("Index", params)
@@ -236,33 +243,222 @@ end
 --
 -- @param    params    The delete Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:delete(params)
   return self:requestEndpoint("Delete", params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to delete documents by query
+--
+-- @usage
+-- params["q"]                  = (string) Query in the Lucene query string syntax
+--       ["consistency"]        = (enum) Explicit write consistency setting for the operation
+--       ["ignore_unavailable"] = (bool) Whether specified concrete indices should be ignored when unavailable
+--       (missing or closed)
+--       ["allow_no_indices"]   = (bool) Whether to ignore if a wildcard indices expression resolves into no
+--       concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["expand_wildcards"]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+--       closed or both.
+--
+-- @param    params    The deleteByQuery Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:deleteByQuery(params)
+  return self:requestEndpoint("DeleteByQuery", params)
+end
+
+-------------------------------------------------------------------------------
 -- Function to get the count
 --
 -- @usage
--- params["index"]              = (list) A comma-separated list of indices to restrict the results
---       ["type"]               = (list) A comma-separated list of types to restrict the results
---       ["min_score"]          = (number) Include only documents with a specific '_score' value in the result
---       ["preference"]         = (string) Specify the node or shard the operation should be performed on (default: random)
---       ["routing"]            = (string) Specific routing value
---       ["source"]             = (string) The URL-encoded query definition (instead of using the request body)
---       ["body"]               = (array) A query to restrict the results (optional)
---       ["ignore_unavailable"] = (bool) Whether specified concrete indices should be ignored when unavailable (missing or closed)
---       ["allow_no_indices"]   = (bool) Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes '_all' string or when no indices have been specified)
---       ["expand_wildcards"]   = (enum) Whether to expand wildcard expression to concrete indices that are open, closed or both.
+-- params["index"]                    = (list) A comma-separated list of indices to restrict the results
+--       ["type"]                     = (list) A comma-separated list of types to restrict the results
+--       ["ignore_unavailable"]       = (boolean) Whether specified concrete indices should be ignored when
+--       unavailable (missing or closed)
+--       ["allow_no_indices"]         = (boolean) Whether to ignore if a wildcard indices expression resolves into
+--       no concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["expand_wildcards"]         = (enum) Whether to expand wildcard expression to concrete indices that are
+--       ["min_score"]                = (number) Include only documents with a specific '_score' value in the
+--       result
+--       ["preference"]               = (string) Specify the node or shard the operation should be performed on
+--       ["routing"]                  = (string) Specific routing value
+--       ["source"]                   = (string) The URL-encoded query definition (instead of using the request body)
+--       ["q"]                        = (string) Query in the Lucene query string syntax
+--       ["analyzer"]                 = (string) The analyzer to use for the query string
+--       ["analyze_wildcard"]         = (boolean) Specify whether wildcard and prefix queries should be analyzed
+--       ["default_operator"]         = (enum) The default operator for query string query (AND or OR) (AND,OR)
+--       ["df"]                       = (string) The field to use as default where no field prefix is given in the
+--       query string
+--       ["lenient"]                  = (boolean) Specify whether format-based query failures (such as providing
+--       text to a numeric field) should be ignored
+--       ["lowercase_expanded_terms"] = (boolean) Specify whether query terms should be lowercased
+--       ["body"]                     = A query to restrict the results specified with the Query DSL (optional)
 --
 -- @param    params    The count Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:count(params)
   return self:requestEndpoint("Count", params)
+end
+
+-------------------------------------------------------------------------------
+-- Count Percolator
+--
+-- @usage
+-- params["index"]              = (string) The index of the document being count percolated. (Required)
+--       ["type"]               = (string) The type of the document being count percolated. (Required)
+--       ["id"]                 = (string) Substitute the document in the request body with a document that is
+--       known by the specified id. On top of the id, the index and type parameter will be used to retrieve the document
+--       from within the cluster. (Required)
+--       ["routing"]            = (list) A comma-separated list of specific routing values
+--       ["preference"]         = (string) Specify the node or shard the operation should be performed on
+--       ["ignore_unavailable"] = (boolean) Whether specified concrete indices should be ignored when unavailable
+--       (missing or closed)
+--       ["allow_no_indices"]   = (boolean) Whether to ignore if a wildcard indices expression resolves into no
+--       concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["expand_wildcards"]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+--       ["percolate_index"]    = (string) The index to count percolate the document into. Defaults to index.
+--       ["percolate_type"]     = (string) The type to count percolate document into. Defaults to type.
+--       ["version"]            = (number) Explicit version number for concurrency control
+--       ["version_type"]       = (enum) Specific version type (internal,external,external_gte,force)
+--       ["body"]               = The count percolator request definition using the percolate DSL
+--
+-- @param    params    The countPercolate Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:countPercolate(params)
+  return self:requestEndpoint("CountPercolate", params)
+end
+
+-------------------------------------------------------------------------------
+-- Function to implement mpercolate
+--
+-- @usage
+-- params["index"]              = (string) The index of the document being count percolated to use as default
+--       ["type"]               = (string) The type of the document being percolated to use as default.
+--       ["ignore_unavailable"] = (boolean) Whether specified concrete indices should be ignored when unavailable
+--       (missing or closed)
+--       ["allow_no_indices"]   = (boolean) Whether to ignore if a wildcard indices expression resolves into no
+--       concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["expand_wildcards"]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+--       ["body"]               = The percolate request definitions (header & body pair), separated by newlines
+--
+-- @param    params    The mpercolate Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:mpercolate(params)
+  return self:requestEndpoint("MPercolate", params)
+end
+
+-------------------------------------------------------------------------------
+-- Function to implement mtermvectors
+--
+-- @usage
+-- params["index"]            = (string) The index in which the document resides.
+--       ["type"]             = (string) The type of the document.
+--       ["ids"]              = (list) A comma-separated list of documents ids. You must define ids as parameter
+--       or set "ids" or "docs" in the request body
+--       ["term_statistics"]  = (boolean) Specifies if total term frequency and document frequency should be
+--       false)
+--       ["field_statistics"] = (boolean) Specifies if document count, sum of document frequencies and sum of
+--       total term frequencies should be returned. Applies to all returned documents unless otherwise specified in body
+--       ["fields"]           = (list) A comma-separated list of fields to return. Applies to all returned
+--       documents unless otherwise specified in body "params" or "docs".
+--       ["offsets"]          = (boolean) Specifies if term offsets should be returned. Applies to all returned
+--       ["positions"]        = (boolean) Specifies if term positions should be returned. Applies to all returned
+--       ["payloads"]         = (boolean) Specifies if term payloads should be returned. Applies to all returned
+--       random) .Applies to all returned documents unless otherwise specified in body "params" or "docs".
+--       ["routing"]          = (string) Specific routing value. Applies to all returned documents unless
+--       otherwise specified in body "params" or "docs".
+--       ["parent"]           = (string) Parent id of documents. Applies to all returned documents unless
+--       otherwise specified in body "params" or "docs".
+--       ["realtime"]         = (boolean) Specifies if requests are real-time as opposed to near-real-time
+--       ["version"]          = (number) Explicit version number for concurrency control
+--       ["version_type"]     = (enum) Specific version type (internal,external,external_gte,force)
+--       ["body"]             = Define ids, documents, parameters or a list of parameters per document here. You
+--       must at least provide a list of document ids. See documentation.
+--
+-- @param    params    The mtermvectors Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:mtermvectors(params)
+  return self:requestEndpoint("MTermVectors", params)
+end
+
+-------------------------------------------------------------------------------
+-- Function to implement more like this query
+--
+-- @usage
+-- params["id"]                     = (string) The document ID (Required)
+--       ["index"]                  = (string) The name of the index (Required)
+--       ["type"]                   = (string) The type of the document (use '_all' to fetch the first document matching the ID across all types) (Required)
+--       ["boost_terms"]            = (number) The boost factor
+--       ["max_doc_freq"]           = (number) The word occurrence frequency as count: words with higher occurrence in the corpus will be ignored
+--       ["max_query_terms"]        = (number) The maximum query terms to be included in the generated query
+--       ["max_word_len"]           = (number) The minimum length of the word: longer words will be ignored
+--       ["min_doc_freq"]           = (number) The word occurrence frequency as count: words with lower occurrence in the corpus will be ignored
+--       ["min_term_freq"]          = (number) The term frequency as percent: terms with lower occurrence in the source document will be ignored
+--       ["min_word_len"]           = (number) The minimum length of the word: shorter words will be ignored
+--       ["mlt_fields"]             = (list) Specific fields to perform the query against
+--       ["percent_terms_to_match"] = (number) How many terms have to match in order to consider the document a match (default: 0.3)
+--       ["routing"]                = (string) Specific routing value
+--       ["search_from"]            = (number) The offset from which to return results
+--       ["search_indices"]         = (list) A comma-separated list of indices to perform the query against (default: the index containing the document)
+--       ["search_query_hint"]      = (string) The search query hint
+--       ["search_scroll"]          = (string) A scroll search request definition
+--       ["search_size"]            = (number) The number of documents to return (default: 10)
+--       ["search_source"]          = (string) A specific search request definition (instead of using the request body)
+--       ["search_type"]            = (string) Specific search type (eg. 'dfs_then_fetch', 'count', etc)
+--       ["search_types"]           = (list) A comma-separated list of types to perform the query against (default: the same type as the document)
+--       ["stop_words"]             = (list) A list of stop words to be ignored
+--       ["body"]                   = (array) A specific search request definition
+--
+-- @param    params    The mlt Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:mlt(params)
+  return self:requestEndpoint("Mlt", params)
+end
+
+-------------------------------------------------------------------------------
+-- Function to implement percolate
+--
+-- @usage
+-- params["index"]                = (string) The index of the document being percolated. (Required)
+--       ["type"]                 = (string) The type of the document being percolated. (Required)
+--       ["id"]                   = (string) Substitute the document in the request body with a document that is
+--       known by the specified id. On top of the id, the index and type parameter will be used to retrieve the document
+--       from within the cluster. (Required)
+--       ["routing"]              = (list) A comma-separated list of specific routing values
+--       ["preference"]           = (string) Specify the node or shard the operation should be performed on
+--       ["ignore_unavailable"]   = (boolean) Whether specified concrete indices should be ignored when
+--       unavailable (missing or closed)
+--       ["allow_no_indices"]     = (boolean) Whether to ignore if a wildcard indices expression resolves into no
+--       concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["expand_wildcards"]     = (enum) Whether to expand wildcard expression to concrete indices that are
+--       ["percolate_index"]      = (string) The index to percolate the document into. Defaults to index.
+--       ["percolate_type"]       = (string) The type to percolate document into. Defaults to type.
+--       ["percolate_routing"]    = (string) The routing value to use when percolating the existing document.
+--       ["percolate_preference"] = (string) Which shard to prefer when executing the percolate request.
+--       ["percolate_format"]     = (enum) Return an array of matching query IDs instead of objects (ids)
+--       ["version"]              = (number) Explicit version number for concurrency control
+--       ["version_type"]         = (enum) Specific version type (internal,external,external_gte,force)
+--       ["body"]                 = The percolator request definition using the percolate DSL
+--
+-- @param    params    The percolate Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client.percolate(params)
+  self:requestEndpoint("Percolate", params)
 end
 
 -------------------------------------------------------------------------------
@@ -304,7 +500,7 @@ end
 --
 -- @param    params    The search Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:search(params)
   return self:requestEndpoint("Search", params)
@@ -349,7 +545,7 @@ end
 --
 -- @param    params    The searchExists Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:searchExists(params)
   return self:requestEndpoint("SearchExists", params)
@@ -370,10 +566,59 @@ end
 --
 -- @param    params    The searchShards Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:searchShards(params)
   return self:requestEndpoint("SearchShards", params)
+end
+
+-------------------------------------------------------------------------------
+-- Delete Template function
+--
+-- @usage
+-- params["id"]           = (string) Template ID (Required)
+--       ["version"]      = (number) Explicit version number for concurrency control
+--       ["version_type"] = (enum) Specific version type (internal,external,external_gte,force)
+--
+-- @param    params    The deleteTemplate Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:deleteTemplate(params)
+  return self:requestEndpoint("DeleteTemplate", params)
+end
+
+-------------------------------------------------------------------------------
+-- Get Template function
+--
+-- @usage
+-- params["id"]           = (string) Template ID (Required)
+--       ["version"]      = (number) Explicit version number for concurrency control
+--       ["version_type"] = (enum) Specific version type (internal,external,external_gte,force)
+--
+-- @param    params    The getTemplate Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:getTemplate(params)
+  return self:requestEndpoint("GetTemplate", params)
+end
+
+-------------------------------------------------------------------------------
+-- Put Template function
+--
+-- @usage
+-- params["id"]           = (string) Template ID (Required)
+--       ["version"]      = (number) Explicit version number for concurrency control
+--       ["version_type"] = (enum) Specific version type (internal,external,external_gte,force)
+--       ["body"]         = The document
+--
+-- @param    params    The putTemplate Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:putTempalte(params)
+  return self:requestEndpoint("PutTemplate", params)
 end
 
 -------------------------------------------------------------------------------
@@ -385,7 +630,7 @@ end
 --
 -- @param    params    The searchTemplate Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:searchTemplate(params)
   return self:requestEndpoint("SearchTemplate", params)
@@ -401,7 +646,7 @@ end
 --
 -- @param    params    The scroll Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:scroll(params)
   return self:requestEndpoint("Scroll", params)
@@ -417,7 +662,7 @@ end
 --
 -- @param    params    The clearScroll Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:clearScroll(params)
   return self:requestEndpoint("Scroll", params, {
@@ -435,10 +680,10 @@ end
 --
 -- @param    params    The msearch Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:msearch(params)
-  return self:requestEndpoint("Msearch", params)
+  return self:requestEndpoint("MSearch", params)
 end
 
 -------------------------------------------------------------------------------
@@ -463,7 +708,7 @@ end
 --
 -- @param    params    The create Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:create(params)
   return self:requestEndpoint("Index", params, {
@@ -484,7 +729,7 @@ end
 --
 -- @param    params    The bulk Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:bulk(params)
   return self:requestEndpoint("Bulk", params)
@@ -503,7 +748,7 @@ end
 --
 -- @param    params    The suggest Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:suggest(params)
   return self:requestEndpoint("Suggest", params)
@@ -535,7 +780,7 @@ end
 --
 -- @param    params    The explain Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:explain(params)
   return self:requestEndpoint("Explain", params)
@@ -566,7 +811,7 @@ end
 --
 -- @param    params    The update Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:update(params)
   return self:requestEndpoint("Update", params)
@@ -585,19 +830,149 @@ end
 --
 -- @param    params    The fieldStats Parameters
 --
--- @return   table     Error or the data recevied from the elasticsearch server
+-- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
 function Client:fieldStats(params)
   return self:requestEndpoint("FieldStats", params)
 end
 
 -------------------------------------------------------------------------------
+-- Function to reindex one index to another
+--
+-- params["refresh"]             = (boolean) Should the effected indexes be refreshed?
+--       ["timeout"]             = (time) Time each individual bulk request should wait for shards that are
+--       ["consistency"]         = (enum) Explicit write consistency setting for the operation (one,quorum,all)
+--       ["wait_for_completion"] = (boolean) Should the request should block until the reindex is complete.
+--       ["body"]                = The search definition using the Query DSL and the prototype for the index
+--       request.
+--
+-- @param    params    The reIndex Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:reIndex(params)
+  return self:requestEndpoint("ReIndex", params)
+end
+
+-------------------------------------------------------------------------------
+-- Function to render a template
+--
+-- params["id"]   = (string) The id of the stored search template
+--       ["body"] = The search definition template and its params
+--
+-- @param    params    The renderSearchTemplate Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:renderSearchTemplate(params)
+  return self:requestEndpoint("RenderSearchTemplate", params)
+end
+
+-------------------------------------------------------------------------------
+-- Function to return information and statistics on terms in the fields
+--
+-- params["index"]            = (string) The index in which the document resides. (Required)
+--       ["type"]             = (string) The type of the document. (Required)
+--       ["id"]               = (string) The id of the document, when not specified a doc param should be
+--       supplied.
+--       ["term_statistics"]  = (boolean) Specifies if total term frequency and document frequency should be
+--       ["field_statistics"] = (boolean) Specifies if document count, sum of document frequencies and sum of
+--       ["dfs"]              = (boolean) Specifies if distributed frequencies should be returned instead shard
+--       ["fields"]           = (list) A comma-separated list of fields to return.
+--       random).
+--       ["routing"]          = (string) Specific routing value.
+--       ["parent"]           = (string) Parent id of documents.
+--       true).
+--       ["version"]          = (number) Explicit version number for concurrency control
+--       ["version_type"]     = (enum) Specific version type (internal,external,external_gte,force)
+--       ["body"]             = Define parameters and or supply a document to get termvectors for. See
+--       documentation.
+--
+-- @param    params    The termvectors Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:termvectors(params)
+  return self:requestEndpoint("termvectors", params)
+end
+
+-------------------------------------------------------------------------------
+-- Function to update documents in an index by specifying search query
+--
+-- params["index"]                    = (list) A comma-separated list of index names to search; use '_all' or
+--       empty string to perform the operation on all indices (Required)
+--       ["type"]                     = (list) A comma-separated list of document types to search; leave empty to
+--       perform the operation on all types
+--       ["analyzer"]                 = (string) The analyzer to use for the query string
+--       ["analyze_wildcard"]         = (boolean) Specify whether wildcard and prefix queries should be analyzed
+--       ["default_operator"]         = (enum) The default operator for query string query (AND or OR) (AND,OR)
+--       ["df"]                       = (string) The field to use as default where no field prefix is given in the
+--       query string
+--       ["explain"]                  = (boolean) Specify whether to return detailed information about score
+--       computation as part of a hit
+--       ["fields"]                   = (list) A comma-separated list of fields to return as part of a hit
+--       ["fielddata_fields"]         = (list) A comma-separated list of fields to return as the field data
+--       representation of a field for each hit
+--       ["ignore_unavailable"]       = (boolean) Whether specified concrete indices should be ignored when
+--       unavailable (missing or closed)
+--       ["allow_no_indices"]         = (boolean) Whether to ignore if a wildcard indices expression resolves into
+--       no concrete indices. (This includes '_all' string or when no indices have been specified)
+--       ["conflicts"]                = (enum) What to do when the reindex hits version conflicts? (abort,proceed)
+--       ["expand_wildcards"]         = (enum) Whether to expand wildcard expression to concrete indices that are
+--       ["lenient"]                  = (boolean) Specify whether format-based query failures (such as providing
+--       text to a numeric field) should be ignored
+--       ["lowercase_expanded_terms"] = (boolean) Specify whether query terms should be lowercased
+--       ["preference"]               = (string) Specify the node or shard the operation should be performed on
+--       ["q"]                        = (string) Query in the Lucene query string syntax
+--       ["routing"]                  = (list) A comma-separated list of specific routing values
+--       ["scroll"]                   = (duration) Specify how long a consistent view of the index should be
+--       maintained for scrolled search
+--       ["search_type"]              = (enum) Search operation type (query_then_fetch,dfs_query_then_fetch)
+--       ["search_timeout"]           = (time) Explicit timeout for each search request. Defaults to no timeout.
+--       ["sort"]                     = (list) A comma-separated list of <field>:<direction> pairs
+--       ["_source"]                  = (list) True or false to return the _source field or not, or a list of
+--       fields to return
+--       ["_source_exclude"]          = (list) A list of fields to exclude from the returned _source field
+--       ["_source_include"]          = (list) A list of fields to extract and return from the _source field
+--       ["terminate_after"]          = (number) The maximum number of documents to collect for each shard, upon
+--       reaching which the query execution will terminate early.
+--       ["stats"]                    = (list) Specific "tag" of the request for logging and statistical purposes
+--       ["suggest_field"]            = (string) Specify which field to use for suggestions
+--       ["suggest_size"]             = (number) How many suggestions to return in response
+--       ["suggest_text"]             = (text) The source text for which the suggestions should be returned
+--       ["timeout"]                  = (time) Time each individual bulk request should wait for shards that are
+--       ["track_scores"]             = (boolean) Whether to calculate and return scores even if they are not used
+--       for sorting
+--       ["version"]                  = (boolean) Specify whether to return document version as part of a hit
+--       ["version_type"]             = (boolean) Should the document increment the version number (internal) on
+--       hit or not (reindex)
+--       ["request_cache"]            = (boolean) Specify if request cache should be used for this request or not,
+--       defaults to index level setting
+--       ["refresh"]                  = (boolean) Should the effected indexes be refreshed?
+--       ["consistency"]              = (enum) Explicit write consistency setting for the operation
+--       (one,quorum,all)
+--       ["scroll_size"]              = (integer) Size on the scroll request powering the update_by_query
+--       ["wait_for_completion"]      = (boolean) Should the request should block until the reindex is complete.
+--       ["body"]                     = The search definition using the Query DSL
+--
+-- @param    params    The termvectors Parameters
+--
+-- @return   table     Error or the data received from the elasticsearch server
+-------------------------------------------------------------------------------
+function Client:updateByQuery(params)
+  return self:requestEndpoint("UpdateByQuery", params)
+end
+
+-------------------------------------------------------------------------------
 -- Initializes the Client parameters
 -------------------------------------------------------------------------------
 function Client:setClientParameters()
+  self.cat = self.settings.cat
   self.cluster = self.settings.cluster
   self.nodes = self.settings.nodes
   self.indices = self.settings.indices
+  self.snapshot = self.settings.snapshot
+  self.tasks = self.settings.tasks
 end
 
 -------------------------------------------------------------------------------

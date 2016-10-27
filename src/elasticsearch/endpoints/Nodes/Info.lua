@@ -14,8 +14,8 @@ local Info = NodesEndpoint:new()
 
 -- The parameters that are allowed to be used in params
 Info.allowedParams = {
-  "flat_settings",
-  "human"
+  ["flat_settings"] = true,
+  ["human"] = true
 }
 
 -------------------------------------------------------------------------------

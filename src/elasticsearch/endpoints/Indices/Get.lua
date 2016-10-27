@@ -1,12 +1,12 @@
 -------------------------------------------------------------------------------
 -- Importing modules
 -------------------------------------------------------------------------------
-local Endpoint = require "elasticsearch.endpoints.Endpoint"
+local IndicesEndpoint = require "elasticsearch.endpoints.Indices.IndicesEndpoint"
 
 -------------------------------------------------------------------------------
 -- Declaring module
 -------------------------------------------------------------------------------
-local Get = Endpoint:new()
+local Get = IndicesEndpoint:new()
 
 -------------------------------------------------------------------------------
 -- Declaring Instance variables
@@ -14,43 +14,12 @@ local Get = Endpoint:new()
 
 -- The parameters that are allowed to be used in params
 Get.allowedParams = {
-  "local",
-  "ignore_unavailable",
-  "allow_no_indices",
-  "expand_wildcards",
-  "human"
+  ["local"] = true,
+  ["ignore_unavailable"] = true,
+  ["allow_no_indices"] = true,
+  ["expand_wildcards"] = true,
+  ["human"] = true
 }
-
--------------------------------------------------------------------------------
--- Function used to set the params to be sent as GET parameters
---
--- @param   params  The params provided by the user
---
--- @return  string  A string if an error is found otherwise nil
--------------------------------------------------------------------------------
-function Get:setParams(params)
-  for i, v in pairs(params) do
-    if i == "index" then
-      self.index = v
-    elseif i == "feature" then
-      self.feature = v
-    else
-      -- Checking whether i is in allowed parameters or not
-      -- Current algorithm is n*m, but n and m are very small
-      local flag = 0;
-      for _, allowedParam in pairs(self.allowedParams) do
-        if allowedParam == i then
-          flag = 1;
-          break;
-        end
-      end
-      if flag == 0 then
-        return i .. " is not an allowed parameter"
-      end
-      self.params[i] = v
-    end
-  end
-end
 
 -------------------------------------------------------------------------------
 -- Function to calculate the http request method

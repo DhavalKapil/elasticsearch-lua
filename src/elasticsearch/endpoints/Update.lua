@@ -14,20 +14,20 @@ local Update = Endpoint:new()
 
 -- The parameters that are allowed to be used in params
 Update.allowedParams = {
-  "consistency",
-  "fields",
-  "lang",
-  "parent",
-  "refresh",
-  "replication",
-  "retry_on_conflict",
-  "routing",
-  "script",
-  "timeout",
-  "timestamp",
-  "ttl",
-  "version",
-  "version_type",
+  ["consistency"] = true,
+  ["fields"] = true,
+  ["lang"] = true,
+  ["parent"] = true,
+  ["refresh"] = true,
+  ["replication"] = true,
+  ["retry_on_conflict"] = true,
+  ["routing"] = true,
+  ["script"] = true,
+  ["timeout"] = true,
+  ["timestamp"] = true,
+  ["ttl"] = true,
+  ["version"] = true,
+  ["version_type"] = true,
 }
 
 -------------------------------------------------------------------------------

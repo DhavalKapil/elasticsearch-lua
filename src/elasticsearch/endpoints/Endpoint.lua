@@ -40,10 +40,27 @@ function Endpoint:setBody(body)
     return
   end
   -- Bulk body is present
-  self.body = ""
+  local jsonEncodedBody = {}
   for _id, item in pairs(body) do
-    self.body = self.body .. parser.jsonEncode(item) .. "\n"
+    table.insert(jsonEncodedBody, parser.jsonEncode(item))
   end
+  self.body = table.concat(jsonEncodedBody, "\n") .. "\n"
+end
+
+-------------------------------------------------------------------------------
+-- Function used to set the allowed param to be sent as GET parameters
+--
+-- @param   param   The param provided by the user
+-- @param   value   The value of the parameter
+--
+-- @return  string  A string if an error is found otherwise nil
+-------------------------------------------------------------------------------
+function Endpoint:setAllowedParam(param, value)
+  -- Checking whether i is in allowed parameters or not
+  if self.allowedParams[param] ~= true then
+    return param .. " is not an allowed parameter"
+  end
+  self.params[param] = value
 end
 
 -------------------------------------------------------------------------------
@@ -54,7 +71,13 @@ end
 -- @return  string  A string if an error is found otherwise nil
 -------------------------------------------------------------------------------
 function Endpoint:setParams(params)
+  -- Clearing existing parameters
+  self.index = nil
+  self.type = nil
+  self.id = nil
   self.params = {}
+  self.body = nil
+  -- Setting new parameters
   for i, v in pairs(params) do
     if i == "index" then
       self.index = v
@@ -65,19 +88,10 @@ function Endpoint:setParams(params)
     elseif i == "body" then
       self:setBody(v)
     else
-      -- Checking whether i is in allowed parameters or not
-      -- Current algorithm is n*m, but n and m are very small
-      local flag = 0;
-      for _, allowedParam in pairs(self.allowedParams) do
-        if allowedParam == i then
-          flag = 1;
-          break;
-        end
+      local err = self:setAllowedParam(i, v)
+      if err ~= nil then
+        return err
       end
-      if flag == 0 then
-        return i .. " is not an allowed parameter"
-      end
-      self.params[i] = v
     end
   end
 end
@@ -97,7 +111,11 @@ function Endpoint:request()
 
   -- parsing body
   if response ~= nil and response.body ~= nil and response.body ~= "" then
-    response.body = parser.jsonDecode(response.body)
+    local json = parser.jsonDecode(response.body)
+    -- If response is not in json, pass it as it is, otherwise update the json
+    if json ~= nil then
+      response.body = json
+    end
   end
 
   return response, err

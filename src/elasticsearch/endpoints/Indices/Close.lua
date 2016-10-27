@@ -1,12 +1,12 @@
 -------------------------------------------------------------------------------
 -- Importing modules
 -------------------------------------------------------------------------------
-local Endpoint = require "elasticsearch.endpoints.Endpoint"
+local IndicesEndpoint = require "elasticsearch.endpoints.Indices.IndicesEndpoint"
 
 -------------------------------------------------------------------------------
 -- Declaring module
 -------------------------------------------------------------------------------
-local Close = Endpoint:new()
+local Close = IndicesEndpoint:new()
 
 -------------------------------------------------------------------------------
 -- Declaring Instance variables
@@ -14,11 +14,11 @@ local Close = Endpoint:new()
 
 -- The parameters that are allowed to be used in params
 Close.allowedParams = {
-  "timeout",
-  "master_timeout",
-  "ignore_unavailable",
-  "allow_no_indices",
-  "expand_wildcards"
+  ["timeout"] = true,
+  ["master_timeout"] = true,
+  ["ignore_unavailable"] = true,
+  ["allow_no_indices"] = true,
+  ["expand_wildcards"] = true
 }
 
 -------------------------------------------------------------------------------

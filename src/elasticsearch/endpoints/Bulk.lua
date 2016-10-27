@@ -17,11 +17,11 @@ Bulk.bulkBody = true
 
 -- The parameters that are allowed to be used in params
 Bulk.allowedParams = {
-  "consistency",
-  "refresh",
-  "replication",
-  "type",
-  "fields"
+  ["consistency"] = true,
+  ["refresh"] = true,
+  ["replication"] = true,
+  ["type"] = true,
+  ["fields"] = true
 }
 
 -------------------------------------------------------------------------------
