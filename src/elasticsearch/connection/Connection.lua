@@ -45,38 +45,44 @@ Connection.logger = nil
 -- @return  table   The response returned
 -------------------------------------------------------------------------------
 function Connection:request(method, uri, params, body, timeout)
-  -- Building URI
+  local response, err = self:engine(method, uri, params, body, timeout)
+  return response
+end
+
+function Connection:engine(method, uri, params, body, timeout)
   local uri = self:buildURI(uri, params)
-  -- The responseBody table
-  local responseBody = {}
-  -- The response table
-  local response = {}
-  -- The request table
-  local request = {
-    method = method,
-    url = uri,
-    sink = ltn12.sink.table(responseBody)
-  }
-  if body ~= nil then
-    -- Adding body to request
-    request.headers = {
-      ["Content-Length"] = body:len()
+  if self.preferred_engine == "default" then
+--    The responseBody table
+    local responseBody = {}
+    -- The response table
+    local response = {}
+    -- The request table
+    local request = {
+      method = method,
+      url = uri,
+      sink = ltn12.sink.table(responseBody)
     }
-    request.source = ltn12.source.string(body)
-  end
-  if timeout ~= nil then
-    -- Setting timeout for request
-    http.TIMEOUT = timeout
+    if body ~= nil then
+      -- Adding body to request
+      request.headers = {
+        ["Content-Length"] = body:len()
+      }
+      request.source = ltn12.source.string(body)
+    end
+    if timeout ~= nil then
+      -- Setting timeout for request
+      http.TIMEOUT = timeout
+    end
+    -- Making the actual request
+    response.code, response.statusCode, response.headers, response.statusLine
+      = http.request(request)
+    self.logger:debug("Got HTTP " .. response.statusCode)
+    http.TIMEOUT = nil
+    response.body = table.concat(responseBody)
+    return response
   end
 
-  -- Making the actual request
-  response.code, response.statusCode, response.headers, response.statusLine
-    = http.request(request)
-  self.logger:debug("Got HTTP " .. response.statusCode)
-  http.TIMEOUT = nil
-  response.body = table.concat(responseBody)
-  
-  return response
+  return self.preferred_engine(method, uri, params, body, timeout)
 end
 
 -------------------------------------------------------------------------------
