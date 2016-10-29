@@ -15,6 +15,7 @@ local Snapshot = {}
 Snapshot.transport = nil
 
 -------------------------------------------------------------------------------
+-- @local
 -- Function to request an endpoint instance for a particular type of request
 --
 -- @param   endpoint        The string denoting the endpoint
@@ -201,6 +202,7 @@ function Snapshot:verifyRepository(params)
 end
 
 -------------------------------------------------------------------------------
+-- @local
 -- Returns an instance of Snapshot class
 -------------------------------------------------------------------------------
 function Snapshot:new(o)

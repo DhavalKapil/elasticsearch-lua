@@ -15,6 +15,7 @@ local Cat = {}
 Cat.transport = nil
 
 -------------------------------------------------------------------------------
+-- @local
 -- Function to request an endpoint instance for a particular type of request
 --
 -- @param   endpoint        The string denoting the endpoint
@@ -397,6 +398,7 @@ function Cat:threadPool(params)
 end
 
 -------------------------------------------------------------------------------
+-- @local
 -- Returns an instance of Cat class
 -------------------------------------------------------------------------------
 function Cat:new(o)

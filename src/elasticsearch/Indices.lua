@@ -15,6 +15,7 @@ local Indices = {}
 Indices.transport = nil
 
 -------------------------------------------------------------------------------
+-- @local
 -- Function to request an endpoint instance for a particular type of request
 --
 -- @param   endpoint        The string denoting the endpoint
@@ -985,6 +986,7 @@ function Indices:stats(params)
 end
 
 -------------------------------------------------------------------------------
+-- @local
 -- Returns an instance of Indices class
 -------------------------------------------------------------------------------
 function Indices:new(o)

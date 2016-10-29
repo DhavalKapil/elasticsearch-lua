@@ -15,6 +15,7 @@ local Nodes = {}
 Nodes.transport = nil
 
 -------------------------------------------------------------------------------
+-- @local
 -- Function to request an endpoint instance for a particular type of request
 --
 -- @param   endpoint        The string denoting the endpoint
@@ -127,6 +128,7 @@ function Nodes:shutdown(params)
 end
 
 -------------------------------------------------------------------------------
+-- @local
 -- Returns an instance of Nodes class
 -------------------------------------------------------------------------------
 function Nodes:new(o)

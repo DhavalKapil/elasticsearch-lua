@@ -15,6 +15,7 @@ local Tasks = {}
 Tasks.transport = nil
 
 -------------------------------------------------------------------------------
+-- @local
 -- Function to request an endpoint instance for a particular type of request
 --
 -- @param   endpoint        The string denoting the endpoint
@@ -94,6 +95,7 @@ function Tasks:get(params)
 end
 
 -------------------------------------------------------------------------------
+-- @local
 -- Returns an instance of Tasks class
 -------------------------------------------------------------------------------
 function Tasks:new(o)

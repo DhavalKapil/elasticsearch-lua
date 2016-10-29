@@ -19,25 +19,26 @@ local Client = {}
 -- The Settings instance
 Client.settings = nil
 
--- The cat instance
+--- The cat instance
 Client.cat = nil
 
--- The cluster instance
+--- The cluster instance
 Client.cluster = nil
 
--- The nodes instance
-Client.nodes = nil
-
--- The indices instance
+--- The indices instance
 Client.indices = nil
 
--- The snapshot instance
+--- The nodes instance
+Client.nodes = nil
+
+--- The snapshot instance
 Client.snapshot = nil
 
--- The tasks instance
+--- The tasks instance
 Client.tasks = nil
 
 -------------------------------------------------------------------------------
+-- @local
 -- Function to request an endpoint instance for a particular type of request
 --
 -- @param   endpoint        The string denoting the endpoint
@@ -839,6 +840,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to reindex one index to another
 --
+-- @usage
 -- params["refresh"]             = (boolean) Should the effected indexes be refreshed?
 --       ["timeout"]             = (time) Time each individual bulk request should wait for shards that are
 --       ["consistency"]         = (enum) Explicit write consistency setting for the operation (one,quorum,all)
@@ -857,6 +859,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to render a template
 --
+-- @usage
 -- params["id"]   = (string) The id of the stored search template
 --       ["body"] = The search definition template and its params
 --
@@ -871,6 +874,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to return information and statistics on terms in the fields
 --
+-- @usage
 -- params["index"]            = (string) The index in which the document resides. (Required)
 --       ["type"]             = (string) The type of the document. (Required)
 --       ["id"]               = (string) The id of the document, when not specified a doc param should be
@@ -899,6 +903,7 @@ end
 -------------------------------------------------------------------------------
 -- Function to update documents in an index by specifying search query
 --
+-- @usage
 -- params["index"]                    = (list) A comma-separated list of index names to search; use '_all' or
 --       empty string to perform the operation on all indices (Required)
 --       ["type"]                     = (list) A comma-separated list of document types to search; leave empty to
@@ -964,6 +969,7 @@ function Client:updateByQuery(params)
 end
 
 -------------------------------------------------------------------------------
+-- @local
 -- Initializes the Client parameters
 -------------------------------------------------------------------------------
 function Client:setClientParameters()
@@ -976,6 +982,7 @@ function Client:setClientParameters()
 end
 
 -------------------------------------------------------------------------------
+-- @local
 -- Returns an instance of Client class
 -------------------------------------------------------------------------------
 function Client:new(o)

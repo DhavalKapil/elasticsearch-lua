@@ -15,6 +15,7 @@ local Cluster = {}
 Cluster.transport = nil
 
 -------------------------------------------------------------------------------
+-- @local
 -- Function to request an endpoint instance for a particular type of request
 --
 -- @param   endpoint        The string denoting the endpoint
@@ -160,6 +161,7 @@ function Cluster:pendingTasks(params)
 end
 
 -------------------------------------------------------------------------------
+-- @local
 -- Returns an instance of Cluster class
 -------------------------------------------------------------------------------
 function Cluster:new(o)
