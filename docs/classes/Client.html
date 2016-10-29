@@ -32,6 +32,7 @@
 
 <h2>Contents</h2>
 <ul>
+<li><a href="#Fields">Fields</a></li>
 <li><a href="#Methods">Methods</a></li>
 </ul>
 
@@ -67,12 +68,35 @@
     </ul>
 
 
-<h2><a href="#Methods">Methods</a></h2>
+<h2><a href="#Fields">Fields</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#Client:requestEndpoint">Client:requestEndpoint (endpoint, params, endpointParams)</a></td>
-	<td class="summary">Function to request an endpoint instance for a particular type of request</td>
+	<td class="name" nowrap><a href="#Client.cat">Client.cat</a></td>
+	<td class="summary">The cat instance</td>
 	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Client.cluster">Client.cluster</a></td>
+	<td class="summary">The cluster instance</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Client.indices">Client.indices</a></td>
+	<td class="summary">The indices instance</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Client.nodes">Client.nodes</a></td>
+	<td class="summary">The nodes instance</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Client.snapshot">Client.snapshot</a></td>
+	<td class="summary">The snapshot instance</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Client.tasks">Client.tasks</a></td>
+	<td class="summary">The tasks instance</td>
+	</tr>
+</table>
+<h2><a href="#Methods">Methods</a></h2>
+<table class="function_list">
 	<tr>
 	<td class="name" nowrap><a href="#Client:info">Client:info ()</a></td>
 	<td class="summary">Function to get information regarding the Elasticsearch server</td>
@@ -196,9 +220,7 @@
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#Client:reIndex">Client:reIndex (params)</a></td>
-	<td class="summary">Function to reindex one index to another</p>
-
-<p> params["refresh"]             = (boolean) Should the effected indexes be refreshed?</td>
+	<td class="summary">Function to reindex one index to another</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#Client:renderSearchTemplate">Client:renderSearchTemplate (params)</a></td>
@@ -206,43 +228,11 @@
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#Client:termvectors">Client:termvectors (params)</a></td>
-	<td class="summary">Function to return information and statistics on terms in the fields</p>
-
-<p> params["index"]            = (string) The index in which the document resides.</td>
+	<td class="summary">Function to return information and statistics on terms in the fields</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#Client:updateByQuery">Client:updateByQuery (params)</a></td>
-	<td class="summary">
-<p>Function to update documents in an index by specifying search query</p>
-
-<p> params["index"]                    = (list) A comma-separated list of index names to search; use '_all' or</p>
-<pre><code>   empty string to perform the operation on all indices (Required)
-   ["type"]                     = (list) A comma-separated list of document types to search; leave empty to
-   perform the operation on all types
-   ["analyzer"]                 = (string) The analyzer to use for the query string
-   ["analyze_wildcard"]         = (boolean) Specify whether wildcard and prefix queries should be analyzed
-   ["default_operator"]         = (enum) The default operator for query string query (AND or OR) (AND,OR)
-   ["df"]                       = (string) The field to use as default where no field prefix is given in the
-   query string
-   ["explain"]                  = (boolean) Specify whether to return detailed information about score
-   computation as part of a hit
-   ["fields"]                   = (list) A comma-separated list of fields to return as part of a hit
-   ["fielddata_fields"]         = (list) A comma-separated list of fields to return as the field data
-   representation of a field for each hit
-   ["ignore_unavailable"]       = (boolean) Whether specified concrete indices should be ignored when
-   unavailable (missing or closed)
-   ["allow_no_indices"]         = (boolean) Whether to ignore if a wildcard indices expression resolves into
-   no concrete indices.
-</code></pre>
-</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#Client:setClientParameters">Client:setClientParameters ()</a></td>
-	<td class="summary">Initializes the Client parameters</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#Client:new">Client:new (o)</a></td>
-	<td class="summary">Returns an instance of Client class</td>
+	<td class="summary">Function to update documents in an index by specifying search query</td>
 	</tr>
 </table>
 
@@ -250,46 +240,97 @@
 <br/>
 
 
-    <h2 class="section-header "><a name="Methods"></a>Methods</h2>
+    <h2 class="section-header "><a name="Fields"></a>Fields</h2>
 
     <dl class="function">
     <dt>
-    <a name = "Client:requestEndpoint"></a>
-    <strong>Client:requestEndpoint (endpoint, params, endpointParams)</strong>
+    <a name = "Client.cat"></a>
+    <strong>Client.cat</strong>
     </dt>
     <dd>
-    Function to request an endpoint instance for a particular type of request
+    The cat instance
 
 
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">endpoint</span>
 
-<pre><code>    The string denoting the endpoint
-</code></pre>
-
-        </li>
-        <li><span class="parameter">params</span>
-
-<pre><code>      The parameters to be passed
-</code></pre>
-
-        </li>
-        <li><span class="parameter">endpointParams</span>
-          The endpoint params passed while object creation
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-        table     Error or the data received from the elasticsearch server
-    </ol>
 
 
 
 
 </dd>
+    <dt>
+    <a name = "Client.cluster"></a>
+    <strong>Client.cluster</strong>
+    </dt>
+    <dd>
+    The cluster instance
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Client.indices"></a>
+    <strong>Client.indices</strong>
+    </dt>
+    <dd>
+    The indices instance
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Client.nodes"></a>
+    <strong>Client.nodes</strong>
+    </dt>
+    <dd>
+    The nodes instance
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Client.snapshot"></a>
+    <strong>Client.snapshot</strong>
+    </dt>
+    <dd>
+    The snapshot instance
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Client.tasks"></a>
+    <strong>Client.tasks</strong>
+    </dt>
+    <dd>
+    The tasks instance
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Methods"></a>Methods</h2>
+
+    <dl class="function">
     <dt>
     <a name = "Client:info"></a>
     <strong>Client:info ()</strong>
@@ -1577,18 +1618,7 @@
     <strong>Client:reIndex (params)</strong>
     </dt>
     <dd>
-
-<p>Function to reindex one index to another</p>
-
-<p> params["refresh"]             = (boolean) Should the effected indexes be refreshed? </p>
-<pre><code>   ["timeout"]             = (time) Time each individual bulk request should wait for shards that are
-   ["consistency"]         = (enum) Explicit write consistency setting for the operation (one,quorum,all)
-   ["wait_for_completion"] = (boolean) Should the request should block until the reindex is complete.
-   ["body"]                = The search definition using the Query DSL and the prototype for the index
-   request.
-</code></pre>
-
-
+    Function to reindex one index to another
 
 
     <h3>Parameters:</h3>
@@ -1609,6 +1639,16 @@
 
 
 
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"refresh"</span>]             = (boolean) Should the effected indexes be refreshed?
+       [<span class="string">"timeout"</span>]             = (time) Time each individual bulk request should wait <span class="keyword">for</span> shards that are
+       [<span class="string">"consistency"</span>]         = (enum) Explicit write consistency setting <span class="keyword">for</span> the operation (one,quorum,all)
+       [<span class="string">"wait_for_completion"</span>] = (boolean) Should the request should block <span class="keyword">until</span> the reindex is complete.
+       [<span class="string">"body"</span>]                = The search definition using the Query DSL <span class="keyword">and</span> the prototype <span class="keyword">for</span> the index
+       request.</pre>
+    </ul>
 
 </dd>
     <dt>
@@ -1616,12 +1656,7 @@
     <strong>Client:renderSearchTemplate (params)</strong>
     </dt>
     <dd>
-
-<p>Function to render a template  params["id"]   = (string) The id of the stored search template</p>
-<pre><code>   ["body"] = The search definition template and its params
-</code></pre>
-
-
+    Function to render a template
 
 
     <h3>Parameters:</h3>
@@ -1642,6 +1677,12 @@
 
 
 
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"id"</span>]   = (<span class="global">string</span>) The id of the stored search template
+       [<span class="string">"body"</span>] = The search definition template <span class="keyword">and</span> its params</pre>
+    </ul>
 
 </dd>
     <dt>
@@ -1649,28 +1690,7 @@
     <strong>Client:termvectors (params)</strong>
     </dt>
     <dd>
-
-<p>Function to return information and statistics on terms in the fields</p>
-
-<p> params["index"]            = (string) The index in which the document resides.  (Required)</p>
-<pre><code>   ["type"]             = (string) The type of the document. (Required)
-   ["id"]               = (string) The id of the document, when not specified a doc param should be
-   supplied.
-   ["term_statistics"]  = (boolean) Specifies if total term frequency and document frequency should be
-   ["field_statistics"] = (boolean) Specifies if document count, sum of document frequencies and sum of
-   ["dfs"]              = (boolean) Specifies if distributed frequencies should be returned instead shard
-   ["fields"]           = (list) A comma-separated list of fields to return.
-   random).
-   ["routing"]          = (string) Specific routing value.
-   ["parent"]           = (string) Parent id of documents.
-   true).
-   ["version"]          = (number) Explicit version number for concurrency control
-   ["version_type"]     = (enum) Specific version type (internal,external,external_gte,force)
-   ["body"]             = Define parameters and or supply a document to get termvectors for. See
-   documentation.
-</code></pre>
-
-
+    Function to return information and statistics on terms in the fields
 
 
     <h3>Parameters:</h3>
@@ -1691,6 +1711,26 @@
 
 
 
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]            = (<span class="global">string</span>) The index <span class="keyword">in</span> which the document resides. (Required)
+       [<span class="string">"type"</span>]             = (<span class="global">string</span>) The <span class="global">type</span> of the document. (Required)
+       [<span class="string">"id"</span>]               = (<span class="global">string</span>) The id of the document, when <span class="keyword">not</span> specified a doc param should be
+       supplied.
+       [<span class="string">"term_statistics"</span>]  = (boolean) Specifies <span class="keyword">if</span> total term frequency <span class="keyword">and</span> document frequency should be
+       [<span class="string">"field_statistics"</span>] = (boolean) Specifies <span class="keyword">if</span> document count, sum of document frequencies <span class="keyword">and</span> sum of
+       [<span class="string">"dfs"</span>]              = (boolean) Specifies <span class="keyword">if</span> distributed frequencies should be returned instead shard
+       [<span class="string">"fields"</span>]           = (list) A comma-separated list of fields to <span class="keyword">return</span>.
+       random).
+       [<span class="string">"routing"</span>]          = (<span class="global">string</span>) Specific routing value.
+       [<span class="string">"parent"</span>]           = (<span class="global">string</span>) Parent id of documents.
+       <span class="keyword">true</span>).
+       [<span class="string">"version"</span>]          = (number) Explicit version number <span class="keyword">for</span> concurrency control
+       [<span class="string">"version_type"</span>]     = (enum) Specific version <span class="global">type</span> (internal,external,external_gte,force)
+       [<span class="string">"body"</span>]             = Define parameters <span class="keyword">and</span> <span class="keyword">or</span> supply a document to get termvectors <span class="keyword">for</span>. See
+       documentation.</pre>
+    </ul>
 
 </dd>
     <dt>
@@ -1698,67 +1738,7 @@
     <strong>Client:updateByQuery (params)</strong>
     </dt>
     <dd>
-
-<p>Function to update documents in an index by specifying search query</p>
-
-<p> params["index"]                    = (list) A comma-separated list of index names to search; use '_all' or</p>
-<pre><code>   empty string to perform the operation on all indices (Required)
-   ["type"]                     = (list) A comma-separated list of document types to search; leave empty to
-   perform the operation on all types
-   ["analyzer"]                 = (string) The analyzer to use for the query string
-   ["analyze_wildcard"]         = (boolean) Specify whether wildcard and prefix queries should be analyzed
-   ["default_operator"]         = (enum) The default operator for query string query (AND or OR) (AND,OR)
-   ["df"]                       = (string) The field to use as default where no field prefix is given in the
-   query string
-   ["explain"]                  = (boolean) Specify whether to return detailed information about score
-   computation as part of a hit
-   ["fields"]                   = (list) A comma-separated list of fields to return as part of a hit
-   ["fielddata_fields"]         = (list) A comma-separated list of fields to return as the field data
-   representation of a field for each hit
-   ["ignore_unavailable"]       = (boolean) Whether specified concrete indices should be ignored when
-   unavailable (missing or closed)
-   ["allow_no_indices"]         = (boolean) Whether to ignore if a wildcard indices expression resolves into
-   no concrete indices.  (This includes '_all' string or when no indices have been specified)
-   ["conflicts"]                = (enum) What to do when the reindex hits version conflicts? (abort,proceed)
-   ["expand_wildcards"]         = (enum) Whether to expand wildcard expression to concrete indices that are
-   ["lenient"]                  = (boolean) Specify whether format-based query failures (such as providing
-   text to a numeric field) should be ignored
-   ["lowercase_expanded_terms"] = (boolean) Specify whether query terms should be lowercased
-   ["preference"]               = (string) Specify the node or shard the operation should be performed on
-   ["q"]                        = (string) Query in the Lucene query string syntax
-   ["routing"]                  = (list) A comma-separated list of specific routing values
-   ["scroll"]                   = (duration) Specify how long a consistent view of the index should be
-   maintained for scrolled search
-   ["search_type"]              = (enum) Search operation type (query_then_fetch,dfs_query_then_fetch)
-   ["search_timeout"]           = (time) Explicit timeout for each search request. Defaults to no timeout.
-   ["sort"]                     = (list) A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs
-   ["_source"]                  = (list) True or false to return the _source field or not, or a list of
-   fields to return
-   ["_source_exclude"]          = (list) A list of fields to exclude from the returned _source field
-   ["_source_include"]          = (list) A list of fields to extract and return from the _source field
-   ["terminate_after"]          = (number) The maximum number of documents to collect for each shard, upon
-   reaching which the query execution will terminate early.
-   ["stats"]                    = (list) Specific "tag" of the request for logging and statistical purposes
-   ["suggest_field"]            = (string) Specify which field to use for suggestions
-   ["suggest_size"]             = (number) How many suggestions to return in response
-   ["suggest_text"]             = (text) The source text for which the suggestions should be returned
-   ["timeout"]                  = (time) Time each individual bulk request should wait for shards that are
-   ["track_scores"]             = (boolean) Whether to calculate and return scores even if they are not used
-   for sorting
-   ["version"]                  = (boolean) Specify whether to return document version as part of a hit
-   ["version_type"]             = (boolean) Should the document increment the version number (internal) on
-   hit or not (reindex)
-   ["request_cache"]            = (boolean) Specify if request cache should be used for this request or not,
-   defaults to index level setting
-   ["refresh"]                  = (boolean) Should the effected indexes be refreshed?
-   ["consistency"]              = (enum) Explicit write consistency setting for the operation
-   (one,quorum,all)
-   ["scroll_size"]              = (integer) Size on the scroll request powering the update_by_query
-   ["wait_for_completion"]      = (boolean) Should the request should block until the reindex is complete.
-   ["body"]                     = The search definition using the Query DSL
-</code></pre>
-
-
+    Function to update documents in an index by specifying search query
 
 
     <h3>Parameters:</h3>
@@ -1779,42 +1759,65 @@
 
 
 
-
-</dd>
-    <dt>
-    <a name = "Client:setClientParameters"></a>
-    <strong>Client:setClientParameters ()</strong>
-    </dt>
-    <dd>
-    Initializes the Client parameters
-
-
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "Client:new"></a>
-    <strong>Client:new (o)</strong>
-    </dt>
-    <dd>
-    Returns an instance of Client class
-
-
-    <h3>Parameters:</h3>
+    <h3>Usage:</h3>
     <ul>
-        <li><span class="parameter">o</span>
-
-
-
-        </li>
+        <pre class="example">
+ params[<span class="string">"index"</span>]                    = (list) A comma-separated list of index names to search; use <span class="string">'_all'</span> <span class="keyword">or</span>
+       empty <span class="global">string</span> to perform the operation on all indices (Required)
+       [<span class="string">"type"</span>]                     = (list) A comma-separated list of document types to search; leave empty to
+       perform the operation on all types
+       [<span class="string">"analyzer"</span>]                 = (<span class="global">string</span>) The analyzer to use <span class="keyword">for</span> the query <span class="global">string</span>
+       [<span class="string">"analyze_wildcard"</span>]         = (boolean) Specify whether wildcard <span class="keyword">and</span> prefix queries should be analyzed
+       [<span class="string">"default_operator"</span>]         = (enum) The default operator <span class="keyword">for</span> query <span class="global">string</span> query (AND <span class="keyword">or</span> OR) (AND,OR)
+       [<span class="string">"df"</span>]                       = (<span class="global">string</span>) The field to use as default where no field prefix is given <span class="keyword">in</span> the
+       query <span class="global">string</span>
+       [<span class="string">"explain"</span>]                  = (boolean) Specify whether to <span class="keyword">return</span> detailed information about score
+       computation as part of a hit
+       [<span class="string">"fields"</span>]                   = (list) A comma-separated list of fields to <span class="keyword">return</span> as part of a hit
+       [<span class="string">"fielddata_fields"</span>]         = (list) A comma-separated list of fields to <span class="keyword">return</span> as the field data
+       representation of a field <span class="keyword">for</span> each hit
+       [<span class="string">"ignore_unavailable"</span>]       = (boolean) Whether specified concrete indices should be ignored when
+       unavailable (missing <span class="keyword">or</span> closed)
+       [<span class="string">"allow_no_indices"</span>]         = (boolean) Whether to ignore <span class="keyword">if</span> a wildcard indices expression resolves into
+       no concrete indices. (This includes <span class="string">'_all'</span> <span class="global">string</span> <span class="keyword">or</span> when no indices have been specified)
+       [<span class="string">"conflicts"</span>]                = (enum) What to <span class="keyword">do</span> when the reindex hits version conflicts? (abort,proceed)
+       [<span class="string">"expand_wildcards"</span>]         = (enum) Whether to expand wildcard expression to concrete indices that are
+       [<span class="string">"lenient"</span>]                  = (boolean) Specify whether format-based query failures (such as providing
+       text to a numeric field) should be ignored
+       [<span class="string">"lowercase_expanded_terms"</span>] = (boolean) Specify whether query terms should be lowercased
+       [<span class="string">"preference"</span>]               = (<span class="global">string</span>) Specify the node <span class="keyword">or</span> shard the operation should be performed on
+       [<span class="string">"q"</span>]                        = (<span class="global">string</span>) Query <span class="keyword">in</span> the Lucene query <span class="global">string</span> syntax
+       [<span class="string">"routing"</span>]                  = (list) A comma-separated list of specific routing values
+       [<span class="string">"scroll"</span>]                   = (duration) Specify how long a consistent view of the index should be
+       maintained <span class="keyword">for</span> scrolled search
+       [<span class="string">"search_type"</span>]              = (enum) Search operation <span class="global">type</span> (query_then_fetch,dfs_query_then_fetch)
+       [<span class="string">"search_timeout"</span>]           = (time) Explicit timeout <span class="keyword">for</span> each search request. Defaults to no timeout.
+       [<span class="string">"sort"</span>]                     = (list) A comma-separated list of &lt;field&gt;:&lt;direction&gt; <span class="global">pairs</span>
+       [<span class="string">"_source"</span>]                  = (list) True <span class="keyword">or</span> <span class="keyword">false</span> to <span class="keyword">return</span> the _source field <span class="keyword">or</span> <span class="keyword">not</span>, <span class="keyword">or</span> a list of
+       fields to <span class="keyword">return</span>
+       [<span class="string">"_source_exclude"</span>]          = (list) A list of fields to exclude from the returned _source field
+       [<span class="string">"_source_include"</span>]          = (list) A list of fields to extract <span class="keyword">and</span> <span class="keyword">return</span> from the _source field
+       [<span class="string">"terminate_after"</span>]          = (number) The maximum number of documents to collect <span class="keyword">for</span> each shard, upon
+       reaching which the query execution will terminate early.
+       [<span class="string">"stats"</span>]                    = (list) Specific <span class="string">"tag"</span> of the request <span class="keyword">for</span> logging <span class="keyword">and</span> statistical purposes
+       [<span class="string">"suggest_field"</span>]            = (<span class="global">string</span>) Specify which field to use <span class="keyword">for</span> suggestions
+       [<span class="string">"suggest_size"</span>]             = (number) How many suggestions to <span class="keyword">return</span> <span class="keyword">in</span> response
+       [<span class="string">"suggest_text"</span>]             = (text) The source text <span class="keyword">for</span> which the suggestions should be returned
+       [<span class="string">"timeout"</span>]                  = (time) Time each individual bulk request should wait <span class="keyword">for</span> shards that are
+       [<span class="string">"track_scores"</span>]             = (boolean) Whether to calculate <span class="keyword">and</span> <span class="keyword">return</span> scores even <span class="keyword">if</span> they are <span class="keyword">not</span> used
+       <span class="keyword">for</span> sorting
+       [<span class="string">"version"</span>]                  = (boolean) Specify whether to <span class="keyword">return</span> document version as part of a hit
+       [<span class="string">"version_type"</span>]             = (boolean) Should the document increment the version number (internal) on
+       hit <span class="keyword">or</span> <span class="keyword">not</span> (reindex)
+       [<span class="string">"request_cache"</span>]            = (boolean) Specify <span class="keyword">if</span> request cache should be used <span class="keyword">for</span> this request <span class="keyword">or</span> <span class="keyword">not</span>,
+       defaults to index level setting
+       [<span class="string">"refresh"</span>]                  = (boolean) Should the effected indexes be refreshed?
+       [<span class="string">"consistency"</span>]              = (enum) Explicit write consistency setting <span class="keyword">for</span> the operation
+       (one,quorum,all)
+       [<span class="string">"scroll_size"</span>]              = (integer) Size on the scroll request powering the update_by_query
+       [<span class="string">"wait_for_completion"</span>]      = (boolean) Should the request should block <span class="keyword">until</span> the reindex is complete.
+       [<span class="string">"body"</span>]                     = The search definition using the Query DSL</pre>
     </ul>
-
-
-
-
 
 </dd>
 </dl>
@@ -1824,7 +1827,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
-<i style="float:right;">Last updated 2016-10-29 21:52:06 </i>
+<i style="float:right;">Last updated 2016-10-29 22:14:22 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>
