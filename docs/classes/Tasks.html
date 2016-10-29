@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Methods">Methods</a></li>
+</ul>
+
+
+<h2>Classes</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../classes/Cat.html">Cat</a></li>
+  <li><a href="../classes/Client.html">Client</a></li>
+  <li><a href="../classes/Cluster.html">Cluster</a></li>
+  <li><a href="../classes/Indices.html">Indices</a></li>
+  <li><a href="../classes/Nodes.html">Nodes</a></li>
+  <li><a href="../classes/Snapshot.html">Snapshot</a></li>
+  <li><strong>Tasks</strong></li>
+</ul>
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../modules/elasticsearch.html">elasticsearch</a></li>
+  <li><a href="../modules/helper.html">helper</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Class <code>Tasks</code></h1>
+<p>The Tasks class</p>
+<p>
+
+</p>
+    <h3>Info:</h3>
+    <ul>
+        <li><strong>Author</strong>: Dhaval Kapil</li>
+    </ul>
+
+
+<h2><a href="#Methods">Methods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Tasks:requestEndpoint">Tasks:requestEndpoint (endpoint, params, endpointParams)</a></td>
+	<td class="summary">Function to request an endpoint instance for a particular type of request</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Tasks:cancel">Tasks:cancel (params)</a></td>
+	<td class="summary">Cancel function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Tasks:get">Tasks:get (params)</a></td>
+	<td class="summary">Get function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Tasks:new">Tasks:new (o)</a></td>
+	<td class="summary">Returns an instance of Tasks class</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Methods"></a>Methods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Tasks:requestEndpoint"></a>
+    <strong>Tasks:requestEndpoint (endpoint, params, endpointParams)</strong>
+    </dt>
+    <dd>
+    Function to request an endpoint instance for a particular type of request
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">endpoint</span>
+
+<pre><code>    The string denoting the endpoint
+</code></pre>
+
+        </li>
+        <li><span class="parameter">params</span>
+
+<pre><code>      The parameters to be passed
+</code></pre>
+
+        </li>
+        <li><span class="parameter">endpointParams</span>
+          The endpoint params passed while object creation
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Tasks:cancel"></a>
+    <strong>Tasks:cancel (params)</strong>
+    </dt>
+    <dd>
+    Cancel function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The cancel Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"task_id"</span>]     = (<span class="global">string</span>) Cancel the task with specified task id (node_id:task_number)
+       [<span class="string">"node_id"</span>]     = (list) A comma-separated list of node IDs <span class="keyword">or</span> names to limit the returned information;
+       use <span class="string">'_local'</span> to <span class="keyword">return</span> information from the node you<span class="string">"re connecting to, leave empty to get information from all
+       nodes
+       ["</span>actions<span class="string">"]     = (list) A comma-separated list of actions that should be cancelled. Leave empty to
+       cancel all.
+       ["</span>parent_node<span class="string">"] = (string) Cancel tasks with specified parent node.
+       ["</span>parent_task"] = (<span class="global">string</span>) Cancel tasks with specified parent task id (node_id:task_number). Set to -<span class="number">1</span> to
+       cancel all.</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Tasks:get"></a>
+    <strong>Tasks:get (params)</strong>
+    </dt>
+    <dd>
+    Get function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The get Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"task_id"</span>]             = (<span class="global">string</span>) Return the task with specified id (node_id:task_number)
+       [<span class="string">"node_id"</span>]             = (list) A comma-separated list of node IDs <span class="keyword">or</span> names to limit the returned
+       information; use <span class="string">'_local'</span> to <span class="keyword">return</span> information from the node you<span class="string">"re connecting to, leave empty to get
+       information from all nodes
+       ["</span>actions<span class="string">"]             = (list) A comma-separated list of actions that should be returned. Leave empty
+       to return all.
+       ["</span>detailed<span class="string">"]            = (boolean) Return detailed task information (default: false)
+       ["</span>parent_node<span class="string">"]         = (string) Return tasks with specified parent node.
+       ["</span>parent_task<span class="string">"]         = (string) Return tasks with specified parent task id (node_id:task_number). Set
+       to -1 to return all.
+       ["</span>wait_for_completion"] = (boolean) Wait <span class="keyword">for</span> the matching tasks to complete (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Tasks:new"></a>
+    <strong>Tasks:new (o)</strong>
+    </dt>
+    <dd>
+    Returns an instance of Tasks class
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">o</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2016-10-29 21:52:06 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

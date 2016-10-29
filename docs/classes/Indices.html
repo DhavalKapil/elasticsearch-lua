@@ -38,10 +38,13 @@
 
 <h2>Classes</h2>
 <ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../classes/Cat.html">Cat</a></li>
   <li><a href="../classes/Client.html">Client</a></li>
   <li><a href="../classes/Cluster.html">Cluster</a></li>
   <li><strong>Indices</strong></li>
   <li><a href="../classes/Nodes.html">Nodes</a></li>
+  <li><a href="../classes/Snapshot.html">Snapshot</a></li>
+  <li><a href="../classes/Tasks.html">Tasks</a></li>
 </ul>
 <h2>Modules</h2>
 <ul class="$(kind=='Topics' and '' or 'nowrap'">
@@ -69,6 +72,102 @@
 	<tr>
 	<td class="name" nowrap><a href="#Indices:requestEndpoint">Indices:requestEndpoint (endpoint, params, endpointParams)</a></td>
 	<td class="summary">Function to request an endpoint instance for a particular type of request</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:deleteAlias">Indices:deleteAlias (params)</a></td>
+	<td class="summary">Delete Alias function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:existsAlias">Indices:existsAlias (params)</a></td>
+	<td class="summary">Exists Alias function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:getAlias">Indices:getAlias (params)</a></td>
+	<td class="summary">Get Alias function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:putAlias">Indices:putAlias (params)</a></td>
+	<td class="summary">Put Alias function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:getAliases">Indices:getAliases (params)</a></td>
+	<td class="summary">Get Aliases function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:updateAliases">Indices:updateAliases (params)</a></td>
+	<td class="summary">Update Aliases function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:clearCache">Indices:clearCache (params)</a></td>
+	<td class="summary">Clear Cache function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:deleteMapping">Indices:deleteMapping (params)</a></td>
+	<td class="summary">Delete Mapping function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:getMapping">Indices:getMapping (params)</a></td>
+	<td class="summary">Get Mapping function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:getFieldMapping">Indices:getFieldMapping (params)</a></td>
+	<td class="summary">Get Feild Mapping function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:putMapping">Indices:putMapping (params)</a></td>
+	<td class="summary">Put Mapping function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:getSettings">Indices:getSettings (params)</a></td>
+	<td class="summary">Get Settings function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:putSettings">Indices:putSettings (params)</a></td>
+	<td class="summary">Put Settings function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:deleteTemplate">Indices:deleteTemplate (params)</a></td>
+	<td class="summary">Delete Template function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:existsTemplate">Indices:existsTemplate (params)</a></td>
+	<td class="summary">Exists Template function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:getTemplate">Indices:getTemplate (params)</a></td>
+	<td class="summary">Get Template function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:putTemplate">Indices:putTemplate (params)</a></td>
+	<td class="summary">Put Template function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:existsType">Indices:existsType (params)</a></td>
+	<td class="summary">Exists Type function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:getUpgrade">Indices:getUpgrade (params)</a></td>
+	<td class="summary">Get Upgrade function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:upgrade">Indices:upgrade (params)</a></td>
+	<td class="summary">Upgrade function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:validateQuery">Indices:validateQuery (params)</a></td>
+	<td class="summary">Validate Query function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:deleteWarmer">Indices:deleteWarmer (params)</a></td>
+	<td class="summary">Delete Warmer function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:getWarmer">Indices:getWarmer (params)</a></td>
+	<td class="summary">Get Warmer function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:putWarmer">Indices:putWarmer (params)</a></td>
+	<td class="summary">Put Warmer function</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#Indices:exists">Indices:exists (params)</a></td>
@@ -113,6 +212,30 @@
 	<tr>
 	<td class="name" nowrap><a href="#Indices:seal">Indices:seal (params)</a></td>
 	<td class="summary">Function to seal an index</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:flush">Indices:flush (params)</a></td>
+	<td class="summary">Flush function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:forceMerge">Indices:forceMerge (params)</a></td>
+	<td class="summary">Force Merge function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:recovery">Indices:recovery (params)</a></td>
+	<td class="summary">Recovery function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:segments">Indices:segments (params)</a></td>
+	<td class="summary">Segments function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:shardStores">Indices:shardStores (params)</a></td>
+	<td class="summary">Shard Stores function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Indices:stats">Indices:stats (params)</a></td>
+	<td class="summary">Stats function</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#Indices:new">Indices:new (o)</a></td>
@@ -162,6 +285,1016 @@
 
 
 
+
+</dd>
+    <dt>
+    <a name = "Indices:deleteAlias"></a>
+    <strong>Indices:deleteAlias (params)</strong>
+    </dt>
+    <dd>
+    Delete Alias function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The delete alias Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]          = (list) A comma-separated list of index names (supports wildcards); use <span class="string">'_all'</span> <span class="keyword">for</span>
+       all indices (Required)
+       [<span class="string">"name"</span>]           = (list) A comma-separated list of aliases to delete (supports wildcards); use <span class="string">'_all'</span>
+       to delete all aliases <span class="keyword">for</span> the specified indices. (Required)
+       [<span class="string">"timeout"</span>]        = (time) Explicit timestamp <span class="keyword">for</span> the document
+       [<span class="string">"master_timeout"</span>] = (time) Specify timeout <span class="keyword">for</span> connection to master</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:existsAlias"></a>
+    <strong>Indices:existsAlias (params)</strong>
+    </dt>
+    <dd>
+    Exists Alias function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The exists alias Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]              = (list) A comma-separated list of index names to filter aliases
+       [<span class="string">"name"</span>]               = (list) A comma-separated list of alias names to <span class="keyword">return</span>
+       [<span class="string">"ignore_unavailable"</span>] = (boolean) Whether specified concrete indices should be ignored when unavailable
+       (missing <span class="keyword">or</span> closed)
+       [<span class="string">"allow_no_indices"</span>]   = (boolean) Whether to ignore <span class="keyword">if</span> a wildcard indices expression resolves into no
+       concrete indices. (This includes <span class="string">'_all'</span> <span class="global">string</span> <span class="keyword">or</span> when no indices have been specified)
+       [<span class="string">"expand_wildcards"</span>]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+       [open,closed])
+       [<span class="string">"local"</span>]              = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:getAlias"></a>
+    <strong>Indices:getAlias (params)</strong>
+    </dt>
+    <dd>
+    Get Alias function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The get alias Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]              = (list) A comma-separated list of index names to filter aliases
+       [<span class="string">"name"</span>]               = (list) A comma-separated list of alias names to <span class="keyword">return</span>
+       [<span class="string">"ignore_unavailable"</span>] = (boolean) Whether specified concrete indices should be ignored when unavailable
+       (missing <span class="keyword">or</span> closed)
+       [<span class="string">"allow_no_indices"</span>]   = (boolean) Whether to ignore <span class="keyword">if</span> a wildcard indices expression resolves into no
+       concrete indices. (This includes <span class="string">'_all'</span> <span class="global">string</span> <span class="keyword">or</span> when no indices have been specified)
+       [<span class="string">"expand_wildcards"</span>]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+       [open,closed])
+       [<span class="string">"local"</span>]              = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:putAlias"></a>
+    <strong>Indices:putAlias (params)</strong>
+    </dt>
+    <dd>
+    Put Alias function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The put alias Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]          = (list) A comma-separated list of index names the alias should point to (supports
+       wildcards); use <span class="string">'_all'</span> to perform the operation on all indices. (Required)
+       [<span class="string">"name"</span>]           = (<span class="global">string</span>) The name of the alias to be created <span class="keyword">or</span> updated (Required)
+       [<span class="string">"timeout"</span>]        = (time) Explicit timestamp <span class="keyword">for</span> the document
+       [<span class="string">"master_timeout"</span>] = (time) Specify timeout <span class="keyword">for</span> connection to master
+       [<span class="string">"body"</span>]           = The settings <span class="keyword">for</span> the alias, such as <span class="string">'routing'</span> <span class="keyword">or</span> <span class="string">'filter'</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:getAliases"></a>
+    <strong>Indices:getAliases (params)</strong>
+    </dt>
+    <dd>
+    Get Aliases function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The get aliases Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]   = (list) A comma-separated list of index names to filter aliases
+       [<span class="string">"name"</span>]    = (list) A comma-separated list of alias names to filter
+       [<span class="string">"timeout"</span>] = (time) Explicit operation timeout
+       [<span class="string">"local"</span>]   = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node (default:
+       <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:updateAliases"></a>
+    <strong>Indices:updateAliases (params)</strong>
+    </dt>
+    <dd>
+    Update Aliases function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The update aliases Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"timeout"</span>]        = (time) Request timeout
+       [<span class="string">"master_timeout"</span>] = (time) Specify timeout <span class="keyword">for</span> connection to master
+       [<span class="string">"body"</span>]           = The definition of <span class="string">'actions'</span> to perform</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:clearCache"></a>
+    <strong>Indices:clearCache (params)</strong>
+    </dt>
+    <dd>
+    Clear Cache function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The clear cache Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]              = (list) A comma-separated list of index name to limit the operation
+       [<span class="string">"field_data"</span>]         = (boolean) Clear field data
+       [<span class="string">"fielddata"</span>]          = (boolean) Clear field data
+       [<span class="string">"fields"</span>]             = (list) A comma-separated list of fields to clear when using the <span class="string">'field_data'</span>
+       parameter (default: all)
+       [<span class="string">"query"</span>]              = (boolean) Clear query caches
+       [<span class="string">"ignore_unavailable"</span>] = (boolean) Whether specified concrete indices should be ignored when unavailable
+       (missing <span class="keyword">or</span> closed)
+       [<span class="string">"allow_no_indices"</span>]   = (boolean) Whether to ignore <span class="keyword">if</span> a wildcard indices expression resolves into no
+       concrete indices. (This includes <span class="string">'_all'</span> <span class="global">string</span> <span class="keyword">or</span> when no indices have been specified)
+       [<span class="string">"expand_wildcards"</span>]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+       closed <span class="keyword">or</span> both. (open,closed,none,all) (default: open)
+       [<span class="string">"recycler"</span>]           = (boolean) Clear the recycler cache
+       [<span class="string">"request"</span>]            = (boolean) Clear request cache</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:deleteMapping"></a>
+    <strong>Indices:deleteMapping (params)</strong>
+    </dt>
+    <dd>
+    Delete Mapping function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The delete mapping Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>] = (list) A comma-separated list of index names; use <span class="string">'_all'</span> <span class="keyword">for</span> all indices (Required)
+       [<span class="string">"type"</span>]  = (<span class="global">string</span>) The name of the document <span class="global">type</span> to delete (Required)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:getMapping"></a>
+    <strong>Indices:getMapping (params)</strong>
+    </dt>
+    <dd>
+    Get Mapping function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The get mapping Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]              = (list) A comma-separated list of index names
+       [<span class="string">"type"</span>]               = (list) A comma-separated list of document types
+       [<span class="string">"ignore_unavailable"</span>] = (boolean) Whether specified concrete indices should be ignored when unavailable
+       (missing <span class="keyword">or</span> closed)
+       [<span class="string">"allow_no_indices"</span>]   = (boolean) Whether to ignore <span class="keyword">if</span> a wildcard indices expression resolves into no
+       concrete indices. (This includes <span class="string">'_all'</span> <span class="global">string</span> <span class="keyword">or</span> when no indices have been specified)
+       [<span class="string">"expand_wildcards"</span>]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+       closed <span class="keyword">or</span> both. (open,closed,none,all) (default: open)
+       [<span class="string">"local"</span>]              = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:getFieldMapping"></a>
+    <strong>Indices:getFieldMapping (params)</strong>
+    </dt>
+    <dd>
+    Get Feild Mapping function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The get field mapping Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]              = (list) A comma-separated list of index names
+       [<span class="string">"type"</span>]               = (list) A comma-separated list of document types
+       [<span class="string">"fields"</span>]             = (list) A comma-separated list of fields (Required)
+       [<span class="string">"include_defaults"</span>]   = (boolean) Whether the default mapping values should be returned as well
+       [<span class="string">"ignore_unavailable"</span>] = (boolean) Whether specified concrete indices should be ignored when unavailable
+       (missing <span class="keyword">or</span> closed)
+       [<span class="string">"allow_no_indices"</span>]   = (boolean) Whether to ignore <span class="keyword">if</span> a wildcard indices expression resolves into no
+       concrete indices. (This includes <span class="string">'_all'</span> <span class="global">string</span> <span class="keyword">or</span> when no indices have been specified)
+       [<span class="string">"expand_wildcards"</span>]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+       closed <span class="keyword">or</span> both. (open,closed,none,all) (default: open)
+       [<span class="string">"local"</span>]              = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:putMapping"></a>
+    <strong>Indices:putMapping (params)</strong>
+    </dt>
+    <dd>
+    Put Mapping function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The put mapping Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]              = (list) A comma-separated list of index names the mapping should be added to
+       (supports wildcards); use <span class="string">'_all'</span> <span class="keyword">or</span> omit to add the mapping on all indices.
+       [<span class="string">"type"</span>]               = (<span class="global">string</span>) The name of the document <span class="global">type</span> (Required)
+       [<span class="string">"timeout"</span>]            = (time) Explicit operation timeout
+       [<span class="string">"master_timeout"</span>]     = (time) Specify timeout <span class="keyword">for</span> connection to master
+       [<span class="string">"ignore_unavailable"</span>] = (boolean) Whether specified concrete indices should be ignored when unavailable
+       (missing <span class="keyword">or</span> closed)
+       [<span class="string">"ignore_conflicts"</span>]   = (boolean) Specify whether to ignore conflicts <span class="keyword">while</span> updating the mapping
+       (default: <span class="keyword">false</span>)
+       [<span class="string">"allow_no_indices"</span>]   = (boolean) Whether to ignore <span class="keyword">if</span> a wildcard indices expression resolves into no
+       concrete indices. (This includes <span class="string">'_all'</span> <span class="global">string</span> <span class="keyword">or</span> when no indices have been specified)
+       [<span class="string">"expand_wildcards"</span>]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+       closed <span class="keyword">or</span> both. (open,closed,none,all) (default: open)
+       [<span class="string">"update_all_types"</span>]   = (boolean) Whether to update the mapping <span class="keyword">for</span> all fields with the same name across
+       all types <span class="keyword">or</span> <span class="keyword">not</span>
+       [<span class="string">"body"</span>]               = The mapping definition</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:getSettings"></a>
+    <strong>Indices:getSettings (params)</strong>
+    </dt>
+    <dd>
+    Get Settings function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The get settings Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]              = (list) A comma-separated list of index names; use <span class="string">'_all'</span> <span class="keyword">or</span> empty <span class="global">string</span> to
+       perform the operation on all indices
+       [<span class="string">"name"</span>]               = (list) The name of the settings that should be included
+       [<span class="string">"ignore_unavailable"</span>] = (boolean) Whether specified concrete indices should be ignored when unavailable
+       (missing <span class="keyword">or</span> closed)
+       [<span class="string">"allow_no_indices"</span>]   = (boolean) Whether to ignore <span class="keyword">if</span> a wildcard indices expression resolves into no
+       concrete indices. (This includes <span class="string">'_all'</span> <span class="global">string</span> <span class="keyword">or</span> when no indices have been specified)
+       [<span class="string">"expand_wildcards"</span>]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+       [open,closed])
+       [<span class="string">"flat_settings"</span>]      = (boolean) Return settings <span class="keyword">in</span> flat format (default: <span class="keyword">false</span>)
+       [<span class="string">"local"</span>]              = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)
+       [<span class="string">"human"</span>]              = (boolean) Whether to <span class="keyword">return</span> version <span class="keyword">and</span> creation date values <span class="keyword">in</span> human-readable
+       format. (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:putSettings"></a>
+    <strong>Indices:putSettings (params)</strong>
+    </dt>
+    <dd>
+    Put Settings function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The put settings Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]              = (list) A comma-separated list of index names; use <span class="string">'_all'</span> <span class="keyword">or</span> empty <span class="global">string</span> to
+       perform the operation on all indices
+       [<span class="string">"master_timeout"</span>]     = (time) Specify timeout <span class="keyword">for</span> connection to master
+       [<span class="string">"ignore_unavailable"</span>] = (boolean) Whether specified concrete indices should be ignored when unavailable
+       (missing <span class="keyword">or</span> closed)
+       [<span class="string">"allow_no_indices"</span>]   = (boolean) Whether to ignore <span class="keyword">if</span> a wildcard indices expression resolves into no
+       concrete indices. (This includes <span class="string">'_all'</span> <span class="global">string</span> <span class="keyword">or</span> when no indices have been specified)
+       [<span class="string">"expand_wildcards"</span>]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+       closed <span class="keyword">or</span> both. (open,closed,none,all) (default: open)
+       [<span class="string">"flat_settings"</span>]      = (boolean) Return settings <span class="keyword">in</span> flat format (default: <span class="keyword">false</span>)
+       [<span class="string">"body"</span>]               = The index settings to be updated</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:deleteTemplate"></a>
+    <strong>Indices:deleteTemplate (params)</strong>
+    </dt>
+    <dd>
+    Delete Template function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The delete template Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"name"</span>]           = (<span class="global">string</span>) The name of the template (Required)
+       [<span class="string">"timeout"</span>]        = (time) Explicit operation timeout
+       [<span class="string">"master_timeout"</span>] = (time) Specify timeout <span class="keyword">for</span> connection to master</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:existsTemplate"></a>
+    <strong>Indices:existsTemplate (params)</strong>
+    </dt>
+    <dd>
+    Exists Template function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The exists template Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"name"</span>]           = (<span class="global">string</span>) The name of the template (Required)
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"local"</span>]          = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:getTemplate"></a>
+    <strong>Indices:getTemplate (params)</strong>
+    </dt>
+    <dd>
+    Get Template function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The get template Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"name"</span>]           = (list) The comma separated names of the index templates (Required)
+       [<span class="string">"flat_settings"</span>]  = (boolean) Return settings <span class="keyword">in</span> flat format (default: <span class="keyword">false</span>)
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"local"</span>]          = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:putTemplate"></a>
+    <strong>Indices:putTemplate (params)</strong>
+    </dt>
+    <dd>
+    Put Template function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The put template Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"name"</span>]           = (<span class="global">string</span>) The name of the template (Required)
+       [<span class="string">"order"</span>]          = (number) The order <span class="keyword">for</span> this template when merging multiple matching ones (higher
+       numbers are merged later, overriding the lower numbers)
+       [<span class="string">"create"</span>]         = (boolean) Whether the index template should only be added <span class="keyword">if</span> new <span class="keyword">or</span> can also replace
+       an existing one (default: <span class="keyword">false</span>)
+       [<span class="string">"timeout"</span>]        = (time) Explicit operation timeout
+       [<span class="string">"master_timeout"</span>] = (time) Specify timeout <span class="keyword">for</span> connection to master
+       [<span class="string">"flat_settings"</span>]  = (boolean) Return settings <span class="keyword">in</span> flat format (default: <span class="keyword">false</span>)
+       [<span class="string">"body"</span>]           = The template definition</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:existsType"></a>
+    <strong>Indices:existsType (params)</strong>
+    </dt>
+    <dd>
+    Exists Type function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The put template Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]              = (list) A comma-separated list of index names; use <span class="string">'_all'</span> to check the types
+       across all indices (Required)
+       [<span class="string">"type"</span>]               = (list) A comma-separated list of document types to check (Required)
+       [<span class="string">"ignore_unavailable"</span>] = (boolean) Whether specified concrete indices should be ignored when unavailable
+       (missing <span class="keyword">or</span> closed)
+       [<span class="string">"allow_no_indices"</span>]   = (boolean) Whether to ignore <span class="keyword">if</span> a wildcard indices expression resolves into no
+       concrete indices. (This includes <span class="string">'_all'</span> <span class="global">string</span> <span class="keyword">or</span> when no indices have been specified)
+       [<span class="string">"expand_wildcards"</span>]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+       closed <span class="keyword">or</span> both. (open,closed,none,all) (default: open)
+       [<span class="string">"local"</span>]              = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:getUpgrade"></a>
+    <strong>Indices:getUpgrade (params)</strong>
+    </dt>
+    <dd>
+    Get Upgrade function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The get upgrade Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]                 = (list) A comma-separated list of index names; use <span class="string">'_all'</span> <span class="keyword">or</span> empty <span class="global">string</span> to
+       perform the operation on all indices
+       [<span class="string">"ignore_unavailable"</span>]    = (boolean) Whether specified concrete indices should be ignored when
+       unavailable (missing <span class="keyword">or</span> closed)
+       [<span class="string">"wait_for_completion"</span>]   = (boolean) Specify whether the request should block <span class="keyword">until</span> the all segments are
+       upgraded (default: <span class="keyword">false</span>)
+       [<span class="string">"only_ancient_segments"</span>] = (boolean) If <span class="keyword">true</span>, only ancient (an older Lucene major release) segments will
+       be upgraded
+       [<span class="string">"allow_no_indices"</span>]      = (boolean) Whether to ignore <span class="keyword">if</span> a wildcard indices expression resolves into no
+       concrete indices. (This includes <span class="string">'_all'</span> <span class="global">string</span> <span class="keyword">or</span> when no indices have been specified)
+       [<span class="string">"expand_wildcards"</span>]      = (enum) Whether to expand wildcard expression to concrete indices that are
+       open, closed <span class="keyword">or</span> both. (open,closed,none,all) (default: open)
+       [<span class="string">"human"</span>]                 = (boolean) Whether to <span class="keyword">return</span> time <span class="keyword">and</span> byte values <span class="keyword">in</span> human-readable format.
+       (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:upgrade"></a>
+    <strong>Indices:upgrade (params)</strong>
+    </dt>
+    <dd>
+    Upgrade function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The upgrade Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]                 = (list) A comma-separated list of index names; use <span class="string">'_all'</span> <span class="keyword">or</span> empty <span class="global">string</span> to
+       perform the operation on all indices
+       [<span class="string">"allow_no_indices"</span>]      = (boolean) Whether to ignore <span class="keyword">if</span> a wildcard indices expression resolves into no
+       concrete indices. (This includes <span class="string">'_all'</span> <span class="global">string</span> <span class="keyword">or</span> when no indices have been specified)
+       [<span class="string">"expand_wildcards"</span>]      = (enum) Whether to expand wildcard expression to concrete indices that are
+       open, closed <span class="keyword">or</span> both. (open,closed,none,all) (default: open)
+       [<span class="string">"ignore_unavailable"</span>]    = (boolean) Whether specified concrete indices should be ignored when
+       unavailable (missing <span class="keyword">or</span> closed)
+       [<span class="string">"wait_for_completion"</span>]   = (boolean) Specify whether the request should block <span class="keyword">until</span> the all segments are
+       upgraded (default: <span class="keyword">false</span>)
+       [<span class="string">"only_ancient_segments"</span>] = (boolean) If <span class="keyword">true</span>, only ancient (an older Lucene major release) segments will
+       be upgraded</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:validateQuery"></a>
+    <strong>Indices:validateQuery (params)</strong>
+    </dt>
+    <dd>
+    Validate Query function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The validate query Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]                    = (list) A comma-separated list of index names to restrict the operation;
+       use <span class="string">'_all'</span> <span class="keyword">or</span> empty <span class="global">string</span> to perform the operation on all indices
+       [<span class="string">"type"</span>]                     = (list) A comma-separated list of document types to restrict the operation;
+       leave empty to perform the operation on all types
+       [<span class="string">"explain"</span>]                  = (boolean) Return detailed information about the error
+       [<span class="string">"ignore_indices"</span>]           = (enum) When performed on multiple indices, allows to ignore <span class="string">'missing'</span> ones
+       [<span class="string">"ignore_unavailable"</span>]       = (boolean) Whether specified concrete indices should be ignored when
+       unavailable (missing <span class="keyword">or</span> closed)
+       [<span class="string">"allow_no_indices"</span>]         = (boolean) Whether to ignore <span class="keyword">if</span> a wildcard indices expression resolves into
+       no concrete indices. (This includes <span class="string">'_all'</span> <span class="global">string</span> <span class="keyword">or</span> when no indices have been specified)
+       [<span class="string">"expand_wildcards"</span>]         = (enum) Whether to expand wildcard expression to concrete indices that are
+       open, closed <span class="keyword">or</span> both. (open,closed,none,all) (default: open)
+       [<span class="string">"operation_threading"</span>]      = TODO: ?
+       [<span class="string">"q"</span>]                        = (<span class="global">string</span>) Query <span class="keyword">in</span> the Lucene query <span class="global">string</span> syntax
+       [<span class="string">"analyzer"</span>]                 = (<span class="global">string</span>) The analyzer to use <span class="keyword">for</span> the query <span class="global">string</span>
+       [<span class="string">"analyze_wildcard"</span>]         = (boolean) Specify whether wildcard <span class="keyword">and</span> prefix queries should be analyzed
+       (default: <span class="keyword">false</span>)
+       [<span class="string">"default_operator"</span>]         = (enum) The default operator <span class="keyword">for</span> query <span class="global">string</span> query (AND <span class="keyword">or</span> OR) (AND,OR)
+       (default: OR)
+       [<span class="string">"df"</span>]                       = (<span class="global">string</span>) The field to use as default where no field prefix is given <span class="keyword">in</span> the
+       query <span class="global">string</span>
+       [<span class="string">"lenient"</span>]                  = (boolean) Specify whether format-based query failures (such as providing
+       text to a numeric field) should be ignored
+       [<span class="string">"lowercase_expanded_terms"</span>] = (boolean) Specify whether query terms should be lowercased
+       [<span class="string">"rewrite"</span>]                  = (boolean) Provide a more detailed explanation showing the actual Lucene
+       query that will be executed.
+       [<span class="string">"source"</span>]              = (<span class="global">string</span>) The URL-encoded query definition (instead of using the request body)
+       [<span class="string">"body"</span>]                     = The query definition specified with the Query DSL</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:deleteWarmer"></a>
+    <strong>Indices:deleteWarmer (params)</strong>
+    </dt>
+    <dd>
+    Delete Warmer function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The delete warmer Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]          = (list) A comma-separated list of index names to delete warmers from (supports
+       wildcards); use <span class="string">'_all'</span> to perform the operation on all indices. (Required)
+       [<span class="string">"name"</span>]           = (list) A comma-separated list of warmer names to delete (supports wildcards); use
+       <span class="string">'_all'</span> to delete all warmers <span class="keyword">in</span> the specified indices. You must specify a name either <span class="keyword">in</span> the uri <span class="keyword">or</span> <span class="keyword">in</span> the
+       parameters.
+       [<span class="string">"master_timeout"</span>] = (time) Specify timeout <span class="keyword">for</span> connection to master</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:getWarmer"></a>
+    <strong>Indices:getWarmer (params)</strong>
+    </dt>
+    <dd>
+    Get Warmer function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The get warmer Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]              = (list) A comma-separated list of index names to restrict the operation; use
+       <span class="string">'_all'</span> to perform the operation on all indices
+       [<span class="string">"name"</span>]               = (list) The name of the warmer (supports wildcards); leave empty to get all
+       warmers
+       [<span class="string">"type"</span>]               = (list) A comma-separated list of document types to restrict the operation; leave
+       empty to perform the operation on all types
+       [<span class="string">"ignore_unavailable"</span>] = (boolean) Whether specified concrete indices should be ignored when unavailable
+       (missing <span class="keyword">or</span> closed)
+       [<span class="string">"allow_no_indices"</span>]   = (boolean) Whether to ignore <span class="keyword">if</span> a wildcard indices expression resolves into no
+       concrete indices. (This includes <span class="string">'_all'</span> <span class="global">string</span> <span class="keyword">or</span> when no indices have been specified)
+       [<span class="string">"expand_wildcards"</span>]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+       closed <span class="keyword">or</span> both. (open,closed,none,all) (default: open)
+       [<span class="string">"local"</span>]              = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:putWarmer"></a>
+    <strong>Indices:putWarmer (params)</strong>
+    </dt>
+    <dd>
+    Put Warmer function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The put warmer Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]              = (list) A comma-separated list of index names to register the warmer <span class="keyword">for</span>; use
+       <span class="string">'_all'</span> <span class="keyword">or</span> omit to perform the operation on all indices
+       [<span class="string">"name"</span>]               = (<span class="global">string</span>) The name of the warmer (Required)
+       [<span class="string">"type"</span>]               = (list) A comma-separated list of document types to register the warmer <span class="keyword">for</span>;
+       leave empty to perform the operation on all types
+       [<span class="string">"master_timeout"</span>]     = (time) Specify timeout <span class="keyword">for</span> connection to master
+       [<span class="string">"ignore_unavailable"</span>] = (boolean) Whether specified concrete indices should be ignored when unavailable
+       (missing <span class="keyword">or</span> closed) <span class="keyword">in</span> the search request to warm
+       [<span class="string">"allow_no_indices"</span>]   = (boolean) Whether to ignore <span class="keyword">if</span> a wildcard indices expression resolves into no
+       concrete indices <span class="keyword">in</span> the search request to warm. (This includes <span class="string">'_all'</span> <span class="global">string</span> <span class="keyword">or</span> when no indices have been
+       specified)
+       [<span class="string">"expand_wildcards"</span>]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+       closed <span class="keyword">or</span> both, <span class="keyword">in</span> the search request to warm. (open,closed,none,all) (default: open)
+       [<span class="string">"request_cache"</span>]      = (boolean) Specify whether the request to be warmed should use the request cache,
+       defaults to index level setting
+       [<span class="string">"body"</span>]               = The search request definition <span class="keyword">for</span> the warmer (query, filters, facets, sorting,
+       etc)</pre>
+    </ul>
 
 </dd>
     <dt>
@@ -564,6 +1697,273 @@
 
 </dd>
     <dt>
+    <a name = "Indices:flush"></a>
+    <strong>Indices:flush (params)</strong>
+    </dt>
+    <dd>
+    Flush function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The flush Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]              = (list) A comma-separated list of index names; use <span class="string">'_all'</span> <span class="keyword">or</span> empty <span class="global">string</span> <span class="keyword">for</span> all
+       indices
+       [<span class="string">"force"</span>]              = (boolean) Whether a flush should be forced even <span class="keyword">if</span> it is <span class="keyword">not</span> necessarily needed
+       ie. <span class="keyword">if</span> no changes will be committed to the index. This is useful <span class="keyword">if</span> transaction log IDs should be incremented
+       even <span class="keyword">if</span> no uncommitted changes are present. (This setting can be considered as internal)
+       [<span class="string">"full"</span>]               = (boolean) TODO: ?
+       [<span class="string">"wait_if_ongoing"</span>]    = (boolean) If set to <span class="keyword">true</span> the flush operation will block <span class="keyword">until</span> the flush can be
+       executed <span class="keyword">if</span> another flush operation is already executing. The default is <span class="keyword">false</span> <span class="keyword">and</span> will cause an exception to be
+       thrown on the shard level <span class="keyword">if</span> another flush operation is already running.
+       [<span class="string">"ignore_unavailable"</span>] = (boolean) Whether specified concrete indices should be ignored when unavailable
+       (missing <span class="keyword">or</span> closed)
+       [<span class="string">"allow_no_indices"</span>]   = (boolean) Whether to ignore <span class="keyword">if</span> a wildcard indices expression resolves into no
+       concrete indices. (This includes <span class="string">'_all'</span> <span class="global">string</span> <span class="keyword">or</span> when no indices have been specified)
+       [<span class="string">"expand_wildcards"</span>]   = (enum) Whether to expand wildcard expression to concrete indices that are open,
+       closed <span class="keyword">or</span> both. (open,closed,none,all) (default: open)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:forceMerge"></a>
+    <strong>Indices:forceMerge (params)</strong>
+    </dt>
+    <dd>
+    Force Merge function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The force merge Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]                = (list) A comma-separated list of index names; use <span class="string">'_all'</span> <span class="keyword">or</span> empty <span class="global">string</span> to
+       perform the operation on all indices
+       [<span class="string">"flush"</span>]                = (boolean) Specify whether the index should be flushed after performing the
+       operation (default: <span class="keyword">true</span>)
+       [<span class="string">"ignore_unavailable"</span>]   = (boolean) Whether specified concrete indices should be ignored when
+       unavailable (missing <span class="keyword">or</span> closed)
+       [<span class="string">"allow_no_indices"</span>]     = (boolean) Whether to ignore <span class="keyword">if</span> a wildcard indices expression resolves into no
+       concrete indices. (This includes <span class="string">'_all'</span> <span class="global">string</span> <span class="keyword">or</span> when no indices have been specified)
+       [<span class="string">"expand_wildcards"</span>]     = (enum) Whether to expand wildcard expression to concrete indices that are
+       open, closed <span class="keyword">or</span> both. (open,closed,none,all) (default: open)
+       [<span class="string">"max_num_segments"</span>]     = (number) The number of segments the index should be merged into (default:
+       dynamic)
+       [<span class="string">"only_expunge_deletes"</span>] = (boolean) Specify whether the operation should only expunge deleted documents
+       [<span class="string">"operation_threading"</span>]  = TODO: ?
+       [<span class="string">"wait_for_merge"</span>]       = (boolean) Specify whether the request should block <span class="keyword">until</span> the merge process is
+       finished (default: <span class="keyword">true</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:recovery"></a>
+    <strong>Indices:recovery (params)</strong>
+    </dt>
+    <dd>
+    Recovery function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The recovery Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]       = (list) A comma-separated list of index names; use <span class="string">'_all'</span> <span class="keyword">or</span> empty <span class="global">string</span> to perform the
+       operation on all indices
+       [<span class="string">"detailed"</span>]    = (boolean) Whether to display detailed information about shard recovery (default: <span class="keyword">false</span>)
+       [<span class="string">"active_only"</span>] = (boolean) Display only those recoveries that are currently on-going (default: <span class="keyword">false</span>)
+       [<span class="string">"human"</span>]       = (boolean) Whether to <span class="keyword">return</span> time <span class="keyword">and</span> byte values <span class="keyword">in</span> human-readable format. (default:
+       <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:segments"></a>
+    <strong>Indices:segments (params)</strong>
+    </dt>
+    <dd>
+    Segments function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The segments Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]               = (list) A comma-separated list of index names; use <span class="string">'_all'</span> <span class="keyword">or</span> empty <span class="global">string</span> to
+       perform the operation on all indices
+       [<span class="string">"ignore_unavailable"</span>]  = (boolean) Whether specified concrete indices should be ignored when unavailable
+       (missing <span class="keyword">or</span> closed)
+       [<span class="string">"allow_no_indices"</span>]    = (boolean) Whether to ignore <span class="keyword">if</span> a wildcard indices expression resolves into no
+       concrete indices. (This includes <span class="string">'_all'</span> <span class="global">string</span> <span class="keyword">or</span> when no indices have been specified)
+       [<span class="string">"expand_wildcards"</span>]    = (enum) Whether to expand wildcard expression to concrete indices that are open,
+       closed <span class="keyword">or</span> both. (open,closed,none,all) (default: open)
+       [<span class="string">"human"</span>]               = (boolean) Whether to <span class="keyword">return</span> time <span class="keyword">and</span> byte values <span class="keyword">in</span> human-readable format.
+       (default: <span class="keyword">false</span>)
+       [<span class="string">"operation_threading"</span>] = TODO: ?
+       [<span class="string">"verbose"</span>]             = (boolean) Includes detailed memory usage by Lucene. (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:shardStores"></a>
+    <strong>Indices:shardStores (params)</strong>
+    </dt>
+    <dd>
+    Shard Stores function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The shard stores Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]               = (list) A comma-separated list of index names; use <span class="string">'_all'</span> <span class="keyword">or</span> empty <span class="global">string</span> to
+       perform the operation on all indices
+       [<span class="string">"status"</span>]              = (list) A comma-separated list of statuses used to filter on shards to get store
+       information <span class="keyword">for</span> (green,yellow,red,all)
+       [<span class="string">"ignore_unavailable"</span>]  = (boolean) Whether specified concrete indices should be ignored when unavailable
+       (missing <span class="keyword">or</span> closed)
+       [<span class="string">"allow_no_indices"</span>]    = (boolean) Whether to ignore <span class="keyword">if</span> a wildcard indices expression resolves into no
+       concrete indices. (This includes <span class="string">'_all'</span> <span class="global">string</span> <span class="keyword">or</span> when no indices have been specified)
+       [<span class="string">"expand_wildcards"</span>]    = (enum) Whether to expand wildcard expression to concrete indices that are open,
+       closed <span class="keyword">or</span> both. (open,closed,none,all) (default: open)
+       [<span class="string">"operation_threading"</span>] = TODO: ?</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Indices:stats"></a>
+    <strong>Indices:stats (params)</strong>
+    </dt>
+    <dd>
+    Stats function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The stats Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]             = (list) A comma-separated list of index names; use <span class="string">'_all'</span> <span class="keyword">or</span> empty <span class="global">string</span> to
+       perform the operation on all indices
+       [<span class="string">"metric"</span>]            = (list) Limit the information returned the specific metrics.
+       [<span class="string">"completion_fields"</span>] = (list) A comma-separated list of fields <span class="keyword">for</span> <span class="string">'fielddata'</span> <span class="keyword">and</span> <span class="string">'suggest'</span> index
+       metric (supports wildcards)
+       [<span class="string">"fielddata_fields"</span>]  = (list) A comma-separated list of fields <span class="keyword">for</span> <span class="string">'fielddata'</span> index metric (supports
+       wildcards)
+       [<span class="string">"fields"</span>]            = (list) A comma-separated list of fields <span class="keyword">for</span> <span class="string">'fielddata'</span> <span class="keyword">and</span> <span class="string">'completion'</span> index
+       metric (supports wildcards)
+       [<span class="string">"groups"</span>]            = (list) A comma-separated list of search groups <span class="keyword">for</span> <span class="string">'search'</span> index metric
+       [<span class="string">"human"</span>]             = (boolean) Whether to <span class="keyword">return</span> time <span class="keyword">and</span> byte values <span class="keyword">in</span> human-readable format.
+       (default: <span class="keyword">false</span>)
+       [<span class="string">"level"</span>]             = (enum) Return stats aggregated at cluster, index <span class="keyword">or</span> shard level
+       (cluster,indices,shards) (default: indices)
+       [<span class="string">"types"</span>]             = (list) A comma-separated list of document types <span class="keyword">for</span> the <span class="string">'indexing'</span> index metric</pre>
+    </ul>
+
+</dd>
+    <dt>
     <a name = "Indices:new"></a>
     <strong>Indices:new (o)</strong>
     </dt>
@@ -592,7 +1992,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
-<i style="float:right;">Last updated 2016-07-26 15:38:59 </i>
+<i style="float:right;">Last updated 2016-10-29 21:52:06 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

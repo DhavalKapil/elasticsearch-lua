@@ -1,0 +1,922 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Methods">Methods</a></li>
+</ul>
+
+
+<h2>Classes</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><strong>Cat</strong></li>
+  <li><a href="../classes/Client.html">Client</a></li>
+  <li><a href="../classes/Cluster.html">Cluster</a></li>
+  <li><a href="../classes/Indices.html">Indices</a></li>
+  <li><a href="../classes/Nodes.html">Nodes</a></li>
+  <li><a href="../classes/Snapshot.html">Snapshot</a></li>
+  <li><a href="../classes/Tasks.html">Tasks</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../modules/elasticsearch.html">elasticsearch</a></li>
+  <li><a href="../modules/helper.html">helper</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Class <code>Cat</code></h1>
+<p>The Cat class</p>
+<p>
+
+</p>
+    <h3>Info:</h3>
+    <ul>
+        <li><strong>Author</strong>: Dhaval Kapil</li>
+    </ul>
+
+
+<h2><a href="#Methods">Methods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Cat:requestEndpoint">Cat:requestEndpoint (endpoint, params, endpointParams)</a></td>
+	<td class="summary">Function to request an endpoint instance for a particular type of request</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Cat:aliases">Cat:aliases (params)</a></td>
+	<td class="summary">Function to show information about currently configured aliases</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Cat:allocation">Cat:allocation (params)</a></td>
+	<td class="summary">Function to provide a snapshot about number of shards</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Cat:count">Cat:count (params)</a></td>
+	<td class="summary">Function to provide quick access to document count of entire cluster, or individual indices</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Cat:fielddata">Cat:fielddata (params)</a></td>
+	<td class="summary">Function to get usage of heap memory</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Cat:health">Cat:health (params)</a></td>
+	<td class="summary">Function to get health</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Cat:help">Cat:help (params)</a></td>
+	<td class="summary">Help function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Cat:indices">Cat:indices (params)</a></td>
+	<td class="summary">Indices function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Cat:master">Cat:master (params)</a></td>
+	<td class="summary">Master function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Cat:nodeAttrs">Cat:nodeAttrs (params)</a></td>
+	<td class="summary">NodeAttrs function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Cat:nodes">Cat:nodes (params)</a></td>
+	<td class="summary">Nodes function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Cat:pendingTasks">Cat:pendingTasks (params)</a></td>
+	<td class="summary">PendingTasks function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Cat:plugins">Cat:plugins (params)</a></td>
+	<td class="summary">Plugins function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Cat:recovery">Cat:recovery (params)</a></td>
+	<td class="summary">Recovery function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Cat:repositories">Cat:repositories (params)</a></td>
+	<td class="summary">Repositories function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Cat:segments">Cat:segments (params)</a></td>
+	<td class="summary">Segments function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Cat:shards">Cat:shards (params)</a></td>
+	<td class="summary">Shards function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Cat:snapshots">Cat:snapshots (params)</a></td>
+	<td class="summary">Snapshots function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Cat:threadPool">Cat:threadPool (params)</a></td>
+	<td class="summary">Thread pool function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Cat:new">Cat:new (o)</a></td>
+	<td class="summary">Returns an instance of Cat class</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Methods"></a>Methods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Cat:requestEndpoint"></a>
+    <strong>Cat:requestEndpoint (endpoint, params, endpointParams)</strong>
+    </dt>
+    <dd>
+    Function to request an endpoint instance for a particular type of request
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">endpoint</span>
+
+<pre><code>    The string denoting the endpoint
+</code></pre>
+
+        </li>
+        <li><span class="parameter">params</span>
+
+<pre><code>      The parameters to be passed
+</code></pre>
+
+        </li>
+        <li><span class="parameter">endpointParams</span>
+          The endpoint params passed while object creation
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Cat:aliases"></a>
+    <strong>Cat:aliases (params)</strong>
+    </dt>
+    <dd>
+    Function to show information about currently configured aliases
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The aliases Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"name"</span>]           = (list) A comma-separated list of alias names to <span class="keyword">return</span>
+       [<span class="string">"local"</span>]          = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"h"</span>]              = (list) Comma-separated list of column names to display
+       [<span class="string">"help"</span>]           = (boolean) Return help information (default: <span class="keyword">false</span>)
+       [<span class="string">"v"</span>]              = (boolean) Verbose mode. Display column headers (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Cat:allocation"></a>
+    <strong>Cat:allocation (params)</strong>
+    </dt>
+    <dd>
+    Function to provide a snapshot about number of shards
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The allocation Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"node_id"</span>]        = (list) A comma-separated list of node IDs <span class="keyword">or</span> names to limit the returned information
+       [<span class="string">"bytes"</span>]          = (enum) The unit <span class="keyword">in</span> which to display byte values (b,k,m,g)
+       [<span class="string">"local"</span>]          = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"h"</span>]              = (list) Comma-separated list of column names to display
+       [<span class="string">"help"</span>]           = (boolean) Return help information
+       [<span class="string">"v"</span>]              = (boolean) Verbose mode. Display column headers</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Cat:count"></a>
+    <strong>Cat:count (params)</strong>
+    </dt>
+    <dd>
+    Function to provide quick access to document count of entire cluster, or individual indices
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The allocation Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]          = (list) A comma-separated list of index names to limit the returned information
+       [<span class="string">"local"</span>]          = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"h"</span>]              = (list) Comma-separated list of column names to display
+       [<span class="string">"help"</span>]           = (boolean) Return help information (default: <span class="keyword">false</span>)
+       [<span class="string">"v"</span>]              = (boolean) Verbose mode. Display column headers (default: <span class="keyword">false</span>) </pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Cat:fielddata"></a>
+    <strong>Cat:fielddata (params)</strong>
+    </dt>
+    <dd>
+    Function to get usage of heap memory
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The fielddata Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"fields"</span>]         = (list) A comma-separated list of fields to <span class="keyword">return</span> <span class="keyword">in</span> the output
+       [<span class="string">"bytes"</span>]          = (enum) The unit <span class="keyword">in</span> which to display byte values (b,k,m,g)
+       [<span class="string">"local"</span>]          = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"h"</span>]              = (list) Comma-separated list of column names to display
+       [<span class="string">"help"</span>]           = (boolean) Return help information (default: <span class="keyword">false</span>)
+       [<span class="string">"v"</span>]              = (boolean) Verbose mode. Display column headers (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Cat:health"></a>
+    <strong>Cat:health (params)</strong>
+    </dt>
+    <dd>
+    Function to get health
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The health Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"local"</span>]          = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"h"</span>]              = (list) Comma-separated list of column names to display
+       [<span class="string">"help"</span>]           = (boolean) Return help information (default: <span class="keyword">false</span>)
+       [<span class="string">"ts"</span>]             = (boolean) Set to <span class="keyword">false</span> to disable timestamping (default: <span class="keyword">true</span>)
+       [<span class="string">"v"</span>]              = (boolean) Verbose mode. Display column headers (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Cat:help"></a>
+    <strong>Cat:help (params)</strong>
+    </dt>
+    <dd>
+    Help function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The help Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"help"</span>] = (boolean) Return help information(default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Cat:indices"></a>
+    <strong>Cat:indices (params)</strong>
+    </dt>
+    <dd>
+    Indices function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The indices Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]          = (list) A comma-separated list of index names to limit the returned information
+       [<span class="string">"bytes"</span>]          = (enum) The unit <span class="keyword">in</span> which to display byte values (b,k,m,g)
+       [<span class="string">"local"</span>]          = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"h"</span>]              = (list) Comma-separated list of column names to display
+       [<span class="string">"help"</span>]           = (boolean) Return help information (default: <span class="keyword">false</span>)
+       [<span class="string">"pri"</span>]            = (boolean) Set to <span class="keyword">true</span> to <span class="keyword">return</span> stats only <span class="keyword">for</span> primary shards (default: <span class="keyword">false</span>)
+       [<span class="string">"v"</span>]              = (boolean) Verbose mode. Display column headers (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Cat:master"></a>
+    <strong>Cat:master (params)</strong>
+    </dt>
+    <dd>
+    Master function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The master Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"local"</span>]          = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"h"</span>]              = (list) Comma-separated list of column names to display
+       [<span class="string">"help"</span>]           = (boolean) Return help information (default: <span class="keyword">false</span>)
+       [<span class="string">"v"</span>]              = (boolean) Verbose mode. Display column headers (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Cat:nodeAttrs"></a>
+    <strong>Cat:nodeAttrs (params)</strong>
+    </dt>
+    <dd>
+    NodeAttrs function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The nodeAttrs Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"local"</span>]          = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"h"</span>]              = (list) Comma-separated list of column names to display
+       [<span class="string">"help"</span>]           = (boolean) Return help information (default: <span class="keyword">false</span>)
+       [<span class="string">"v"</span>]              = (boolean) Verbose mode. Display column headers (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Cat:nodes"></a>
+    <strong>Cat:nodes (params)</strong>
+    </dt>
+    <dd>
+    Nodes function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The nodes Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"local"</span>]          = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"h"</span>]              = (list) Comma-separated list of column names to display
+       [<span class="string">"help"</span>]           = (boolean) Return help information (default: <span class="keyword">false</span>)
+       [<span class="string">"v"</span>]              = (boolean) Verbose mode. Display column headers (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Cat:pendingTasks"></a>
+    <strong>Cat:pendingTasks (params)</strong>
+    </dt>
+    <dd>
+    PendingTasks function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The pendingTasks Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"local"</span>]          = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"h"</span>]              = (list) Comma-separated list of column names to display
+       [<span class="string">"help"</span>]           = (boolean) Return help information (default: <span class="keyword">false</span>)
+       [<span class="string">"v"</span>]              = (boolean) Verbose mode. Display column headers (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Cat:plugins"></a>
+    <strong>Cat:plugins (params)</strong>
+    </dt>
+    <dd>
+    Plugins function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The plugins Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"local"</span>]          = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"h"</span>]              = (list) Comma-separated list of column names to display
+       [<span class="string">"help"</span>]           = (boolean) Return help information (default: <span class="keyword">false</span>)
+       [<span class="string">"v"</span>]              = (boolean) Verbose mode. Display column headers (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Cat:recovery"></a>
+    <strong>Cat:recovery (params)</strong>
+    </dt>
+    <dd>
+    Recovery function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The recovery Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]          = (list) A comma-separated list of index names to limit the returned information
+       [<span class="string">"bytes"</span>]          = (enum) The unit <span class="keyword">in</span> which to display byte values (b,k,m,g)
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"h"</span>]              = (list) Comma-separated list of column names to display
+       [<span class="string">"help"</span>]           = (boolean) Return help information (default: <span class="keyword">false</span>)
+       [<span class="string">"v"</span>]              = (boolean) Verbose mode. Display column headers (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Cat:repositories"></a>
+    <strong>Cat:repositories (params)</strong>
+    </dt>
+    <dd>
+    Repositories function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The repositories Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"local"</span>]          = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"h"</span>]              = (list) Comma-separated list of column names to display
+       [<span class="string">"help"</span>]           = (boolean) Return help information (default: <span class="keyword">false</span>)
+       [<span class="string">"v"</span>]              = (boolean) Verbose mode. Display column headers (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Cat:segments"></a>
+    <strong>Cat:segments (params)</strong>
+    </dt>
+    <dd>
+    Segments function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The segments Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>] = (list) A comma-separated list of index names to limit the returned information
+       [<span class="string">"h"</span>]     = (list) Comma-separated list of column names to display
+       [<span class="string">"help"</span>]  = (boolean) Return help information (default: <span class="keyword">false</span>)
+       [<span class="string">"v"</span>]     = (boolean) Verbose mode. Display column headers (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Cat:shards"></a>
+    <strong>Cat:shards (params)</strong>
+    </dt>
+    <dd>
+    Shards function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The shards Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"index"</span>]          = (list) A comma-separated list of index names to limit the returned information
+       [<span class="string">"bytes"</span>]          = (enum) The unit <span class="keyword">in</span> which to display byte values
+       [<span class="string">"local"</span>]          = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"h"</span>]              = (list) Comma-separated list of column names to display
+       [<span class="string">"help"</span>]           = (boolean) Return help information (default: <span class="keyword">false</span>)
+       [<span class="string">"v"</span>]              = (boolean) Verbose mode. Display column headers (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Cat:snapshots"></a>
+    <strong>Cat:snapshots (params)</strong>
+    </dt>
+    <dd>
+    Snapshots function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The snapshots Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"repository"</span>]         = (list) Name of repository from which to fetch the snapshot information (Required)
+       [<span class="string">"local"</span>]              = (bool) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)
+       [<span class="string">"ignore_unavailable"</span>] = (boolean) Set to <span class="keyword">true</span> to ignore unavailable snapshots (default: <span class="keyword">false</span>)
+       [<span class="string">"master_timeout"</span>]     = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"h"</span>]                  = (list) Comma-separated list of column names to display
+       [<span class="string">"help"</span>]               = (boolean) Return help information (default: <span class="keyword">false</span>)
+       [<span class="string">"v"</span>]                  = (boolean) Verbose mode. Display column headers (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Cat:threadPool"></a>
+    <strong>Cat:threadPool (params)</strong>
+    </dt>
+    <dd>
+    Thread pool function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The threadPool Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"local"</span>]          = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"h"</span>]              = (list) Comma-separated list of column names to display
+       [<span class="string">"help"</span>]           = (boolean) Return help information (default: <span class="keyword">false</span>)
+       [<span class="string">"v"</span>]              = (boolean) Verbose mode. Display column headers (default: <span class="keyword">false</span>)
+       [<span class="string">"full_id"</span>]        = (boolean) Enables displaying the complete node ids (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Cat:new"></a>
+    <strong>Cat:new (o)</strong>
+    </dt>
+    <dd>
+    Returns an instance of Cat class
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">o</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2016-10-29 21:52:06 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

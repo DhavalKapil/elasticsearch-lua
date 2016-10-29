@@ -1,0 +1,519 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Methods">Methods</a></li>
+</ul>
+
+
+<h2>Classes</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../classes/Cat.html">Cat</a></li>
+  <li><a href="../classes/Client.html">Client</a></li>
+  <li><a href="../classes/Cluster.html">Cluster</a></li>
+  <li><a href="../classes/Indices.html">Indices</a></li>
+  <li><a href="../classes/Nodes.html">Nodes</a></li>
+  <li><strong>Snapshot</strong></li>
+  <li><a href="../classes/Tasks.html">Tasks</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../modules/elasticsearch.html">elasticsearch</a></li>
+  <li><a href="../modules/helper.html">helper</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Class <code>Snapshot</code></h1>
+<p>The Snapshot class</p>
+<p>
+
+</p>
+    <h3>Info:</h3>
+    <ul>
+        <li><strong>Author</strong>: Dhaval Kapil</li>
+    </ul>
+
+
+<h2><a href="#Methods">Methods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Snapshot:requestEndpoint">Snapshot:requestEndpoint (endpoint, params, endpointParams)</a></td>
+	<td class="summary">Function to request an endpoint instance for a particular type of request</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Snapshot:createRepository">Snapshot:createRepository (params)</a></td>
+	<td class="summary">Create Repository function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Snapshot:deleteRepository">Snapshot:deleteRepository (params)</a></td>
+	<td class="summary">Delete Repository function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Snapshot:getRepository">Snapshot:getRepository (params)</a></td>
+	<td class="summary">Get Repository function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Snapshot:create">Snapshot:create (params)</a></td>
+	<td class="summary">Create function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Snapshot:delete">Snapshot:delete (params)</a></td>
+	<td class="summary">Delete function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Snapshot:get">Snapshot:get (params)</a></td>
+	<td class="summary">Get function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Snapshot:restore">Snapshot:restore (params)</a></td>
+	<td class="summary">Restore function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Snapshot:status">Snapshot:status (params)</a></td>
+	<td class="summary">Status function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Snapshot:verifyRepository">Snapshot:verifyRepository (params)</a></td>
+	<td class="summary">Verify Repository function</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Snapshot:new">Snapshot:new (o)</a></td>
+	<td class="summary">Returns an instance of Snapshot class</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Methods"></a>Methods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Snapshot:requestEndpoint"></a>
+    <strong>Snapshot:requestEndpoint (endpoint, params, endpointParams)</strong>
+    </dt>
+    <dd>
+    Function to request an endpoint instance for a particular type of request
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">endpoint</span>
+
+<pre><code>    The string denoting the endpoint
+</code></pre>
+
+        </li>
+        <li><span class="parameter">params</span>
+
+<pre><code>      The parameters to be passed
+</code></pre>
+
+        </li>
+        <li><span class="parameter">endpointParams</span>
+          The endpoint params passed while object creation
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Snapshot:createRepository"></a>
+    <strong>Snapshot:createRepository (params)</strong>
+    </dt>
+    <dd>
+    Create Repository function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The createRepository Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"repository"</span>]     = (<span class="global">string</span>) A repository name (Required)
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"timeout"</span>]        = (time) Explicit operation timeout
+       [<span class="string">"verify"</span>]         = (boolean) Whether to verify the repository after creation
+       [<span class="string">"body"</span>]           = The repository definition</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Snapshot:deleteRepository"></a>
+    <strong>Snapshot:deleteRepository (params)</strong>
+    </dt>
+    <dd>
+    Delete Repository function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The deleteRepository Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"repository"</span>]     = (list) A comma-separated list of repository names (Required)
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"timeout"</span>]        = (time) Explicit operation timeout</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Snapshot:getRepository"></a>
+    <strong>Snapshot:getRepository (params)</strong>
+    </dt>
+    <dd>
+    Get Repository function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The getRepository Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"repository"</span>]     = (list) A comma-separated list of repository names
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"local"</span>]          = (boolean) Return <span class="keyword">local</span> information, <span class="keyword">do</span> <span class="keyword">not</span> retrieve the state from master node
+       (default: <span class="keyword">false</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Snapshot:create"></a>
+    <strong>Snapshot:create (params)</strong>
+    </dt>
+    <dd>
+    Create function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The create Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"repository"</span>]          = (<span class="global">string</span>) A repository name (Required)
+       [<span class="string">"snapshot"</span>]            = (<span class="global">string</span>) A snapshot name (Required)
+       [<span class="string">"master_timeout"</span>]      = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"wait_for_completion"</span>] = (boolean) Should this request wait <span class="keyword">until</span> the operation has completed before
+       returning (default: <span class="keyword">false</span>)
+       [<span class="string">"body"</span>]                = The snapshot definition</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Snapshot:delete"></a>
+    <strong>Snapshot:delete (params)</strong>
+    </dt>
+    <dd>
+    Delete function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The delete Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"repository"</span>]     = (<span class="global">string</span>) A repository name (Required)
+       [<span class="string">"snapshot"</span>]       = (<span class="global">string</span>) A snapshot name (Required)
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Snapshot:get"></a>
+    <strong>Snapshot:get (params)</strong>
+    </dt>
+    <dd>
+    Get function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The get Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"repository"</span>]     = (<span class="global">string</span>) A repository name (Required)
+       [<span class="string">"snapshot"</span>]       = (<span class="global">string</span>) A snapshot name (Required)
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Snapshot:restore"></a>
+    <strong>Snapshot:restore (params)</strong>
+    </dt>
+    <dd>
+    Restore function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The restore Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"repository"</span>]          = (<span class="global">string</span>) A repository name (Required)
+       [<span class="string">"snapshot"</span>]            = (<span class="global">string</span>) A snapshot name (Required)
+       [<span class="string">"master_timeout"</span>]      = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"wait_for_completion"</span>] = (boolean) Should this request wait <span class="keyword">until</span> the operation has completed before
+       returning (default: <span class="keyword">false</span>)
+       [<span class="string">"body"</span>]                = Details of what to restore</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Snapshot:status"></a>
+    <strong>Snapshot:status (params)</strong>
+    </dt>
+    <dd>
+    Status function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The status Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"repository"</span>]     = (<span class="global">string</span>) A repository name
+       [<span class="string">"snapshot"</span>]       = (list) A comma-separated list of snapshot names
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Snapshot:verifyRepository"></a>
+    <strong>Snapshot:verifyRepository (params)</strong>
+    </dt>
+    <dd>
+    Verify Repository function
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">params</span>
+
+<pre><code>The verify repository Parameters
+</code></pre>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table     Error or the data received from the elasticsearch server
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ params[<span class="string">"repository"</span>]     = (<span class="global">string</span>) A repository name (Required)
+       [<span class="string">"master_timeout"</span>] = (time) Explicit operation timeout <span class="keyword">for</span> connection to master node
+       [<span class="string">"timeout"</span>]        = (time) Explicit operation timeout</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "Snapshot:new"></a>
+    <strong>Snapshot:new (o)</strong>
+    </dt>
+    <dd>
+    Returns an instance of Snapshot class
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">o</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2016-10-29 21:52:06 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
