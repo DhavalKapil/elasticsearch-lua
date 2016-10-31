@@ -6,10 +6,10 @@ source = {
 description = {
   summary = "Elasticsearch client for the Lua language",
   detailed = [[
-    This is an elasticsearch client written in Lua. Under development.
+    This is an elasticsearch client written in Lua. In accordance with other official low level clients, the client accepts associative arrays in the form of lua table as parameters.
   ]],
   homepage = "https://github.com/DhavalKapil/elasticsearch-lua",
-  license = "Apache 2"
+  license = "MIT"
 }
 dependencies = {
   "lua >= 5.1, < 5.4",

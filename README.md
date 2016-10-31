@@ -1,43 +1,44 @@
 # elasticsearch-lua 
 
-[![Build Status](https://travis-ci.org/DhavalKapil/elasticsearch-lua.svg?branch=master)](https://travis-ci.org/DhavalKapil/elasticsearch-lua) [![Coverage Status](https://coveralls.io/repos/github/DhavalKapil/elasticsearch-lua/badge.svg?branch=master)](https://coveralls.io/github/DhavalKapil/elasticsearch-lua?branch=master)
+[![Build Status](https://travis-ci.org/DhavalKapil/elasticsearch-lua.svg?branch=2.x.y)](https://travis-ci.org/DhavalKapil/elasticsearch-lua) [![Coverage Status](https://coveralls.io/repos/github/DhavalKapil/elasticsearch-lua/badge.svg?branch=2.x.y)](https://coveralls.io/github/DhavalKapil/elasticsearch-lua?branch=2.x.y)
 
-> A simple low level client for elasticsearch written in lua.
+[![Join the chat at https://gitter.im/DhavalKapil/elasticsearch-lua](https://badges.gitter.im/DhavalKapil/elasticsearch-lua.svg)](https://gitter.im/DhavalKapil/elasticsearch-lua?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![License](http://img.shields.io/badge/Licence-MIT-brightgreen.svg)](LICENSE)
+
+[![LuaRocks](https://img.shields.io/badge/LuaRocks-2.4.1-blue.svg)](https://luarocks.org/modules/dhavalkapil/elasticsearch) [![Lua](https://img.shields.io/badge/Lua-5.1%2C%20JIT%2C%205.2%2C%205.3-blue.svg)](https://img.shields.io/badge/Lua-5.1%2C%20JIT%2C%205.2%2C%205.3-blue.svg)
+
+A low level client for Elasticsearch written in Lua.
 
 In accordance with other official low level clients, the client accepts associative arrays in the form of lua table as parameters.
 
 ## Features:
 
-1. One-to-one mapping with REST API and other language clients
+1. One-to-one mapping with REST API and other language clients.
 2. Proper load balancing across all nodes.
-3. Pluggable and multiple selection strategies and connection pool.
+3. Pluggable and multiple connection, selection strategies and connection pool.
 4. Console logging facility.
 5. Almost every parameter is configurable.
 
-## Requirements
+## Elasticsearch Version Matrix
+
+| Elasticsearch Version | elasticsearch-lua Branch |
+| --------------------- | ------------------------ |
+| >= 2.0, < 5.0         | 2.x.y                    |
+
+## Lua Version Requirements
 
 `elasticsearch-lua` works for lua >= 5.1 version.
 
-It has been successfully tested for elasticsearch version 1.6.
-
 ## Setup
 
-1. Clone this repository and `cd` to it.
-2. Download and install ``luarocks``. Follow [these](https://github.com/keplerproject/luarocks/wiki/Installation-instructions-for-Unix) steps. Make sure to change lua's version to 5.3 while installation(default is 5.1).
-3. Install dependencies:
-```
-  [sudo] luarocks install elasticsearch-scm-0.rockspec
-```
-4. Add the source directory to your lua program's `package.path`.
+It can be installed using [luarocks](https://luarocks.org)
 
-OR
-
-It can also be installed using luarocks
 ```
   [sudo] luarocks install --server=http://luarocks.org/manifests/dhavalkapil elasticsearch
 ```
 
 ## Documentation
+
+The complete documetation is [here](http://elasticsearch-lua.readthedocs.io/).
 
 ### Create elasticsearch client instance:
 
@@ -166,3 +167,11 @@ data, err = client:update{
   }
 }
 ```
+
+## Contribution
+
+Feel free to [file issues](https://github.com/DhavalKapil/elasticsearch-lua/issues) and submit [pull requests](https://github.com/DhavalKapil/elasticsearch-lua/pulls) – contributions are welcome. Please try to follow the code style used in the repository.
+
+## License
+
+elasticsearch-lua is licensed under the [MIT license](https://dhaval.mit-license.org/2015/license.txt).
