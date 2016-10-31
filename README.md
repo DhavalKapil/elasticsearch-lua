@@ -33,7 +33,7 @@ In accordance with other official low level clients, the client accepts associat
 It can be installed using [luarocks](https://luarocks.org)
 
 ```
-  [sudo] luarocks install --server=http://luarocks.org/manifests/dhavalkapil elasticsearch
+  [sudo] luarocks install elasticsearch
 ```
 
 ## Documentation

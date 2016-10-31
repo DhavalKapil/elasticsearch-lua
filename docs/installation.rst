@@ -14,7 +14,7 @@ Using luarocks
 `luaver`_ can be used. You can directly install `elasticsearch-lua`_ using
 LuaRocks::
 
-  $ luarocks install --server=http://luarocks.org/dev elasticsearch
+  $ luarocks install elasticsearch
 
 The client will be installed and you can `require 'elasticsearch'` anywhere in
 your Lua code. If `elasticsearch-lua`_ is a dependency, add it in your rockspec
