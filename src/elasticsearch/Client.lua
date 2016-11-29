@@ -458,8 +458,8 @@ end
 --
 -- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
-function Client.percolate(params)
-  self:requestEndpoint("Percolate", params)
+function Client:percolate(params)
+  return self:requestEndpoint("Percolate", params)
 end
 
 -------------------------------------------------------------------------------
