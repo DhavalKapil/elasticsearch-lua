@@ -618,7 +618,7 @@ end
 --
 -- @return   table     Error or the data received from the elasticsearch server
 -------------------------------------------------------------------------------
-function Client:putTempalte(params)
+function Client:putTemplate(params)
   return self:requestEndpoint("PutTemplate", params)
 end
 
