@@ -10,7 +10,7 @@ Installation
 
 * Directly using luarocks::
 
-    $ luarocks install --server=http://luarocks.org/dev elasticsearch
+    $ luarocks install elasticsearch
 
 * Using elasticsearch as a dependency in your project
 
@@ -22,7 +22,7 @@ Installation
 
   * Install dependencies using luarocks::
 
-      $ luarocks install --server=http://luarocks.org/dev <your_rockspec_file>
+      $ luarocks install <your_rockspec_file>
 
 Setting up Client
 -----------------
