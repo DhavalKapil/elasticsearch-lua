@@ -68,7 +68,8 @@ function Connection:request(method, uri, params, body, timeout)
   if body ~= nil then
     -- Adding body to request
     request.headers = {
-      ["Content-Length"] = body:len()
+       ["Content-Length"] = body:len(),
+       ["Content-Type"] = 'application/json'
     }
     request.source = ltn12.source.string(body)
   end
