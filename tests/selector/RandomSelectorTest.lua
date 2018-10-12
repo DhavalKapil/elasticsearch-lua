@@ -32,6 +32,8 @@ function setup()
       protocol = "http",
       host = "localhost",
       port = 9200,
+      username = nil,
+      password = nil,
       pingTimeout = 1,
       logger = logger
     }

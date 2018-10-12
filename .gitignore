@@ -1,2 +1,4 @@
 # Documentation build
 docs/_build
+# Mac file
+.DS_Store

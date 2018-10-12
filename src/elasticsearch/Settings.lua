@@ -30,6 +30,8 @@ Settings.hosts = {
     protocol = "http",
     host = "localhost",
     port = 9200,
+    username = nil,
+    password = nil
   }
 }
 
@@ -129,14 +131,18 @@ function Settings:setParameters()
     local default_host = {
       protocol = self.hosts[1].protocol,
       host = self.hosts[1].host,
-      port = self.hosts[1].port
+      port = self.hosts[1].port,
+      username = self.hosts[1].username,
+      password = self.hosts[1].password
     }
     self.hosts = {}
     for i, v in pairs(self.user_hosts) do
       self.hosts[i] = {
         protocol = default_host.protocol,
         host = default_host.host,
-        port = default_host.port
+        port = default_host.port,
+        username = default_host.username,
+        password = default_host.password
       }
       self:checkTable(self.hosts[i], v)
     end
@@ -163,6 +169,8 @@ function Settings:setConnectionSettings()
       protocol = host.protocol,
       host = host.host,
       port = host.port,
+      username = host.username,
+      password = host.password,
       pingTimeout = self.params.pingTimeout,
       logger = self.logger,
       requestEngine = self.params.requestEngine
