@@ -20,7 +20,7 @@ before_install:
   - luarocks install luacov-coveralls
 
 install:
-  - luarocks make rockspecs/elasticsearch-lua-1.0.2-1.rockspec
+  - luarocks make rockspecs/elasticsearch-lua-1.0.3-1.rockspec
 
 before_script:
   - echo 'elasticsearch version ' && curl http://localhost:9200/
