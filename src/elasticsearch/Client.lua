@@ -54,6 +54,12 @@ function Client:requestEndpoint(endpoint, params, endpointParams)
     endpointParams = endpointParams or {}
   }
   if params ~= nil then
+    -- Elasticsearch 6+ are removing support for types
+    -- This sets it to the recommended value of "_doc"
+    if params.type
+    then
+      params.type = "_doc"
+    end
     -- Parameters need to be set
     local err = endpoint:setParams(params)
     if err ~= nil then

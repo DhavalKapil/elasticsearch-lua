@@ -24,6 +24,11 @@ install:
 
 before_script:
   - echo 'elasticsearch version ' && curl http://localhost:9200/
+  - curl -XPUT 'localhost:9200/elasticsearch-lua-reindex-index-2'
+  - curl -XPUT 'localhost:9200/elasticsearch-lua-reindex-index-1'
+  - curl -XPUT 'localhost:9200/elasticsearch-lua-test-index'
+  - echo 'Ensure elasticsearch has enough fields configured'
+  - "curl -XPUT 'localhost:9200/_settings' -d '{ \"index.mapping.total_fields.limit\": 10000 }' -H 'Content-Type: application/json'"
 
 script:
   - cd tests
