@@ -1,19 +1,19 @@
-package = "elasticsearch"
-version = "1.0.0-1"
+package = "elasticsearch-lua"
+version = "1.0.3-1"
 source = {
-  url = "git://github.com/DhavalKapil/elasticsearch-lua",
-  tag = "v1.0.0"
+  url = "git://github.com/PowerDNS/elasticsearch-lua",
+  branch = "powerdns"
 }
 description = {
   summary = "Elasticsearch client for the Lua language",
   detailed = [[
-    This is an elasticsearch client written in Lua. In accordance with other official low level clients, the client accepts associative arrays in the form of lua table as parameters.
+    This is an elasticsearch client written in Lua. In accordance with other official low level clients, the client accepts associative arrays in the form of lua table as parameters. It is a fork of the origina client written by DhavalKapil
   ]],
-  homepage = "https://github.com/DhavalKapil/elasticsearch-lua",
+  homepage = "https://github.com/PowerDNS/elasticsearch-lua",
   license = "MIT"
 }
 dependencies = {
-  "lua >= 5.1, < 5.4",
+  "lua = 5.1",
   "luasocket",
   "lua-cjson",
   "lunitx"

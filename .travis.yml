@@ -7,8 +7,6 @@ env:
     - LUAROCKS=2.2.2
   matrix:
     - LUA=lua5.1
-    - LUA=lua5.2
-    - LUA=lua5.3
     - LUA=luajit     # latest stable version (2.0.4)
     - LUA=luajit2.0  # current head of 2.0 branch
     # - LUA=luajit2.1  # current head of 2.1 branch
@@ -22,20 +20,23 @@ before_install:
   - luarocks install luacov-coveralls
 
 install:
-  - luarocks make elasticsearch-1.0.0-1.rockspec
+  - luarocks make rockspecs/elasticsearch-lua-1.0.3-1.rockspec
 
 before_script:
   - echo 'elasticsearch version ' && curl http://localhost:9200/
+  - curl -XPUT 'localhost:9200/elasticsearch-lua-reindex-index-2'
+  - curl -XPUT 'localhost:9200/elasticsearch-lua-reindex-index-1'
+  - curl -XPUT 'localhost:9200/elasticsearch-lua-test-index'
+  - echo 'Ensure elasticsearch has enough fields configured'
+  - "curl -XPUT 'localhost:9200/_settings' -d '{ \"index.mapping.total_fields.limit\": 10000 }' -H 'Content-Type: application/json'"
 
 script:
   - cd tests
   - ./dataset/download-dataset.sh
-  - lua -lluacov run-tests.lua
+  - lua run-tests.lua
 
 after_success:  
-  - mv luacov.stats.out ../
   - cd ../
-  - luacov-coveralls -c tests/.luacov
   - tests/run-stress-test.sh
 
 notifications:

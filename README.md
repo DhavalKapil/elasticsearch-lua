@@ -1,10 +1,10 @@
 # elasticsearch-lua 
 
-[![Build Status](https://travis-ci.org/DhavalKapil/elasticsearch-lua.svg?branch=2.x.y)](https://travis-ci.org/DhavalKapil/elasticsearch-lua) [![Coverage Status](https://coveralls.io/repos/github/DhavalKapil/elasticsearch-lua/badge.svg?branch=2.x.y)](https://coveralls.io/github/DhavalKapil/elasticsearch-lua?branch=2.x.y)
+[![Build Status](https://travis-ci.org/PowerDNS/elasticsearch-lua.svg)](https://travis-ci.org/PowerDNS/elasticsearch-lua) [![Coverage Status](https://coveralls.io/repos/github/PowerDNS/elasticsearch-lua/badge.svg)](https://coveralls.io/github/PowerDNS/elasticsearch-lua)
 
-[![Join the chat at https://gitter.im/DhavalKapil/elasticsearch-lua](https://badges.gitter.im/DhavalKapil/elasticsearch-lua.svg)](https://gitter.im/DhavalKapil/elasticsearch-lua?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![License](http://img.shields.io/badge/Licence-MIT-brightgreen.svg)](LICENSE)
+[![License](http://img.shields.io/badge/Licence-MIT-brightgreen.svg)](LICENSE)
 
-[![LuaRocks](https://img.shields.io/badge/LuaRocks-2.4.1-blue.svg)](https://luarocks.org/modules/dhavalkapil/elasticsearch) [![Lua](https://img.shields.io/badge/Lua-5.1%2C%20JIT%2C%205.2%2C%205.3-blue.svg)](https://img.shields.io/badge/Lua-5.1%2C%20JIT%2C%205.2%2C%205.3-blue.svg)
+[![LuaRocks](https://img.shields.io/badge/LuaRocks-2.4.1-blue.svg)](https://luarocks.org/modules/neilcook/elasticsearch-lua) [![Lua](https://img.shields.io/badge/Lua-5.12C%20JIT-blue.svg)](https://img.shields.io/badge/Lua-5.1%2C%20JIT-blue.svg)
 
 A low level client for Elasticsearch written in Lua.
 
@@ -22,18 +22,18 @@ In accordance with other official low level clients, the client accepts associat
 
 | Elasticsearch Version | elasticsearch-lua Branch |
 | --------------------- | ------------------------ |
-| >= 2.0, < 5.0         | 2.x.y                    |
+| >= 2.0, < 7.0         |  master                  |
 
 ## Lua Version Requirements
 
-`elasticsearch-lua` works for lua >= 5.1 version.
+`elasticsearch-lua` works for lua = 5.1 version.
 
 ## Setup
 
 It can be installed using [luarocks](https://luarocks.org)
 
 ```
-  [sudo] luarocks install elasticsearch
+  [sudo] luarocks install elasticsearch-lua
 ```
 
 ## Documentation

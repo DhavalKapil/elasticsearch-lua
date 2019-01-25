@@ -1,7 +1,7 @@
 --- The elasticsearch module
 --
 -- Requirements:
---  lua >= 5.1
+--  lua = 5.1
 --
 -- @module elasticsearch
 -- @author Dhaval Kapil
