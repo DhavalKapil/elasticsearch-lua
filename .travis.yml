@@ -20,7 +20,7 @@ before_install:
   - luarocks install luacov-coveralls
 
 install:
-  - luarocks make elasticsearch-1.0.0-1.rockspec
+  - luarocks make rockspecs/elasticsearch-lua-1.0.2-1.rockspec
 
 before_script:
   - echo 'elasticsearch version ' && curl http://localhost:9200/
@@ -28,12 +28,10 @@ before_script:
 script:
   - cd tests
   - ./dataset/download-dataset.sh
-  - lua -lluacov run-tests.lua
+  - lua run-tests.lua
 
 after_success:  
-  - mv luacov.stats.out ../
   - cd ../
-  - luacov-coveralls -c tests/.luacov
   - tests/run-stress-test.sh
 
 notifications:

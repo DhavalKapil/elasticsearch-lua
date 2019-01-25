@@ -18,7 +18,7 @@ before_install:
   - luarocks install lunitx
 
 install:
-  - luarocks make rockspecs/elasticsearch-1.0.1-1.rockspec
+  - luarocks make rockspecs/elasticsearch-lua-1.0.2-1.rockspec
 
 before_script:
   - echo 'elasticsearch version ' && curl http://localhost:9200/
@@ -29,7 +29,7 @@ script:
   - lua run-stress-test.lua
 
 after_script:
-  - git push https://DhavalKapil:$GITHUB_API_KEY@github.com/DhavalKapil/elasticsearch-lua --delete stress-test
+#  - git push https://DhavalKapil:$GITHUB_API_KEY@github.com/DhavalKapil/elasticsearch-lua --delete stress-test
 
 notifications:
   email:
