@@ -8,7 +8,7 @@
 
 set -eufo pipefail
 
-LUAJIT_BASE="LuaJIT-2.0.4"
+LUAJIT_BASE="LuaJIT-2.0.5"
 
 source .travis/platform.sh
 
@@ -21,9 +21,6 @@ mkdir $HOME/.lua
 LUAJIT="no"
 
 if [ "$PLATFORM" == "macosx" ]; then
-  if [ "$LUA" == "luajit" ]; then
-    LUAJIT="yes";
-  fi
   if [ "$LUA" == "luajit2.0" ]; then
     LUAJIT="yes";
   fi
@@ -38,7 +35,7 @@ mkdir -p "$LUA_HOME_DIR"
 
 if [ "$LUAJIT" == "yes" ]; then
 
-  git clone https://github.com/luajit/luajit.git $LUAJIT_BASE;
+  git clone https://github.com/luajit/luajit.git -b v2.0 $LUAJIT_BASE;
 
   cd $LUAJIT_BASE
 
@@ -91,9 +88,7 @@ curl --location http://luarocks.org/releases/$LUAROCKS_BASE.tar.gz | tar xz
 
 cd $LUAROCKS_BASE
 
-if [ "$LUA" == "luajit" ]; then
-  ./configure --lua-suffix=jit --with-lua-include="$LUA_HOME_DIR/include/luajit-2.0" --prefix="$LR_HOME_DIR";
-elif [ "$LUA" == "luajit2.0" ]; then
+if [ "$LUA" == "luajit2.0" ]; then
   ./configure --lua-suffix=jit --with-lua-include="$LUA_HOME_DIR/include/luajit-2.0" --prefix="$LR_HOME_DIR";
 elif [ "$LUA" == "luajit2.1" ]; then
   ./configure --lua-suffix=jit --with-lua-include="$LUA_HOME_DIR/include/luajit-2.1" --prefix="$LR_HOME_DIR";

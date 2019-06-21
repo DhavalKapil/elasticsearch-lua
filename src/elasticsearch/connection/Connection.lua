@@ -5,6 +5,7 @@ local http = require "socket.http"
 local url = require "socket.url"
 local table = require "table"
 local ltn12 = require "ltn12"
+local base64 = require "elasticsearch.Base64"
 
 -------------------------------------------------------------------------------
 -- Declaring module
@@ -21,6 +22,10 @@ Connection.protocol = nil
 Connection.host = nil
 -- The port at which the connection should be made
 Connection.port = nil
+-- The username which the connection may be made
+Connection.username = nil
+-- The password which the connection may be made
+Connection.password = nil
 -- The timeout for a ping/sniff request
 Connection.pingTimeout = nil
 -- The last timestamp where it was marked alive
@@ -71,6 +76,11 @@ function Connection:request(method, uri, params, body, timeout)
        ["Content-Length"] = body:len(),
        ["Content-Type"] = 'application/json'
     }
+    -- Adding auth to request
+    if self.username ~= nil and self.password ~= nil then
+      local authStr = base64:enc(self.username .. ':' .. self.password)
+      request.headers['Authorization'] = 'Basic ' .. authStr
+    end
     request.source = ltn12.source.string(body)
   end
   if timeout ~= nil then
