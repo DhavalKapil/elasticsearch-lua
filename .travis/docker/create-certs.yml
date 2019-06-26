@@ -1,0 +1,20 @@
+version: '2.2'
+
+services:
+  create_certs:
+    container_name: create_certs
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.8.0
+    command: >
+      bash -c '
+        if [[ ! -d config/certificates/certs ]]; then
+          mkdir -p config/certificates/certs;
+        fi;
+        if [[ ! -f /local/certs/bundle.zip ]]; then
+          bin/elasticsearch-certgen --silent --in config/certificates/instances.yml --out config/certificates/certs/bundle.zip;
+          unzip config/certificates/certs/bundle.zip -d config/certificates/certs; 
+        fi;
+        chgrp -R 0 config/certificates/certs
+      '
+    user: root
+    working_dir: /usr/share/elasticsearch
+    volumes: ['.:/usr/share/elasticsearch/config/certificates']

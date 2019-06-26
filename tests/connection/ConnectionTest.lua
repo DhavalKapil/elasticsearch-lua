@@ -32,12 +32,18 @@ end
 function setup()
   local logger = Logger:new()
   logger:setLogLevel("off")
+  local protocol = os.getenv("ES_TEST_PROTOCOL")
+  if protocol == nil then protocol = "http" end
+  local port = os.getenv("ES_TEST_PORT")
+  if port == nil then port = 9200 end
+  local username = os.getenv("ES_USERNAME")
+  local password = os.getenv("ES_PASSWORD")
   con = Connection:new{
-    protocol = "http",
+    protocol = protocol,
     host = "localhost",
-    port = 9200,
-    username = nil,
-    password = nil,
+    port = port,
+    username = username,
+    password = password,
     pingTimeout = 1,
     logger = logger,
     requestEngine = "LuaSocket"
@@ -56,10 +62,10 @@ end
 -- Testing the URI builder
 function buildURITest()
   local url = con:buildURI("/path", {a="a_s", b="b_s"})
-  assert_true("http://localhost:9200/path?a=a_s&b=b_s" == url or 
-    "http://localhost:9200/path?b=b_s&a=a_s" == url)
+  assert_true(con.protocol .. "://" .. con.host .. ":" .. con.port .. "/path?a=a_s&b=b_s" == url or 
+    con.protocol .. "://" .. con.host .. ":" .. con.port .. "/path?b=b_s&a=a_s" == url)
   url = con:buildURI("/path", {a="a_s"})
-  assert_not_equal("http://localhost:9200/path?a=a_s&b=b_s", url)
+  assert_not_equal(con.protocol .. "://" .. con.host .. ":" .. con.port .. "/path?a=a_s&b=b_s", url)
 end
 
 -- Testing the request function

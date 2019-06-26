@@ -2,36 +2,73 @@ language: c
 
 sudo: required
 
+services:
+  - docker
+
 env:
   global:
     - LUAROCKS=2.2.2
-  matrix:
-    - LUA=lua5.1
-    - LUA=luajit2.0  # current head of 2.0 branch
-    # - LUA=luajit2.1  # current head of 2.1 branch
+    - DOCKER_COMPOSE_VERSION=1.23.2
+    - ES_USERNAME=elastic
+    - ES_PASSWORD=changeme
+    - CAFILE=${TRAVIS_BUILD_DIR}/.travis/docker/certs/ca/ca.crt 
+
+matrix:
+  include:
+  - name: "Lua 5.1 HTTP"
+    env:
+      - LUA=lua5.1
+      - ES_TEST_PROTOCOL=http
+      - ES_TEST_PORT=9200
+      - CACERT_PATH=
+      - ELASTIC_CREDS=
+  - name: "Lua 5.1 HTTPS"
+    env:
+      - LUA=lua5.1
+      - ES_TEST_PROTOCOL=https
+      - ES_TEST_PORT=19200
+      - CACERT_PATH="--cacert ${TRAVIS_BUILD_DIR}/.travis/docker/certs/ca/ca.crt"
+      - ELASTIC_CREDS="-u elastic:changeme"
+  - name: "LuaJIT 2.0 HTTP"
+    env:
+      - LUA=luajit2.0  # current head of stable 2.0 branch
+      - ES_TEST_PROTOCOL=http
+      - ES_TEST_PORT=9200
+      - CACERT_PATH=
+      - ELASTIC_CREDS=
+  - name: "LuaJIT 2.0 HTTPS"
+    env:
+      - LUA=luajit2.0  # current head of stable 2.0 branch
+      - ES_TEST_PROTOCOL=https
+      - ES_TEST_PORT=19200
+      - CACERT_PATH="--cacert ${TRAVIS_BUILD_DIR}/.travis/docker/certs/ca/ca.crt"
+      - ELASTIC_CREDS="-u elastic:changeme"
+  #- LUA=luajit2.1  # current head of unstable 2.1 branch
 
 before_install:
-  - sudo apt-get update && sudo apt-get install wget -y
-  - .travis/install_es.sh
+  - sudo apt-get update && sudo apt-get install wget openssl -y
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+  - cd .travis/docker
+  - docker-compose -f create-certs.yml up
+  - docker-compose up -d
+  - cd ../..
   - source .travis/setenv_lua.sh
   - luarocks install lunitx
   - luarocks install luacov
   - luarocks install luacov-coveralls
+  - luarocks install luasec 0.7-1
 
 install:
   - luarocks make rockspecs/elasticsearch-lua-1.0.3-1.rockspec
 
 before_script:
-  - echo 'elasticsearch version ' && curl http://localhost:9200/
-  - curl -XPUT 'localhost:9200/elasticsearch-lua-reindex-index-2'
-  - curl -XPUT 'localhost:9200/elasticsearch-lua-reindex-index-1'
-  - curl -XPUT 'localhost:9200/elasticsearch-lua-test-index'
-  - echo 'Ensure elasticsearch has enough fields configured'
-  - "curl -XPUT 'localhost:9200/_settings' -d '{ \"index.mapping.total_fields.limit\": 10000 }' -H 'Content-Type: application/json'"
+  - bash -x .travis/before_script.sh
 
 script:
   - cd tests
-  - ./dataset/download-dataset.sh
   - lua run-tests.lua
 
 after_success:  
