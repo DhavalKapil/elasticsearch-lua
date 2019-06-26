@@ -4,11 +4,14 @@
 
 [![License](http://img.shields.io/badge/Licence-MIT-brightgreen.svg)](LICENSE)
 
-[![LuaRocks](https://img.shields.io/badge/LuaRocks-2.4.1-blue.svg)](https://luarocks.org/modules/neilcook/elasticsearch-lua) [![Lua](https://img.shields.io/badge/Lua-5.12C%20JIT-blue.svg)](https://img.shields.io/badge/Lua-5.1%2C%20JIT-blue.svg)
+[![LuaRocks](https://img.shields.io/badge/LuaRocks-2.4.1-blue.svg)](https://luarocks.org/modules/neilcook/elasticsearch-lua) [![Lua](https://img.shields.io/badge/Lua-5.1-blue.svg)](https://img.shields.io/badge/Lua-5.1-blue.svg)[![LuaJIT](https://img.shields.io/badge/LuaJIT-2.0-blue.svg)](https://img.shields.io/badge/LuaJIT-2.0-blue.svg)
 
-A low level client for Elasticsearch written in Lua.
+A low level client for Elasticsearch written in Lua. This is a fork of
+the original repo by Dhaval Kapil, which he no longer maintains. This
+repo does not try to be all things to all people. It specifically
+supports Elasticsearch 6.x (at the moment) and Lua 5.1/LuaJIT 2.0.
 
-In accordance with other official low level clients, the client accepts associative arrays in the form of lua table as parameters.
+In accordance with the official low level clients, the client accepts associative arrays in the form of lua table as parameters.
 
 ## Features:
 
@@ -22,11 +25,11 @@ In accordance with other official low level clients, the client accepts associat
 
 | Elasticsearch Version | elasticsearch-lua Branch |
 | --------------------- | ------------------------ |
-| >= 2.0, < 7.0         |  master                  |
+| >= 6.0, < 7.0         |  master                  |
 
 ## Lua Version Requirements
 
-`elasticsearch-lua` works for lua = 5.1 version.
+`elasticsearch-lua` works for lua = 5.1 version and luajit = 2.0.
 
 ## Setup
 
@@ -51,7 +54,11 @@ The complete documetation is [here](http://elasticsearch-lua.readthedocs.io/).
         -- The default shall be set
         protocol = "http",
         host = "localhost",
-        port = 9200
+        port = 9200,
+        username = "elastic",
+        password = "changeme",
+        verify = "peer",
+        cafile = ""
       }
     },
     -- Optional parameters
@@ -60,6 +67,9 @@ The complete documetation is [here](http://elasticsearch-lua.readthedocs.io/).
     }
   }
 ```
+
+The `verify` and `cafile` params are only applicable if the protocol
+is `https`.
 
 ```lua
   -- Will connect to default host/port
@@ -90,6 +100,13 @@ local param1, param2 = client:<func>()
 ```lua
 local data, err = client:info()
 ```
+
+### Type mapping deprecation
+
+Elasticsearch is in the process of deprecating and removing type
+mappings. To that end, if the type parameter is supplied, it will be
+replaced with the value "_doc", which ensures forwards compatibility
+at the expense of backward compatibility with ES 5.x or below.
 
 ### Index a document
 
@@ -170,7 +187,7 @@ data, err = client:update{
 
 ## Contribution
 
-Feel free to [file issues](https://github.com/DhavalKapil/elasticsearch-lua/issues) and submit [pull requests](https://github.com/DhavalKapil/elasticsearch-lua/pulls) – contributions are welcome. Please try to follow the code style used in the repository.
+Feel free to [file issues](https://github.com/PowerDNS/elasticsearch-lua/issues) and submit [pull requests](https://github.com/PowerDNS/elasticsearch-lua/pulls) – contributions are welcome. Please try to follow the code style used in the repository.
 
 ## License
 
