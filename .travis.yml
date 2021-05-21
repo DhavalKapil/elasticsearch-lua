@@ -90,7 +90,7 @@ before_install:
   - luarocks install luasec 0.7-1
 
 install:
-  - luarocks make rockspecs/elasticsearch-lua-1.0.5-1.rockspec
+  - luarocks make rockspecs/elasticsearch-lua-1.0.6-1.rockspec
 
 before_script:
   - bash -x .travis/before_script.sh
