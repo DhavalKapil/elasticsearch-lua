@@ -18,7 +18,7 @@ before_install:
   - luarocks install lunitx
 
 install:
-  - luarocks make rockspecs/elasticsearch-lua-1.0.4-1.rockspec
+  - luarocks make rockspecs/elasticsearch-lua-1.0.5-1.rockspec
 
 before_script:
   - echo 'elasticsearch version ' && curl http://localhost:9200/
