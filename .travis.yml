@@ -29,6 +29,34 @@ matrix:
       - ES_TEST_PORT=19200
       - CACERT_PATH="--cacert ${TRAVIS_BUILD_DIR}/.travis/docker/certs/ca/ca.crt"
       - ELASTIC_CREDS="-u elastic:changeme"
+  - name: "Lua 5.2 HTTP"
+    env:
+      - LUA=lua5.2
+      - ES_TEST_PROTOCOL=http
+      - ES_TEST_PORT=9200
+      - CACERT_PATH=
+      - ELASTIC_CREDS=
+  - name: "Lua 5.2 HTTPS"
+    env:
+      - LUA=lua5.2
+      - ES_TEST_PROTOCOL=https
+      - ES_TEST_PORT=19200
+      - CACERT_PATH="--cacert ${TRAVIS_BUILD_DIR}/.travis/docker/certs/ca/ca.crt"
+      - ELASTIC_CREDS="-u elastic:changeme"
+  - name: "Lua 5.3 HTTP"
+    env:
+      - LUA=lua5.3
+      - ES_TEST_PROTOCOL=http
+      - ES_TEST_PORT=9200
+      - CACERT_PATH=
+      - ELASTIC_CREDS=
+  - name: "Lua 5.3 HTTPS"
+    env:
+      - LUA=lua5.3
+      - ES_TEST_PROTOCOL=https
+      - ES_TEST_PORT=19200
+      - CACERT_PATH="--cacert ${TRAVIS_BUILD_DIR}/.travis/docker/certs/ca/ca.crt"
+      - ELASTIC_CREDS="-u elastic:changeme"
   - name: "LuaJIT 2.0 HTTP"
     env:
       - LUA=luajit2.0  # current head of stable 2.0 branch
@@ -62,7 +90,7 @@ before_install:
   - luarocks install luasec 0.7-1
 
 install:
-  - luarocks make rockspecs/elasticsearch-lua-1.0.3-1.rockspec
+  - luarocks make rockspecs/elasticsearch-lua-1.0.6-1.rockspec
 
 before_script:
   - bash -x .travis/before_script.sh

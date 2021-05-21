@@ -1,5 +1,5 @@
 package = "elasticsearch-lua"
-version = "1.0.1-1"
+version = "1.0.5-1"
 source = {
   url = "git://github.com/PowerDNS/elasticsearch-lua",
   branch = "powerdns"
@@ -13,9 +13,9 @@ description = {
   license = "MIT"
 }
 dependencies = {
-  "lua >= 5.1 <= 5.3",
+  "lua = 5.1",
   "luasocket",
-  "lua-cjson = 2.1.0-1",
+  "lua-cjson",
   "lunitx"
 }
 build = {
