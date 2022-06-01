@@ -1,15 +1,17 @@
 # elasticsearch-lua 
 
+[![Test everything](https://github.com/PowerDNS/elasticsearch-lua/actions/workflows/test-all.yml/badge.svg?branch=master)](https://github.com/PowerDNS/elasticsearch-lua/actions/workflows/test-all.yml)
+
 [![License](http://img.shields.io/badge/Licence-MIT-brightgreen.svg)](LICENSE)
 
-[![LuaRocks](https://img.shields.io/badge/LuaRocks-2.4.1-blue.svg)](https://luarocks.org/modules/neilcook/elasticsearch-lua) [![Lua](https://img.shields.io/badge/Lua-5.1-blue.svg)](https://img.shields.io/badge/Lua-5.1-blue.svg)[![LuaJIT](https://img.shields.io/badge/LuaJIT-2.0-blue.svg)](https://img.shields.io/badge/LuaJIT-2.0-blue.svg)
+[![LuaRocks](https://img.shields.io/badge/LuaRocks-2.4.1-blue.svg)](https://luarocks.org/modules/neilcook/elasticsearch-lua) [![Lua](https://img.shields.io/badge/Lua-5.1-blue.svg)](https://img.shields.io/badge/Lua-5.1-blue.svg) [![Lua](https://img.shields.io/badge/Lua-5.2-blue.svg)](https://img.shields.io/badge/Lua-5.2-blue.svg) [![Lua](https://img.shields.io/badge/Lua-5.3-blue.svg)](https://img.shields.io/badge/Lua-5.3-blue.svg)[![LuaJIT](https://img.shields.io/badge/LuaJIT-2.0-blue.svg)](https://img.shields.io/badge/LuaJIT-2.0-blue.svg)
 
 A low level client for Elasticsearch written in Lua. This is a fork of
 the original repo by Dhaval Kapil, which he no longer maintains. This
-repo does not try to be all things to all people. It specifically
-supports Elasticsearch 6.x (at the moment) and Lua 5.1, 5.2, 5.3 and LuaJIT 2.0.
+repo does not try to be all things to all people. It is tested against and
+supports Elasticsearch 7,x, 8,x and Amazon Opensearch 2.0 and Lua 5.1, 5.2, 5.3 and LuaJIT 2.0.
 
-In accordance with the official low level clients, the client accepts associative arrays in the form of lua table as parameters.
+In accordance with the official low level clients, the client accepts associative arrays in the form of lua tables as parameters.
 
 ## Features:
 
@@ -21,9 +23,9 @@ In accordance with the official low level clients, the client accepts associativ
 
 ## Elasticsearch Version Matrix
 
-| Elasticsearch Version | elasticsearch-lua Branch |
-| --------------------- | ------------------------ |
-| >= 6.0, < 7.0         |  master                  |
+| Elasticsearch Version   | elasticsearch-lua Branch |
+| ---------------------   | ------------------------ |
+| ES 7.0 - 8.x + OS 2.0   |     master               |
 
 ## Lua Version Requirements
 
@@ -102,9 +104,7 @@ local data, err = client:info()
 ### Type mapping deprecation
 
 Elasticsearch is in the process of deprecating and removing type
-mappings. To that end, if the type parameter is supplied, it will be
-replaced with the value "_doc", which ensures forwards compatibility
-at the expense of backward compatibility with ES 5.x or below.
+mappings. To that end, if the type parameter is supplied, it will be removed.
 
 ### Index a document
 
@@ -113,7 +113,6 @@ Everything is represented as a lua table.
 ```lua
 local data, err = client:index{
   index = "my_index",
-  type = "my_type",
   id = "my_doc",
   body = {
     my_key = "my_param"
@@ -126,7 +125,6 @@ local data, err = client:index{
 ```lua
 data, err = client:get{
   index = "my_index",
-  type = "my_type",
   id = "my_doc"
 }
 ```
@@ -136,7 +134,6 @@ data, err = client:get{
 ```lua
 data, err = client:delete{
   index = "my_index",
-  type = "my_type",
   id = "my_doc"
 }
 ```
@@ -147,7 +144,6 @@ You can search a document using either query string:
 ```lua
 data, err = client:search{
   index = "my_index",
-  type = "my_type",
   q = "my_key:my_param"
 }
 ```
@@ -157,7 +153,6 @@ Or either a request body:
 ```lua
 data, err = client:search{
   index = "my_index",
-  type = "my_type",
   body = {
     query = {
       match = {
@@ -173,7 +168,6 @@ data, err = client:search{
 ```lua
 data, err = client:update{
   index = "my_index",
-  type = "my_type",
   id = "my_doc",
   body = {
     doc = {

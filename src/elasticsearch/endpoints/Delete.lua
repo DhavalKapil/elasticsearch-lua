@@ -45,10 +45,7 @@ function Delete:getUri()
   if self.index == nil then
     return nil, "index not specified for Delete"
   end
-  if self.type == nil then
-    return nil, "type not specified for Delete"
-  end
-  return "/" .. self.index .. "/" .. self.type .. "/" .. self.id
+  return "/" .. self.index .. "/_doc/" .. self.id
 end
 
 -------------------------------------------------------------------------------

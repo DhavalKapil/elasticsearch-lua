@@ -31,7 +31,7 @@ end
 -- Testing put request
 function requestPUTTest()
   mockTransport.method = "PUT"
-  mockTransport.uri = "/twitter/tweet/1"
+  mockTransport.uri = "/twitter/_doc/1"
   mockTransport.params = {}
   mockTransport.body = parser.jsonEncode{
     user = "kimchy",
@@ -41,7 +41,6 @@ function requestPUTTest()
 
   endpoint:setParams{
     index = "twitter",
-    type = "tweet",
     id = "1",
     body = {
       user = "kimchy",
@@ -58,7 +57,7 @@ end
 -- Testing post request
 function requestPOSTTest()
   mockTransport.method = "POST"
-  mockTransport.uri = "/twitter/tweet"
+  mockTransport.uri = "/twitter/_doc"
   mockTransport.params = {}
   mockTransport.body = parser.jsonEncode{
     user = "kimchy",
@@ -84,7 +83,7 @@ end
 -- Testing create request
 function requestCreateTest()
   mockTransport.method = "PUT"
-  mockTransport.uri = "/twitter/tweet/1/_create"
+  mockTransport.uri = "/twitter/_doc/1/_create"
   mockTransport.params = {}
   mockTransport.body = parser.jsonEncode{
     user = "kimchy",
@@ -94,7 +93,6 @@ function requestCreateTest()
 
   endpoint:setParams{
     index = "twitter",
-    type = "tweet",
     id = "1",
     body = {
       user = "kimchy",
@@ -111,7 +109,7 @@ end
 -- Testing create request
 function requestCreateTest()
   mockTransport.method = "POST"
-  mockTransport.uri = "/twitter/tweet"
+  mockTransport.uri = "/twitter/_doc"
   mockTransport.params = {
     op_type = "create"
   }
@@ -123,7 +121,6 @@ function requestCreateTest()
 
   endpoint:setParams{
     index = "twitter",
-    type = "tweet",
     body = {
       user = "kimchy",
       post_date = "2009-11-15T14:12:12",

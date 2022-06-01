@@ -30,13 +30,12 @@ end
 -- Testing request
 function requestTest()
   mockTransport.method = "GET"
-  mockTransport.uri = "/twitter/tweet/1"
+  mockTransport.uri = "/twitter/_doc/1"
   mockTransport.params = {}
   mockTransport.body = nil
 
   endpoint:setParams{
     index = "twitter",
-    type = "tweet",
     id = "1"
   }
 
@@ -49,13 +48,12 @@ end
 -- Testing exists
 function existsTest()
   mockTransport.method = "HEAD"
-  mockTransport.uri = "/twitter/tweet/1"
+  mockTransport.uri = "/twitter/_doc/1"
   mockTransport.params = {}
   mockTransport.body = nil
 
   endpoint:setParams{
     index = "twitter",
-    type = "tweet",
     id = "1"
   }
 
@@ -68,13 +66,12 @@ end
 -- Testing source
 function sourceTest()
   mockTransport.method = "GET"
-  mockTransport.uri = "/twitter/tweet/1/_source"
+  mockTransport.uri = "/twitter/_doc/1/_source"
   mockTransport.params = {}
   mockTransport.body = nil
 
   endpoint:setParams{
     index = "twitter",
-    type = "tweet",
     id = "1"
   }
 

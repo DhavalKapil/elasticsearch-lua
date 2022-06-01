@@ -58,10 +58,7 @@ function Get:getUri()
   if self.index == nil then
     return nil, "index not specified for Get"
   end
-  if self.type == nil then
-    return nil, "type not specified for Get"
-  end
-  local uri = "/" .. self.index .. "/" .. self.type .. "/" .. self.id
+  local uri = "/" .. self.index .. "/_doc/" .. self.id
   if self.endpointParams.sourceOnly == true then
     uri = uri .. "/_source"
   end

@@ -23,8 +23,11 @@ jobs:
       PROTOCOL: HTTP
     strategy:
       matrix:
+        # We test on four versions of Lua
         lua: [lua5.1, lua5.2, lua5.3, luajit2.0]
-        protocol: [http, https]
+        # We're testing on three versions of Elastic: 7, 8 and the
+        # Amazon Fork - OpenSearch 2.0
+        elastic: [el7, el8, os2]
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2.3.4
@@ -33,8 +36,8 @@ jobs:
           submodules: recursive
       - name: Set dynamic env vars
         run:  echo "CAFILE=$GITHUB_WORKSPACE/docker/certs/ca/ca.crt" >> $GITHUB_ENV
-      - name: Set Certfile Path for https
-        if: ${{ matrix.protocol == 'https' }}
+      - name: Set Certfile Path for el8
+        if: ${{ matrix.elastic == 'el8' }}
         run: echo "CACERT_PATH=--cacert $GITHUB_WORKSPACE/docker/certs/ca/ca.crt" >> $GITHUB_ENV
       - name: install dependencies
         run: sudo apt-get -y update && sudo apt-get install wget openssl -y
@@ -52,15 +55,20 @@ jobs:
         run: luarocks install lunitx && luarocks install luacov && luarocks install luacov-coveralls && luarocks install luasec 0.7-1
       - name: make the elasticsearch-lua rockspec
         run: luarocks make rockspecs/elasticsearch-lua-1.0.6-1.rockspec
-      - name: run the tests for https
-        if: ${{ matrix.protocol == 'https' }}
+      - name: run the tests for el8
+        if: ${{ matrix.elastic == 'el8' }}
         env:
           ES_TEST_PROTOCOL: https
           ES_TEST_PORT: 19200
           ELASTIC_CREDS: -u elastic:changeme
           PROTOCOL: https
         run: bash -x tests/gh_actions/setup_elastic.sh && cd tests && luarocks path >lpath.sh && source lpath.sh && lua run-tests.lua
-      - name: run the tests for http
-        if: ${{ matrix.protocol == 'http' }}
+      - name: run the tests for opensearch2
+        if: ${{ matrix.elastic == 'os2' }}
+        env:
+          ES_TEST_PORT: 29200
+        run: bash -x tests/gh_actions/setup_elastic.sh && cd tests && luarocks path >lpath.sh && source lpath.sh && lua run-tests.lua
+      - name: run the tests for el7
+        if: ${{ matrix.elastic == 'el7' }}
         run: bash -x tests/gh_actions/setup_elastic.sh && cd tests && luarocks path >lpath.sh && source lpath.sh && lua run-tests.lua
 

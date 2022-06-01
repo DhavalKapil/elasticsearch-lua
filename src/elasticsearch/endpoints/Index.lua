@@ -51,16 +51,11 @@ function Index:getUri()
   if self.index == nil then
     return nil, "index not specified for Index"
   end
-  if self.type == nil then
-    return nil, "type not specified for Index"
-  end
-  local uri = "/" .. self.index .. "/" .. self.type
+  local uri = "/" .. self.index .. "/_doc"
   if self.id ~= nil then
     uri = uri .. "/" .. self.id
-    if self.endpointParams.createIfAbsent == true then
-      uri = uri .. "/_create";
-    end
-  elseif self.endpointParams.createIfAbsent == true then
+  end
+  if self.endpointParams.createIfAbsent == true then
     self.params["op_type"] = "create"
   end
   return uri

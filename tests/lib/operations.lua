@@ -54,7 +54,6 @@ function operations.index(data)
    for _, v in ipairs(data) do
       local res, status = client:index{
          index = TEST_INDEX,
-         type = TEST_TYPE,
          id = v["id"],
          body = v
       }
@@ -69,7 +68,6 @@ function operations.createExistingDocuments(data)
    for _, v in ipairs(data) do
       local res, err = client:create{
          index = TEST_INDEX,
-         type = TEST_TYPE,
          id = v["id"],
          body = v
       }
@@ -83,7 +81,6 @@ function operations.createNonExistingDocuments(data)
    for _, v in ipairs(data) do
       local res, status = client:create{
          index = TEST_INDEX,
-         type = TEST_TYPE,
          id = v["id"],
          body = v
       }
@@ -99,7 +96,6 @@ function operations.deleteExistingDocuments(data, index)
    for _, v in ipairs(data) do
       local res, status = client:delete{
          index = index,
-         type = TEST_TYPE,
          id = v["id"]
       }
       assert_not_nil(res)
@@ -111,7 +107,6 @@ function operations.deleteNonExistingDocuments(data)
    for _, v in ipairs(data) do
       local res, err = client:delete{
          index = TEST_INDEX,
-         type = TEST_TYPE,
          id = v["id"]
       }
       assert_nil(res)
@@ -123,7 +118,6 @@ function operations.existsExistingDocuments(data)
    for _, v in ipairs(data) do
       local res, status = client:exists{
          index = TEST_INDEX,
-         type = TEST_TYPE,
          id = v["id"]
       }
       assert_true(res)
@@ -135,7 +129,6 @@ function operations.existsNonExistingDocuments(data)
    for _, v in ipairs(data) do
       local res, err = client:exists{
          index = TEST_INDEX,
-         type = TEST_TYPE,
          id = v["id"]
       }
       assert_false(res)
@@ -148,7 +141,6 @@ function operations.getExistingDocuments(data, index)
    for _, v in ipairs(data) do
       local res, status = client:get{
          index = index,
-         type = TEST_TYPE,
          id = v["id"]
       }
       assert_not_nil(res)
@@ -162,7 +154,6 @@ function operations.getNonExistingDocuments(data, index)
    for _, v in ipairs(data) do
       local res, err = client:get{
          index = index,
-         type = TEST_TYPE,
          id = v["id"]
       }
       assert_nil(res)
@@ -175,7 +166,6 @@ function operations.mgetExistingDocuments(data)
    for _, v in ipairs(data) do
       table.insert(docs, {
                       ["_index"] = TEST_INDEX,
-                      ["_type"] = TEST_TYPE,
                       ["_id"] = v["id"]
       })
    end
@@ -198,8 +188,7 @@ function operations.mgetNonExistingDocuments(data)
    for _, v in ipairs(data) do
       table.insert(docs, {
                       ["_index"] = TEST_INDEX,
-                      ["_type"] = TEST_TYPE,
-                      ["_id"] = v["id"]
+                       ["_id"] = v["id"]
       })
    end
    local res, status = client:mget{
@@ -223,7 +212,6 @@ function operations.bulkIndex(data, index)
       bulkBody[#bulkBody + 1] = {
          index = {
             ["_index"] = index,
-            ["_type"] = TEST_TYPE,
             ["_id"] = v["id"]
          }
       }
@@ -248,7 +236,6 @@ function operations.bulkDeleteExistingDocuments(data, index)
       bulkBody[#bulkBody + 1] = {
          delete = {
             ["_index"] = index,
-            ["_type"] = TEST_TYPE,
             ["_id"] = v["id"]
          }
       }
@@ -270,7 +257,6 @@ function operations.bulkDeleteNonExistingDocuments(data)
       bulkBody[#bulkBody + 1] = {
          delete = {
             ["_index"] = index,
-            ["_type"] = TEST_TYPE,
             ["_id"] = v["id"]
          }
       }
@@ -289,7 +275,6 @@ function operations.searchQuery(query, index)
    refresh()
    local res, status = client:search{
       index = index,
-      type = TEST_TYPE,
       q = query
    }
    assert_not_nil(res)
@@ -302,7 +287,6 @@ function operations.searchBody(body, index)
    refresh()
    local res, status = client:search{
       index = index,
-      type = TEST_TYPE,
       body = body
    }
    if res == nil then
@@ -317,7 +301,6 @@ function operations.searchTemplate(body)
    refresh()
    local res, status = client:searchTemplate{
       index = TEST_INDEX,
-      type = TEST_TYPE,
       body = body
    }
    assert_not_nil(res)
@@ -329,7 +312,6 @@ function operations.searchScan(body)
    refresh()
    local res, status = client:search{
       index = TEST_INDEX,
-      type = TEST_TYPE,
       scroll = "1m",
       body = body
    }

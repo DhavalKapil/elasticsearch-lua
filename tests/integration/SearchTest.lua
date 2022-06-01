@@ -10,7 +10,12 @@ function test()
 
   -- Simple query search
   local res = operations.searchQuery("type:PushEvent")
-  assert_equal(103, res.hits.total)
+  if type(res.hits.total) == "table"
+  then
+     assert_equal(103, res.hits.total.value) -- EL7+ returns hits as a table
+  else
+     assert_equal(103, res.hits.total)
+  end
 
   -- Simple body search
   local res = operations.searchBody{
@@ -20,7 +25,12 @@ function test()
       }
     }
   }
-  assert_equal(103, res.hits.total)
+  if type(res.hits.total) == "table"
+  then
+     assert_equal(103, res.hits.total.value)
+  else
+     assert_equal(103, res.hits.total)
+  end
 
   -- Aggregation search
   local res = operations.searchBody{
@@ -44,7 +54,12 @@ function test()
       }
     }
   }
-  assert_equal(103, res.hits.total)
+  if type(res.hits.total) == "table"
+  then
+     assert_equal(103, res.hits.total.value)
+  else
+     assert_equal(103, res.hits.total)
+  end
 
   -- Search template
   local res = operations.searchTemplate{
@@ -59,7 +74,12 @@ function test()
       query_string = "PushEvent"
     }
   }
-  assert_equal(103, res.hits.total)
+  if type(res.hits.total) == "table"
+  then
+     assert_equal(103, res.hits.total.value)
+  else
+     assert_equal(103, res.hits.total)
+  end
 
   operations.bulkDeleteExistingDocuments(dataset)
 end

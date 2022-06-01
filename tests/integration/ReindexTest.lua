@@ -29,7 +29,12 @@ function test()
   operations.getNonExistingDocuments(dataset_2, index2)
   operations.reindex(index1, index2, searchBody)
   local res = operations.searchBody(searchBody, index2)
-  assert_equal(103, res.hits.total)
+  if type(res.hits.total) == "table"
+  then
+     assert_equal(103, res.hits.total.value)
+  else
+     assert_equal(103, res.hits.total)
+  end
   operations.reindex(index1, index2)
   operations.getExistingDocuments(dataset, index2)
   operations.bulkDeleteExistingDocuments(dataset, index1)
