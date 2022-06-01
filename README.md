@@ -1,7 +1,5 @@
 # elasticsearch-lua 
 
-[![Build Status](https://travis-ci.org/PowerDNS/elasticsearch-lua.svg)](https://travis-ci.org/PowerDNS/elasticsearch-lua) [![Coverage Status](https://coveralls.io/repos/github/PowerDNS/elasticsearch-lua/badge.svg)](https://coveralls.io/github/PowerDNS/elasticsearch-lua)
-
 [![License](http://img.shields.io/badge/Licence-MIT-brightgreen.svg)](LICENSE)
 
 [![LuaRocks](https://img.shields.io/badge/LuaRocks-2.4.1-blue.svg)](https://luarocks.org/modules/neilcook/elasticsearch-lua) [![Lua](https://img.shields.io/badge/Lua-5.1-blue.svg)](https://img.shields.io/badge/Lua-5.1-blue.svg)[![LuaJIT](https://img.shields.io/badge/LuaJIT-2.0-blue.svg)](https://img.shields.io/badge/LuaJIT-2.0-blue.svg)
@@ -9,7 +7,7 @@
 A low level client for Elasticsearch written in Lua. This is a fork of
 the original repo by Dhaval Kapil, which he no longer maintains. This
 repo does not try to be all things to all people. It specifically
-supports Elasticsearch 6.x (at the moment) and Lua 5.1/LuaJIT 2.0.
+supports Elasticsearch 6.x (at the moment) and Lua 5.1, 5.2, 5.3 and LuaJIT 2.0.
 
 In accordance with the official low level clients, the client accepts associative arrays in the form of lua table as parameters.
 
@@ -29,7 +27,7 @@ In accordance with the official low level clients, the client accepts associativ
 
 ## Lua Version Requirements
 
-`elasticsearch-lua` works for lua = 5.1 version and luajit = 2.0.
+`elasticsearch-lua` works for lua >= 5.1  <= 5.3 version and luajit = 2.0.
 
 ## Setup
 

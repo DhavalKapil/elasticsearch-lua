@@ -10,13 +10,11 @@ then
 fi
 
 sed $SED_ARG "s/version = (.*)/version = \"$VERSION-1\"/;s/tag = (.*)/tag = \"v$VERSION\"/" rockspecs/elasticsearch-lua.rockspec >rockspecs/elasticsearch-lua-$VERSION-1.rockspec
-sed $SED_ARG "s/luarocks make (.*)/luarocks make rockspecs\/elasticsearch-lua-$VERSION-1.rockspec/" .travis.yml >.travis.yml.tmp
-sed $SED_ARG "s/luarocks make (.*)/luarocks make rockspecs\/elasticsearch-lua-$VERSION-1.rockspec/" tests/stress/.travis.yml >tests/stress/.travis.yml.tmp
+sed $SED_ARG "s/luarocks make (.*)/luarocks make rockspecs\/elasticsearch-lua-$VERSION-1.rockspec/" .github/workflows/test-all.yml >.github/workflows/test-all.yml.tmp
 
 if [ $? == 0 ]
 then
-  mv .travis.yml.tmp .travis.yml
-  mv tests/stress/.travis.yml.tmp tests/stress/.travis.yml
+  mv .github/workflows/test-all.yml.tmp .github/workflows/test-all.yml
   git add rockspecs/elasticsearch-lua-$VERSION-1.rockspec
   read -r -p "Do you want to tag this release in git? [y/N] " response
   if [[ $response =~ ^([yY])$ ]]

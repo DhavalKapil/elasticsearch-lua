@@ -1,0 +1,66 @@
+---
+name: 'Test everything'
+
+on:
+  push:
+  pull_request:
+  schedule:
+    # Once per month check it's still working
+    - cron: '0 22 1 * *'
+
+jobs:
+  test_all:
+    name: test_all
+    env:
+      DOCKER_COMPOSE_VERSION: 1.29.2
+      LUAROCKS: 2.2.2
+      ES_USERNAME: elastic
+      ES_PASSWORD: changeme
+      ES_TEST_PROTOCOL: http
+      ES_TEST_PORT: 9200
+      CACERT_PATH: 
+      ELASTIC_CREDS:
+      PROTOCOL: HTTP
+    strategy:
+      matrix:
+        lua: [lua5.1, lua5.2, lua5.3, luajit2.0]
+        protocol: [http, https]
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2.3.4
+        with:
+          fetch-depth: 5
+          submodules: recursive
+      - name: Set dynamic env vars
+        run:  echo "CAFILE=$GITHUB_WORKSPACE/docker/certs/ca/ca.crt" >> $GITHUB_ENV
+      - name: Set Certfile Path for https
+        if: ${{ matrix.protocol == 'https' }}
+        run: echo "CACERT_PATH=--cacert $GITHUB_WORKSPACE/docker/certs/ca/ca.crt" >> $GITHUB_ENV
+      - name: install dependencies
+        run: sudo apt-get -y update && sudo apt-get install wget openssl -y
+      - name: install docker-compose
+        run: curl -L https://github.com/docker/compose/releases/download/$DOCKER_COMPOSE_VERSION/docker-compose-`uname -s`-`uname -m` > docker-compose && chmod +x docker-compose && sudo mv docker-compose /usr/local/bin
+      - name: run elasticsearch
+        run: cd docker && docker-compose -f create-certs.yml up && docker-compose up -d && cd ..
+      - name: setup test environment
+        env:
+          LUA: ${{ matrix.lua }}
+        run: source tests/gh_actions/setenv_lua.sh
+      - name: Add lua things to path
+        run: echo "$HOME/.lua:$HOME/.local/bin:$GITHUB_WORKSPACE/install/luarocks/bin" >> $GITHUB_PATH
+      - name: install luarocks
+        run: luarocks install lunitx && luarocks install luacov && luarocks install luacov-coveralls && luarocks install luasec 0.7-1
+      - name: make the elasticsearch-lua rockspec
+        run: luarocks make rockspecs/elasticsearch-lua-1.0.6-1.rockspec
+      - name: run the tests for https
+        if: ${{ matrix.protocol == 'https' }}
+        env:
+          ES_TEST_PROTOCOL: https
+          ES_TEST_PORT: 19200
+          ELASTIC_CREDS: -u elastic:changeme
+          PROTOCOL: https
+        run: bash -x tests/gh_actions/setup_elastic.sh && cd tests && luarocks path >lpath.sh && source lpath.sh && lua run-tests.lua
+      - name: run the tests for http
+        if: ${{ matrix.protocol == 'http' }}
+        run: bash -x tests/gh_actions/setup_elastic.sh && cd tests && luarocks path >lpath.sh && source lpath.sh && lua run-tests.lua
+
