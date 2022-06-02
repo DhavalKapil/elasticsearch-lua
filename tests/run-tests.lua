@@ -16,7 +16,13 @@ function runIntegrationTests()
   require "integration.init"
 end
 
+function runSetupElastic()
+   local setup = require "setup"
+   setup.init()
+end
+
 -- Running all tests for now
+runSetupElastic()
 runUnitTests()
 runIntegrationTests()
 
