@@ -62,13 +62,13 @@ jobs:
           ES_TEST_PORT: 19200
           ELASTIC_CREDS: -u elastic:changeme
           PROTOCOL: https
-        run: bash -x tests/gh_actions/setup_elastic.sh && cd tests && luarocks path >lpath.sh && source lpath.sh && lua run-tests.lua
+        run: cd tests && luarocks path >lpath.sh && source lpath.sh && lua run-tests.lua
       - name: run the tests for opensearch2
         if: ${{ matrix.elastic == 'os2' }}
         env:
           ES_TEST_PORT: 29200
-        run: bash -x tests/gh_actions/setup_elastic.sh && cd tests && luarocks path >lpath.sh && source lpath.sh && lua run-tests.lua
+        run: cd tests && luarocks path >lpath.sh && source lpath.sh && lua run-tests.lua
       - name: run the tests for el7
         if: ${{ matrix.elastic == 'el7' }}
-        run: bash -x tests/gh_actions/setup_elastic.sh && cd tests && luarocks path >lpath.sh && source lpath.sh && lua run-tests.lua
+        run: cd tests && luarocks path >lpath.sh && source lpath.sh && lua run-tests.lua
 
